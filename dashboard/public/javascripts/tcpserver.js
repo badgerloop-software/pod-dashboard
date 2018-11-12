@@ -1,13 +1,28 @@
-const net = require('net');
-const port = 1337;
-const host = '127.0.0.1';
+var net = require('net');
+var PORT = 1337;
+var HOST = '127.0.0.1';
 
-net.createServer(function(socket) {
-    console.log('Connected');
-
-    socket.on('data', function(data) {
-        console.log('DATA ' + sock.remoteAddress + ': ' + data);
+net.createServer(function(sock) {
+    
+    console.log('CONNECTED: ' + sock.remoteAddress +':'+ sock.remotePort);
+    
+    sock.on('data', function(data) {
+         console.log('DATA ' + sock.remoteAddress + ': ' + data);
+        
+        sock.write('You said "' + data + '"');
+        dataReceived(data);
+        
     });
-});
+    
+    sock.on('close', function(data) {
+        console.log('CLOSED: ' + sock.remoteAddress +' '+ sock.remotePort);
+    });
+    
+}).listen(PORT, HOST);
 
-server.listen(1337, '127.0.0.1');
+console.log('Server listening on ' + HOST +':'+ PORT);
+
+var array = [];
+function dataReceived (data) {
+    array.push(data);
+}
