@@ -18,10 +18,10 @@ yData2 = [];
 chartFirstCreation2 = 0;
 chartTitles2 = ["", ""]
 
+xmax = 10; //maximum x-axis range in seconds. Should be the total runtime
+
 function generateLineChartOne(tdID, title) {
     //var data = require("./public/javascripts/getData");
-    
-    var xmax = 100; //maximum x-axis range in seconds. Should be the total runtime
     var sampleRate = 300; // sample rate in ms per sample
 
     var layout = {
@@ -90,6 +90,9 @@ function generateLineChartOne(tdID, title) {
         setInterval(function(){
             xpos += 1;
             getData();
+            if (xpos > xmax) {
+                document.querySelectorAll('[data-title="Autoscale"]')[0].click()
+            }
             if (numTraces1 == 1) {
                 var update = {
                     x: [[xpos]],
@@ -116,8 +119,7 @@ function generateLineChartOne(tdID, title) {
 
 function generateLineChartTwo(tdID, title) {
     //var data = require("./public/javascripts/getData");
-    
-    var xmax = 100; //maximum x-axis range in seconds. Should be the total runtime
+
     var sampleRate = 300; // sample rate in ms per sample
 
     var layout = {
@@ -188,6 +190,9 @@ function generateLineChartTwo(tdID, title) {
                 xpos += 1;
             }
             getData();
+            if (xpos > xmax) {
+                document.querySelectorAll('[data-title="Autoscale"]')[1].click()
+            }
             if (numTraces2 == 1) {
                 var update = {
                     x: [[xpos]],
