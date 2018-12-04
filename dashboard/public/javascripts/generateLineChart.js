@@ -229,3 +229,19 @@ function removeTraces() {
     chartTitles1 = ["", ""]
     chartTitles2 = ["", ""]
 }
+
+function removeC1T1() {
+    Plotly.deleteTraces(lineChartOne, 0);
+    if (numTraces1 == 2) {
+        chartState1[0] = chartState1[1];
+        chartTDID1[0] = chartTDID1[1];
+        traceArray1 = [0];
+        numTraces1 = 1;
+        chartTitles1 = [""];
+    }
+    /*chartState1[0] = 0;
+    chartTDID1[0] = "";
+    traceArray1 = [0];
+    numTraces1 = 0;
+    chartTitles1 = [""];*/
+}
