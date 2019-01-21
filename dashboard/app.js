@@ -6,16 +6,28 @@ var app = electron.app;
 const BrowserWindow = electron.BrowserWindow;
 let win;
 
-function createWindow(){
-  win = new BrowserWindow({width: 1920, height: 1080, webPreferences:{webSecurity: true}});
+function createWindow() {
+  win = new BrowserWindow({
+    width: 1920,
+    height: 1080,
+    minWidth: 1080,
+    minHeight: 720,
+    webPreferences: {
+      webSecurity: true
+    },
+    icon: path.join(__dirname, '/public/images/icon.png'),
+    autoHideMenuBar: true,
+
+
+  });
 
   win.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true,
   }));
-  
-  win.on('closed', () =>{
+
+  win.on('closed', () => {
     win = null;
   });
 }
@@ -23,13 +35,13 @@ function createWindow(){
 app.on('ready', createWindow);
 
 app.on('window-all-closed', () => {
-  if(process.platform !== 'darwin'){
+  if (process.platform !== 'darwin') {
     app.quit();
   }
 });
 
-app.on('activate', () =>{
-  if(win === null){
+app.on('activate', () => {
+  if (win === null) {
     createWindow();
   }
 });
