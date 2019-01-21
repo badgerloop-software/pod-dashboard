@@ -10,13 +10,14 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1920,
     height: 1080,
-    minWidth: 1080,
-    minHeight: 720,
+    minWidth: 720,
+    minHeight: 480,
     webPreferences: {
       webSecurity: true
     },
     icon: path.join(__dirname, '/public/images/icon.png'),
     autoHideMenuBar: true,
+    frame: false
 
 
   });

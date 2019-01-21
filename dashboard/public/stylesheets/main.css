@@ -25,6 +25,7 @@ h5 {
   top: 0;
   width: 100vw;
   z-index: 1;
+  -webkit-app-region: drag;
 }
 .banner .left {
   float: left;
@@ -100,7 +101,9 @@ h5 {
 .banner_dropdown img {
   padding-top: 10px;
 }
-
+.bannerButton{
+  -webkit-app-region: no-drag;
+}
 /* Box's styling */
 .box {
   height: 500px;
