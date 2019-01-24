@@ -18,7 +18,7 @@
     <div class="banner">
       <a class="left"><img src="public/images/logo.png" height="30px"></a>
       <a id="title" class="left">Control Dashboard</a>
-      <a class="right">
+      <a id="banner-drop"class="right">
         <div class="banner_dropdown">
           <button class="banner_dropbtn">Change View</button>
           <img src="public/images/dropdown.png" height="25px">
@@ -29,6 +29,7 @@
           </div>
         </div> 
       </a>
+      <a class="trigger"><img src="public/images/settings.png" height="35px"></a>
     </div>
 
     <div class="grid">
@@ -179,7 +180,7 @@
           <center><div class="status">
              <img src="public/images/pod.png" id="podStatus">
              <div id="statusConnection1"><p>-----------------</p></div>
-            <div id="age"><h5>Age of Last Packet:</h5><h1 id="ageDisplay">10ms</h1></div>
+            <div id="age"><h5>Measured Latency</h5><h1 id="ageDisplay">ms</h1></div>
              <div id="statusConnection2"><p>-----------------</p></div>
              <img src="public/images/macbook.png" id="hostStatus">
           </div></center>
@@ -409,11 +410,35 @@
       <div class="modal">
         <div class="modal-content">
           <span class="close-button">×</span>
-          <h1>Stopping Distance (m)</h1>
+          <h1>Dashboard Settings</h1>
+          <form class="settingsForm">
+            <div id="formLeft">
+              <h4 id="formTitle">Pod Settings</h1>
+              <label for="podIP" id="first-name">Pod IP</label>
+              <input id="podIP" class="formInput" type="text">
+      
+              <label for="podPort" id="last-name">Pod Port</label>
+              <input id="podPort" class="formInput" type="number">
+            </div>
+            <div id="formRight">
+              <h4 id="formTitle">Database Settings</h1>
+              <label for="databaseIP">Database IP</label>
+              <input id="databaseIP" class="formInput"  type="text">
+        
+              <label for="databasePort">Database Port</label>
+              <input id="databasePort" class="formInput" type="number">
+            </div>
+            <div id="formFull">
+              <h4 id="formTitle">Dashboard Settings</h1>
+              <label for="scanningRate">Scanning Rate: <span id="value"></span> </label>
+              <input id="scanningRate" class="formInput" type="number" min="0" max="500" class="inputNotSearchable">
+              <button id="podSettingsSubmit" type="button">Submit</button>
+              <p id="formFeedback"></p>
+            </div>
+          </form>
         </div>
+      </div>   
       </div>
-
-    </div>
 
     <script> //pop-up modal code
       var modal = document.querySelector(".modal");
@@ -422,6 +447,7 @@
         
       function toggleModal() {
         modal.classList.toggle("show-modal");
+        fillConstants();
       }
         
       function windowOnClick(event) {
