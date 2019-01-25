@@ -606,3 +606,38 @@ hr {
   margin: 1em 0;
   padding: 0; 
 }
+
+#terminal {
+  background-color: #000000;
+}
+.terminal{
+  background: black;
+  color: white;
+  font: courier;
+  padding: 10px;
+  height: 100px;
+  overflow: hidden;
+}
+
+.line{
+  display: table;
+  width: 100%;
+}
+
+.terminal span{
+  display:table-cell; 
+  width:1px;
+}
+#history {
+  font-family: "Lucida Console", Monaco, monospace;
+}
+
+.terminal input{
+  display:table-cell; 
+  width:100%;
+  border: none;
+  background: black;
+  color: white;
+  outline: none;
+  font-family: "Lucida Console", Monaco, monospace;
+}

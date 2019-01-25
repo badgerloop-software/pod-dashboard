@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">    
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/grid.css">
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
+    <script src="public/javascripts/dropdown.js"></script>
+    <script src="public/javascripts/focusClone.js"></script>
+    <script src="public/javascripts/tableSearch.js"></script>
+    <script src="public/javascripts/generateLineChart.js"></script>
+    <script src="public/javascripts/generateBlankChart.js"></script>
+    <script src="public/javascripts/dynamicStyling.js"></script>
+    <script src="node_modules/plotly.js-dist/plotly.js"></script>
+    <script src="public/javascripts/terminal.js"></script>
+    <title>Badgerloop Pod IV Dashboard</title>
+  </head>
+
+  <body>
+    <div class="banner">
+      <a class="left"><img src="public/images/logo.png" height="30px"></a>
+      <a href="index.html" title" class="left">Control Dashboard</a>
+      <a id="banner-drop"class="right">
+        <div class="banner_dropdown">
+          <button class="banner_dropbtn">Change View</button>
+          <img src="public/images/dropdown.png" height="25px">
+          <div class="banner_dropdown-content">
+            <a href="test.html">Terminal</a>
+            <a href="#">Charts</a>
+            <a href="#">Custom</a>
+          </div>
+        </div> 
+      </a>
+      <a class="trigger"><img src="public/images/settings.png" height="35px"></a>
+    </div>
+    
+    <div class="grid2">
+        <div class="terminal">
+            <div id="history"></div>
+            <div class="line">
+              <span id="path">></span>
+              <input type="text" id="input">
+            </div>
+        </div>
+    </div>
+    
+    
+    <script src="public/javascripts/handler.js"></script>
+  
+  </body>
+
+</html>
