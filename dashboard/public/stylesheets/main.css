@@ -620,6 +620,10 @@ hr {
   display: table;
   width: 100%;
 }
+#path {
+  font-family: "Lucida Console", Monaco, monospace;
+  color: green;
+}
 
 .terminal span{
   display:table-cell; 
@@ -627,6 +631,7 @@ hr {
 }
 #history {
   font-family: "Lucida Console", Monaco, monospace;
+  color: green;
 }
 
 .terminal input{
@@ -634,7 +639,7 @@ hr {
   width:100%;
   border: none;
   background: black;
-  color: white;
+  color: green;
   outline: none;
   font-family: "Lucida Console", Monaco, monospace;
 }
