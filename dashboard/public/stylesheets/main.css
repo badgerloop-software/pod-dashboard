@@ -607,9 +607,6 @@ hr {
   padding: 0; 
 }
 
-#terminal {
-  background-color: #000000;
-}
 .terminal{
   background: black;
   color: white;
@@ -640,4 +637,13 @@ hr {
   color: white;
   outline: none;
   font-family: "Lucida Console", Monaco, monospace;
+}
+
+.placeHolder{
+  background: #1E1E1E;
+  color: white;
+  font: courier;
+  padding: 10px;
+  height: 100px;
+  overflow: hidden;
 }

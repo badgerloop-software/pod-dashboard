@@ -216,14 +216,21 @@
 .grid2 {
     display: grid;
     grid-gap: 10px;
-    grid-template-columns: 45% 45%;
+    grid-template-columns: 50% 50%;
     padding-top: 80px;
     padding-left: 30px;
     padding-right: 30px;
     padding-bottom: 30px;
 }
 .terminal {
+  grid-column: 1;
   height: 90vh;
   border-color: #000000;
+  border-radius: 15px;
+}
+.placeHolder {
+  grid-column: 2;
+  height: 90vh;
+  border-color: #11dd22;
   border-radius: 15px;
 }
