@@ -21,6 +21,8 @@
   },
   "dependencies": {
     "mongodb": "^3.1.10",
-    "plotly.js-dist": "^1.42.5"
+    "node-pty": "^0.8.1",
+    "plotly.js-dist": "^1.42.5",
+    "xterm": "^3.10.1"
   }
 }
