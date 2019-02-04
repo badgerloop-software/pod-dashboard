@@ -11,14 +11,14 @@ Terminal.applyAddon(fit);
 const shell = process.env[os.platform() === 'win32' ? 'COMSPEC' : 'SHELL'];
 var ptyProcess = pty.spawn(shell, [], {
     name: 'xterm-color',
-    cols: 80,
+    cols: 240,
     rows: 30,
     cwd: process.cwd() + '/beaglebone_scripts',
     env: process.env
 });
 
 const xterm = new Terminal();
-xterm.open(document.getElementById('grid'));
+xterm.open(document.getElementById('terminal'));
 xterm.fit();
 
 xterm.on('data', (e) => {
