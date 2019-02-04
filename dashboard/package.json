@@ -4,7 +4,8 @@
   "description": "The Dashboard for Badgerloop Pod 4",
   "main": "app.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron . --ignore-gpu-blacklist",
+    "rebuild": "electron-rebuild -f -w node-pty"
   },
   "repository": {
     "type": "git",
@@ -17,12 +18,13 @@
   },
   "homepage": "https://github.com/badgerloop-software/pod#readme",
   "devDependencies": {
-    "electron": "^3.0.5"
+    "electron-rebuild": "^1.8.2"
   },
   "dependencies": {
+    "electron": "^4.0.1",
     "mongodb": "^3.1.10",
-    "node-pty": "^0.8.1",
+    "node-pty": "^0.8.0",
     "plotly.js-dist": "^1.42.5",
-    "xterm": "^3.10.1"
+    "xterm": "3.10.1"
   }
 }
