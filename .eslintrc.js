@@ -9,6 +9,8 @@ module.exports = {
     "no-console": "off",
     "no-alert": "off",
     "no-unused-vars": "off",
-    "import/no-unresolved": "off"
+    "import/no-unresolved": "off",
+    "prefer-const": "off",
+    "prefer-destructuring": ["error", { "object": true, "array": false }]
   }
 };
