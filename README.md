@@ -1,4 +1,4 @@
-# Pod 4 Operator's Dashboard
+# Pod 4 Operator's Dashboard &nbsp; ![GitHub Logo](https://raw.githubusercontent.com/badgerloop-software/pod-dashboard/master/public/images/icon.png)
 *Authors: Eric Udlis, Luke Houge, Alex Vesel*
 
 ### Platform/Technologies:
