@@ -1,17 +1,30 @@
 # Pod 4 Operator's Dashboard
 *Authors: Eric Udlis, Luke Houge, Alex Vesel*
 
-### Platform:
-    Electron
+### Platform/Technologies:
+- Electron
+- Node.js
+- eslint
+- Travis
 
 ## Run Instructions
-    - cd into folder
-    - npm install
-    - npm start
+``` 
+git clone https://github.com/badgerloop-software/pod-dashboard.git
+cd pod-dashboard
+npm install
+npm start
+```
 
-## Testing
-    - Currently configured with eslint for formatting tests
-    - No unit testing currently
-    - CI handled by Travis
-    - To run just lint: npm run pretest
-    - To run lint and unit tests (when added): npm test
+
+## Testing &nbsp; [![Build Status](https://travis-ci.com/badgerloop-software/pod-dashboard.svg?branch=travis-ci)](https://travis-ci.com/badgerloop-software/pod-dashboard)
+- Currently configured with eslint for formatting tests
+- No unit testing currently
+- CI handled by Travis
+- To run just lint: 
+```
+npm run pretest
+```
+- To run lint and unit tests (when added): 
+```
+npm test
+```
