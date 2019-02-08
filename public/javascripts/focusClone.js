@@ -3,8 +3,9 @@ Author: Luke Houge
 Purpose: Clones table entry to header
 */
 let x = 1; // counter for boxes filed so far
+let i;
 function clone(id) {
-  if (x == 1) {
+  if (x === 1) {
     // clone for box 1
     setInterval(() => {
       const value = document.getElementById(id).innerHTML; // gets value from table
@@ -12,8 +13,8 @@ function clone(id) {
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
       document.getElementById('header_label_1').innerHTML = name; // sets that as the label for the box
     }, 300); // updates every 300 ms
-    x++;
-  } else if (x == 2) {
+    x += 1;
+  } else if (x === 2) {
     // clone for box 2
     setInterval(() => {
       const value = document.getElementById(id).innerHTML;
@@ -21,8 +22,8 @@ function clone(id) {
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_2').innerHTML = name;
     }, 300);
-    x++;
-  } else if (x == 3) {
+    x += 1;
+  } else if (x === 3) {
     // clone for box 3
     setInterval(() => {
       const value = document.getElementById(id).innerHTML;
@@ -30,8 +31,8 @@ function clone(id) {
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_3').innerHTML = name;
     }, 300);
-    x++;
-  } else if (x == 4) {
+    x += 1;
+  } else if (x === 4) {
     // clone for box 4
     setInterval(() => {
       const value = document.getElementById(id).innerHTML;
@@ -39,7 +40,7 @@ function clone(id) {
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_4').innerHTML = name;
     }, 300);
-    x++;
+    x += 1;
   } else if (x > 4) {
     alert('Max of 4 values reached, please remove one and try again');
   }
@@ -47,7 +48,7 @@ function clone(id) {
 
 // clear for focus div (not working)
 function clear() {
-  for (i = 1; i < 5; i++) {
+  for (i = 1; i < 5; i += 1) {
     document.getElementById(`header_value_${String(i)}`).innerHTML = '';
     document.getElementById(
       `header_label_${String(i)}`,
