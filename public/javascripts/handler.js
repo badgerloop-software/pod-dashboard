@@ -2,24 +2,24 @@
 Author: Eric Udlis
 Purpose: Handle all updaters and interfacing between the frontend and backend
 */
-const client = require("./public/javascripts/communication");
-const di = require("./public/javascripts/DataInterfacing");
-const comms = require("./public/javascripts/communication").recievedEmitter;
-var constants = require("./constants");
-var storedData = require("./database");
+const client = require('./public/javascripts/communication');
+const di = require('./public/javascripts/DataInterfacing');
+const comms = require('./public/javascripts/communication').recievedEmitter;
+var constants = require('./constants');
+var storedData = require('./database');
 var d = document;
-var archiveButton = d.getElementById("archiveButton");
-var settingsSubmit = d.getElementById("podSettingsSubmit");
+var archiveButton = d.getElementById('archiveButton');
+var settingsSubmit = d.getElementById('podSettingsSubmit');
 var timeOld;
 
-comms.on("heartbeat", function() {
-  changeState("podConnect", true);
-  console.log("Heartbeat Recieved");
+comms.on('heartbeat', function() {
+  changeState('podConnect', true);
+  console.log('Heartbeat Recieved');
 });
 
 //Data in recieved
-comms.on("dataIn", function() {
-  console.log("dataIn - Event Recieved");
+comms.on('dataIn', function() {
+  console.log('dataIn - Event Recieved');
   //Log it to be sure
   console.log(client.inData);
   //Tell the Data Interfacer to start sorting it
@@ -28,7 +28,7 @@ comms.on("dataIn", function() {
 
 //Render command
 
-di.updater.on("updateData", () => {
+di.updater.on('updateData', () => {
   var counter = new Date();
   var elapsedTime;
   var timeNew = counter.getMilliseconds();
@@ -39,10 +39,10 @@ di.updater.on("updateData", () => {
     sensors.forEach(sensor => {
       //Check to see if that particular sensor is being rendered at the time
       try {
-        if (group !== "connections") updateData(group, sensor);
+        if (group !== 'connections') updateData(group, sensor);
       } catch {
         //If not, alert the user and move on
-        console.log("Unreconized Sensor- " + sensor + " -Skipping");
+        console.log('Unreconized Sensor- ' + sensor + ' -Skipping');
       }
     });
   });
@@ -66,40 +66,40 @@ function updateData(group, sensor) {
   let stored = storedData[group][sensor];
   //Set number
   if (stored[stored.length - 1] == null) {
-    console.log(group + " " + sensor + " " + stored[stored.length - 1]);
+    console.log(group + ' ' + sensor + ' ' + stored[stored.length - 1]);
   }
   t.innerHTML = String(stored[stored.length - 1]);
 }
 
 //Sets the latency counter
 function setAgeLabel(staleness) {
-  d.getElementById("ageDisplay").innerHTML = String(staleness + "ms");
+  d.getElementById('ageDisplay').innerHTML = String(staleness + 'ms');
 }
 
 //Handles the archive button click
-archiveButton.addEventListener("click", function() {
+archiveButton.addEventListener('click', function() {
   di.archiveData();
-  console.log("archiving data");
+  console.log('archiving data');
 });
 
 //Settings Form
 
 //Submits Entries to File
-settingsSubmit.addEventListener("click", () => {
-  constants.serverAddr.ip = d.getElementById("podIP").value;
-  constants.serverAddr.port = Number(d.getElementById("podPort").value);
-  constants.databaseAddr.ip = d.getElementById("databaseIP").value;
-  constants.databaseAddr.port = Number(d.getElementById("databasePort").value);
-  constants.scanningRate = Number(d.getElementById("scanningRate").value);
-  d.getElementById("formFeedback").innerHTML = "Settings Applied";
+settingsSubmit.addEventListener('click', () => {
+  constants.serverAddr.ip = d.getElementById('podIP').value;
+  constants.serverAddr.port = Number(d.getElementById('podPort').value);
+  constants.databaseAddr.ip = d.getElementById('databaseIP').value;
+  constants.databaseAddr.port = Number(d.getElementById('databasePort').value);
+  constants.scanningRate = Number(d.getElementById('scanningRate').value);
+  d.getElementById('formFeedback').innerHTML = 'Settings Applied';
 });
 
 //Fills entries in text boxes
 function fillConstants() {
-  d.getElementById("formFeedback").innerHTML = "";
-  d.getElementById("podIP").value = String(constants.serverAddr.ip);
-  d.getElementById("podPort").value = constants.serverAddr.port;
-  d.getElementById("databaseIP").value = constants.databaseAddr.ip;
-  d.getElementById("databasePort").value = constants.databaseAddr.port;
-  d.getElementById("scanningRate").value = constants.scanningRate;
+  d.getElementById('formFeedback').innerHTML = '';
+  d.getElementById('podIP').value = String(constants.serverAddr.ip);
+  d.getElementById('podPort').value = constants.serverAddr.port;
+  d.getElementById('databaseIP').value = constants.databaseAddr.ip;
+  d.getElementById('databasePort').value = constants.databaseAddr.port;
+  d.getElementById('scanningRate').value = constants.scanningRate;
 }

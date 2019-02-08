@@ -2,35 +2,38 @@
 Author: Eric Udlis
 Purpose: Test File to Send UDP Packets to the dashboard containing random numbers as data
 */
-const constants = require("./constants");
-const DATA_SEND_RATE = 30;
-const dgram = require("dgram");
-const IP = "127.0.0.1",
-  PORT = constants.serverAddr.port;
+const constants = require('./constants');
 
-var client = dgram.createSocket("udp4");
+const DATA_SEND_RATE = 30;
+const dgram = require('dgram');
+
+const IP = '127.0.0.1';
+
+const PORT = constants.serverAddr.port;
+
+const client = dgram.createSocket('udp4');
 
 function heartbeat() {
-  client.send("ping", 0, "ping".length, PORT, IP, function(err, bytes) {
+  client.send('ping', 0, 'ping'.length, PORT, IP, (err, bytes) => {
     if (err) throw err;
-    console.log("ping");
+    console.log('ping');
   });
 }
 function sendJSON(object) {
-  console.log("send data");
+  console.log('send data');
   sendData(JSON.stringify(object));
 }
 
 function sendTestData() {
-  let testSocket = {
-    type: "data",
+  const testSocket = {
+    type: 'data',
     data: {
       motion: {
         stoppingDistance: getRandomValue(),
         position: getRandomValue(),
         retro: getRandomValue(),
         velocity: getRandomValue(),
-        acceleration: getRandomValue()
+        acceleration: getRandomValue(),
       },
       battery: {
         packVoltage: getRandomValue(),
@@ -40,7 +43,7 @@ function sendTestData() {
         cellMaxVoltage: getRandomValue(),
         cellMinVoltage: getRandomValue(),
         highTemp: getRandomValue(),
-        lowTemp: getRandomValue()
+        lowTemp: getRandomValue(),
       },
       braking: {
         secondaryTank: getRandomValue(),
@@ -50,20 +53,20 @@ function sendTestData() {
         primaryLine: getRandomValue(),
         primaryActuation: getRandomValue(),
         pressureVesselPressure: getRandomValue(),
-        currentPressure: getRandomValue()
-      }
-    }
+        currentPressure: getRandomValue(),
+      },
+    },
   };
   sendJSON(testSocket);
 }
 
-//The line where test data is sent. setInterval(function, ms)
+// The line where test data is sent. setInterval(function, ms)
 //
 
 setInterval(sendTestData, DATA_SEND_RATE);
 
 function sendData(data) {
-  client.send(data, 0, data.length, PORT, IP, function(err, bytes) {
+  client.send(data, 0, data.length, PORT, IP, (err, bytes) => {
     if (err) throw err;
   });
 }
@@ -71,7 +74,7 @@ function sendData(data) {
 function getRandomIntInclusive(min, max) {
   min = Math.ceil(min);
   max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; //The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (max - min + 1)) + min; // The maximum is inclusive and the minimum is inclusive
 }
 
 function getRandomValue() {

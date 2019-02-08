@@ -5,7 +5,7 @@ Purpose: Temporary Database for storing run data
 module.exports = {
   connections: {
     pod: false,
-    NAP: false
+    NAP: false,
   },
   braking: {
     primaryTank: [],
@@ -15,14 +15,14 @@ module.exports = {
     secondaryLine: [],
     secondaryActuation: [],
     pressureVesselPressure: [],
-    currentPressure: []
+    currentPressure: [],
   },
   motion: {
     stoppingDistance: [],
     position: [],
     retro: [],
     velocity: [],
-    acceleration: []
+    acceleration: [],
   },
   battery: {
     packVoltage: [],
@@ -32,6 +32,6 @@ module.exports = {
     cellMaxVoltage: [],
     cellMinVoltage: [],
     highTemp: [],
-    lowTemp: []
-  }
+    lowTemp: [],
+  },
 };
