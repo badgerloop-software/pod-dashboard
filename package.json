@@ -5,7 +5,8 @@
   "main": "app.js",
   "scripts": {
     "start": "electron .",
-    "pretest": "eslint --ignore-path .gitignore ."
+    "pretest": "eslint --ignore-path .gitignore .",
+    "test": "echo \"No tests\""
   },
   "repository": {
     "type": "git",
