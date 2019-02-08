@@ -2,7 +2,7 @@
   "name": "podivdashboard",
   "version": "1.0.0",
   "description": "The Dashboard for Badgerloop Pod 4",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
     "start": "electron .",
     "lint": "eslint .",
