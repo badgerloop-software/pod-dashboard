@@ -2,13 +2,13 @@
 Author: Eric Udlis
 Purpose: Interface with the local tempory database and long term database
 */
+const MongoClient = require('mongodb');
 const events = require('events');
 const constants = require('../../constants');
+const storedData = require('../../database');
 
 const updater = new events.EventEmitter();
 module.exports.updater = updater;
-const storedData = require('../../database');
-const MongoClient = require('mongodb');
 
 const dbIP = constants.databaseAddr.ip;
 const dbPort = constants.databaseAddr.port;
@@ -20,8 +20,8 @@ module.exports.updateData = function updateData(dataIn) {
     const sensors = Object.keys(dataIn[i]);
     // console.log(i);
     sensors.forEach((sensor) => {
-      input = dataIn[i][sensor];
-      target = storedData[i][sensor];
+      const input = dataIn[i][sensor];
+      const target = storedData[i][sensor];
       target.push(input);
     });
   });
@@ -33,34 +33,37 @@ module.exports.updateData = function updateData(dataIn) {
 
 function getMongoID() {
   // Creates a unique ID for each run
-  id = String(
+  const uniqueID = String(
     String(new Date().getDate())
       + String(new Date().getHours())
       + String(new Date().getMinutes()),
   );
-  console.log(id);
-  return String(`run${id}`);
+  console.log(uniqueID);
+  return String(`run${uniqueID}`);
 }
 
 module.exports.archiveData = function archiveData(id) {
+  let myID;
   if (!id) {
     // if we didn't specify an ID, make one
-    id = getMongoID();
+    myID = getMongoID();
+  } else {
+    myID = id;
   }
   MongoClient.connect(
     String(
-      `mongodb://${constants.databaseAddr.ip}:${constants.databaseAddr.port}`,
+      `mongodb://${dbIP}:${dbPort}`,
     ),
     { useNewUrlParser: true },
     (err, db) => {
       if (err) throw err;
       const dbo = db.db('BadgerloopRunData');
-      dbo.createCollection(id, (err, res) => {
-        if (err) throw err;
+      dbo.createCollection(id, (error) => {
+        if (error) throw error;
         console.log('Collection Created');
       });
-      dbo.collection(id).insertOne(storedData, (err, res) => {
-        if (err) throw err;
+      dbo.collection(myID).insertOne(storedData, (errors) => {
+        if (errors) throw errors;
         db.close();
       });
     },

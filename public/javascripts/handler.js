@@ -5,49 +5,64 @@ Purpose: Handle all updaters and interfacing between the frontend and backend
 const client = require('./public/javascripts/communication');
 const di = require('./public/javascripts/DataInterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
-var constants = require('./constants');
-var storedData = require('./database');
-var d = document;
-var archiveButton = d.getElementById('archiveButton');
-var settingsSubmit = d.getElementById('podSettingsSubmit');
-var timeOld;
+const constants = require('./constants');
+const storedData = require('./database');
 
-comms.on('heartbeat', function() {
-  changeState('podConnect', true);
+const d = document;
+const archiveButton = d.getElementById('archiveButton');
+const settingsSubmit = d.getElementById('podSettingsSubmit');
+let timeOld;
+
+comms.on('heartbeat', () => {
   console.log('Heartbeat Recieved');
 });
 
-//Data in recieved
-comms.on('dataIn', function() {
+// Data in recieved
+comms.on('dataIn', () => {
   console.log('dataIn - Event Recieved');
-  //Log it to be sure
+  // Log it to be sure
   console.log(client.inData);
-  //Tell the Data Interfacer to start sorting it
+  // Tell the Data Interfacer to start sorting it
   di.updateData(client.inData.data);
 });
 
-//Render command
+// Update the Database and Render the latest entry
+function updateData(group, sensor) {
+  // Get numbers
+  const t = d.getElementById(String(sensor));
+  const stored = storedData[group][sensor];
+  // Set number
+  if (stored[stored.length - 1] == null) {
+    console.log(`${group} ${sensor} ${stored[stored.length - 1]}`);
+  }
+  t.innerHTML = String(stored[stored.length - 1]);
+}
+
+// Render command
+// Sets the latency counter
+function setAgeLabel(staleness) {
+  d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
+}
 
 di.updater.on('updateData', () => {
-  var counter = new Date();
-  var elapsedTime;
-  var timeNew = counter.getMilliseconds();
-  let groups = Object.keys(storedData);
-
-  groups.forEach(group => {
-    let sensors = Object.keys(storedData[group]);
-    sensors.forEach(sensor => {
-      //Check to see if that particular sensor is being rendered at the time
+  const counter = new Date();
+  let elapsedTime;
+  const timeNew = counter.getMilliseconds();
+  const groups = Object.keys(storedData);
+  groups.forEach((group) => {
+    const sensors = Object.keys(storedData[group]);
+    sensors.forEach((sensor) => {
+      // Check to see if that particular sensor is being rendered at the time
       try {
         if (group !== 'connections') updateData(group, sensor);
-      } catch {
-        //If not, alert the user and move on
-        console.log('Unreconized Sensor- ' + sensor + ' -Skipping');
+      } catch (error) {
+        // If not, alert the user and move on
+        console.log(`Unreconized Sensor- ${sensor} -Skipping`);
       }
     });
   });
 
-  //Lag Counter, when testing should be equal to DATA_SEND_RATE
+  // Lag Counter, when testing should be equal to DATA_SEND_RATE
   if (!timeOld) {
     elapsedTime = counter.getMilliseconds() - timeNew;
   } else {
@@ -59,32 +74,15 @@ di.updater.on('updateData', () => {
   }
 });
 
-// Update the Database and Render the latest entry
-function updateData(group, sensor) {
-  // Get numbers
-  let t = d.getElementById(String(sensor));
-  let stored = storedData[group][sensor];
-  //Set number
-  if (stored[stored.length - 1] == null) {
-    console.log(group + ' ' + sensor + ' ' + stored[stored.length - 1]);
-  }
-  t.innerHTML = String(stored[stored.length - 1]);
-}
-
-//Sets the latency counter
-function setAgeLabel(staleness) {
-  d.getElementById('ageDisplay').innerHTML = String(staleness + 'ms');
-}
-
-//Handles the archive button click
-archiveButton.addEventListener('click', function() {
+// Handles the archive button click
+archiveButton.addEventListener('click', () => {
   di.archiveData();
   console.log('archiving data');
 });
 
-//Settings Form
+// Settings Form
 
-//Submits Entries to File
+// Submits Entries to File
 settingsSubmit.addEventListener('click', () => {
   constants.serverAddr.ip = d.getElementById('podIP').value;
   constants.serverAddr.port = Number(d.getElementById('podPort').value);
@@ -94,7 +92,7 @@ settingsSubmit.addEventListener('click', () => {
   d.getElementById('formFeedback').innerHTML = 'Settings Applied';
 });
 
-//Fills entries in text boxes
+// Fills entries in text boxes
 function fillConstants() {
   d.getElementById('formFeedback').innerHTML = '';
   d.getElementById('podIP').value = String(constants.serverAddr.ip);

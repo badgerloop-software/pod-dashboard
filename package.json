@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "electron .",
-    "pretest": "eslint --ignore-path .gitignore .",
+    "pretest": "eslint .",
     "test": "echo \"No tests\""
   },
   "repository": {
@@ -19,12 +19,13 @@
   },
   "homepage": "https://github.com/badgerloop-software/pod#readme",
   "devDependencies": {
-    "electron": "^3.0.5",
     "eslint": "5.13.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "^2.16.0"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "electron": "^3.0.5",
     "mongodb": "^3.1.10",
     "plotly.js-dist": "^1.42.5",
     "prettier": "^1.16.4"

@@ -12,7 +12,6 @@ const PORT = constants.serverAddr.port;
 const HOST = constants.serverAddr.ip;
 const recievedEmitter = new events.EventEmitter();
 module.exports.recievedEmitter = recievedEmitter;
-let inData;
 
 // UDP Data Recieving
 
@@ -21,8 +20,8 @@ udpServer.on('listening', () => {
   console.log(`UDP Server listening on ${address.address}:${address.port}`);
 });
 
-udpServer.on('message', (message, remote) => {
-  recieved = JSON.parse(message);
+udpServer.on('message', (message) => {
+  const recieved = JSON.parse(message);
   switch (recieved.type) {
     case 'data':
       module.exports.inData = recieved;
@@ -32,6 +31,9 @@ udpServer.on('message', (message, remote) => {
     case 'disconnect':
       recievedEmitter.emit('disconnect'[recieved.subsystem]);
       break;
+
+    default:
+      console.log(message);
   }
 });
 
@@ -39,7 +41,6 @@ recievedEmitter.on('heartbeat', () => {
   console.log('pong');
 });
 
-module.exports.inData;
 udpServer.bind(PORT, HOST);
 
 module.exports.sendPacket = function sendPacket(ip, port, msg) {

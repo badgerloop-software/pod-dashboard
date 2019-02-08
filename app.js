@@ -6,8 +6,8 @@ const electron = require('electron');
 const url = require('url');
 const path = require('path');
 
-const app = electron.app;
-const BrowserWindow = electron.BrowserWindow;
+const { app } = electron;
+const { BrowserWindow } = electron;
 let win;
 
 function createWindow() {

@@ -2,6 +2,8 @@
 Author: Luke Houge, Eric Udlis
 Purpose: Dynamically styles cells and table based on values in range or not
 */
+const coms = require('./public/javascripts/communication').recievedEmitter;
+
 const tableIDs = ['motion', 'braking', 'battery_pack', 'motor']; // arrays for loop to iterate through
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
 const statusIDs = [
@@ -10,7 +12,7 @@ const statusIDs = [
   'battery_status',
   'motor_status',
 ];
-coms = require('./public/javascripts/communication').recievedEmitter;
+
 let i;
 
 coms.on('disconnect', (subsystem) => {
@@ -21,12 +23,14 @@ coms.on('disconnect', (subsystem) => {
 setInterval(() => {
   let w = 0;
   for (i = 1; i < 6; i += 1) {
-    // for loop that goes through each row of the table, 'i' being used to represent row (should probably change to r)
+    // for loop that goes through each row of the table, 'i' being used to r
+    // represent row (should probably change to r)
     const x = document.getElementById('motion').rows[i].cells; // gets the cells in the row 'i' and sets to x
-    var y;
+    let y;
     // sets a variable y to the value that is currently in the 3rd colunn (the value column)
     if (y < 2) {
-      // if that obtained value is less than 2 (arbitrary number for now), style red and add to counter w which will be used to determine if any row had an error
+      // if that obtained value is less than 2 (arbitrary number for now), style red and add to
+      // counter w which will be used to determine if any row had an error
       x[2].style.backgroundColor = '#FC6962';
       w += 1;
     } else if (y > 90) {
@@ -38,11 +42,15 @@ setInterval(() => {
     }
   }
   if (w !== 0) {
-    // if there was an error in any row during one run of the for loop, meaning w is not 0 as it was created as, then change the class of the div that tavble is in to 'error', which will make the border color red
+    // if there was an error in any row during one run of the for loop,
+    // meaning w is not 0 as it was created as,
+    // then change the class of the div that tavble is in to 'error',
+    // which will make the border color red
     document.getElementById('motion_div').className = 'error';
     w = 0;
   } else {
-    // if there was not an error during the for loop in any row, then keep the class of the div as 'ok'
+    // if there was not an error during the for loop in any row,
+    // then keep the class of the div as 'ok'
     document.getElementById('motion_div').className = 'ok';
     w = 0;
   }
@@ -53,7 +61,7 @@ setInterval(() => {
   let w = 0;
   for (i = 1; i < 9; i += 1) {
     const x = document.getElementById('braking').rows[i].cells;
-    var y;
+    let y;
     if (y < 2) {
       x[2].style.backgroundColor = '#FC6962';
       w += 1;
@@ -74,12 +82,12 @@ setInterval(() => {
 
 setInterval(() => {
   let w = 0;
-  for (let i = 0; i < 3; i += 1) {
+  for (i = 0; i < 3; i += 1) {
     const table = document.getElementById(tableIDs[i]); // creates table array
     for (let r = 1, n = table.rows.length; r < n; r += 1) {
       // iterates through rows in given table
-      const x = parseInt(table.rows[r].cells[1].innerHTML); // sets the min value to x
-      const y = parseInt(table.rows[r].cells[2].innerHTML); // sets the value to y
+      const x = parseInt(table.rows[r].cells[1].innerHTML, 10); // sets the min value to x
+      const y = parseInt(table.rows[r].cells[2].innerHTML, 10); // sets the value to y
       if (y < x) {
         // checks if too low
         table.rows[r].cells[2].style.backgroundColor = '#FC6962'; // makes red
@@ -89,11 +97,15 @@ setInterval(() => {
       }
     }
     if (w !== 0) {
-      // if there was an error in any row during one run of the for loop, meaning w is not 0 as it was created as, then change the class of the div that tavble is in to 'error', which will make the border color red
+      // if there was an error in any row during one run of the for loop,
+      // meaning w is not 0 as it was created as
+      // then change the class of the div that tavble is in to 'error',
+      // which will make the border color red
       document.getElementById(divIDs[i]).className = 'error';
       w = 0;
     } else {
-      // if there was not an error during the for loop in any row, then keep the class of the div as 'ok'
+      // if there was not an error during the for loop in any row,
+      // then keep the class of the div as 'ok'
       document.getElementById(divIDs[i]).className = 'ok';
       w = 0;
     }
@@ -110,10 +122,8 @@ setInterval(() => {
 
 // Table Search Boxes
 function searchTable(range) {
-  let input;
-  let tr;
   let td;
-  input = document.getElementById(`${range}input`);
+  const input = document.getElementById(`${range}input`);
   const filter = input.value.toUpperCase();
   const table = document.getElementById(range);
   const tr = table.getElementsByTagName('tr');

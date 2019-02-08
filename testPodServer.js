@@ -2,23 +2,38 @@
 Author: Eric Udlis
 Purpose: Test File to Send UDP Packets to the dashboard containing random numbers as data
 */
+const dgram = require('dgram');
 const constants = require('./constants');
 
 const DATA_SEND_RATE = 30;
-const dgram = require('dgram');
-
 const IP = '127.0.0.1';
-
 const PORT = constants.serverAddr.port;
-
 const client = dgram.createSocket('udp4');
 
+function getRandomIntInclusive(min, max) {
+  const myMin = Math.ceil(min);
+  const myMax = Math.floor(max);
+  // The maximum is inclusive and the minimum is inclusive
+  return Math.floor(Math.random() * (myMax - myMin + 1)) + min;
+}
+
+function getRandomValue() {
+  return getRandomIntInclusive(0, 255);
+}
+
 function heartbeat() {
-  client.send('ping', 0, 'ping'.length, PORT, IP, (err, bytes) => {
+  client.send('ping', 0, 'ping'.length, PORT, IP, (err) => {
     if (err) throw err;
     console.log('ping');
   });
 }
+
+function sendData(data) {
+  client.send(data, 0, data.length, PORT, IP, (err) => {
+    if (err) throw err;
+  });
+}
+
 function sendJSON(object) {
   console.log('send data');
   sendData(JSON.stringify(object));
@@ -64,19 +79,3 @@ function sendTestData() {
 //
 
 setInterval(sendTestData, DATA_SEND_RATE);
-
-function sendData(data) {
-  client.send(data, 0, data.length, PORT, IP, (err, bytes) => {
-    if (err) throw err;
-  });
-}
-
-function getRandomIntInclusive(min, max) {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1)) + min; // The maximum is inclusive and the minimum is inclusive
-}
-
-function getRandomValue() {
-  return getRandomIntInclusive(0, 255);
-}
