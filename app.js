@@ -1,6 +1,6 @@
 /*
 Author: Eric Udlis
-Purpose: Run the main Electron Process, testing submodule support
+Purpose: Run the main Electron Process
 */
 const electron = require("electron");
 const url = require("url");
