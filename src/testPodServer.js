@@ -21,7 +21,7 @@ function getRandomValue() {
   return getRandomIntInclusive(0, 255);
 }
 
-function heartbeat() {
+function heartbeat() { // eslint-disable-line no-unused-vars
   client.send('ping', 0, 'ping'.length, PORT, IP, (err) => {
     if (err) throw err;
     console.log('ping');
