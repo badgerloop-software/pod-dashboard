@@ -4,7 +4,9 @@
   "description": "The Dashboard for Badgerloop Pod 4",
   "main": "app.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "lint": "./node_modules/.bin/eslint index.js",
+    "test": "node test.js"
   },
   "repository": {
     "type": "git",
