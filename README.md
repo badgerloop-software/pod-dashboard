@@ -10,7 +10,7 @@
 ## Run Instructions
 ``` 
 git clone https://github.com/badgerloop-software/pod-dashboard.git
-cd pod-dashboard
+cd pod-dashboard/src
 npm install
 npm start
 ```
