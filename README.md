@@ -1,5 +1,10 @@
-# Badgerloop Pod IV
-*Developers: Ezra Boley, Eric Udlis, Rohan Daruwala, Luke Houge, Alex Vesel*
+# Pod 4 Operator's Dashboard
+*Authors: Eric Udlis, Luke Houge, Alex Vesel*
 
-The master repository for Badgerloop's pod in the Hyperloop Competition
+### Platform:
+    Electron
 
+## Run Instructions
+    - cd into folder
+    - npm install
+    - npm start
