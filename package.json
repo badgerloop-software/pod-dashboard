@@ -5,6 +5,7 @@
   "main": "app.js",
   "scripts": {
     "start": "electron .",
+    "lint": "eslint .",
     "pretest": "eslint .",
     "test": "echo \"No tests\""
   },
