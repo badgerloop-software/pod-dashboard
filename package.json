@@ -2,9 +2,13 @@
   "name": "podivdashboard",
   "version": "1.0.0",
   "description": "The Dashboard for Badgerloop Pod 4",
-  "main": "app.js",
+  "main": "src/app.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "lint": "eslint src",
+    "pretest": "eslint src",
+    "test": "jest src --passWithNoTests",
+    "coverage": "jest --collectCoverageFrom=src/**/*.js --coverage"
   },
   "repository": {
     "type": "git",
@@ -17,10 +21,16 @@
   },
   "homepage": "https://github.com/badgerloop-software/pod#readme",
   "devDependencies": {
-    "electron": "^3.0.5"
+    "eslint": "5.13.0",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "jest": "^24.1.0"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "electron": "^3.0.5",
     "mongodb": "^3.1.10",
-    "plotly.js-dist": "^1.42.5"
+    "plotly.js-dist": "^1.42.5",
+    "prettier": "^1.16.4"
   }
 }
