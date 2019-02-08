@@ -4,12 +4,12 @@ Purpose: Enable dynamic and searchable dropdowns
 */
 
 // determines which dropdown is being triggered
-function dropdown(num) {
+function dropdown(num) { // eslint-disable-line no-unused-vars
   document.getElementById(`myDropdown${String(num)}`).classList.toggle('show');
 }
 
 // search filter function for  dropdowns
-function filterFunction(id) {
+function filterFunction(id) { // eslint-disable-line no-unused-vars
   // determines which dropdown (1,2, or 3) is being called
   const inputnum = String(`dropdownInput${id}`);
 

@@ -3,7 +3,6 @@ Author: Alex Vesel
 Purpose: Create, fill, and clear charts using Plotly.js
 */
 
-/* eslint-disable */
 
 // global variable initilization for chart execution
 xpos = 0;

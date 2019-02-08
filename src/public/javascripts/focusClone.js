@@ -4,7 +4,7 @@ Purpose: Clones table entry to header
 */
 let x = 1; // counter for boxes filed so far
 let i;
-function clone(id) {
+function clone(id) { // eslint-disable-line no-unused-vars
   if (x === 1) {
     // clone for box 1
     setInterval(() => {
@@ -47,7 +47,7 @@ function clone(id) {
 }
 
 // clear for focus div (not working)
-function clear() {
+function clear() { // eslint-disable-line no-unused-vars
   for (i = 1; i < 5; i += 1) {
     document.getElementById(`header_value_${String(i)}`).innerHTML = '';
     document.getElementById(

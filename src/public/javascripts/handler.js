@@ -93,7 +93,7 @@ settingsSubmit.addEventListener('click', () => {
 });
 
 // Fills entries in text boxes
-function fillConstants() {
+function fillConstants() { // eslint-disable-line no-unused-vars
   d.getElementById('formFeedback').innerHTML = '';
   d.getElementById('podIP').value = String(constants.serverAddr.ip);
   d.getElementById('podPort').value = constants.serverAddr.port;

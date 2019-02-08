@@ -105,8 +105,9 @@ setInterval(() => {
   }
 }, 100);
 
+
 // Table Search Boxes
-function searchTable(range) {
+function searchTable(range) { // eslint-disable-line no-unused-vars
   let input; let filter; let table; let tr; let td; let i;
   input = document.getElementById(`${range}input`);
   filter = input.value.toUpperCase();

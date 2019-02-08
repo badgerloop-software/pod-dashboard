@@ -8,7 +8,6 @@ module.exports = {
   rules: {
     "no-console": "off",
     "no-alert": "off",
-    "no-unused-vars": "off",
     "no-undef": "off",
     "import/no-unresolved": "off",
     "prefer-const": "off",
