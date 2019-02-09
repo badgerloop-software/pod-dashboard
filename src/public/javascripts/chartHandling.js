@@ -55,9 +55,8 @@ function generateBlankChart(id, title, chartType) {
 
 // contains all functions to add single and double traces to line chart one
 function generateLineChartOne(tdID, title) {
-  const xmax = 100; // maximum x-axis range in seconds. Should be the total runtime
+  var update
   const sampleRate = 300; // sample rate in ms per sample
-
   const layout = {
     xaxis: {
       rangemode: 'tozero',
@@ -74,28 +73,7 @@ function generateLineChartOne(tdID, title) {
       t: 30,
     },
   };
-
-  if (chartState1[0] == 0) {
-    // checks if chart one is empty
-    chartTDID1[0] = tdID;
-    traceArray1 = [0];
-    chartTitles1[0] = title;
-    layout.title = chartTitles1[0];
-    numTraces1 = 1;
-    newChart();
-    chartFirstCreation1 = 1;
-    chartState1[0] = 1;
-  } else if (chartState1[1] == 0) {
-    // checks if chart one has second trace
-    chartTDID1[1] = tdID;
-    traceArray1 = [0, 1];
-    numTraces1 = 2;
-    chartTitles1[1] = title;
-    layout.title = `${chartTitles1[0]}, <br>${chartTitles1[1]}`;
-    addTrace();
-    chartState1[1] = 1;
-  }
-
+  
   function newChart() {
     getData();
 
@@ -113,9 +91,37 @@ function generateLineChartOne(tdID, title) {
       layout,
     );
 
-    if (chartFirstCreation1 == 0) {
+    if (chartFirstCreation1 === 0) {
       getDataAtInterval();
     }
+  }
+
+  // gets data from selected table cell
+  function getData() {
+    for (i = 0; i <= numTraces1 - 1; i += 1) {
+      const value = document.getElementById(chartTDID1[i]);
+      chartData1[i] = value.innerHTML;
+    }
+  }
+
+  // extends line chart one traces at each time step
+  function getDataAtInterval() {
+    setInterval(() => {
+      xpos += 1;
+      getData();
+      if (numTraces1 === 1) {
+        update = {
+          x: [[xpos]],
+          y: [[chartData1[0]]],
+        };
+      } else if (numTraces1 === 2) {
+        update = {
+          x: [[xpos], [xpos]],
+          y: [[chartData1[0]], [chartData1[1]]],
+        };
+      }
+      Plotly.extendTraces(lineChartOne, update, traceArray1);
+    }, sampleRate);
   }
 
   // function to add trace to line chart one
@@ -131,40 +137,33 @@ function generateLineChartOne(tdID, title) {
       },
     ]);
   }
-  // extends line chart one traces at each time step
-  function getDataAtInterval() {
-    setInterval(() => {
-      xpos += 1;
-      getData();
-      if (numTraces1 == 1) {
-        var update = {
-          x: [[xpos]],
-          y: [[chartData1[0]]],
-        };
-      } else if (numTraces1 == 2) {
-        var update = {
-          x: [[xpos], [xpos]],
-          y: [[chartData1[0]], [chartData1[1]]],
-        };
-      }
-      Plotly.extendTraces(lineChartOne, update, traceArray1);
-    }, sampleRate);
-  }
 
-  // gets data from selected table cell
-  function getData() {
-    for (i = 0; i <= numTraces1 - 1; i++) {
-      const value = document.getElementById(chartTDID1[i]);
-      chartData1[i] = value.innerHTML;
-    }
+  if (chartState1[0] === 0) {
+    // checks if chart one is empty
+    chartTDID1[0] = tdID;
+    traceArray1 = [0];
+    chartTitles1[0] = title;
+    layout.title = chartTitles1[0];
+    numTraces1 = 1;
+    newChart();
+    chartFirstCreation1 = 1;
+    chartState1[0] = 1;
+  } else if (chartState1[1] === 0) {
+    // checks if chart one has second trace
+    chartTDID1[1] = tdID;
+    traceArray1 = [0, 1];
+    numTraces1 = 2;
+    chartTitles1[1] = title;
+    layout.title = `${chartTitles1[0]}, <br>${chartTitles1[1]}`;
+    addTrace();
+    chartState1[1] = 1;
   }
 }
 
 // contains all functions to add single and double traces to line chart two
 function generateLineChartTwo(tdID, title) {
-  const xmax = 100; // maximum x-axis range in seconds. Should be the total runtime
+  var update
   const sampleRate = 300; // sample rate in ms per sample
-
   const layout = {
     xaxis: {
       rangemode: 'tozero',
@@ -181,27 +180,6 @@ function generateLineChartTwo(tdID, title) {
       t: 30,
     },
   };
-
-  if (chartState2[0] == 0) {
-    // checks if chart two is empty
-    chartTDID2[0] = tdID;
-    traceArray2 = [0];
-    chartTitles2[0] = title;
-    layout.title = chartTitles2[0];
-    numTraces2 = 1;
-    newChart();
-    chartFirstCreation2 = 1;
-    chartState2[0] = 1;
-  } else if (chartState2[1] == 0) {
-    // checks if chart two has second trace
-    chartTDID2[1] = tdID;
-    traceArray2 = [0, 1];
-    numTraces2 = 2;
-    chartTitles2[1] = title;
-    layout.title = `${chartTitles2[0]}, <br>${chartTitles2[1]}`;
-    addTrace();
-    chartState2[1] = 1;
-  }
 
   function newChart() {
     getData();
@@ -220,9 +198,39 @@ function generateLineChartTwo(tdID, title) {
       layout,
     );
 
-    if (chartFirstCreation2 == 0) {
+    if (chartFirstCreation2 === 0) {
       getDataAtInterval();
     }
+  }
+
+  // gets data from selected table cell
+  function getData() {
+    for (i = 0; i <= numTraces2 - 1; i += 1) {
+      const value = document.getElementById(chartTDID2[i]);
+      chartData2[i] = value.innerHTML;
+    }
+  }
+
+  // extends line chart two traces at each time step
+  function getDataAtInterval() {
+    setInterval(() => {
+      if (chartFirstCreation1 === 0) {
+        xpos += 1;
+      }
+      getData();
+      if (numTraces2 === 1) {
+        update = {
+          x: [[xpos]],
+          y: [[chartData2[0]]],
+        };
+      } else if (numTraces2 === 2) {
+        update = {
+          x: [[xpos], [xpos]],
+          y: [[chartData2[0]], [chartData2[1]]],
+        };
+      }
+      Plotly.extendTraces(lineChartTwo, update, traceArray2);
+    }, sampleRate);
   }
 
   // function to add trace to line chart two
@@ -239,34 +247,25 @@ function generateLineChartTwo(tdID, title) {
     ]);
   }
 
-  // extends line chart two traces at each time step
-  function getDataAtInterval() {
-    setInterval(() => {
-      if (chartFirstCreation1 == 0) {
-        xpos += 1;
-      }
-      getData();
-      if (numTraces2 == 1) {
-        var update = {
-          x: [[xpos]],
-          y: [[chartData2[0]]],
-        };
-      } else if (numTraces2 == 2) {
-        var update = {
-          x: [[xpos], [xpos]],
-          y: [[chartData2[0]], [chartData2[1]]],
-        };
-      }
-      Plotly.extendTraces(lineChartTwo, update, traceArray2);
-    }, sampleRate);
-  }
-
-  // gets data from selected table cell
-  function getData() {
-    for (i = 0; i <= numTraces2 - 1; i++) {
-      const value = document.getElementById(chartTDID2[i]);
-      chartData2[i] = value.innerHTML;
-    }
+  if (chartState2[0] === 0) {
+    // checks if chart two is empty
+    chartTDID2[0] = tdID;
+    traceArray2 = [0];
+    chartTitles2[0] = title;
+    layout.title = chartTitles2[0];
+    numTraces2 = 1;
+    newChart();
+    chartFirstCreation2 = 1;
+    chartState2[0] = 1;
+  } else if (chartState2[1] === 0) {
+    // checks if chart two has second trace
+    chartTDID2[1] = tdID;
+    traceArray2 = [0, 1];
+    numTraces2 = 2;
+    chartTitles2[1] = title;
+    layout.title = `${chartTitles2[0]}, <br>${chartTitles2[1]}`;
+    addTrace();
+    chartState2[1] = 1;
   }
 }
 
