@@ -17,7 +17,7 @@ npm start
 ```
 
 
-## Testing &nbsp; [![Build Status](https://travis-ci.com/badgerloop-software/pod-dashboard.svg?branch=travis-ci)](https://travis-ci.com/badgerloop-software/pod-dashboard)
+## Testing &nbsp; [![Build Status](https://travis-ci.com/badgerloop-software/pod-dashboard.svg?branch=master)](https://travis-ci.com/badgerloop-software/pod-dashboard)
 - Configured with eslint for formatting tests
 - Configured with jest for unit testing and coverage
 - CI handled by Travis
