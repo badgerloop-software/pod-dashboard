@@ -1,10 +1,10 @@
 # Pod 4 Operator's Dashboard &nbsp; ![GitHub Logo](https://raw.githubusercontent.com/badgerloop-software/pod-dashboard/master/src/public/images/icon.png)
 *Authors: Eric Udlis, Luke Houge, Alex Vesel*
 
-### Platform/Technologies:
+## Platform/Technologies:
 - [Electron](https://electronjs.org) (our software framework)
 - [Node.js](https://nodejs.org/en/) (our javascript runtime)
-- [eslint](https://eslint.org) (out linting utility)
+- [eslint](https://eslint.org) (our linting utility)
 - [Travis CI](https://travis-ci.org) (our continuous integration service)
 - [Jest](http://jestjs.io) (our javascript testing framework)
 
