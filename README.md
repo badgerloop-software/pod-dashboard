@@ -33,6 +33,10 @@ or
 ```
 npn run lint
 ```
+To run lint on a certian file
+```
+eslint [file].js [dir]
+```
 \
 To run just coverage test:
 ```  
