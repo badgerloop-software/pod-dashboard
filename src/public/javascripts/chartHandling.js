@@ -25,7 +25,7 @@ chartFirstCreation2 = 0;
 chartTitles2 = ['', ''];
 
 // function to generate blank chart on startup and clear
-function generateBlankChart(id, title, chartType) {
+function generateBlankChart(id, title, chartType) { // eslint-disable-line no-unused-vars
   const xmax = 100; // maximum x-axis range in seconds. Should be the total runtime
 
   const layout = {
@@ -54,7 +54,7 @@ function generateBlankChart(id, title, chartType) {
 }
 
 // contains all functions to add single and double traces to line chart one
-function generateLineChartOne(tdID, title) {
+function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-vars
   var update
   const sampleRate = 300; // sample rate in ms per sample
   const layout = {
@@ -74,7 +74,7 @@ function generateLineChartOne(tdID, title) {
     },
   };
   
-  function newChart() {
+  function newChart() { // eslint-disable-line no-unused-vars
     getData();
 
     Plotly.newPlot(
@@ -97,7 +97,7 @@ function generateLineChartOne(tdID, title) {
   }
 
   // gets data from selected table cell
-  function getData() {
+  function getData() { // eslint-disable-line no-unused-vars
     for (i = 0; i <= numTraces1 - 1; i += 1) {
       const value = document.getElementById(chartTDID1[i]);
       chartData1[i] = value.innerHTML;
@@ -105,7 +105,7 @@ function generateLineChartOne(tdID, title) {
   }
 
   // extends line chart one traces at each time step
-  function getDataAtInterval() {
+  function getDataAtInterval() { // eslint-disable-line no-unused-vars
     setInterval(() => {
       xpos += 1;
       getData();
@@ -125,7 +125,7 @@ function generateLineChartOne(tdID, title) {
   }
 
   // function to add trace to line chart one
-  function addTrace() {
+  function addTrace() { // eslint-disable-line no-unused-vars
     Plotly.relayout(lineChartOne, layout);
     Plotly.addTraces(lineChartOne, [
       {
@@ -161,7 +161,7 @@ function generateLineChartOne(tdID, title) {
 }
 
 // contains all functions to add single and double traces to line chart two
-function generateLineChartTwo(tdID, title) {
+function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-vars
   var update
   const sampleRate = 300; // sample rate in ms per sample
   const layout = {
@@ -181,7 +181,7 @@ function generateLineChartTwo(tdID, title) {
     },
   };
 
-  function newChart() {
+  function newChart() { // eslint-disable-line no-unused-vars
     getData();
 
     Plotly.newPlot(
@@ -204,7 +204,7 @@ function generateLineChartTwo(tdID, title) {
   }
 
   // gets data from selected table cell
-  function getData() {
+  function getData() { // eslint-disable-line no-unused-vars
     for (i = 0; i <= numTraces2 - 1; i += 1) {
       const value = document.getElementById(chartTDID2[i]);
       chartData2[i] = value.innerHTML;
@@ -212,7 +212,7 @@ function generateLineChartTwo(tdID, title) {
   }
 
   // extends line chart two traces at each time step
-  function getDataAtInterval() {
+  function getDataAtInterval() { // eslint-disable-line no-unused-vars
     setInterval(() => {
       if (chartFirstCreation1 === 0) {
         xpos += 1;
@@ -234,7 +234,7 @@ function generateLineChartTwo(tdID, title) {
   }
 
   // function to add trace to line chart two
-  function addTrace() {
+  function addTrace() { // eslint-disable-line no-unused-vars
     Plotly.relayout(lineChartTwo, layout);
     Plotly.addTraces(lineChartTwo, [
       {
@@ -270,7 +270,7 @@ function generateLineChartTwo(tdID, title) {
 }
 
 // function to remove all traces from all charts, resets global variables
-function removeTraces() {
+function removeTraces() { // eslint-disable-line no-unused-vars
   chartState1 = [0, 0];
   chartState2 = [0, 0];
   chartTDID1 = ['', ''];
