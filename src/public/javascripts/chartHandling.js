@@ -55,7 +55,7 @@ function generateBlankChart(id, title, chartType) { // eslint-disable-line no-un
 
 // contains all functions to add single and double traces to line chart one
 function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-vars
-  var update
+  let update;
   const sampleRate = 300; // sample rate in ms per sample
   const layout = {
     xaxis: {
@@ -73,7 +73,7 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
       t: 30,
     },
   };
-  
+
   function newChart() { // eslint-disable-line no-unused-vars
     getData();
 
@@ -162,7 +162,7 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
 
 // contains all functions to add single and double traces to line chart two
 function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-vars
-  var update
+  let update;
   const sampleRate = 300; // sample rate in ms per sample
   const layout = {
     xaxis: {
