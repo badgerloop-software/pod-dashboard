@@ -74,28 +74,6 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
     },
   };
 
-  function newChart() { // eslint-disable-line no-unused-vars
-    getData();
-
-    Plotly.newPlot(
-      lineChartOne,
-      [
-        {
-          x: [xpos],
-          y: [chartData1[0]],
-          type: 'scatter',
-          mode: 'lines',
-          line: { color: 'green' },
-        },
-      ],
-      layout,
-    );
-
-    if (chartFirstCreation1 === 0) {
-      getDataAtInterval();
-    }
-  }
-
   // gets data from selected table cell
   function getData() { // eslint-disable-line no-unused-vars
     for (i = 0; i <= numTraces1 - 1; i += 1) {
@@ -122,6 +100,28 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
       }
       Plotly.extendTraces(lineChartOne, update, traceArray1);
     }, sampleRate);
+  }
+
+  function newChart() { // eslint-disable-line no-unused-vars
+    getData();
+
+    Plotly.newPlot(
+      lineChartOne,
+      [
+        {
+          x: [xpos],
+          y: [chartData1[0]],
+          type: 'scatter',
+          mode: 'lines',
+          line: { color: 'green' },
+        },
+      ],
+      layout,
+    );
+
+    if (chartFirstCreation1 === 0) {
+      getDataAtInterval();
+    }
   }
 
   // function to add trace to line chart one
@@ -181,28 +181,6 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
     },
   };
 
-  function newChart() { // eslint-disable-line no-unused-vars
-    getData();
-
-    Plotly.newPlot(
-      lineChartTwo,
-      [
-        {
-          x: [xpos],
-          y: [chartData2[0]],
-          type: 'scatter',
-          mode: 'lines',
-          line: { color: 'green' },
-        },
-      ],
-      layout,
-    );
-
-    if (chartFirstCreation2 === 0) {
-      getDataAtInterval();
-    }
-  }
-
   // gets data from selected table cell
   function getData() { // eslint-disable-line no-unused-vars
     for (i = 0; i <= numTraces2 - 1; i += 1) {
@@ -231,6 +209,28 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
       }
       Plotly.extendTraces(lineChartTwo, update, traceArray2);
     }, sampleRate);
+  }
+
+  function newChart() { // eslint-disable-line no-unused-vars
+    getData();
+
+    Plotly.newPlot(
+      lineChartTwo,
+      [
+        {
+          x: [xpos],
+          y: [chartData2[0]],
+          type: 'scatter',
+          mode: 'lines',
+          line: { color: 'green' },
+        },
+      ],
+      layout,
+    );
+
+    if (chartFirstCreation2 === 0) {
+      getDataAtInterval();
+    }
   }
 
   // function to add trace to line chart two
