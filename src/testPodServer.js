@@ -5,7 +5,7 @@ Purpose: Test File to Send UDP Packets to the dashboard containing random number
 const dgram = require('dgram');
 const constants = require('./constants');
 
-const DATA_SEND_RATE = 30;
+const DATA_SEND_RATE = constants.dataSendRate;
 const IP = '127.0.0.1';
 const PORT = constants.serverAddr.port;
 const client = dgram.createSocket('udp4');
@@ -69,6 +69,12 @@ function sendTestData() {
         primaryActuation: getRandomValue(),
         pressureVesselPressure: getRandomValue(),
         currentPressure: getRandomValue(),
+      },
+      motor: {
+        commandTorque: getRandomValue(),
+        actualTorque: getRandomValue(),
+        motorSpeed: getRandomValue(),
+        motorTemp: getRandomValue(),
       },
     },
   };
