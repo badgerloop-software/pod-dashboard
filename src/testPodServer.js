@@ -82,6 +82,4 @@ function sendTestData() {
 }
 
 // The line where test data is sent. setInterval(function, ms)
-//
-
 setInterval(sendTestData, DATA_SEND_RATE);
