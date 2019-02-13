@@ -8,7 +8,8 @@
     "lint": "eslint src",
     "pretest": "eslint src",
     "test": "jest src --passWithNoTests",
-    "coverage": "jest --collectCoverageFrom=src/**/*.js --coverage"
+    "coverage": "jest --collectCoverageFrom=src/**/*.js --coverage",
+    "rebuild": "./node_modules/.bin/electron-rebuild"
   },
   "repository": {
     "type": "git",
@@ -21,19 +22,19 @@
   },
   "homepage": "https://github.com/badgerloop-software/pod#readme",
   "devDependencies": {
-    "electron-rebuild": "^1.8.2"
+    "electron-rebuild": "^1.8.4"
   },
   "dependencies": {
+    "babel-eslint": "^10.0.1",
     "electron": "^4.0.1",
-    "node-pty": "^0.8.0",
-    "xterm": "3.10.1",
     "eslint": "5.13.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "jest": "^24.1.0",
-    "babel-eslint": "^10.0.1",
     "mongodb": "^3.1.10",
+    "node-pty": "^0.8.0",
     "plotly.js-dist": "^1.42.5",
-    "prettier": "^1.16.4"
+    "prettier": "^1.16.4",
+    "xterm": "^3.11.0"
   }
 }
