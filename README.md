@@ -110,5 +110,4 @@ pod-dashboard/coverage/lcov-report/index.html
     │       └── main.css                            // Main CSS file
     └── testPodServer.js                            // Test File to Send UDP Packets to the dashboard containing random numbers as data
 
-8 directories, 33 files
 ```
