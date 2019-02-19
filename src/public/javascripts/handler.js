@@ -1,5 +1,5 @@
 /*
-Author: Eric Udlis
+Author: Eric Udlis, Michael Handler
 Purpose: Handle all updaters and interfacing between the frontend and backend
 */
 const client = require('./public/javascripts/communication');
@@ -101,3 +101,44 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   d.getElementById('databasePort').value = constants.databaseAddr.port;
   d.getElementById('scanningRate').value = constants.scanningRate;
 }
+
+// Handles the archive button click
+archiveButton.addEventListener('click', () => {
+  di.archiveData();
+  console.log('archiving data');
+});
+
+// Handles power off button click
+one.addEventListener('click', () => {
+  console.log('powering off');
+});
+
+// Handles Idle/Ready button click
+two.addEventListener('click', () => {
+  console.log('idling');
+});
+
+// Handles Post Run/service low speed/Safe to Approach button click
+three.addEventListener('click', () => {
+  console.log('safe to approach');
+});
+
+// Handles pumpdown/ready for pumpdown button click
+four.addEventListener('click', () => {
+  console.log('pumpdown');
+});
+
+// Handles hyperloop/openair/external subtrack button click
+five.addEventListener('click', () => {
+  console.log('hyperloop');
+});
+
+// Handles pre/during/post run buttons
+six.addEventListener('click', () => {
+  console.log('run status');
+});
+
+// Handles primary brake on/off button click
+seven.addEventListener('click', () => {
+  console.log('primary brake status');
+});
