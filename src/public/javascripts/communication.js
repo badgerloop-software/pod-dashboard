@@ -10,6 +10,10 @@ const constants = require('../../constants');
 const udpServer = dgram.createSocket('udp4');
 const PORT = constants.serverAddr.port;
 const HOST = constants.serverAddr.ip;
+const LV_BONE_IP = constants.lvBone.ip;
+const LV_BONE_PORT = constants.lvBone.port;
+const HV_BONE_IP = constants.hvBone.ip;
+const HV_BONE_PORT = constants.hvBone.port;
 const recievedEmitter = new events.EventEmitter();
 module.exports.recievedEmitter = recievedEmitter;
 
@@ -59,4 +63,12 @@ module.exports.sendPacket = function sendPacket(ip, port, msg) {
   tcpSender.on('close', () => {
     console.log('Connection Closed');
   });
+};
+
+module.exports.sendLVCommand = function sendLVCommand(msg) {
+  sendPacket(LV_BONE_IP, LV_BONE_PORT, msg);
+};
+
+module.exports.sendHVCommand = function sendHVCommand(msg) {
+  sendPacket(HV_BONE_IP, HV_BONE_PORT, msg);
 };
