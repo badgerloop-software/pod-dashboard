@@ -102,6 +102,8 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   d.getElementById('scanningRate').value = constants.scanningRate;
 }
 
+// State Machine Control Panel Even Listeners
+
 // Handles the archive button click
 archiveButton.addEventListener('click', () => {
   di.archiveData();
