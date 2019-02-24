@@ -28,7 +28,7 @@
 }
 .gridStateMachine {
     display: grid;
-    grid-template-columns: 11% 11% 11% 11% 11% 11% 11% 11% 11%;
+    grid-template-columns: 15% 15% 15% 15% 15% 15% 15%;
     padding: 10px;
 }
 
