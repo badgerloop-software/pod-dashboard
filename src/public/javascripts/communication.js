@@ -72,3 +72,23 @@ module.exports.sendLVCommand = function sendLVCommand(msg) {
 module.exports.sendHVCommand = function sendHVCommand(msg) {
   sendPacket(HV_BONE_IP, HV_BONE_PORT, msg);
 };
+
+module.exports.sendReadyPump = function sendReadyPump() {
+  sendHVCommand('readypump');
+};
+
+module.exports.sendPumpDown = function sendPumpDown() {
+  sendHVCommand('pumpDown');
+};
+
+module.exports.sendReadyCommand = function sendReadyCommand() {
+  sendHVCommand('readyCommand');
+};
+
+module.exports.sendPropulse = function sendPropulse() {
+  sendHVCommand('propulse');
+};
+
+module.exports.sendEBrake = function sendEBrake() {
+  sendHVCommand('emergencyBrake');
+};
