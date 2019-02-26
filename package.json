@@ -7,9 +7,7 @@
     "start": "electron .",
     "lint": "eslint src",
     "pretest": "eslint src",
-    "test": "jest src --passWithNoTests",
-    "coverage": "jest --collectCoverageFrom=src/**/*.js --coverage",
-    "rebuild": "./node_modules/.bin/electron-rebuild"
+    "test": "jest src --passWithNoTests"
   },
   "repository": {
     "type": "git",
@@ -21,9 +19,7 @@
     "url": "https://github.com/badgerloop-software/pod/issues"
   },
   "homepage": "https://github.com/badgerloop-software/pod#readme",
-  "devDependencies": {
-    "electron-rebuild": "^1.8.4"
-  },
+  "devDependencies": {},
   "dependencies": {
     "babel-eslint": "^10.0.1",
     "electron": "^4.0.1",
