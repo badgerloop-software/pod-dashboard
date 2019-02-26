@@ -6,8 +6,7 @@
   "scripts": {
     "start": "electron .",
     "lint": "eslint src",
-    "pretest": "eslint src",
-    "test": "jest src --passWithNoTests"
+    "pretest": "eslint src"
   },
   "repository": {
     "type": "git",
