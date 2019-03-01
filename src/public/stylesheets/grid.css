@@ -54,27 +54,27 @@
     height: 80px;
   }
   #extra {
-    grid-column: 1/11;
+    grid-column: 1/8;
     grid-row: 5;
     height: 100%;
   }
   #motion_div {
-    grid-column: 11/29;
+    grid-column: 8/27;
     grid-row: 5;
     height: 100%;
   }
   #braking_div {
-    grid-column: 29/49;
+    grid-column: 27/47;
     grid-row: 5;
     height: 100%;
   }
   #battery_pack_div {
-    grid-column: 49/68;
+    grid-column: 47/66;
     grid-row: 5;
     height: 100%;
   }
   #motor_div {
-    grid-column: 68/85;
+    grid-column: 66/85;
     grid-row: 5;
     height: 100%;
   }
