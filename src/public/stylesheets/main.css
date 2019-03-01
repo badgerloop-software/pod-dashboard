@@ -192,11 +192,11 @@ td.last {
   white-space: nowrap;
 }
 .valueTableOne {
-  width: 185px;
+  width: 183px;
   overflow: hidden;
 }
 .valueTableTwo {
-  width: 200px;
+  width: 234px;
   overflow: hidden;
 }
 .valueTableThree {
@@ -204,7 +204,7 @@ td.last {
   overflow: hidden;
 }
 .valueTableFour {
-  width: 100px;
+  width: 150px;
   overflow: hidden;
 }
 .min {
@@ -216,7 +216,7 @@ td.last {
   overflow: hidden;
 }
 .actual {
-  width: 100px;
+  width: 85px;
   overflow: hidden;
 }
 

@@ -64,17 +64,17 @@
     height: 100%;
   }
   #braking_div {
-    grid-column: 27/47;
+    grid-column: 27/48;
     grid-row: 5;
     height: 100%;
   }
   #battery_pack_div {
-    grid-column: 47/66;
+    grid-column: 48/67;
     grid-row: 5;
     height: 100%;
   }
   #motor_div {
-    grid-column: 66/85;
+    grid-column: 67/85;
     grid-row: 5;
     height: 100%;
   }
