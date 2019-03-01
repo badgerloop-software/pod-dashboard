@@ -64,9 +64,9 @@ di.updater.on('updateData', () => {
 
   // Lag Counter, when testing should be equal to DATA_SEND_RATE
   if (!timeOld) {
-    elapsedTime = counter.getMilliseconds() - timeNew;
+    elapsedTime = counter.getMilliseconds() - timeNew - constants.dataSendRate;
   } else {
-    elapsedTime = timeNew - timeOld;
+    elapsedTime = timeNew - timeOld - constants.dataSendRate;
   }
   timeOld = timeNew;
   if (elapsedTime > 0) {

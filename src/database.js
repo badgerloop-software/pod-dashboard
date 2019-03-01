@@ -34,4 +34,10 @@ module.exports = {
     highTemp: [],
     lowTemp: [],
   },
+  motor: {
+    commandTorque: [],
+    actualTorque: [],
+    motorSpeed: [],
+    motorTemp: [],
+  },
 };

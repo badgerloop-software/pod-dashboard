@@ -3,6 +3,7 @@ Author: Eric Udlis
 Purpose: Store all constants in one place
 */
 module.exports = {
+  dataSendRate: 100,
   serverAddr: {
     ip: '0.0.0.0',
     port: 33333,
