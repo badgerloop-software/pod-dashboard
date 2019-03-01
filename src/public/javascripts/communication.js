@@ -47,7 +47,7 @@ recievedEmitter.on('heartbeat', () => {
 
 udpServer.bind(PORT, HOST);
 
-module.exports.sendPacket = function sendPacket(ip, port, msg) {
+function sendPacket(ip, port, msg) {
   const tcpSender = new net.Socket();
   tcpSender.connect(port, ip, () => {
     console.log('Pod Connected');
@@ -63,15 +63,21 @@ module.exports.sendPacket = function sendPacket(ip, port, msg) {
   tcpSender.on('close', () => {
     console.log('Connection Closed');
   });
-};
+}
 
-module.exports.sendLVCommand = function sendLVCommand(msg) {
+module.exports.sendPacket = sendPacket;
+
+function sendLVCommand(msg) {
   sendPacket(LV_BONE_IP, LV_BONE_PORT, msg);
-};
+}
 
-module.exports.sendHVCommand = function sendHVCommand(msg) {
+module.exports.sendLVCommand = sendLVCommand;
+
+function sendHVCommand(msg) {
   sendPacket(HV_BONE_IP, HV_BONE_PORT, msg);
-};
+}
+
+module.exports.sendHVCommand = sendHVCommand;
 
 module.exports.sendReadyPump = function sendReadyPump() {
   sendHVCommand('readypump');
