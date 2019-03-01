@@ -14,7 +14,6 @@ git clone https://github.com/badgerloop-software/pod-dashboard.git
 cd pod-dashboard/src
 npm install
 npm start
-npm run rebuild #Rebuilds the pty module to ensure it works with electron for the embedded terminal
 ```
 
 
