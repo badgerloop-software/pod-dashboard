@@ -174,6 +174,7 @@ table {
   border: 1px solid #ddd;
   font-size: 14px;
   width: 100%;
+  table-layout: fixed;
 }
 table th, table td {
   text-align: left;
@@ -181,6 +182,7 @@ table th, table td {
 }
 table tr {
   border-bottom: 1px solid #ddd;
+  width: 100px;
 }
 table tr.header, table tr:hover {
   background-color: #f1f1f1;
@@ -188,6 +190,34 @@ table tr.header, table tr:hover {
 td.last {
   width: 1px;
   white-space: nowrap;
+}
+.valueTableOne {
+  width: 100px;
+  overflow: hidden;
+}
+.valueTableTwo {
+  width: 200px;
+  overflow: hidden;
+}
+.valueTableThree {
+  width: 160px;
+  overflow: hidden;
+}
+.valueTableFour {
+  width: 100px;
+  overflow: hidden;
+}
+.min {
+  width: 70px;
+  overflow: hidden;
+}
+.max {
+  width: 70px;
+  overflow: hidden;
+}
+.actual {
+  width: 100px;
+  overflow: hidden;
 }
 
 /* dropdown styling */
