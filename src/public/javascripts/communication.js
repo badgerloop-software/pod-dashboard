@@ -26,23 +26,9 @@ udpServer.on('listening', () => {
 
 udpServer.on('message', (message) => {
   const recieved = JSON.parse(message);
-  switch (recieved.type) {
-    case 'data':
-      module.exports.inData = recieved;
-      // Emit to handler.js that data has been recieved
-      recievedEmitter.emit('dataIn');
-      break;
-    case 'disconnect':
-      recievedEmitter.emit('disconnect'[recieved.subsystem]);
-      break;
-
-    default:
-      console.log(message);
-  }
-});
-
-recievedEmitter.on('heartbeat', () => {
-  console.log('pong');
+  module.exports.inData = recieved;
+  // Emit to handler.js that data has been recieved
+  recievedEmitter.emit('dataIn');
 });
 
 udpServer.bind(PORT, HOST);
