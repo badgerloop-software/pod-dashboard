@@ -197,7 +197,7 @@
        <!-- Emergency Start and Stop Buttons -->
        <div id="extra" class="box">
           <button id="start"><h1>MASTER START</h1></button>
-          <button id="estop"><h1>EMERGENCY STOP</h1></button>
+          <button id="estop"><h1>E-STOP</h1></button>
        </div>
 
        <!-- Motion Table -->
@@ -208,40 +208,40 @@
           <input type="text" id="motioninput" onkeyup="searchTable('motion')" placeholder="Search for values.." title="Type in a value">
           <table id="motion">
             <tr class="header">
-              <th>Value</th>
-              <th>Min</th>
-              <th>Actual</th>
-              <th>Max</th>
+              <th class="valueTableOne">Value</th>
+              <th class="min">Min</th>
+              <th class="actual">Actual</th>
+              <th class="max">Max</th>
             </tr>
             <tr>
-              <td><a class="trigger" onclick="generateLineChart('lineChartOne', 'dataRetro', 'Retro', 'line')">Stopping Distance (m)</a></td>
-              <td id="stoppingDistanceMin">5</td>
-              <td id="stoppingDistance"></td>
-              <td id="stoppingDistanceMax">255</td>
+              <td class="valueTableOne">Stopping Distance (m)</td>
+              <td class="min" id="stoppingDistanceMin">5</td>
+              <td class="actual"id="stoppingDistance"></td>
+              <td class="max" id="stoppingDistanceMax">255</td>
             </tr>
             <tr>
-              <td>Retro</td>
-              <td id="retroMin">125</td>
-              <td id ="retro"></td>
-              <td id ="retroMax">255</td>
+              <td class="valueTableOne">Retro</td>
+              <td class="min" id="retroMin">125</td>
+              <td  class="actual" id ="retro"></td>
+              <td class="max" id ="retroMax">255</td>
             </tr>
             <tr>
-              <td>Position (m)</td>
-              <td id ="positionMin">3</td>
-              <td id ="position"></td>
-              <td id ="positionMax">255</td>
+              <td class="valueTableOne">Position (m)</td>
+              <td class="min" id ="positionMin">3</td>
+              <td  class="actual" id ="position"></td>
+              <td class="max" id ="positionMax">255</td>
           </tr>
             <tr>
-                <td>Velocity (m/s)</td>
-                <td id="velocityMin">10</td>
-                <td id="velocity"></td>
-                <td id="velocityMax">255</td>
+                <td class="valueTableOne">Velocity (m/s)</td>
+                <td class="min" id="velocityMin">10</td>
+                <td  class="actual" id="velocity"></td>
+                <td class="max" id="velocityMax">255</td>
             </tr>
             <tr>
-                <td>Acceleration (m/s<sup>2</sup>)</td>
-                <td id="accelerationMin">15</td>
-                <td id="acceleration"></td>
-                <td id="accelerationMax">255</td>
+                <td class="valueTableOne">Acceleration (m/s<sup>2</sup>)</td>
+                <td class="min" id="accelerationMin">15</td>
+                <td  class="actual" id="acceleration"></td>
+                <td class="max" id="accelerationMax">255</td>
             </tr>
           </table>
         </div>
@@ -254,58 +254,58 @@
           <input type="text" id="brakinginput" onkeyup="searchTable('braking')" placeholder="Search for values.." title="Type in a value">
           <table id="braking">
               <tr class="header">
-                <th>Value</th>
-                <th>Min</th>
-                <th>Actual</th>
-                <th>Max</th>
+                <th class="valueTableTwo">Value</th>
+                <th class="min">Min</th>
+                <th class="actual">Actual</th>
+                <th class="max">Max</th>
               </tr>
               <tr>
-                <td>Secondary Tank (PSI)</td>
-                <td id="secondaryTankMin">22</td>
-                <td id="secondaryTank"></td>
-                <td id="secondaryTankMax">255</td>
+                <td class="valueTableTwo">Secondary Tank (PSI)</td>
+                <td class="min" id="secondaryTankMin">22</td>
+                <td class="actual"id="secondaryTank"></td>
+                <td class="max" id="secondaryTankMax">255</td>
               </tr>
               <tr>
-                <td>Secondary Line (PSI)</td>
-                <td id="secondaryLineMin">12</td>
-                <td id="secondaryLine"></td>
-                <td id="secondaryLineMax">255</td>
+                <td class="valueTableTwo">Secondary Line (PSI)</td>
+                <td class="min" id="secondaryLineMin">12</td>
+                <td class="actual"id="secondaryLine"></td>
+                <td class="max" id="secondaryLineMax">255</td>
               </tr>
               <tr>
-                <td>Secondary Actuation (PSI)</td>
-                <td id="secondaryActuationMin">8</td>
-                <td id="secondaryActuation"></td>
-                <td id="secondaryActuationMax">255</td>
+                <td class="valueTableTwo">Secondary Actuation (PSI)</td>
+                <td class="min" id="secondaryActuationMin">8</td>
+                <td class="actual"id="secondaryActuation"></td>
+                <td class="max" id="secondaryActuationMax">255</td>
               </tr>
               <tr id="primarytank">
-                <td>Primary Tank (PSI)</td>
-                <td id="primaryTankMin">22</td>
-                <td id="primaryTank"></td>
-                <td id="primaryTankMax">255</td>
+                <td class="valueTableTwo">Primary Tank (PSI)</td>
+                <td class="min" id="primaryTankMin">22</td>
+                <td class="actual"id="primaryTank"></td>
+                <td class="max" id="primaryTankMax">255</td>
               </tr>
               <tr>
-                <td>Primary Line (PSI)</td>
-                <td id="primaryLineMin">19</td>
-                <td id="primaryLine"></td>
-                <td id="primaryLineMax">255</td>
+                <td class="valueTableTwo">Primary Line (PSI)</td>
+                <td class="min" id="primaryLineMin">19</td>
+                <td class="actual"id="primaryLine"></td>
+                <td class="max" id="primaryLineMax">255</td>
               </tr>
               <tr>
-                <td>Primary Actuation (PSI)</td>
-                <td id="primaryActuationMin">2</td>
-                <td id="primaryActuation"></td>
-                <td id="primaryActuationMax">255</td>
+                <td class="valueTableTwo">Primary Actuation (PSI)</td>
+                <td class="min" id="primaryActuationMin">2</td>
+                <td class="actual"id="primaryActuation"></td>
+                <td class="max" id="primaryActuationMax">255</td>
               </tr>
               <tr>
-                <td>Pressure Vessel Pressure (PSI)</td>
-                <td id="pressureVesselPressureMin">25</td>
-                <td id="pressureVesselPressure"></td>
-                <td id="pressureVesselPressureMax">255</td>
+                <td class="valueTableTwo">Pressure Vessel Pressure (PSI)</td>
+                <td class="min" id="pressureVesselPressureMin">25</td>
+                <td class="actual"id="pressureVesselPressure"></td>
+                <td class="max" id="pressureVesselPressureMax">255</td>
               </tr>
               <tr>
-                <td>Current Pressure (PSI)</td>
-                <td id="currentPressureMin">32</td>
-                <td id="currentPressure"></td>
-                <td id="currentPressureMax">255</td>
+                <td class="valueTableTwo">Current Pressure (PSI)</td>
+                <td class="min" id="currentPressureMin">32</td>
+                <td class="actual"id="currentPressure"></td>
+                <td class="max" id="currentPressureMax">255</td>
               </tr>
             </table>
         </div>
@@ -319,58 +319,58 @@
           <input type="text" id="battery_pack_input" onkeyup="searchTable('battery_pack')" placeholder="Search for values.." title="Type in a value">
           <table id="battery_pack">
             <tr class="header">
-              <th>Value</th>
-              <th>Min</th>
-              <th>Actual</th>
-              <th>Max</th>
+              <th class="valueTableThree">Value</th>
+              <th class="min">Min</th>
+              <th class="actual">Actual</th>
+              <th class="max" >Max</th>
             </tr>
             <tr>
-              <td>Pack Voltage (V)</td>
-              <td>12</td>
-              <td id="packVoltage"></td>
-              <td>x</td>
+              <td class="valueTableThree">Pack Voltage (V)</td>
+              <td class="min">12</td>
+              <td class="actual"id="packVoltage"></td>
+              <td class="max" >x</td>
             </tr>
             <tr>
-              <td>Pack Current (A)</td>
-              <td>18</td>
-              <td id="packCurrent"></td>
-              <td>x</td>
+              <td class="valueTableThree">Pack Current (A)</td>
+              <td class="min">18</td>
+              <td class="actual" id="packCurrent"></td>
+              <td class="max" >x</td>
             </tr>
             <tr>
-              <td>Pack SOC (%)</td>
-              <td>22</td>
-              <td id="packSOC"></td>
-              <td>x</td>
+              <td class="valueTableThree">Pack SOC (%)</td>
+              <td class="min">22</td>
+              <td class="actual" id="packSOC"></td>
+              <td class="max" >x</td>
             </tr>
             <tr>
-              <td>Pack AH</td>
-              <td>14</td>
-              <td id="packAH"></td>
-              <td>x</td>
+              <td class="valueTableThree">Pack AH</td>
+              <td class="min">14</td>
+              <td class="actual" id="packAH"></td>
+              <td class="max" >x</td>
             </tr>
             <tr>
-              <td>Cell Max Voltage (V)</td>
-              <td>28</td>
-              <td id="cellMaxVoltage"></td>
-              <td>x</td>
+              <td class="valueTableThree">Cell Max Voltage (V)</td>
+              <td class="min">28</td>
+              <td class="actual" id="cellMaxVoltage"></td>
+              <td class="max" >x</td>
             </tr>
            <tr>
-              <td>Cell Min Voltage (V)</td>
-              <td>22</td>
-              <td id="cellMinVoltage"></td>
-              <td>x</td>
+              <td class="valueTableThree">Cell Min Voltage (V)</td>
+              <td class="min">22</td>
+              <td class="actual" id="cellMinVoltage"></td>
+              <td class="max" >x</td>
             </tr>
             <tr>
-              <td>High Temp (C)</td>
-              <td>3</td>
-              <td id="highTemp"></td>
-              <td>x</td>
+              <td class="valueTableThree">High Temp (C)</td>
+              <td class="min">3</td>
+              <td class="actual" id="highTemp"></td>
+              <td class="max" >x</td>
             </tr>
             <tr>
-              <td>Low Temp (C)</td>
-              <td>8</td>
-              <td id="lowTemp"></td>
-              <td>x</td>
+              <td class="valueTableThree">Low Temp (C)</td>
+              <td class="min">8</td>
+              <td class="actual" id="lowTemp"></td>
+              <td class="max" >x</td>
             </tr>
           </table>
         </div>
@@ -383,34 +383,34 @@
           <input type="text" id="motorinput" onkeyup="searchTable('motor')" placeholder="Search for values.." title="Type in a value">
           <table id="motor">
             <tr class="header">
-              <th>Value</th>
-              <th>Min</th>
-              <th>Actual</th>
-              <th>Max</th>
+              <th class="valueTableFour">Value</th>
+              <th class="min">Min</th>
+              <th class="actual">Actual</th>
+              <th class="max" >Max</th>
             </tr>
             <tr>
-              <td>Command Torque</td>
-              <td>0</td>
-              <td id="commandTorque"></td>
-              <td>255</td>
+              <td class="valueTableFour">Command Torque</td>
+              <td class="min">0</td>
+              <td class="actual" id="commandTorque"></td>
+              <td class="max" >255</td>
             </tr>
             <tr>
-              <td>Actual Torque</td>
-              <td>0</td>
-              <td id="actualTorque"></td>
-              <td>255</td>
+              <td class="valueTableFour">Actual Torque</td>
+              <td class="min">0</td>
+              <td class="actual" id="actualTorque"></td>
+              <td class="max" >255</td>
             </tr>
             <tr>
-              <td>Motor Speed (RPM)</td>
-              <td>0</td>
-              <td id="motorSpeed"></td>
-              <td>255</td>
+              <td class="valueTableFour">Motor Speed (RPM)</td>
+              <td class="min">0</td>
+              <td class="actual" id="motorSpeed"></td>
+              <td class="max" >255</td>
             </tr>
             <tr>
-              <td>Motor Temp (C)</td>
-              <td>0</td>
-              <td id="motorTemp"></td>
-              <td>255</td>
+              <td class="valueTableFour">Motor Temp (C)</td>
+              <td class="min">0</td>
+              <td class="actual" id="motorTemp"></td>
+              <td class="max" >255</td>
             </tr>
           </table>
         </div>
