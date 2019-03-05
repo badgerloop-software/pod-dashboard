@@ -6,9 +6,7 @@
   "scripts": {
     "start": "electron .",
     "lint": "eslint src",
-    "pretest": "eslint src",
-    "test": "jest src --passWithNoTests",
-    "coverage": "jest --collectCoverageFrom=src/**/*.js --coverage"
+    "pretest": "eslint src"
   },
   "repository": {
     "type": "git",
@@ -20,15 +18,15 @@
     "url": "https://github.com/badgerloop-software/pod/issues"
   },
   "homepage": "https://github.com/badgerloop-software/pod#readme",
-  "devDependencies": {
+  "devDependencies": {},
+  "dependencies": {
+    "babel-eslint": "^10.0.1",
+    "electron": "^4.0.1",
     "eslint": "5.13.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "jest": "^24.1.0",
-    "prettier": "^1.16.4"
-  },
-  "dependencies": {
-    "electron": "^3.0.5",
+    "prettier": "^1.16.4",
     "mongodb": "^3.1.10",
     "plotly.js-dist": "^1.42.5"
   }
