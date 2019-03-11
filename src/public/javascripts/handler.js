@@ -26,7 +26,7 @@ comms.on('dataIn', () => {
 function updateData(group, sensor) {
   // Get numbers
   const t = d.getElementById(String(sensor));
-  const stored = storedData[group][sensor];
+  const stored = storedData[group][sensor].data;
   // Set number
   if (stored[stored.length - 1] == null) {
     console.log(`${group} ${sensor} ${stored[stored.length - 1]}`);

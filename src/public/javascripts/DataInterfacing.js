@@ -16,12 +16,12 @@ const dbPort = constants.databaseAddr.port;
 module.exports.updateData = function updateData(dataIn) {
   // Sort through the data and append the new values to their respective arrays in database.js
   const groups = Object.keys(dataIn);
-  groups.forEach((i) => {
-    const sensors = Object.keys(dataIn[i]);
+  groups.forEach((group) => {
+    const sensors = Object.keys(dataIn[group]);
     // console.log(i);
     sensors.forEach((sensor) => {
-      const input = Number(dataIn[i][sensor]);
-      const target = storedData[i][sensor];
+      const input = Number(dataIn[group][sensor]);
+      const target = storedData[group][sensor].data;
       const temp = input.toFixed(5);
       target.push(temp);
     });
