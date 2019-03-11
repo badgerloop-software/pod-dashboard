@@ -6,7 +6,7 @@ const client = require('./public/javascripts/communication');
 const di = require('./public/javascripts/DataInterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
-const storedData = require('./database');
+const storedData = require('./database.json');
 
 const d = document;
 const archiveButton = d.getElementById('archiveButton');

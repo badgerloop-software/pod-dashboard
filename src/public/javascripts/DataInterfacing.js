@@ -5,7 +5,7 @@ Purpose: Interface with the local tempory database and long term database
 const MongoClient = require('mongodb');
 const events = require('events');
 const constants = require('../../constants');
-const storedData = require('../../database');
+const storedData = require('../../database.json');
 
 const updater = new events.EventEmitter();
 module.exports.updater = updater;
