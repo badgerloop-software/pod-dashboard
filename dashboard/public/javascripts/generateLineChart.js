@@ -18,11 +18,11 @@ yData2 = [];
 chartFirstCreation2 = 0;
 chartTitles2 = ["", ""]
 
-xmax = 10; //maximum x-axis range in seconds. Should be the total runtime
+sampleRate = 300; // sample rate in ms per sample
+xmax = 30; //x-axis range (seconds)
 
 function generateLineChartOne(tdID, title) {
     //var data = require("./public/javascripts/getData");
-    var sampleRate = 300; // sample rate in ms per sample
 
     var layout = {
     xaxis: {range: [0, xmax]},
@@ -88,11 +88,11 @@ function generateLineChartOne(tdID, title) {
 
     function getDataAtInterval() {
         setInterval(function(){
-            xpos += 1;
+            xpos += sampleRate / 1000;
             getData();
-            if (xpos > xmax) {
+            /*if (xpos > xmax) {
                 document.querySelectorAll('[data-title="Autoscale"]')[0].click()
-            }
+            }*/
             if (numTraces1 == 1) {
                 var update = {
                     x: [[xpos]],
@@ -106,6 +106,9 @@ function generateLineChartOne(tdID, title) {
                 }
             }
             Plotly.extendTraces(lineChartOne, update, traceArray1);
+            if (xpos > 30) {
+                Plotly.relayout(lineChartOne, 'xaxis.range', [xpos - xmax, xpos]);
+            }
         }, sampleRate);
     }
     
@@ -119,8 +122,6 @@ function generateLineChartOne(tdID, title) {
 
 function generateLineChartTwo(tdID, title) {
     //var data = require("./public/javascripts/getData");
-
-    var sampleRate = 300; // sample rate in ms per sample
 
     var layout = {
     xaxis: {range: [0, xmax]},
@@ -186,9 +187,9 @@ function generateLineChartTwo(tdID, title) {
 
     function getDataAtInterval() {
         setInterval(function(){
-            if (chartFirstCreation1 == 0) {
+            /*if (chartFirstCreation1 == 0) {
                 xpos += 1;
-            }
+            }*/
             getData();
             if (xpos > xmax) {
                 document.querySelectorAll('[data-title="Autoscale"]')[1].click()
@@ -206,6 +207,9 @@ function generateLineChartTwo(tdID, title) {
                 }
             }
             Plotly.extendTraces(lineChartTwo, update, traceArray2);
+            if (xpos > 30) {
+                Plotly.relayout(lineChartTwo, 'xaxis.range', [xpos - xmax, xpos]);
+            }
         }, sampleRate);
     }
     
