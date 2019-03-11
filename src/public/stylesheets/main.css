@@ -60,6 +60,32 @@ h5 {
   font-size: 25px;
 }
 
+/* main styling */
+.main {
+  padding-top: 150px;
+  padding-left: 50px;
+  padding-right: 50px;
+  padding-bottom: 150px;
+}
+.helper {
+  display: inline-block;
+  height: 100%;
+  vertical-align: middle;
+}
+.main img {
+  vertical-align: middle;
+  height: 100%;
+  width: 100%;
+}
+.main svg {
+  z-index: 1;
+  position: absolute;
+}
+.main rect {
+  z-index: 1;
+  position: absolute;
+}
+
 /* banner dropdown (need to fix, bit hard to get opened) */
 .banner_dropdown {
   float: right;
