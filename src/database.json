@@ -4,36 +4,86 @@
     "NAP": false
   },
   "braking": {
-    "primaryTank": [],
-    "primaryLine": [],
-    "primaryActuation": [],
-    "secondaryTank": [],
-    "secondaryLine": [],
-    "secondaryActuation": [],
-    "pressureVesselPressure": [],
-    "currentPressure": []
+    "primaryTank": {
+      "data": []
+    },
+    "primaryLine": {
+      "data": []
+    },
+    "primaryActuation": {
+      "data": []
+    },
+    "secondaryTank": {
+      "data": []
+    },
+    "secondaryLine": {
+      "data": []
+    },
+    "secondaryActuation": {
+      "data": []
+    },
+    "pressureVesselPressure": {
+      "data": []
+    },
+    "currentPressure": {
+      "data": []
+    }
   },
   "motion": {
-    "stoppingDistance": [],
-    "position": [],
-    "retro": [],
-    "velocity": [],
-    "acceleration": []
+    "stoppingDistance": {
+      "data": []
+    },
+    "position": {
+      "data": []
+    },
+    "retro": {
+      "data": []
+    },
+    "velocity": {
+      "data": []
+    },
+    "acceleration": {
+      "data": []
+    }
   },
   "battery": {
-    "packVoltage": [],
-    "packCurrent": [],
-    "packSOC": [],
-    "packAH": [],
-    "cellMaxVoltage": [],
-    "cellMinVoltage": [],
-    "highTemp": [],
-    "lowTemp": []
+    "packVoltage": {
+      "data": []
+    },
+    "packCurrent": {
+      "data": []
+    },
+    "packSOC": {
+      "data": []
+    },
+    "packAH": {
+      "data": []
+    },
+    "cellMaxVoltage": {
+      "data": []
+    },
+    "cellMinVoltage": {
+      "data": []
+    },
+    "highTemp": {
+      "data": []
+    },
+    "lowTemp": {
+      "data": []
+    }
   },
   "motor": {
-    "commandTorque": [],
-    "actualTorque": [],
-    "motorSpeed": [],
-    "motorTemp": []
+    "commandTorque": {
+      "data": []
+    },
+    "actualTorque": {
+      "data": []
+    },
+    "motorSpeed": {
+      "data": []
+    },
+    "motorTemp": {
+      "data": []
+    }
   }
 }
