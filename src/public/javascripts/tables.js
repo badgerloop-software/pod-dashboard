@@ -5,11 +5,6 @@ Purpose: Dynamically styles cells and table based on values in range or not
 const tableIDs = ['motion', 'braking', 'battery_pack', 'motor']; // arrays for loop to iterate through
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
 const statusIDs = ['motion_status', 'braking_status', 'battery_status', 'motor_status'];
-const coms = require('./public/javascripts/communication').recievedEmitter;
-
-coms.on('disconnect', (subsystem) => {
-  document.getElementById(String(`${subsystem}_div`)).className = 'disconnected';
-});
 
 // random generator for motion
 setInterval(() => {
