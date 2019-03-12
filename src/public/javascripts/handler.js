@@ -74,12 +74,6 @@ di.updater.on('updateData', () => {
   }
 });
 
-// Handles the archive button click
-archiveButton.addEventListener('click', () => {
-  di.archiveData();
-  console.log('archiving data');
-});
-
 // Settings Form
 
 // Submits Entries to File
@@ -102,140 +96,110 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   d.getElementById('scanningRate').value = constants.scanningRate;
 }
 
-// State Machine Control Panel Even Listeners
+// State Machine Control Panel Event Listeners
 
 // Handles power off button click
-powerOff.addEventListener('click', () => {
+d.getElementById('powerOff').addEventListener('click', () => {
   console.log('powering off');
 });
 
 // Handles the archive button click
-archiveButton.addEventListener('click', () => {
+d.getElementById('archiveButton').addEventListener('click', () => {
   di.archiveData();
   console.log('archiving data');
 });
 
-// Handles postRun1 (magenta) button click
-postRun1.addEventListener('click', () => {
-  console.log('postRun1');
+// Handles postRun (magenta) button click
+d.getElementById('postRun').addEventListener('click', () => {
+  console.log('postRun');
 });
 
-// Handles hyperloop1 (left most) button click
-hyperloop1.addEventListener('click', () => {
-  console.log('hyperloop1');
+// Handles propulsionStart button click
+d.getElementById('propulsionStart').addEventListener('click', () => {
+  console.log('propulsion start');
 });
 
-// Handles hyperloop2 (center) button click
-hyperloop2.addEventListener('click', () => {
-  console.log('hyperloop2');
-});
-
-// Handles hyperloop3 (right most) button click
-hyperloop3.addEventListener('click', () => {
-  console.log('hyperloop3');
-});
-
-// Handles preRun button click
-preRun.addEventListener('click', () => {
-  console.log('preRun');
+// Handles preRunFault button click
+d.getElementById('preRunFault').addEventListener('click', () => {
+  console.log('preRunFault');
 });
 
 // Handles primBrakeOn button click
-primBrakeOn.addEventListener('click', () => {
+d.getElementById('primBrakeOn').addEventListener('click', () => {
   console.log('primary brake on');
 });
 
 // Handles primBreakOff button click
-primBrakeOff.addEventListener('click', () => {
+d.getElementById('primBrakeOff').addEventListener('click', () => {
   console.log('primary brake off');
 });
 
 // Handles idle button click
-idle.addEventListener('click', () => {
+d.getElementById('idle').addEventListener('click', () => {
   console.log('idling');
 });
 
 // Handles ready button click
-ready.addEventListener('click', () => {
+d.getElementById('ready').addEventListener('click', () => {
   console.log('ready');
 });
 
 // Handles serviceLowSpeed button click
-serviceLowSpeed.addEventListener('click', () => {
+d.getElementById('serviceLowSpeed').addEventListener('click', () => {
   console.log('serviceLowSpeed');
 });
 
-// Handles openAir1 (left most) button click
-openAir1.addEventListener('click', () => {
-  console.log('openAir1');
+// Handles propulsionDistanceSense button click
+d.getElementById('propulsionDistanceSense').addEventListener('click', () => {
+  console.log('propulsionDistanceSense');
 });
 
-// Handles openAir2 (center) button click
-openAir2.addEventListener('click', () => {
-  console.log('openAir2');
-});
-
-// Handles openAir3 (right most) button click
-openAir3.addEventListener('click', () => {
-  console.log('openAir3');
-});
-
-// Handles duringRun button click
-duringRun.addEventListener('click', () => {
-  console.log('duringRun');
+// Handles duringRunFault button click
+d.getElementById('duringRunFaule').addEventListener('click', () => {
+  console.log('duringRunFault');
 });
 
 // Handles hvEnable button click
-hvEnable.addEventListener('click', () => {
+d.getElementById('hvEnable').addEventListener('click', () => {
   console.log('hvEnable');
 });
 
 // Handles hvDisable button click
-hvDisable.addEventListener('click', () => {
+d.getElementById('hvDisable').addEventListener('click', () => {
   console.log('hvDisable');
 });
 
 // Handles readyForPumpdown button click
-readyForPumpdown.addEventListener('click', () => {
+d.getElementById('readyForPumpdown').addEventListener('click', () => {
   console.log('ready for pumpdown');
 });
 
 // Handles pumpdown button click
-pumpdown.addEventListener('click', () => {
+d.getElementById('pumpdown').addEventListener('click', () => {
   console.log('pumpdown');
 });
 
 // Handles safeToApproach button click
-safeToApproach.addEventListener('click', () => {
+d.getElementById('safeToApproach').addEventListener('click', () => {
   console.log('safe to approach');
 });
 
-// Handles externalSubtrack1 (left most) button click
-externalSubtrack1.addEventListener('click', () => {
-  console.log('externalSubtrack1');
+// Handles brakingStart button click
+d.getElementById('brakingStart').addEventListener('click', () => {
+  console.log("braking start")
 });
 
-// Handles externalSubtrack2 (center) button click
-externalSubtrack2.addEventListener('click', () => {
-  console.log('externalSubtrack2');
-});
-
-// Handles externalSubtrack3 (right most) button click
-externalSubtrack3.addEventListener('click', () => {
-  console.log('externalSubtrack3');
-});
-
-// Handles postRun2 (Red) button click
-postRun2.addEventListener('click', () => {
-  console.log('postRun2');
+// Handles postRunFault button click
+d.getElementById('postRunFault').addEventListener('click', () => {
+  console.log('postRunFault');
 });
 
 // Handles secBrakeVentOn button click
-secBrakeVentOn.addEventListener('click', () => {
-  console.log('secondaryBrakeVentOn');
+d.getElementById('secBrakeVentOn').addEventListener('click', () => {
+  console.log('secBrakeVentOn');
 });
 
 // Handles secBrakeVentOff button click
-secBrakeVentOff.addEventListener('click', () => {
+d.getElementById('secBrakeVentOff').addEventListener('click', () => {
   console.log('secBrakeVentOff');
 });
