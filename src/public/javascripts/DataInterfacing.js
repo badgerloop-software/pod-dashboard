@@ -5,6 +5,7 @@ Purpose: Interface with the local tempory database and long term database
 const events = require('events');
 const storedData = require('../../database.json');
 let cache = require('../../cache');
+const fs = require('fs');
 
 const updater = new events.EventEmitter();
 module.exports.updater = updater;
@@ -42,3 +43,20 @@ module.exports.updateData = function updateData(dataIn) {
   // Tell proto.js to render the data
   updater.emit('updateData');
 };
+
+
+function createID(){
+  let d = new Date();
+  return `${d.getDate()}${d.getHours()}${d.getMinutes()}`;
+}
+
+function createJSON(name){
+  fs.writeFileSync(`./Exports/${name}.json`, JSON.stringify(cache), function(err, file){
+    if (err) throw err;
+    console.log(`${name}.json Created!`);
+  });
+}
+
+module.exports.archiveData = function(){
+  createJSON(createID());
+}
