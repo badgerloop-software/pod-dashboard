@@ -2,91 +2,43 @@
   "braking": {
     "primaryTank": {
       "name": "asdf",
-      "type": "unit_32",
+      "type": "unint_32",
       "limits": {
-        "state":{
-            "max": 123,
-            "min": 321
+        "state": {
+          "max": 123,
+          "min": 321
+        }
       }
-    } 
     },
-    "primaryLine": {
-      
-    },
-    "primaryActuation": {
-      
-    },
-    "secondaryTank": {
-      
-    },
-    "secondaryLine": {
-      
-    },
-    "secondaryActuation": {
-      
-    },
-    "pressureVesselPressure": {
-      
-    },
-    "currentPressure": {
-      
-    }
+    "primaryLine": {},
+    "primaryActuation": {},
+    "secondaryTank": {},
+    "secondaryLine": {},
+    "secondaryActuation": {},
+    "pressureVesselPressure": {},
+    "currentPressure": {}
   },
   "motion": {
-    "stoppingDistance": {
-      
-    },
-    "position": {
-      
-    },
-    "retro": {
-      
-    },
-    "velocity": {
-      
-    },
-    "acceleration": {
-      
-    }
+    "stoppingDistance": {},
+    "position": {},
+    "retro": {},
+    "velocity": {},
+    "acceleration": {}
   },
   "battery": {
-    "packVoltage": {
-      
-    },
-    "packCurrent": {
-      
-    },
-    "packSOC": {
-      
-    },
-    "packAH": {
-      
-    },
-    "cellMaxVoltage": {
-      
-    },
-    "cellMinVoltage": {
-      
-    },
-    "highTemp": {
-      
-    },
-    "lowTemp": {
-      
-    }
+    "packVoltage": {},
+    "packCurrent": {},
+    "packSOC": {},
+    "packAH": {},
+    "cellMaxVoltage": {},
+    "cellMinVoltage": {},
+    "highTemp": {},
+    "lowTemp": {}
   },
   "motor": {
-    "commandTorque": {
-      
-    },
-    "actualTorque": {
-      
-    },
-    "motorSpeed": {
-      
-    },
-    "motorTemp": {
-      
-    }
+    "commandTorque": {},
+    "actualTorque": {},
+    "motorSpeed": {},
+    "motorTemp": {}
   }
 }
