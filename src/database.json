@@ -1,11 +1,15 @@
 {
-  "connections": {
-    "pod": false,
-    "NAP": false
-  },
   "braking": {
     "primaryTank": {
-      "data": []
+      "data": [],
+      "name": "asdf",
+      "type": "unit_32",
+      "limits": {
+        "state":{
+            "max": 123,
+            "min": 321
+      }
+    } 
     },
     "primaryLine": {
       "data": []

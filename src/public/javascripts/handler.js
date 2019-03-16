@@ -7,6 +7,7 @@ const di = require('./public/javascripts/DataInterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
 const storedData = require('./database.json');
+const cache = require('./cache');
 
 const d = document;
 const archiveButton = d.getElementById('archiveButton');
@@ -26,7 +27,7 @@ comms.on('dataIn', () => {
 function updateData(group, sensor) {
   // Get numbers
   const t = d.getElementById(String(sensor));
-  const stored = storedData[group][sensor].data;
+  const stored = cache[group][sensor];
   // Set number
   if (stored[stored.length - 1] == null) {
     console.log(`${group} ${sensor} ${stored[stored.length - 1]}`);
@@ -75,6 +76,7 @@ archiveButton.addEventListener('click', () => {
   di.archiveData();
   console.log('archiving data');
 });
+
 
 // Settings Form
 
