@@ -4,8 +4,6 @@
     <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">    
     <link rel="stylesheet" type="text/css" href="public/stylesheets/grid.css">
     <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
-    <script src="public/javascripts/dropdown.js"></script>
-    <script src="public/javascripts/focusClone.js"></script>
     <script src="public/javascripts/chartHandling.js"></script>
     <script src="../node_modules/plotly.js-dist/plotly.js"></script>
     <title>Badgerloop Pod IV Dashboard</title>
@@ -132,48 +130,48 @@
           </div>
           <div class="header_focus_chart" id="header_focus_chart2">
             <div style="height: 20px"></div>
-              <div id="lineChartTwo"></div>
-              <script>document.onload = generateBlankChart('lineChartTwo', 'Chart 2', 'line')</script>
-            </div>
+            <div id="lineChartTwo"></div>
+            <script>document.onload = generateBlankChart('lineChartTwo', 'Chart 2', 'line')</script>
           </div>
         </div>
-        <!-- State Machine Control Panel -->
-        <div id="header3" class="box">
-           <div class="gridStateMachine">
-              <button id="powerOff" class="stateButton1"><p>Power Off</p></button>
-              <button id="archiveButton" class="stateButton"><p>Archive Data</p></button>
-              <button id="postRun" class="stateButton3"><p>Post Run</p></button>
-              <button id="propulsionStart" class="stateButton5"><p>Propulsion Start</p></button>
-              <button id="preRunFault" class="stateButton6"><p>Pre Run Fault</p></button>
-              <button id="primBrakeOn" class="stateButton7"><p>Prim. Brake On</p></button>
-              <button id="primBrakeOff" class="stateButton7"><p>Prim. Brake Off</p></button>
-              <button id="idle" class="stateButton2"><p>Idle</p></button>
-              <button id="ready" class="stateButton2"><p>Ready</p></button>
-              <button id="serviceLowSpeed" class="stateButton3"><p>Service Low Speed</p></button>
-              <button id="propulsionDistanceSense" class="stateButton5"><p>Propulsion - Distance Sense Active</p></button>
-              <button id="duringRunFault" class="stateButton6"><p>During Run Fault</p></button>
-              <button id="hvEnable" class="stateButton8"><p>HV Enable</p></button>
-              <button id="hvDisable" class="stateButton8"><p>HV Disable</p></button>
-              <button id="readyForPumpdown" class="stateButton4"><p>Ready for Pumpdown</p></button>
-              <button id="pumpdown" class="stateButton4"><p>Pumpdown</p></button>
-              <button id="safeToApproach" class="stateButton3"><p>Safe to Approach</p></button>
-              <button id="brakingStart" class="stateButton5"><p>Braking</p></button>
-              <button id="postRunFault" class="stateButton6"><p>Post Run Fault</p></button>
-              <button id="secBrakeVentOn" class="stateButton9"><p>Sec. Brake Vent On</p></button>
-              <button id="secBrakeVentOff" class="stateButton9"><p>Sec. Brake Vent Off</p></button>
-           </div>
+      </div>
+      <!-- State Machine Control Panel -->
+      <div id="header3" class="box">
+        <div class="gridStateMachine">
+          <button id="powerOff" class="stateButton1"><p>Power Off</p></button>
+          <button id="archiveButton" class="stateButton"><p>Archive Data</p></button>
+          <button id="postRun" class="stateButton3"><p>Post Run</p></button>
+          <button id="propulsionStart" class="stateButton5"><p>Propulsion Start</p></button>
+          <button id="preRunFault" class="stateButton6"><p>Pre Run Fault</p></button>
+          <button id="primBrakeOn" class="stateButton7"><p>Prim. Brake On</p></button>
+          <button id="primBrakeOff" class="stateButton7"><p>Prim. Brake Off</p></button>
+          <button id="idle" class="stateButton2"><p>Idle</p></button>
+          <button id="ready" class="stateButton2"><p>Ready</p></button>
+          <button id="serviceLowSpeed" class="stateButton3"><p>Service Low Speed</p></button>
+          <button id="propulsionDistanceSense" class="stateButton5"><p>Propulsion - Distance Sense Active</p></button>
+          <button id="duringRunFault" class="stateButton6"><p>During Run Fault</p></button>
+          <button id="hvEnable" class="stateButton8"><p>HV Enable</p></button>
+          <button id="hvDisable" class="stateButton8"><p>HV Disable</p></button>
+          <button id="readyForPumpdown" class="stateButton4"><p>Ready for Pumpdown</p></button>
+          <button id="pumpdown" class="stateButton4"><p>Pumpdown</p></button>
+          <button id="safeToApproach" class="stateButton3"><p>Safe to Approach</p></button>
+          <button id="brakingStart" class="stateButton5"><p>Braking</p></button>
+          <button id="postRunFault" class="stateButton6"><p>Post Run Fault</p></button>
+          <button id="secBrakeVentOn" class="stateButton9"><p>Sec. Brake Vent On</p></button>
+          <button id="secBrakeVentOff" class="stateButton9"><p>Sec. Brake Vent Off</p></button>
         </div>
-
-        <!-- Latency Indicator-->
-        <div id="header4" class="box">
-          <div id="header4Left">
-            <h1>Link Connection <br>and Latency</h1>
-          </div>
-          
-          <!-- Latency Indicator-->
-          <div id="header4" class="box">
-            <div id="header4Left">
-              <h1>Link Connection <br>and Latency</h1>
+      </div>
+      
+      <!-- Latency Indicator-->
+      <div id="header4" class="box">
+        <div id="header4Left">
+          <h1>Link Connection <br>and Latency</h1>
+        </div>
+        <div id="header4Right">
+          <div class="status">
+            <img src="public/images/pod.png" id="podStatus">
+            <div id="statusConnection2">
+              <p class="link">----</p>
             </div>
             <div id="header4Right">
               <div class="status">
@@ -297,8 +295,10 @@
             </div>
           </div>   
         </div>
-        
-        <script> //pop-up modal code
+      </div>   
+    </div>
+    
+    <script> //pop-up modal code
       var modal = document.querySelector(".modal");
       var trigger = document.querySelector(".trigger");
       var closeButton = document.querySelector(".close-button");
@@ -318,9 +318,8 @@
       closeButton.addEventListener("click", toggleModal);
       window.addEventListener("click", windowOnClick);
       </script>
+     <script src="public/javascripts/main.js"></script>
      <script src="public/javascripts/handler.js"></script>
-     <script src="public/javascripts/dynamicLoading.js"></script>
-     <script src="public/javascripts/tables.js"></script>
     </body>
     </html>
     

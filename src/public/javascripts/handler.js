@@ -12,7 +12,6 @@ const dl = require('./public/javascripts/dynamicLoading');
 
 const d = document;
 const archiveButton = d.getElementById('archiveButton');
-const settingsSubmit = d.getElementById('podSettingsSubmit');
 let timeOld;
 
 // Data in recieved
@@ -71,27 +70,6 @@ di.updater.on('updateData', () => {
     setAgeLabel(elapsedTime);
   }
 });
-// Settings Form
-
-// Submits Entries to File
-settingsSubmit.addEventListener('click', () => {
-  constants.serverAddr.ip = d.getElementById('podIP').value;
-  constants.serverAddr.port = Number(d.getElementById('podPort').value);
-  constants.databaseAddr.ip = d.getElementById('databaseIP').value;
-  constants.databaseAddr.port = Number(d.getElementById('databasePort').value);
-  constants.scanningRate = Number(d.getElementById('scanningRate').value);
-  d.getElementById('formFeedback').innerHTML = 'Settings Applied';
-});
-
-// Fills entries in text boxes
-function fillConstants() { // eslint-disable-line no-unused-vars
-  d.getElementById('formFeedback').innerHTML = '';
-  d.getElementById('podIP').value = String(constants.serverAddr.ip);
-  d.getElementById('podPort').value = constants.serverAddr.port;
-  d.getElementById('databaseIP').value = constants.databaseAddr.ip;
-  d.getElementById('databasePort').value = constants.databaseAddr.port;
-  d.getElementById('scanningRate').value = constants.scanningRate;
-}
 // State Machine Control Panel Event Listeners
 
 // Handles power off button click
