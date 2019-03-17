@@ -488,9 +488,7 @@ td.last {
 }
 
 /* state machine styling */
-.stateButton {
-  background-color:white;
-  color: #808080;
+.stateButton1, .stateButton2, .stateButton3, .stateButton4, .stateButton5, .stateButton6, .stateButton7, .stateButton8, .stateButton9, .statebutton, #archiveButton  {
   text-decoration: none;
   position: inline-block;
   margin: 4px 3px;
@@ -507,39 +505,39 @@ td.last {
   background-color: black;
   color: black;
 }
-#one {
+.stateButton1 {
   background-color: #C10000;
   color: white;
 }
-#two {
+.stateButton2 {
   background-color: #3C9159;
   color: white;
 }
-#three {
+.stateButton3 {
   background-color: #A84671;
   color: white;
 }
-#four {
+.stateButton4 {
   background-color: #C66553;
   color: white;
 }
-#five {
+.stateButton5 {
   background-color: #C6A153;
   color: white;
 }
-#six {
+.stateButton6 {
   background-color: #C10000;
   color: white;
 }
-#seven {
+.stateButton7 {
   background-color: #554188;
   color: white;
 }
-#eight {
+.stateButton8 {
   background-color: #203060;
   color: white;
 }
-#nine {
+.stateButton9 {
   background-color: #388767;
   color: white;
 }
