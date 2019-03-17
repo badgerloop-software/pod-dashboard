@@ -14,7 +14,7 @@ function createWindow() {
   win = new BrowserWindow({
     width: 1920,
     height: 1080,
-    webPreferences: { webSecurity: true },
+    webPreferences: { webSecurity: true, nodeIntegration: true },
   });
 
   win.loadURL(

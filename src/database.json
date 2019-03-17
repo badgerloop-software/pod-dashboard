@@ -3,6 +3,7 @@
     "primaryTank": {
       "name": "asdf",
       "type": "unint_32",
+      "units": "PSI",
       "limits": {
         "idle": {
           "max": 321,
@@ -11,6 +12,7 @@
       }
     },
     "primaryLine": {
+      "units": "PSI",
       "limits": {
         "idle": {
           "max": 321,
@@ -19,6 +21,7 @@
       }
     },
     "primaryActuation": {
+      "units": "PSI",
       "limits": {
         "idle": {
           "max": 321,
@@ -27,6 +30,7 @@
       }
     },
     "secondaryTank": {
+      "units": "PSI",
       "limits": {
         "idle": {
           "max": 321,
@@ -35,6 +39,7 @@
       }
     },
     "secondaryLine": {
+      "units": "PSI",
       "limits": {
         "idle": {
           "max": 321,
@@ -43,6 +48,7 @@
       }
     },
     "secondaryActuation": {
+      "units": "PSI",
       "limits": {
         "idle": {
           "max": 321,
@@ -51,6 +57,7 @@
       }
     },
     "pressureVesselPressure": {
+      "units": "PSI",
       "limits": {
         "idle": {
           "max": 321,
@@ -59,6 +66,7 @@
       }
     },
     "currentPressure": {
+      "units": "PSI",
       "limits": {
         "idle": {
           "max": 321,
@@ -69,6 +77,7 @@
   },
   "motion": {
     "stoppingDistance": {
+      "units": "M",
       "limits": {
         "idle": {
           "max": 321,
@@ -77,6 +86,7 @@
       }
     },
     "position": {
+      "units": "M",
       "limits": {
         "idle": {
           "max": 321,
@@ -85,6 +95,7 @@
       }
     },
     "retro": {
+      "units": "M",
       "limits": {
         "idle": {
           "max": 321,
@@ -93,6 +104,7 @@
       }
     },
     "velocity": {
+      "units": "M/S",
       "limits": {
         "idle": {
           "max": 321,
@@ -101,6 +113,7 @@
       }
     },
     "acceleration": {
+      "units": "M/S^2",
       "limits": {
         "idle": {
           "max": 321,
@@ -111,6 +124,7 @@
   },
   "battery": {
     "packVoltage": {
+      "units": "V",
       "limits": {
         "idle": {
           "max": 321,
@@ -119,6 +133,7 @@
       }
     },
     "packCurrent": {
+      "units": "A",
       "limits": {
         "idle": {
           "max": 321,
@@ -127,6 +142,7 @@
       }
     },
     "packSOC": {
+      "units": "%",
       "limits": {
         "idle": {
           "max": 321,
@@ -135,6 +151,7 @@
       }
     },
     "packAH": {
+      "units": "AH",
       "limits": {
         "idle": {
           "max": 321,
@@ -143,6 +160,7 @@
       }
     },
     "cellMaxVoltage": {
+      "units": "V",
       "limits": {
         "idle": {
           "max": 321,
@@ -151,6 +169,7 @@
       }
     },
     "cellMinVoltage": {
+      "units": "V",
       "limits": {
         "idle": {
           "max": 321,
@@ -159,6 +178,7 @@
       }
     },
     "highTemp": {
+      "units": "C",
       "limits": {
         "idle": {
           "max": 321,
@@ -167,6 +187,7 @@
       }
     },
     "lowTemp": {
+      "units": "C",
       "limits": {
         "idle": {
           "max": 321,
@@ -177,6 +198,7 @@
   },
   "motor": {
     "commandTorque": {
+      "units": "NM",
       "limits": {
         "idle": {
           "max": 321,
@@ -185,6 +207,7 @@
       }
     },
     "actualTorque": {
+      "units": "NM",
       "limits": {
         "idle": {
           "max": 321,
@@ -193,6 +216,7 @@
       }
     },
     "motorSpeed": {
+      "units": "RPM",
       "limits": {
         "idle": {
           "max": 321,
@@ -201,6 +225,7 @@
       }
     },
     "motorTemp": {
+      "units": "C",
       "limits": {
         "idle": {
           "max": 321,
