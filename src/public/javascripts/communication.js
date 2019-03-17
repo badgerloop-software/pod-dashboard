@@ -10,6 +10,10 @@ const constants = require('../../constants');
 const udpServer = dgram.createSocket('udp4');
 const PORT = constants.serverAddr.port;
 const HOST = constants.serverAddr.ip;
+const LV_BONE_IP = constants.lvBone.ip;
+const LV_BONE_PORT = constants.lvBone.port;
+const HV_BONE_IP = constants.hvBone.ip;
+const HV_BONE_PORT = constants.hvBone.port;
 const recievedEmitter = new events.EventEmitter();
 module.exports.recievedEmitter = recievedEmitter;
 
@@ -22,28 +26,14 @@ udpServer.on('listening', () => {
 
 udpServer.on('message', (message) => {
   const recieved = JSON.parse(message);
-  switch (recieved.type) {
-    case 'data':
-      module.exports.inData = recieved;
-      // Emit to handler.js that data has been recieved
-      recievedEmitter.emit('dataIn');
-      break;
-    case 'disconnect':
-      recievedEmitter.emit('disconnect'[recieved.subsystem]);
-      break;
-
-    default:
-      console.log(message);
-  }
-});
-
-recievedEmitter.on('heartbeat', () => {
-  console.log('pong');
+  module.exports.inData = recieved;
+  // Emit to handler.js that data has been recieved
+  recievedEmitter.emit('dataIn');
 });
 
 udpServer.bind(PORT, HOST);
 
-module.exports.sendPacket = function sendPacket(ip, port, msg) {
+function sendPacket(ip, port, msg) {
   const tcpSender = new net.Socket();
   tcpSender.connect(port, ip, () => {
     console.log('Pod Connected');
@@ -59,4 +49,38 @@ module.exports.sendPacket = function sendPacket(ip, port, msg) {
   tcpSender.on('close', () => {
     console.log('Connection Closed');
   });
+}
+
+module.exports.sendPacket = sendPacket;
+
+function sendLVCommand(msg) {
+  sendPacket(LV_BONE_IP, LV_BONE_PORT, msg);
+}
+
+module.exports.sendLVCommand = sendLVCommand;
+
+function sendHVCommand(msg) {
+  sendPacket(HV_BONE_IP, HV_BONE_PORT, msg);
+}
+
+module.exports.sendHVCommand = sendHVCommand;
+
+module.exports.sendReadyPump = function sendReadyPump() {
+  sendHVCommand('readypump');
+};
+
+module.exports.sendPumpDown = function sendPumpDown() {
+  sendHVCommand('pumpDown');
+};
+
+module.exports.sendReadyCommand = function sendReadyCommand() {
+  sendHVCommand('readyCommand');
+};
+
+module.exports.sendPropulse = function sendPropulse() {
+  sendHVCommand('propulse');
+};
+
+module.exports.sendEBrake = function sendEBrake() {
+  sendHVCommand('emergencyBrake');
 };

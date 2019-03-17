@@ -13,17 +13,13 @@ const archiveButton = d.getElementById('archiveButton');
 const settingsSubmit = d.getElementById('podSettingsSubmit');
 let timeOld;
 
-comms.on('heartbeat', () => {
-  console.log('Heartbeat Recieved');
-});
-
 // Data in recieved
 comms.on('dataIn', () => {
   console.log('dataIn - Event Recieved');
   // Log it to be sure
   console.log(client.inData);
   // Tell the Data Interfacer to start sorting it
-  di.updateData(client.inData.data);
+  di.updateData(client.inData);
 });
 
 // Update the Database and Render the latest entry

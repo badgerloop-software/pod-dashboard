@@ -20,9 +20,10 @@ module.exports.updateData = function updateData(dataIn) {
     const sensors = Object.keys(dataIn[i]);
     // console.log(i);
     sensors.forEach((sensor) => {
-      const input = dataIn[i][sensor];
+      const input = Number(dataIn[i][sensor]);
       const target = storedData[i][sensor];
-      target.push(input);
+      const temp = input.toFixed(5);
+      target.push(temp);
     });
   });
   // Tell proto.js to render the data
