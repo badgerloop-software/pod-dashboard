@@ -104,7 +104,7 @@ d.getElementById('powerOff').addEventListener('click', () => {
 });
 
 // Handles the archive button click
-d.getElementById('archiveButton').addEventListener('click', () => {
+archiveButton.addEventListener('click', () => {
   di.archiveData();
   console.log('archiving data');
 });
