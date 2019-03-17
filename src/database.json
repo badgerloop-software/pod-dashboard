@@ -4,41 +4,209 @@
       "name": "asdf",
       "type": "unint_32",
       "limits": {
-        "state": {
-          "max": 123,
-          "min": 321
+        "idle": {
+          "max": 321,
+          "min": 123
         }
       }
     },
-    "primaryLine": {},
-    "primaryActuation": {},
-    "secondaryTank": {},
-    "secondaryLine": {},
-    "secondaryActuation": {},
-    "pressureVesselPressure": {},
-    "currentPressure": {}
+    "primaryLine": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "primaryActuation": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "secondaryTank": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "secondaryLine": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "secondaryActuation": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "pressureVesselPressure": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "currentPressure": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    }
   },
   "motion": {
-    "stoppingDistance": {},
-    "position": {},
-    "retro": {},
-    "velocity": {},
-    "acceleration": {}
+    "stoppingDistance": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "position": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "retro": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "velocity": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "acceleration": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    }
   },
   "battery": {
-    "packVoltage": {},
-    "packCurrent": {},
-    "packSOC": {},
-    "packAH": {},
-    "cellMaxVoltage": {},
-    "cellMinVoltage": {},
-    "highTemp": {},
-    "lowTemp": {}
+    "packVoltage": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "packCurrent": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "packSOC": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "packAH": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "cellMaxVoltage": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "cellMinVoltage": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "highTemp": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "lowTemp": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    }
   },
   "motor": {
-    "commandTorque": {},
-    "actualTorque": {},
-    "motorSpeed": {},
-    "motorTemp": {}
+    "commandTorque": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "actualTorque": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "motorSpeed": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "motorTemp": {
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    }
   }
 }

@@ -3,9 +3,9 @@ Author: Eric Udlis
 Purpose: Interface with the local tempory database and long term database
 */
 const events = require('events');
+const fs = require('fs');
 const storedData = require('../../database.json');
 let cache = require('../../cache');
-const fs = require('fs');
 
 const updater = new events.EventEmitter();
 module.exports.updater = updater;
@@ -47,18 +47,18 @@ module.exports.updateData = function updateData(dataIn) {
 // Exporting
 
 
-function createID(){
+function createID() {
   let d = new Date();
   return `${d.getDate()}${d.getHours()}${d.getMinutes()}`;
 }
 
-function createJSON(name){
-  fs.writeFileSync(`./Exports/${name}.json`, JSON.stringify(cache), function(err, file){
+function createJSON(name) {
+  fs.writeFileSync(`./Exports/${name}.json`, JSON.stringify(cache), (err) => {
     if (err) throw err;
     console.log(`${name}.json Created!`);
   });
 }
 
-module.exports.archiveData = function(){
+module.exports.archiveData = function archiveData() {
   createJSON(createID());
-}
+};
