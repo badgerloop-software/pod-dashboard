@@ -8,6 +8,7 @@ const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
 const storedData = require('./database.json');
 const cache = require('./cache');
+const dl = require('./public/javascripts/dynamicLoading');
 
 const d = document;
 const archiveButton = d.getElementById('archiveButton');
@@ -99,3 +100,11 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   d.getElementById('databasePort').value = constants.databaseAddr.port;
   d.getElementById('scanningRate').value = constants.scanningRate;
 }
+
+
+function init() {
+  di.createCache();
+  dl.fillAllTables();
+}
+// Run at init
+init();

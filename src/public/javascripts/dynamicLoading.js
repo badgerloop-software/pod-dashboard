@@ -1,8 +1,8 @@
-const database = require('./database.json');
+const database = require('../../database.json');
 
-function createHeaderCol(name, table, units) {
+function createHeaderCol(name, group, units) {
   let header = document.createElement('td');
-  header.className = `valueTable${table}`;
+  header.className = `valueTable${group}`;
   let fixedUnits = ` (${units})`;
   let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits;
   fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1);
@@ -34,10 +34,10 @@ function createMaxCol(name, group) {
   return col;
 }
 
-function createRow(name, table, group, units) { // eslint-disable-line no-unused-vars
+function createRow(name, group, units) { // eslint-disable-line no-unused-vars
   let row = document.createElement('tr');
 
-  let header = createHeaderCol(name, table, units);
+  let header = createHeaderCol(name, group, units);
   row.appendChild(header);
 
   let min = createMinCol(name, group);
@@ -48,7 +48,23 @@ function createRow(name, table, group, units) { // eslint-disable-line no-unused
 
   let max = createMaxCol(name, group);
   row.appendChild(max);
+  console.log(row);
+  let table = document.getElementById(group);
+  table.appendChild(row);
 }
 
-function fillTable(table){}
+function fillTable(table) { // eslint-disable-line
+  let currentSystem = database[table];
+  sensors = Object.keys(currentSystem);
+
+  sensors.forEach((sensor) => {
+    createRow(`${sensor}`, table, `${currentSystem[sensor].units}`);
+  });
 }
+
+module.exports.fillAllTables = function fillAllTables() { // eslint-disable-line
+  let subsystems = Object.keys(database);
+  subsystems.forEach((subsystem) => {
+    fillTable(`${subsystem}`);
+  });
+};

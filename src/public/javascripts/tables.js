@@ -2,7 +2,7 @@
 Author: Luke Houge, Eric Udlis
 Purpose: Dynamically styles cells and table based on values in range or not
 */
-const tableIDs = ['motion', 'braking', 'battery_pack', 'motor']; // arrays for loop to iterate through
+const tableIDs = ['motion', 'braking', 'battery', 'motor']; // arrays for loop to iterate through
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
 const statusIDs = ['motion_status', 'braking_status', 'battery_status', 'motor_status'];
 

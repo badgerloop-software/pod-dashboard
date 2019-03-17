@@ -11,7 +11,7 @@ const updater = new events.EventEmitter();
 module.exports.updater = updater;
 
 // Creates cache based off of database.JSON
-function createCache() {
+module.exports.createCache = function createCache() { // eslint-disable-line no-unused-vars
   console.log('Creating Cache');
   let subsystemsArray = Object.keys(storedData);
   for (let i = 0; i < subsystemsArray.length; i += 1) {
@@ -21,11 +21,7 @@ function createCache() {
       cache[subsystemsArray[i]][sensorsArray[z]] = [];
     }
   }
-}
-
-// Run at Init
-
-createCache();
+};
 
 module.exports.updateData = function updateData(dataIn) {
   // Sort through the data and append the new values to their respective arrays in database.js
