@@ -155,7 +155,7 @@ d.getElementById('propulsionDistanceSense').addEventListener('click', () => {
 });
 
 // Handles duringRunFault button click
-d.getElementById('duringRunFaule').addEventListener('click', () => {
+d.getElementById('duringRunFault').addEventListener('click', () => {
   console.log('duringRunFault');
 });
 
@@ -186,7 +186,7 @@ d.getElementById('safeToApproach').addEventListener('click', () => {
 
 // Handles brakingStart button click
 d.getElementById('brakingStart').addEventListener('click', () => {
-  console.log("braking start")
+  console.log('braking start');
 });
 
 // Handles postRunFault button click
