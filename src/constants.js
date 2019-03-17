@@ -9,11 +9,11 @@ module.exports = {
     port: 33333,
   },
   hvBone: {
-    ip: '192.168.1.146',
+    ip: '192.168.1.140',
     port: 9091,
   },
   lvBone: {
-    ip: '192.168.1.140',
+    ip: '192.168.1.147',
     port: 9091,
   },
   databaseAddr: {

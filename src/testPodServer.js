@@ -41,41 +41,38 @@ function sendJSON(object) {
 
 function sendTestData() {
   const testSocket = {
-    type: 'data',
-    data: {
-      motion: {
-        stoppingDistance: getRandomValue(),
-        position: getRandomValue(),
-        retro: getRandomValue(),
-        velocity: getRandomValue(),
-        acceleration: getRandomValue(),
-      },
-      battery: {
-        packVoltage: getRandomValue(),
-        packCurrent: getRandomValue(),
-        packSOC: getRandomValue(),
-        packAH: getRandomValue(),
-        cellMaxVoltage: getRandomValue(),
-        cellMinVoltage: getRandomValue(),
-        highTemp: getRandomValue(),
-        lowTemp: getRandomValue(),
-      },
-      braking: {
-        secondaryTank: getRandomValue(),
-        secondaryLine: getRandomValue(),
-        secondaryActuation: getRandomValue(),
-        primaryTank: getRandomValue(),
-        primaryLine: getRandomValue(),
-        primaryActuation: getRandomValue(),
-        pressureVesselPressure: getRandomValue(),
-        currentPressure: getRandomValue(),
-      },
-      motor: {
-        commandTorque: getRandomValue(),
-        actualTorque: getRandomValue(),
-        motorSpeed: getRandomValue(),
-        motorTemp: getRandomValue(),
-      },
+    motion: {
+      stoppingDistance: getRandomValue(),
+      position: getRandomValue(),
+      retro: getRandomValue(),
+      velocity: getRandomValue(),
+      acceleration: getRandomValue(),
+    },
+    battery: {
+      packVoltage: getRandomValue(),
+      packCurrent: getRandomValue(),
+      packSOC: getRandomValue(),
+      packAH: getRandomValue(),
+      cellMaxVoltage: getRandomValue(),
+      cellMinVoltage: getRandomValue(),
+      highTemp: getRandomValue(),
+      lowTemp: getRandomValue(),
+    },
+    braking: {
+      secondaryTank: getRandomValue(),
+      secondaryLine: getRandomValue(),
+      secondaryActuation: getRandomValue(),
+      primaryTank: getRandomValue(),
+      primaryLine: getRandomValue(),
+      primaryActuation: getRandomValue(),
+      pressureVesselPressure: getRandomValue(),
+      currentPressure: getRandomValue(),
+    },
+    motor: {
+      commandTorque: getRandomValue(),
+      actualTorque: getRandomValue(),
+      motorSpeed: getRandomValue(),
+      motorTemp: getRandomValue(),
     },
   };
   sendJSON(testSocket);
