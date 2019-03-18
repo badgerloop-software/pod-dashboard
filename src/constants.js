@@ -17,22 +17,4 @@ module.exports = {
     port: 9091,
   },
   scanningRate: 300,
-  mins: {
-    off: {},
-    idle: {},
-    readyForPumpdown: {},
-    pumpdown: {},
-    ready: {},
-    postRun: {},
-    crawl: {},
-  },
-  maxs: {
-    off: {},
-    idle: {},
-    readyForPumpdown: {},
-    pumpdown: {},
-    ready: {},
-    postRun: {},
-    crawl: {},
-  },
 };
