@@ -1,3 +1,7 @@
+/*
+Author: Eric Udlis
+Purpose: Dynamically fill tables with content based off database.JSON
+*/
 const database = require('../../database.json');
 
 function createHeaderCol(name, group, units) {
