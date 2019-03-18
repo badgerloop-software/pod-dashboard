@@ -16,10 +16,6 @@ module.exports = {
     ip: '192.168.1.147',
     port: 9091,
   },
-  databaseAddr: {
-    ip: '127.0.0.1',
-    port: 27017,
-  },
   scanningRate: 300,
   mins: {
     off: {},

@@ -212,8 +212,6 @@ function filterFunction(id) { // eslint-disable-line no-unused-vars
 settingsSubmit.addEventListener('click', () => {
   consts.serverAddr.ip = document.getElementById('podIP').value;
   consts.serverAddr.port = Number(document.getElementById('podPort').value);
-  consts.databaseAddr.ip = document.getElementById('databaseIP').value;
-  consts.databaseAddr.port = Number(document.getElementById('databasePort').value);
   consts.scanningRate = Number(document.getElementById('scanningRate').value);
   document.getElementById('formFeedback').innerHTML = 'Settings Applied';
 });
@@ -223,7 +221,5 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   document.getElementById('formFeedback').innerHTML = '';
   document.getElementById('podIP').value = String(consts.serverAddr.ip);
   document.getElementById('podPort').value = consts.serverAddr.port;
-  document.getElementById('databaseIP').value = consts.databaseAddr.ip;
-  document.getElementById('databasePort').value = consts.databaseAddr.port;
   document.getElementById('scanningRate').value = consts.scanningRate;
 }
