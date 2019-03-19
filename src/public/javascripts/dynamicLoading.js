@@ -4,6 +4,8 @@ Purpose: Dynamically fill tables with content based off database.JSON
 */
 const database = require('../../database.json');
 
+console.log(database);
+
 function createHeaderCol(name, group, units) {
   let header = document.createElement('td'); // Creates the actual DOM element
   header.className = `valueTable${group}`; // Sets the class
@@ -95,7 +97,7 @@ function setMaxCell(sensor, value) {
 }
 
 function fillRowBounds(subsystem, sensor, state) {
-  let stored = database[subsystem][sensor][state];
+  let stored = database[subsystem][sensor].limits[state];
   setMinCell(sensor, stored.min);
   setMaxCell(sensor, stored.max);
 }
@@ -107,9 +109,9 @@ function fillTableBounds(subsystem, state) {
   });
 }
 
-function fillAllTableBounds(state) { // eslint-disable-line no-unused-vars
+module.exports.fillAllBounds = function fillAllBounds(state) { // eslint-disable-line no-unused-vars
   subsystems = Object.keys(database);
   subsystems.forEach((system) => {
     fillTableBounds(system, state);
   });
-}
+};
