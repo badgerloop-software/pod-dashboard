@@ -75,3 +75,41 @@ module.exports.fillAllTables = function fillAllTables() { // eslint-disable-line
     fillTable(`${subsystem}`); // For each subsystem create a table
   });
 };
+
+// Loading of Maxs and Mins
+
+function getMinCell(sensor) {
+  return document.getElementById(`${sensor}Min`);
+}
+
+function getMaxCell(sensor) {
+  return document.getElementById(`${sensor}Max`);
+}
+
+function setMinCell(sensor, value) {
+  getMinCell(sensor).innerHTML = Number(value);
+}
+
+function setMaxCell(sensor, value) {
+  getMaxCell(sensor).innerHTML = Number(value);
+}
+
+function fillRowBounds(subsystem, sensor, state) {
+  let stored = database[subsystem][sensor][state];
+  setMinCell(sensor, stored.min);
+  setMaxCell(sensor, stored.max);
+}
+
+function fillTableBounds(subsystem, state) {
+  sensors = Object.keys(database[subsystem]);
+  sensors.forEach((sensor) => {
+    fillRowBounds(subsystem, sensor, state);
+  });
+}
+
+function fillAllTableBounds(state) { // eslint-disable-line no-unused-vars
+  subsystems = Object.keys(database);
+  subsystems.forEach((system) => {
+    fillTableBounds(system, state);
+  });
+}
