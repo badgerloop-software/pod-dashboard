@@ -191,19 +191,19 @@ td.last {
   width: 1px;
   white-space: nowrap;
 }
-.valueTableOne {
+.valueTableMotion {
   width: 183px;
   overflow: hidden;
 }
-.valueTableTwo {
+.valueTableBraking {
   width: 234px;
   overflow: hidden;
 }
-.valueTableThree {
+.valueTableBattery {
   width: 160px;
   overflow: hidden;
 }
-.valueTableFour {
+.valueTableMotor {
   width: 150px;
   overflow: hidden;
 }

@@ -1,0 +1,237 @@
+{
+  "braking": {
+    "primaryTank": {
+      "name": "asdf",
+      "type": "unint_32",
+      "units": "PSI",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "primaryLine": {
+      "units": "PSI",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "primaryActuation": {
+      "units": "PSI",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "secondaryTank": {
+      "units": "PSI",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "secondaryLine": {
+      "units": "PSI",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "secondaryActuation": {
+      "units": "PSI",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "pressureVesselPressure": {
+      "units": "PSI",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "currentPressure": {
+      "units": "PSI",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    }
+  },
+  "motion": {
+    "stoppingDistance": {
+      "units": "M",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "position": {
+      "units": "M",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "retro": {
+      "units": "M",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "velocity": {
+      "units": "M/S",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "acceleration": {
+      "units": "M/S^2",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    }
+  },
+  "battery": {
+    "packVoltage": {
+      "units": "V",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "packCurrent": {
+      "units": "A",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "packSOC": {
+      "units": "%",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "packAH": {
+      "units": "AH",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "cellMaxVoltage": {
+      "units": "V",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "cellMinVoltage": {
+      "units": "V",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "highTemp": {
+      "units": "C",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "lowTemp": {
+      "units": "C",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    }
+  },
+  "motor": {
+    "commandTorque": {
+      "units": "NM",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "actualTorque": {
+      "units": "NM",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "motorSpeed": {
+      "units": "RPM",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    },
+    "motorTemp": {
+      "units": "C",
+      "limits": {
+        "idle": {
+          "max": 321,
+          "min": 123
+        }
+      }
+    }
+  }
+}

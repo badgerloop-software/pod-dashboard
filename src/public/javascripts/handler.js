@@ -6,7 +6,9 @@ const client = require('./public/javascripts/communication');
 const di = require('./public/javascripts/DataInterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
-const storedData = require('./database');
+const storedData = require('./database.json');
+const cache = require('./cache');
+const dl = require('./public/javascripts/dynamicLoading');
 
 const d = document;
 const archiveButton = d.getElementById('archiveButton');
@@ -25,7 +27,7 @@ comms.on('dataIn', () => {
 function updateData(group, sensor) {
   // Get numbers
   const t = d.getElementById(String(sensor));
-  const stored = storedData[group][sensor];
+  const stored = cache[group][sensor];
   // Set number
   if (stored[stored.length - 1] == null) {
     console.log(`${group} ${sensor} ${stored[stored.length - 1]}`);
@@ -68,7 +70,6 @@ di.updater.on('updateData', () => {
     setAgeLabel(elapsedTime);
   }
 });
-
 // State Machine Control Panel Event Listeners
 
 // Handles power off button click
@@ -176,3 +177,10 @@ d.getElementById('secBrakeVentOn').addEventListener('click', () => {
 d.getElementById('secBrakeVentOff').addEventListener('click', () => {
   console.log('secBrakeVentOff');
 });
+
+function init() {
+  di.createCache();
+  dl.fillAllTables();
+}
+// Run at init
+init();

@@ -63,7 +63,7 @@ function clear() { // eslint-disable-line no-unused-vars
 Tables
 Purpose: Dynamically styles cells and table based on values in range or not
 */
-const tableIDs = ['motion', 'braking', 'battery_pack', 'motor']; // arrays for loop to iterate through
+const tableIDs = ['motion', 'braking', 'battery', 'motor']; // arrays for loop to iterate through
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
 const statusIDs = ['motion_status', 'braking_status', 'battery_status', 'motor_status'];
 
@@ -212,8 +212,6 @@ function filterFunction(id) { // eslint-disable-line no-unused-vars
 settingsSubmit.addEventListener('click', () => {
   consts.serverAddr.ip = document.getElementById('podIP').value;
   consts.serverAddr.port = Number(document.getElementById('podPort').value);
-  consts.databaseAddr.ip = document.getElementById('databaseIP').value;
-  consts.databaseAddr.port = Number(document.getElementById('databasePort').value);
   consts.scanningRate = Number(document.getElementById('scanningRate').value);
   document.getElementById('formFeedback').innerHTML = 'Settings Applied';
 });
@@ -223,7 +221,5 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   document.getElementById('formFeedback').innerHTML = '';
   document.getElementById('podIP').value = String(consts.serverAddr.ip);
   document.getElementById('podPort').value = consts.serverAddr.port;
-  document.getElementById('databaseIP').value = consts.databaseAddr.ip;
-  document.getElementById('databasePort').value = consts.databaseAddr.port;
   document.getElementById('scanningRate').value = consts.scanningRate;
 }
