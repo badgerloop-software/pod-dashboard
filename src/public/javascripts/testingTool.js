@@ -94,8 +94,8 @@ function fillAllTables(time) {
 
 function updateTables() {
   if (runData) { fillAllTables(currentTime); }
-  timeID.innerHTML = `${currentTime}`;
-  maxID.innerHTML = `${runMax}`;
+  timeID.innerHTML = `Current Time: ${currentTime} Frames | ${currentTime / 10} Seconds`;
+  maxID.innerHTML = `Total Time: ${runMax} Frames | ${runMax / 10} Seconds`;
 }
 setInterval(updateTables, 100);
 
