@@ -11,9 +11,9 @@ const play = document.getElementById('play');
 const pause = document.getElementById('pause');
 const reset = document.getElementById('reset');
 let runData = null;
-let runMax = null;
-let currentTime = 0;
+let runMax = 'No File Loaded';
 let maxReached = false;
+let currentTime = 0;
 let timer;
 
 
@@ -26,10 +26,6 @@ function playTimer() {
   if (runData) timer = setInterval(incrementTimer, 100);
 }
 
-// Check Timer for hitting Max
-
-setInterval(() => { if (maxReached) clearInterval(timer); }, 100);
-
 function pauseTimer() {
   clearInterval(timer);
 }
@@ -37,15 +33,23 @@ function pauseTimer() {
 function resetTimer() {
   pauseTimer();
   currentTime = 0;
-  maxReached = false;
 }
+
+// Check Timer for hitting Max
+
+setInterval(() => {
+  if (maxReached) {
+    pauseTimer();
+    maxReached = false;
+  }
+}, 100);
 
 // File Handling
 function findMax() {
   let subsystemArray = Object.values(runData);
   let sensorArray = Object.values(subsystemArray[0]);
   let sampleSensor = sensorArray[0];
-  runMax = sampleSensor.length;
+  runMax = sampleSensor.length - 1;
   maxID.innerHTML = `${runMax}`;
 }
 function importJSON(file) {
@@ -61,13 +65,18 @@ function handleFiles() {
 
 // Filling Tables
 function fillCell(subsystem, sensor, time) {
-  const t = document.getElementById(`${sensor}`);
-  let s = null;
-  if (runData) {
-    s = runData[subsystem][sensor];
-    t.innerHTML = `${s[time]}`;
+  if (time >= runMax) {
+    maxReached = true;
+    currentTime = runMax;
   } else {
-    console.log('Error - No Data');
+    const t = document.getElementById(`${sensor}`);
+    let s = null;
+    if (runData) {
+      s = runData[subsystem][sensor];
+      t.innerHTML = `${s[time]}`;
+    } else {
+      console.log('Error - No Data');
+    }
   }
 }
 function fillTable(subsystem, time) {
@@ -86,6 +95,7 @@ function fillAllTables(time) {
 function updateTables() {
   if (runData) { fillAllTables(currentTime); }
   timeID.innerHTML = `${currentTime}`;
+  maxID.innerHTML = `${runMax}`;
 }
 setInterval(updateTables, 100);
 
