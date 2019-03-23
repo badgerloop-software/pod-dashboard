@@ -108,15 +108,11 @@ reset.addEventListener('click', resetTimer);
 play.addEventListener('click', playTimer);
 pause.addEventListener('click', pauseTimer);
 fileInput.addEventListener('change', handleFiles, false);
-fileSelector.addEventListener('click', () => {
-  console.log('click');
-  fileInput.click();
-});
+fileSelector.addEventListener('click', () => { fileInput.click(); });
 
+// Init
 function init() {
   dl.fillAllTables();
 }
-
-// Init
 init();
 // End Init
