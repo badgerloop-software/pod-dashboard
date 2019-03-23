@@ -3,12 +3,12 @@ Author: Eric Udlis, Michael Handler
 Purpose: Handle all updaters and interfacing between the frontend and backend
 */
 const client = require('./public/javascripts/communication');
-const di = require('./public/javascripts/DataInterfacing');
+const di = require('./public/javascripts/datainterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
 const storedData = require('./database.json');
 const cache = require('./cache');
-const dl = require('./public/javascripts/dynamicLoading');
+const dl = require('./public/javascripts/dynamicloading');
 
 const d = document;
 const archiveButton = d.getElementById('archiveButton');

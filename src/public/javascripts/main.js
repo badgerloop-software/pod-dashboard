@@ -4,10 +4,9 @@ Purpose: Handles all responsive UI elements of the dashboard
 */
 const consts = require('./constants');
 
-/*
-Author: Eric Udlis, Luke Houge
-Purpose: focus clone
-*/
+const rate = consts.DATA_SEND_RATE;
+
+// Counters for Focus Header
 let focusOne;
 let focusTwo;
 let focusThree;
@@ -26,7 +25,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       document.getElementById('header_value_1').innerHTML = value; // sets the value tp the box
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
       document.getElementById('header_label_1').innerHTML = name; // sets that as the label for the box
-    }, 300); // updates every 300 ms
+    }, rate); // updates every 300 ms
     x += 1;
   } else if (x === 2) {
     // clone for box 2
@@ -35,7 +34,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       document.getElementById('header_value_2').innerHTML = value;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_2').innerHTML = name;
-    }, 300);
+    }, rate);
     x += 1;
   } else if (x === 3) {
     // clone for box 3
@@ -44,7 +43,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       document.getElementById('header_value_3').innerHTML = value;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_3').innerHTML = name;
-    }, 300);
+    }, rate);
     x += 1;
   } else if (x === 4) {
     // clone for box 4
@@ -53,7 +52,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       document.getElementById('header_value_4').innerHTML = value;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_4').innerHTML = name;
-    }, 300);
+    }, rate);
     x += 1;
   } else if (x > 4) {
     alert('Max of 4 values reached, please remove one and try again');
@@ -83,7 +82,7 @@ const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
 const statusIDs = ['motion_status', 'braking_status', 'battery_status', 'motor_status'];
 
 setInterval(() => {
-  let w = 0;
+  let errorChecker = 0;
   for (let u = 0; u < 4; u += 1) {
     const table = document.getElementById(tableIDs[u]); // creates table array
     for (let r = 1, n = table.rows.length; r < n; r += 1) { // iterates through rows in given table
@@ -91,21 +90,21 @@ setInterval(() => {
       const y = parseInt(table.rows[r].cells[2].innerHTML, 10); // sets the value to y
       if (y < min) { // checks if too low
         table.rows[r].cells[2].style.backgroundColor = '#FC6962'; // makes red
-        w += 1; // adds to w, signifying that there is an error present in the table
+        errorChecker += 1; // adds to w, signifying that there is an error present in the table
       } else {
         table.rows[r].cells[2].style.backgroundColor = '#fff'; // else sets to white background
       }
     }
-    if (w !== 0) { // if there was an error in any row during one run of the for loop,
+    if (errorChecker !== 0) { // if there was an error in any row during one run of the for loop,
       // meaning w is not 0 as it was created as,
       // then change the class of the div that tavble is in to 'error',
       // which will make the border color red
       document.getElementById(divIDs[u]).className = 'error';
-      w = 0;
+      errorChecker = 0;
     } else { // if there was not an error during the for loop in any row,
       // then keep the class of the div as 'ok'
       document.getElementById(divIDs[u]).className = 'ok';
-      w = 0;
+      errorChecker = 0;
     }
     // dummy function for status, 2-10= connected, 1= disconected
     const c = 2;
@@ -116,7 +115,7 @@ setInterval(() => {
       document.getElementById(statusIDs[u]).className = 'disconnected';
     }
   }
-}, 100);
+}, rate);
 
 
 // Table Search Boxes

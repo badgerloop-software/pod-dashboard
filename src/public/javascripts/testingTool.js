@@ -1,5 +1,5 @@
 const fs = require('fs');
-const dl = require('./public/javascripts/dynamicLoading');
+const dl = require('./public/javascripts/dynamicloading');
 
 const fileSelector = document.getElementById('fileSelector');
 const fileInput = document.getElementById('file-input');
