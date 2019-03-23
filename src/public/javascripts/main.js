@@ -4,6 +4,10 @@ Purpose: Handles all responsive UI elements of the dashboard
 */
 const consts = require('./constants');
 
+/*
+Author: Eric Udlis, Luke Houge
+Purpose: focus clone
+*/
 let focusOne;
 let focusTwo;
 let focusThree;
@@ -12,6 +16,7 @@ let focusFour;
 const settingsSubmit = document.getElementById('podSettingsSubmit');
 const focusClear = document.getElementById('focus_clear_button');
 
+//filling for focus clone
 let x = 1; // counter for boxes filed so far
 function clone(id) { // eslint-disable-line no-unused-vars
   if (x === 1) {
@@ -54,7 +59,6 @@ function clone(id) { // eslint-disable-line no-unused-vars
     alert('Max of 4 values reached, please remove one and try again');
   }
 }
-
 // clear for focus div
 function clear() { // eslint-disable-line no-unused-vars
   for (let i = 1; i < 5; i += 1) {
