@@ -84,7 +84,7 @@ const statusIDs = ['motion_status', 'braking_status', 'battery_status', 'motor_s
 
 setInterval(() => {
   let w = 0;
-  for (let u = 0; u < 3; u += 1) {
+  for (let u = 0; u < 4; u += 1) {
     const table = document.getElementById(tableIDs[u]); // creates table array
     for (let r = 1, n = table.rows.length; r < n; r += 1) { // iterates through rows in given table
       const min = parseInt(table.rows[r].cells[1].innerHTML, 10); // sets the min value to min
