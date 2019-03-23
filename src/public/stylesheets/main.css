@@ -331,22 +331,11 @@ td.last {
 }
 
 /* connection status styling */
-.connected{
-  border-color: #C8EEC4;
-  color: #C8EEC4;
-}
-.connected span1{
-  display: none;
-}
 .connected span2 {
   display: none;
 }
-.disconnected{
-  border-color: #FC6962;
+span2{
   color: #FC6962;
-}
-.disconnected span1 {
-  display: none;
 }
 #braking_status, #motion_status, #battery_status, #motor_status {
   padding: 4px;
