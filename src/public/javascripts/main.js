@@ -71,7 +71,8 @@ function clear() { // eslint-disable-line no-unused-vars
     ).innerHTML = `Value ${String(i)}`;
   }
 }
-focusClear.addEventListener('click', clear);
+
+if (focusClear) focusClear.addEventListener('click', clear); // In if statement for testing tool fix
 
 /*
 Tables
