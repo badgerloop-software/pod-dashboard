@@ -16,7 +16,7 @@ let focusFour;
 const settingsSubmit = document.getElementById('podSettingsSubmit');
 const focusClear = document.getElementById('focus_clear_button');
 
-//filling for focus clone
+// filling for focus clone
 let x = 1; // counter for boxes filed so far
 function clone(id) { // eslint-disable-line no-unused-vars
   if (x === 1) {
