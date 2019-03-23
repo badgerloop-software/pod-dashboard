@@ -129,16 +129,26 @@
 
 /* JSON button panel grid layout */
 #fileSelector {
-
+  background-color: #554188;
+  color: white;
 }
 #back {
-  
+  background-color: #C66553;
+  color: white;
+}
+#forward {
+  background-color: #C66553;
+  color: white;
 }
 #play {
-
+  background-color: #3C9159;
+  color: white;
 }
 #pause{
-
+  background-color: #C6A153;
+  color: white;
 }
 #reset{
+  background-color: #C10000;
+  color: white;
 }
