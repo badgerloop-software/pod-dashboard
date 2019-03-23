@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">    
-    <link rel="stylesheet" type="text/css" href="public/stylesheets/grid.css">
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/TestingToolGrid.css">
     <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
     <script src="public/javascripts/chartHandling.js"></script>
     <script src="../node_modules/plotly.js-dist/plotly.js"></script>
@@ -19,7 +19,7 @@
           <button class="banner_dropbtn">Change View</button>
           <img src="public/images/dropdown.png" height="25px">
           <div class="banner_dropdown-content">
-            <a href="#">Main</a>
+            <a href="index.html">Main</a>
             <a href="testing.html">Analysis</a>
             <!-- <a href="#">Custom</a> -->
           </div>
@@ -30,57 +30,15 @@
     
     <!-- main grid layout-->
     <div class="grid">
-      <!-- Focus Box -->
+      <!-- JSON button Box -->
       <div id="header1" class="box">
-        <div class="grid_focus">
-          <div class="dropdown">
-            <button id="focus_add_button" onclick="dropdown('1')" class="dropbtn"><h5>Add Values</h5></button>
-            <button id="focus_clear_button" onclick="clear()" class="dropbtn"><h5>Clear</h5></button>
-            <div id="myDropdown1" class="dropdown-content">
-              <input type="text" placeholder="Search.." id="dropdownInput1" onkeyup="filterFunction('1')">
-              <a href="" onclick="clone('stoppingDistance');return false;">Stopping Distance (m)</a>
-              <a href="" onclick="clone('retro');return false;">Retro</a>
-              <a href="" onclick="clone('position');return false;">Position (m)</a>
-              <a href="" onclick="clone('velocity');return false;">Velocity (m/s)</a>
-              <a href="" onclick="clone('acceleration');return false;">Acceleration (m/s<sup>2</sup>)</a>
-              <a href="" onclick="clone('secondaryTankMin');return false;">Secondary Tank (PSI)</a>
-              <a href="" onclick="clone('secondaryLine');return false;">Secondary Line (PSI)</a>
-              <a href="" onclick="clone('secondaryActuation');return false;";>Secondary Actuation (PSI)</a>
-              <a href="" onclick="clone('primaryTank');return false;";>Primary Tank (PSI)</a>
-              <a href="" onclick="clone('primaryLine');return false;";>Primary Line (PSI)</a>
-              <a href="" onclick="clone('primaryActuation');return false;";>Primary Actuation (PSI)</a>
-              <a href="" onclick="clone('pressureVesselPressure');return false;";>Pressure Vessel Pressure (PSI)</a>
-              <a href="" onclick="clone('currentPressure');return false;";>Current Pressure (PSI)</a>
-              <a href="" onclick="clone('packVoltage');return false;";>Pack Voltage (V)</a>
-              <a href="" onclick="clone('packCurrent');return false;";>Pack Current (V)</a>
-              <a href="" onclick="clone('packSOC');return false;";>Pack SOC (%)</a>
-              <a href="" onclick="clone('packAH');return false;";>Pack AH</a>
-              <a href="" onclick="clone('cellMaxVoltage');return false;";>Cell Max Voltage (V)</a>
-              <a href="" onclick="clone('cellMinVoltage');return false;";>Cell Min Voltage (V)</a>
-              <a href="" onclick="clone('highTemp');return false;";>High Temp (C)</a>
-              <a href="" onclick="clone('lowTemp');return false;";>Low Temp (C)</a>
-              <a href="" onclick="clone('commandTorque');return false;";>Command Torque</a>
-              <a href="" onclick="clone('actualTorque');return false;";>Actual Torque</a>
-              <a href="" onclick="clone('motorSpeed');return false;";>Motor Speed (RPM)</a>
-              <a href="" onclick="clone('motorTemp');return false;";>Motor Temp (C)</a>
-            </div>
-          </div>
-          <div class="header_focus" id="header_focus_1">
-            <p id="header_label_1">Value 1</p>
-            <h1 id="header_value_1"></h1>
-          </div>
-          <div class="header_focus" id="header_focus_2">
-            <p id="header_label_2">Value 2</p>
-            <h1 id="header_value_2"></h1>
-          </div>
-          <div class="header_focus" id="header_focus_3">
-            <p id="header_label_3">Value 3</p>
-            <h1 id="header_value_3"></h1>
-          </div>
-          <div class="header_focus" id="header_focus_4">
-            <p id="header_label_4">Value 4</p>
-            <h1 id="header_value_4"></h1>
-          </div>
+        <div class="JSON_grid">
+          <button  id="fileSelector" class="JSON_button" type="button"><input id="file-input" type="file" name="name" style="display: none;" accept=".json, .JSON" />Load File</button>
+          <button id="back" class="JSON_button" type="button">Back</button>
+          <button id="forward" class="JSON_button" type="button">Forward</button>
+          <button id="play" class="JSON_button" type = "button">Play</button>
+          <button id="pause" class="JSON_button" type ="button">Pause</button>
+          <button id="reset" class="JSON_button" type = "button">Reset</button> 
         </div>
       </div>
       <!-- Charts -->
@@ -160,37 +118,14 @@
           <button id="secBrakeVentOn" class="stateButton9"><p>Sec. Brake Vent On</p></button>
           <button id="secBrakeVentOff" class="stateButton9"><p>Sec. Brake Vent Off</p></button>
         </div>
-      </div>
-      
+      </div> 
       <!-- Latency Indicator-->
       <div id="header4" class="box">
-        <div id="header4Left">
-          <h1>Link Connection <br>and Latency</h1>
-        </div>
-        <div id="header4Right">
-          <div class="status">
-            <img src="public/images/pod.png" id="podStatus">
-            <div id="statusConnection2">
-              <p class="link">----</p>
-            </div>
-            <div id="age">
-              <h5>Measured Latency</h5>
-              <h1 id="ageDisplay">ms</h1>
-            </div>
-            <div id="statusConnection2">
-              <p class="link">----</p>
-            </div>
-            <img src="public/images/macbook.png" id="hostStatus">
-          </div>
+        <div id="info" style="width: 100%">
+          <h4 id="currentTime"></h4>
+          <h4 id="maxTime"></h4>
         </div>
       </div>
-          
-          <!-- Emergency Start and Stop Buttons -->
-          <div id="extra" class="box">
-            <button id="start"><h1>MASTER START</h1></button>
-            <button id="estop"><h1>E-STOP</h1></button>
-          </div>
-          
           <!-- Motion Table -->
           <div id="motion_div" class="box ok">
             <div class="item-content">
@@ -305,7 +240,7 @@
       window.addEventListener("click", windowOnClick);
       </script>
      <script src="public/javascripts/main.js"></script>
-     <script src="public/javascripts/handler.js"></script>
+     <script src="public/javascripts/testingTool.js"></script>
     </body>
     </html>
     

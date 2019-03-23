@@ -689,3 +689,54 @@ hr {
 #extra {
   border: none;
 }
+
+/* JSON timer counters styling */
+#info {
+  padding-left: 15px;
+  line-height: 10px;
+}
+
+/* JSON button stlying */
+.JSON_button {
+  text-decoration: none;
+  position: inline-block;
+  margin: 4px 3px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 2px solid #808080;
+  border-radius: 6px;
+  width: 100px;
+  height: 80px;
+  font-weight: 800;
+}
+.JSON_button:hover {
+  background-color: #808080 !important;
+  -webkit-transition: background-color 200ms linear !important;
+  -ms-transition: background-color 200ms linear !important;
+  transition: background-color 200ms linear !important;
+}
+#fileSelector {
+  background-color: #554188;
+  color: white;
+}
+#back {
+  background-color: #C66553;
+  color: white;
+}
+#forward {
+  background-color: #C66553;
+  color: white;
+}
+#play {
+  background-color: #3C9159;
+  color: white;
+}
+#pause{
+  background-color: #C6A153;
+  color: white;
+}
+#reset{
+  background-color: #C10000;
+  color: white;
+}
