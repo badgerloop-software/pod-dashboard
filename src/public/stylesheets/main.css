@@ -711,8 +711,32 @@ hr {
   font-weight: 800;
 }
 .JSON_button:hover {
-  background-color: #808080;
-  -webkit-transition: background-color 200ms linear;
-  -ms-transition: background-color 200ms linear;
-  transition: background-color 200ms linear;
+  background-color: #808080 !important;
+  -webkit-transition: background-color 200ms linear !important;
+  -ms-transition: background-color 200ms linear !important;
+  transition: background-color 200ms linear !important;
+}
+#fileSelector {
+  background-color: #554188;
+  color: white;
+}
+#back {
+  background-color: #C66553;
+  color: white;
+}
+#forward {
+  background-color: #C66553;
+  color: white;
+}
+#play {
+  background-color: #3C9159;
+  color: white;
+}
+#pause{
+  background-color: #C6A153;
+  color: white;
+}
+#reset{
+  background-color: #C10000;
+  color: white;
 }
