@@ -78,62 +78,6 @@ const tableIDs = ['motion', 'braking', 'battery', 'motor']; // arrays for loop t
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
 const statusIDs = ['motion_status', 'braking_status', 'battery_status', 'motor_status'];
 
-// random generator for motion
-setInterval(() => {
-  let y;
-  let w = 0;
-  for (let v = 1; v < 6; v += 1) { // for loop that goes through each row of the table,
-    // 'i' being used to represent row (should probably change to r)
-    const cells = document.getElementById('motion').rows[v].cells; // eslint-disable-line
-    // sets a variable y to the value that is currently in the 3rd colunn (the value column)
-    if (y < 2) { // if that obtained value is less than 2 (arbitrary number for now),
-      // style red and add to counter w which will be used to determine if any row had an error
-      cells[2].style.backgroundColor = '#FC6962';
-      w += 1;
-    } else if (y > 90) { // if that obtained value is greater
-      // than 90 (arbitrary value for now), style green
-      cells[2].style.backgroundColor = '#C8EEC4';
-    } else { // if it is in between remain, or change back, to white background
-      cells[2].style.backgroundColor = '#fff';
-    }
-  }
-  if (w !== 0) { // if there was an error in any row during one run of the for loop,
-    // meaning w is not 0 as it was created as,
-    // then change the class of the div that tavble is in to 'error',
-    // which will make the border color red
-    document.getElementById('motion_div').className = 'error';
-    w = 0;
-  } else { // if there was not an error during the for loop in any row,
-    // then keep the class of the div as 'ok'
-    document.getElementById('motion_div').className = 'ok';
-    w = 0;
-  }
-}, 300);
-
-// random generator for braking and pressures
-setInterval(() => {
-  let y;
-  let w = 0;
-  for (let t = 1; t < 9; t += 1) {
-    const cells = document.getElementById('braking').rows[t].cells; // eslint-disable-line
-    if (y < 2) {
-      cells[2].style.backgroundColor = '#FC6962';
-      w += 1;
-    } else if (y > 90) {
-      cells[2].style.backgroundColor = '#C8EEC4';
-    } else {
-      cells[2].style.backgroundColor = '#fff';
-    }
-  }
-  if (w !== 0) {
-    document.getElementById('braking_div').className = 'error';
-    w = 0;
-  } else {
-    document.getElementById('braking_div').className = 'ok';
-    w = 0;
-  }
-}, 300);
-
 setInterval(() => {
   let w = 0;
   for (let u = 0; u < 3; u += 1) {
