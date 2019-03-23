@@ -689,3 +689,30 @@ hr {
 #extra {
   border: none;
 }
+
+/* JSON timer counters styling */
+#info {
+  padding-left: 15px;
+  line-height: 10px;
+}
+
+/* JSON button stlying */
+.JSON_button {
+  text-decoration: none;
+  position: inline-block;
+  margin: 4px 3px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 2px solid #808080;
+  border-radius: 6px;
+  width: 100px;
+  height: 80px;
+  font-weight: 800;
+}
+.JSON_button:hover {
+  background-color: #808080;
+  -webkit-transition: background-color 200ms linear;
+  -ms-transition: background-color 200ms linear;
+  transition: background-color 200ms linear;
+}

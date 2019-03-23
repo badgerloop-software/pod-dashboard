@@ -2,7 +2,7 @@
 <html>
   <head>
     <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">    
-    <link rel="stylesheet" type="text/css" href="public/stylesheets/grid.css">
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/grid2.css">
     <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
     <script src="public/javascripts/chartHandling.js"></script>
     <script src="../node_modules/plotly.js-dist/plotly.js"></script>
@@ -30,15 +30,15 @@
     
     <!-- main grid layout-->
     <div class="grid">
-      <!-- Focus Box -->
+      <!-- JSON button Box -->
       <div id="header1" class="box">
-        <div class="grid_focus">
-          <button  id="fileSelector" type="button"><input id="file-input" type="file" name="name" style="display: none;" accept=".json, .JSON" />Load File</button>
-          <button id="back" type="button">Back</button> <button id="forward" type="button">Forward</button>
-          <button id="play" type = "button">Play</button>
-          <button id="pause" type ="button">Pause</button>
-          <button id="reset" type = "button">Reset</button> 
-          <div id="info" style="width: 100%"><h4 id="currentTime"></h4><h4 id="maxTime"></h4></div>
+        <div class="JSON_grid">
+          <button  id="fileSelector" class="JSON_button" type="button"><input id="file-input" type="file" name="name" style="display: none;" accept=".json, .JSON" />Load File</button>
+          <button id="back" class="JSON_button" type="button">Back</button>
+          <button id="forward" class="JSON_button" type="button">Forward</button>
+          <button id="play" class="JSON_button" type = "button">Play</button>
+          <button id="pause" class="JSON_button" type ="button">Pause</button>
+          <button id="reset" class="JSON_button" type = "button">Reset</button> 
         </div>
       </div>
       <!-- Charts -->
@@ -119,6 +119,13 @@
           <button id="secBrakeVentOff" class="stateButton9"><p>Sec. Brake Vent Off</p></button>
         </div>
       </div> 
+      <!-- Latency Indicator-->
+      <div id="header4" class="box">
+        <div id="info" style="width: 100%">
+          <h4 id="currentTime"></h4>
+          <h4 id="maxTime"></h4>
+        </div>
+      </div>
           <!-- Motion Table -->
           <div id="motion_div" class="box ok">
             <div class="item-content">
