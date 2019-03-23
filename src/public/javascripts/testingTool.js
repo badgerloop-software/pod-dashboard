@@ -15,6 +15,7 @@ let runMax = 'No File Loaded';
 let maxReached = false;
 let currentTime = 0;
 let timer;
+let isPlaying = false;
 
 
 // Timer
@@ -23,11 +24,12 @@ function incrementTimer() {
 }
 
 function playTimer() {
-  if (runData) timer = setInterval(incrementTimer, 100);
+  if (runData && !isPlaying) timer = setInterval(incrementTimer, 100); isPlaying = true;
 }
 
 function pauseTimer() {
   clearInterval(timer);
+  isPlaying = false;
 }
 
 function resetTimer() {
