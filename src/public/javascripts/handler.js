@@ -16,7 +16,6 @@ let timeOld;
 
 // Data in recieved
 comms.on('dataIn', () => {
-  console.log('dataIn - Event Recieved');
   // Log it to be sure
   console.log(client.inData);
   // Tell the Data Interfacer to start sorting it

@@ -4,13 +4,19 @@ Purpose: Handles all responsive UI elements of the dashboard
 */
 const consts = require('./constants');
 
+let focusOne;
+let focusTwo;
+let focusThree;
+let focusFour;
+
 const settingsSubmit = document.getElementById('podSettingsSubmit');
+const focusClear = document.getElementById('focus_clear_button');
 
 let x = 1; // counter for boxes filed so far
 function clone(id) { // eslint-disable-line no-unused-vars
   if (x === 1) {
     // clone for box 1
-    setInterval(() => {
+    focusOne = setInterval(() => {
       const value = document.getElementById(id).innerHTML; // gets value from table
       document.getElementById('header_value_1').innerHTML = value; // sets the value tp the box
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
@@ -19,7 +25,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
     x += 1;
   } else if (x === 2) {
     // clone for box 2
-    setInterval(() => {
+    focusTwo = setInterval(() => {
       const value = document.getElementById(id).innerHTML;
       document.getElementById('header_value_2').innerHTML = value;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
@@ -28,7 +34,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
     x += 1;
   } else if (x === 3) {
     // clone for box 3
-    setInterval(() => {
+    focusThree = setInterval(() => {
       const value = document.getElementById(id).innerHTML;
       document.getElementById('header_value_3').innerHTML = value;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
@@ -37,7 +43,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
     x += 1;
   } else if (x === 4) {
     // clone for box 4
-    setInterval(() => {
+    focusFour = setInterval(() => {
       const value = document.getElementById(id).innerHTML;
       document.getElementById('header_value_4').innerHTML = value;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
@@ -49,15 +55,20 @@ function clone(id) { // eslint-disable-line no-unused-vars
   }
 }
 
-// clear for focus div (not working)
+// clear for focus div
 function clear() { // eslint-disable-line no-unused-vars
   for (let i = 1; i < 5; i += 1) {
+    clearInterval(focusOne);
+    clearInterval(focusTwo);
+    clearInterval(focusThree);
+    clearInterval(focusFour);
     document.getElementById(`header_value_${String(i)}`).innerHTML = '';
     document.getElementById(
       `header_label_${String(i)}`,
     ).innerHTML = `Value ${String(i)}`;
   }
 }
+focusClear.addEventListener('click', clear);
 
 /*
 Tables
