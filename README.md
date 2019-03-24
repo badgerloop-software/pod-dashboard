@@ -100,7 +100,7 @@ pod-dashboard/coverage/lcov-report/index.html
     │   │   ├── searchicon.png
     │   │   └── settings.png
     │   ├── javascripts                             // Folder for our public JS files (both for frontend and backend)
-    │   │   ├── DataInterfacing.js                  // Interface with the local tempory database and long term database
+    │   │   ├── datainterfacing.js                  // Interface with the local tempory database and long term database
     │   │   ├── chartHandling.js                    // Create, fill, and clear charts using Plotly.js
     │   │   ├── communication.js                    // The hub of all incomming and outgoing connections
     │   │   ├── handler.js                          // Handle all updaters and interfacing between the frontend and backend

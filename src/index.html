@@ -4,7 +4,7 @@
     <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">    
     <link rel="stylesheet" type="text/css" href="public/stylesheets/grid.css">
     <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
-    <script src="public/javascripts/chartHandling.js"></script>
+    <script src="public/javascripts/charthandling.js"></script>
     <script src="../node_modules/plotly.js-dist/plotly.js"></script>
     <title>Badgerloop Pod IV Dashboard</title>
   </head>
@@ -35,7 +35,7 @@
         <div class="grid_focus">
           <div class="dropdown">
             <button id="focus_add_button" onclick="dropdown('1')" class="dropbtn"><h5>Add Values</h5></button>
-            <button id="focus_clear_button" onclick="clear()" class="dropbtn"><h5>Clear</h5></button>
+            <button id="focus_clear_button" class="dropbtn"><h5>Clear</h5></button>
             <div id="myDropdown1" class="dropdown-content">
               <input type="text" placeholder="Search.." id="dropdownInput1" onkeyup="filterFunction('1')">
               <a href="" onclick="clone('stoppingDistance');return false;">Stopping Distance (m)</a>
@@ -148,7 +148,7 @@
           <button id="idle" class="stateButton2"><p>Idle</p></button>
           <button id="ready" class="stateButton2"><p>Ready</p></button>
           <button id="serviceLowSpeed" class="stateButton3"><p>Service Low Speed</p></button>
-          <button id="propulsionDistanceSense" class="stateButton5"><p>Propulsion - Distance Sense Active</p></button>
+          <button id="propulsionDistanceSense" class="stateButton5"><p>Prop - Dist Sense Active</p></button>
           <button id="duringRunFault" class="stateButton6"><p>During Run Fault</p></button>
           <button id="hvEnable" class="stateButton8"><p>HV Enable</p></button>
           <button id="hvDisable" class="stateButton8"><p>HV Disable</p></button>
