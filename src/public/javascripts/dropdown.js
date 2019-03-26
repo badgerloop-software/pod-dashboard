@@ -5,18 +5,35 @@ console.log(database);
 
 // 
 function createItem(name, group, units) { // eslint-disable-line no-unused-vars
-    let header = document.createElement('a'); // Creates the actual DOM element
-    header.href = ""; // Sets the class
-    header.onclick = function () { //sets the onclick value
-        clone('stoppingDistance');
-        return false;
-    };
     let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
     let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
     fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
+
+    let header = document.createElement('a'); // Creates the actual DOM element
+    header.href = ""; // Sets the class
+    switch (group) {
+        case 'myDropdown1':
+            header.onclick = function () { //sets the onclick value
+                clone('stoppingDistance');
+                return false;
+            };
+            break;
+        case 'myDropdown2':
+            header.onclick = function () { //sets the onclick value
+                generateLineChartOne(name, fixedName);
+                return false;
+            };
+            break;
+        case 'myDropdown3':
+            header.onclick = function () { //sets the onclick value
+                generateLineChartTwo(name, fixedName); 
+                return false;
+            };
+            break;
+    }
     header.innerHTML = `${fixedName}`; // Sets value in the box
-    let table = document.getElementById(group);
-    table.appendChild(header);
+    let list = document.getElementById(group);
+    list.appendChild(header);
 
 }
 
@@ -29,6 +46,9 @@ module.exports.fillAllItems = function fillAllItems() { // eslint-disable-line
 
         sensors.forEach((sensor) => {
             createItem(`${sensor}`, 'myDropdown1', `${currentSystem[sensor].units}`); // For each sensor create an element
+            createItem(`${sensor}`, 'myDropdown2', `${currentSystem[sensor].units}`); // For each sensor create an element
+            createItem(`${sensor}`, 'myDropdown3', `${currentSystem[sensor].units}`); // For each sensor create an element
         });
     });
 };
+
