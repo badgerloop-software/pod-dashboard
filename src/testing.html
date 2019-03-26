@@ -6,14 +6,14 @@
     <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
     <script src="public/javascripts/chartHandling.js"></script>
     <script src="../node_modules/plotly.js-dist/plotly.js"></script>
-    <title>Badgerloop Pod IV Dashboard</title>
+    <title>Badgerloop PRAT</title>
   </head>
   
   <body>
     <!-- Top Bar -->
     <div class="banner">
-      <a class="left"><img src="public/images/logo.png" height="30px"></a>
-      <a id="title" class="left">Control Dashboard</a>
+      <a href="index.html" class="left"><img src="public/images/logo.png" height="30px"></a>
+      <a href="index.html" id="title" class="left">Control Dashboard</a>
       <a id="banner-drop"class="right">
         <div class="banner_dropdown">
           <button class="banner_dropbtn">Change View</button>
@@ -218,29 +218,8 @@
         </div>
       </div>   
     </div>
-    
-    <script> //pop-up modal code
-      var modal = document.querySelector(".modal");
-      var trigger = document.querySelector(".trigger");
-      var closeButton = document.querySelector(".close-button");
-      
-      function toggleModal() {
-        modal.classList.toggle("show-modal");
-        fillConstants();
-      }
-      
-      function windowOnClick(event) {
-        if (event.target === modal) {
-          toggleModal();
-        }
-      }
-      
-      trigger.addEventListener("click", toggleModal);
-      closeButton.addEventListener("click", toggleModal);
-      window.addEventListener("click", windowOnClick);
-      </script>
-     <script src="public/javascripts/main.js"></script>
-     <script src="public/javascripts/testingtool.js"></script>
-    </body>
-    </html>
+    <script src="public/javascripts/main.js"></script>
+    <script src="public/javascripts/testingtool.js"></script>
+  </body>
+</html>
     
