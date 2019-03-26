@@ -149,7 +149,6 @@ function dropdown(num) { // eslint-disable-line no-unused-vars
 function filterFunction(id) { // eslint-disable-line no-unused-vars
   // determines which dropdown (1,2, or 3) is being called
   const inputnum = String(`dropdownInput${id}`);
-
   // filter function
   let i;
   const input = document.getElementById(inputnum);
@@ -178,7 +177,7 @@ function createDropDownItem(name, units, num) {
   fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
   item.innerHTML = `${fixedName}`; // Sets value in the box
   list.appendChild(item);
-  console.log(item);
+  console.log(item); 
 }
 
 
@@ -194,11 +193,11 @@ function fillDropdown(table, num) { // eslint-disable-line
 // Uses fillDropdown to fill dropdown with sensors from each subsystem
 module.exports.fillAllDropdown = function fillAllDropdown() { // eslint-disable-line
   for(let i = 1; i < 4; i+= 1) {
-  let subsystems = Object.keys(database); // Create array of each subsystem
-  subsystems.forEach((subsystem) => {
-    fillDropdown(`${subsystem}`, i); // For each subsystem create a table
-  });
-}
+    let subsystems = Object.keys(database); // Create array of each subsystem
+    subsystems.forEach((subsystem) => {
+      fillDropdown(`${subsystem}`, i); // For each subsystem create a table
+    });
+  }
 };
 
 /*
