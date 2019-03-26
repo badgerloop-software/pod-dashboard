@@ -16,7 +16,7 @@ let closeButton = document.querySelector('.close-button');
 
 function toggleModal() {
   modal.classList.toggle('show-modal');
-  fillConstants();
+  fillConstants(); // eslint-disable-line no-use-before-define
 }
 
 function windowOnClick(event) {

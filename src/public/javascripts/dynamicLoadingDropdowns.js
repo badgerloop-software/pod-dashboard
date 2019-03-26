@@ -18,22 +18,24 @@ function createItem(name, group, units) { // eslint-disable-line no-unused-vars
   header.href = ''; // Sets the class
   switch (group) {
     case 'myDropdown1':
-      header.onclick = function () { // sets the onclick value
+      header.onclick = function onclick() { // sets the onclick value
         clone('stoppingDistance');
         return false;
       };
       break;
     case 'myDropdown2':
-      header.onclick = function () { // sets the onclick value
+      header.onclick = function onclick() { // sets the onclick value
         generateLineChartOne(name, fixedName);
         return false;
       };
       break;
     case 'myDropdown3':
-      header.onclick = function () { // sets the onclick value
+      header.onclick = function onclick() { // sets the onclick value
         generateLineChartTwo(name, fixedName);
         return false;
       };
+      break;
+    default:
       break;
   }
   header.innerHTML = `${fixedName}`; // Sets value in the box
