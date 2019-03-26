@@ -3,7 +3,6 @@ Author: Alex Vesel
 Purpose: Create, fill, and clear charts using Plotly.js
 */
 
-
 // global variable initilization for chart execution
 xpos = 0;
 chartState1 = [0, 0];
@@ -24,9 +23,11 @@ yData2 = [];
 chartFirstCreation2 = 0;
 chartTitles2 = ['', ''];
 
+sampleRate = 1000; // sample rate in ms per sample
+xmax = 30; //x-axis range (seconds)
+
 // function to generate blank chart on startup and clear
 function generateBlankChart(id, title, chartType) { // eslint-disable-line no-unused-vars
-  const xmax = 100; // maximum x-axis range in seconds. Should be the total runtime
 
   const layout = {
     xaxis: { range: [0, xmax] },
@@ -85,7 +86,7 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
   // extends line chart one traces at each time step
   function getDataAtInterval() { // eslint-disable-line no-unused-vars
     setInterval(() => {
-      xpos += 1;
+      xpos += sampleRate / 1000;
       getData();
       if (numTraces1 === 1) {
         update = {
@@ -99,6 +100,9 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
         };
       }
       Plotly.extendTraces(lineChartOne, update, traceArray1);
+      if (xpos > 30) {
+        Plotly.relayout(lineChartOne, 'xaxis.range', [xpos - xmax, xpos]);
+      }
     }, sampleRate);
   }
 
@@ -193,7 +197,7 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
   function getDataAtInterval() { // eslint-disable-line no-unused-vars
     setInterval(() => {
       if (chartFirstCreation1 === 0) {
-        xpos += 1;
+        xpos += sampleRate / 1000;
       }
       getData();
       if (numTraces2 === 1) {
@@ -208,6 +212,9 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
         };
       }
       Plotly.extendTraces(lineChartTwo, update, traceArray2);
+      if (xpos > 30) {
+        Plotly.relayout(lineChartTwo, 'xaxis.range', [xpos - xmax, xpos]);
+      }
     }, sampleRate);
   }
 
