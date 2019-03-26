@@ -10,12 +10,12 @@ const rate = consts.DATA_SEND_RATE;
 Modals
 Purpose: code for opening a pop up modal box
 */
-var modal = document.querySelector(".modal");
-var trigger = document.querySelector(".trigger");
-var closeButton = document.querySelector(".close-button");
+let modal = document.querySelector('.modal');
+let trigger = document.querySelector('.trigger');
+let closeButton = document.querySelector('.close-button');
 
 function toggleModal() {
-  modal.classList.toggle("show-modal");
+  modal.classList.toggle('show-modal');
   fillConstants();
 }
 
@@ -25,9 +25,9 @@ function windowOnClick(event) {
   }
 }
 
-trigger.addEventListener("click", toggleModal);
-closeButton.addEventListener("click", toggleModal);
-window.addEventListener("click", windowOnClick);
+trigger.addEventListener('click', toggleModal);
+closeButton.addEventListener('click', toggleModal);
+window.addEventListener('click', windowOnClick);
 
 /*
 Focus Clone
@@ -193,7 +193,7 @@ function filterFunction(id) { // eslint-disable-line no-unused-vars
 
 /*
 Settings form
-Purpose: 
+Purpose:
 */
 
 // Submits Entries to File

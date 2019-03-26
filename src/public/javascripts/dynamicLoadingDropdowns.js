@@ -8,7 +8,7 @@ const database = require('../../database.json');
 console.log(database);
 
 
-// 
+// code that actually createsnpm the element with the passed in information from fillAllItems
 function createItem(name, group, units) { // eslint-disable-line no-unused-vars
     let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
     let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
