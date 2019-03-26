@@ -5,7 +5,8 @@ Purpose: The hub of all incomming and outgoing connections
 const events = require('events');
 const dgram = require('dgram');
 const net = require('net');
-const constants = require('../../constants');
+
+const { constants } = require('./config');
 
 const udpServer = dgram.createSocket('udp4');
 const PORT = constants.serverAddr.port;

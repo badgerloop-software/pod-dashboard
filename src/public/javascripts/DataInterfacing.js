@@ -41,8 +41,6 @@ module.exports.updateData = function updateData(dataIn) {
 };
 
 // Exporting
-
-
 function createID() {
   let d = new Date();
   return `${d.getDate()}${d.getHours()}${d.getMinutes()}`;
