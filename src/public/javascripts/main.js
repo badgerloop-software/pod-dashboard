@@ -6,6 +6,33 @@ const consts = require('./constants');
 
 const rate = consts.DATA_SEND_RATE;
 
+/*
+Modals
+Purpose: code for opening a pop up modal box
+*/
+var modal = document.querySelector(".modal");
+var trigger = document.querySelector(".trigger");
+var closeButton = document.querySelector(".close-button");
+
+function toggleModal() {
+  modal.classList.toggle("show-modal");
+  fillConstants();
+}
+
+function windowOnClick(event) {
+  if (event.target === modal) {
+    toggleModal();
+  }
+}
+
+trigger.addEventListener("click", toggleModal);
+closeButton.addEventListener("click", toggleModal);
+window.addEventListener("click", windowOnClick);
+
+/*
+Focus Clone
+Purpose: Fill boxes at the top with live information from tables, for better visibility
+*/
 // Counters for Focus Header
 let focusOne;
 let focusTwo;

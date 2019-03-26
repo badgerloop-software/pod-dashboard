@@ -182,25 +182,6 @@ function init() {
   di.createCache();
   dr.fillAllItems();
   dl.fillAllTables();
-
-  var modal = document.querySelector(".modal");
-  var trigger = document.querySelector(".trigger");
-  var closeButton = document.querySelector(".close-button");
-
-  function toggleModal() {
-    modal.classList.toggle("show-modal");
-    fillConstants();
-  }
-
-  function windowOnClick(event) {
-    if (event.target === modal) {
-      toggleModal();
-    }
-  }
-
-  trigger.addEventListener("click", toggleModal);
-  closeButton.addEventListener("click", toggleModal);
-  window.addEventListener("click", windowOnClick);
 }
 // Run at init
 init();
