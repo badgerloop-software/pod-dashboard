@@ -145,7 +145,7 @@ function dropdown(num) { // eslint-disable-line no-unused-vars
   document.getElementById(`myDropdown${String(num)}`).classList.toggle('show');
 }
 
-// search filter function for  dropdowns
+// search filter function for dropdowns
 function filterFunction(id) { // eslint-disable-line no-unused-vars
   // determines which dropdown (1,2, or 3) is being called
   const inputnum = String(`dropdownInput${id}`);
@@ -165,7 +165,46 @@ function filterFunction(id) { // eslint-disable-line no-unused-vars
   }
 }
 
-// Settings Form
+// dynamically adding content to dropdowns
+const database = require('../../database.json');
+
+function createDropDownItem(name, units, num) {
+  let list = document.getElementById(`dropdown${num}`);
+  let item = document.createElement('a'); // Creates Element
+  item.href = ""; // Assigns href
+  item.onclick = "clone('" + name + "');return false;"; // Assigns onclick information
+  let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
+  let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
+  fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
+  item.innerHTML = `${fixedName}`; // Sets value in the box
+  list.appendChild(item);
+  console.log(item);
+}
+
+
+// Uses above functions to fill a dropdown with items
+function fillDropdown(table, num) { // eslint-disable-line
+  let currentSystem = database[table];
+  sensors = Object.keys(currentSystem); // Create an array with all sensors in the subsystem
+  sensors.forEach((sensor) => {
+    createDropDownItem(`${sensor}`, `${currentSystem[sensor].units}`, num); // For each sensor create a item in the dropdown
+  });
+}
+
+// Uses fillDropdown to fill dropdown with sensors from each subsystem
+module.exports.fillAllDropdown = function fillAllDropdown() { // eslint-disable-line
+  for(let i = 1; i < 4; i+= 1) {
+  let subsystems = Object.keys(database); // Create array of each subsystem
+  subsystems.forEach((subsystem) => {
+    fillDropdown(`${subsystem}`, i); // For each subsystem create a table
+  });
+}
+};
+
+/*
+Settings form
+Purpose: 
+*/
 
 // Submits Entries to File
 settingsSubmit.addEventListener('click', () => {
