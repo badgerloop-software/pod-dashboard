@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-<<<<<<< HEAD
 # Pod IV
 The master repository for Hyperloop Competition IV
 =======
@@ -8,7 +6,6 @@ The master repository for Hyperloop Competition IV
 =======
 # Pod 4 Operator's Dashboard &nbsp; ![GitHub Logo](https://raw.githubusercontent.com/badgerloop-software/pod-dashboard/master/src/public/images/icon.png)
 *Authors: Eric Udlis, Luke Houge, Alex Vesel*
->>>>>>> master
 
 ## Platform/Technologies:
 - [Electron](https://electronjs.org) (our software framework)
@@ -24,10 +21,6 @@ cd pod-dashboard/src
 npm install
 npm start
 ```
-
-<<<<<<< HEAD
->>>>>>> master
-=======
 
 ## Testing &nbsp; [![Build Status](https://travis-ci.com/badgerloop-software/pod-dashboard.svg?branch=master)](https://travis-ci.com/badgerloop-software/pod-dashboard)
 - Configured with eslint for formatting tests
@@ -123,4 +116,3 @@ pod-dashboard/coverage/lcov-report/index.html
     └── testPodServer.js                            // Test File to Send UDP Packets to the dashboard containing random numbers as data
 
 ```
->>>>>>> master
