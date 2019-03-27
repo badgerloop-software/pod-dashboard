@@ -8,6 +8,33 @@ const consts = require('./public/javascripts/config').constants;
 
 const RATE = consts.DATA_SEND_RATE;
 
+/*
+Modals
+Purpose: code for opening a pop up modal box
+*/
+let modal = document.querySelector('.modal');
+let trigger = document.querySelector('.trigger');
+let closeButton = document.querySelector('.close-button');
+
+function toggleModal() {
+  modal.classList.toggle('show-modal');
+  fillConstants(); // eslint-disable-line no-use-before-define
+}
+
+function windowOnClick(event) {
+  if (event.target === modal) {
+    toggleModal();
+  }
+}
+
+trigger.addEventListener('click', toggleModal);
+closeButton.addEventListener('click', toggleModal);
+window.addEventListener('click', windowOnClick);
+
+/*
+Focus Clone
+Purpose: Fill boxes at the top with live information from tables, for better visibility
+*/
 // Counters for Focus Header
 let focusOne;
 let focusTwo;
@@ -147,11 +174,10 @@ function dropdown(num) { // eslint-disable-line no-unused-vars
   document.getElementById(`myDropdown${String(num)}`).classList.toggle('show');
 }
 
-// search filter function for  dropdowns
+// search filter function for dropdowns
 function filterFunction(id) { // eslint-disable-line no-unused-vars
   // determines which dropdown (1,2, or 3) is being called
   const inputnum = String(`dropdownInput${id}`);
-
   // filter function
   let i;
   const input = document.getElementById(inputnum);
@@ -167,7 +193,10 @@ function filterFunction(id) { // eslint-disable-line no-unused-vars
   }
 }
 
-// Settings Form
+/*
+Settings form
+Purpose:
+*/
 
 // Submits Entries to File
 settingsSubmit.addEventListener('click', () => {

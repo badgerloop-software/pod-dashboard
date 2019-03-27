@@ -37,6 +37,10 @@ To run lint on a certian file
 ```
 eslint [file].js [dir]
 ```
+To have lint fix some errors automatically (good for spacing issues)
+```
+npm run pretest -- --fix
+```
 \
 To run just coverage test:
 ```  
