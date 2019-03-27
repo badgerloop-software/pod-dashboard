@@ -11,6 +11,7 @@ module.exports = {
     "no-undef": "off",
     "import/no-unresolved": "off",
     "prefer-const": "off",
-    "prefer-destructuring": ["error", { "object": true, "array": false }]
+    "prefer-destructuring": ["error", { "object": true, "array": false }],
+    "linebreak-style": "off"
   }
 };

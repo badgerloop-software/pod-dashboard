@@ -191,19 +191,19 @@ td.last {
   width: 1px;
   white-space: nowrap;
 }
-.valueTableOne {
+.valueTableMotion {
   width: 183px;
   overflow: hidden;
 }
-.valueTableTwo {
+.valueTableBraking {
   width: 234px;
   overflow: hidden;
 }
-.valueTableThree {
+.valueTableBattery {
   width: 160px;
   overflow: hidden;
 }
-.valueTableFour {
+.valueTableMotor {
   width: 150px;
   overflow: hidden;
 }
@@ -331,22 +331,11 @@ td.last {
 }
 
 /* connection status styling */
-.connected{
-  border-color: #C8EEC4;
-  color: #C8EEC4;
-}
-.connected span1{
-  display: none;
-}
 .connected span2 {
   display: none;
 }
-.disconnected{
-  border-color: #FC6962;
+span2{
   color: #FC6962;
-}
-.disconnected span1 {
-  display: none;
 }
 #braking_status, #motion_status, #battery_status, #motor_status {
   padding: 4px;
@@ -488,9 +477,7 @@ td.last {
 }
 
 /* state machine styling */
-.stateButton {
-  background-color:white;
-  color: #808080;
+.stateButton1, .stateButton2, .stateButton3, .stateButton4, .stateButton5, .stateButton6, .stateButton7, .stateButton8, .stateButton9, .statebutton, #archiveButton  {
   text-decoration: none;
   position: inline-block;
   margin: 4px 3px;
@@ -507,39 +494,39 @@ td.last {
   background-color: black;
   color: black;
 }
-#one {
+.stateButton1 {
   background-color: #C10000;
   color: white;
 }
-#two {
+.stateButton2 {
   background-color: #3C9159;
   color: white;
 }
-#three {
+.stateButton3 {
   background-color: #A84671;
   color: white;
 }
-#four {
+.stateButton4 {
   background-color: #C66553;
   color: white;
 }
-#five {
+.stateButton5 {
   background-color: #C6A153;
   color: white;
 }
-#six {
+.stateButton6 {
   background-color: #C10000;
   color: white;
 }
-#seven {
+.stateButton7 {
   background-color: #554188;
   color: white;
 }
-#eight {
+.stateButton8 {
   background-color: #203060;
   color: white;
 }
-#nine {
+.stateButton9 {
   background-color: #388767;
   color: white;
 }
@@ -690,4 +677,55 @@ hr {
 /* extra box styling */ 
 #extra {
   border: none;
+}
+
+/* JSON timer counters styling */
+#info {
+  padding-left: 15px;
+  line-height: 10px;
+}
+
+/* JSON button stlying */
+.JSON_button {
+  text-decoration: none;
+  position: inline-block;
+  margin: 4px 3px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 2px solid #808080;
+  border-radius: 6px;
+  width: 100px;
+  height: 80px;
+  font-weight: 800;
+}
+.JSON_button:hover {
+  background-color: #808080 !important;
+  -webkit-transition: background-color 200ms linear !important;
+  -ms-transition: background-color 200ms linear !important;
+  transition: background-color 200ms linear !important;
+}
+#fileSelector {
+  background-color: #554188;
+  color: white;
+}
+#back {
+  background-color: #C66553;
+  color: white;
+}
+#forward {
+  background-color: #C66553;
+  color: white;
+}
+#play {
+  background-color: #3C9159;
+  color: white;
+}
+#pause{
+  background-color: #C6A153;
+  color: white;
+}
+#reset{
+  background-color: #C10000;
+  color: white;
 }
