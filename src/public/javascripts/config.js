@@ -11,7 +11,7 @@ function getConstantsPath() {
   return path.join(__dirname, '/../../constants.json');
 }
 
-function getJSON() {
+function getJSONFile() {
   let configPath = getConstantsPath();
   let configFile = fs.readFileSync(configPath, () => {
     console.info('Config Loaded');
@@ -20,7 +20,7 @@ function getJSON() {
 }
 
 function readJSON() {
-  let configFile = getJSON();
+  let configFile = getJSONFile();
   let configContent = JSON.parse(configFile);
   return configContent;
 }
@@ -32,9 +32,8 @@ function updateConstants() {
 
 function writeJSON(obj) {
   let configPath = getConstantsPath();
-  fs.writeFile(configPath, JSON.stringify(obj), () => {
-    updateConstants();
-  });
+  fs.writeFileSync(configPath, JSON.stringify(obj));
+  return 'File Successfully Written';
 }
 
 module.exports.updateConstants = updateConstants;
