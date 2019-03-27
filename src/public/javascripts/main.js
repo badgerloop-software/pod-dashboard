@@ -200,17 +200,42 @@ Purpose:
 
 // Submits Entries to File
 settingsSubmit.addEventListener('click', () => {
-  consts.serverAddr.ip = document.getElementById('podIP').value;
-  consts.serverAddr.port = Number(document.getElementById('podPort').value);
-  consts.scanningRate = Number(document.getElementById('scanningRate').value);
-  document.getElementById('formFeedback').innerHTML = 'Settings Applied';
+  let constsCache = {
+    dataSendRate: null,
+    serverAddr: {
+      ip: null,
+      port: null,
+    },
+    hvBone: {
+      ip: null,
+      port: null,
+    },
+    lvBone: {
+      ip: null,
+      port: null,
+    },
+  };
+  constsCache.serverAddr.ip = document.getElementById('podIP').value;
+  constsCache.serverAddr.port = Number(document.getElementById('podPort').value);
+  constsCache.dataSendRate = Number(document.getElementById('scanningRate').value);
+  constsCache.hvBone.ip = document.getElementById('hvBoneIP').value;
+  constsCache.hvBone.port = Number(document.getElementById('hvBonePort').value);
+  constsCache.lvBone.ip = document.getElementById('lvBoneIP').value;
+  constsCache.lvBone.port = Number(document.getElementById('lvBonePort').value);
+  config.writeJSON(constsCache, () => {
+    document.getElementById('formFeedback').innerHTML = 'Settings Applied';
+  });
 });
 
 // Fills entries in text boxes
 function fillConstants() { // eslint-disable-line no-unused-vars
-  config.updateJSON();
+  config.updateConstants();
   document.getElementById('formFeedback').innerHTML = '';
   document.getElementById('podIP').value = String(consts.serverAddr.ip);
   document.getElementById('podPort').value = consts.serverAddr.port;
-  document.getElementById('scanningRate').value = consts.scanningRate;
+  document.getElementById('scanningRate').value = consts.dataSendRate;
+  document.getElementById('lvBoneIP').value = consts.lvBone.ip;
+  document.getElementById('lvBonePort').value = consts.hvBone.port;
+  document.getElementById('hvBoneIP').value = consts.lvBone.ip;
+  document.getElementById('hvBonePort').value = consts.hvBone.port;
 }
