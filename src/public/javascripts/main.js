@@ -223,9 +223,7 @@ settingsSubmit.addEventListener('click', () => {
   constsCache.hvBone.port = Number(document.getElementById('hvBonePort').value);
   constsCache.lvBone.ip = document.getElementById('lvBoneIP').value;
   constsCache.lvBone.port = Number(document.getElementById('lvBonePort').value);
-  config.writeJSON(constsCache, () => {
-    document.getElementById('formFeedback').innerHTML = 'Settings Applied';
-  });
+  document.getElementById('formFeedback').innerHTML = config.writeJSON(constsCache);
 });
 
 // Fills entries in text boxes
