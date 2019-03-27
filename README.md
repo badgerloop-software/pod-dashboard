@@ -1,3 +1,9 @@
+# Pod IV
+The master repository for Hyperloop Competition IV
+=======
+# Badgerloop Pod IV
+*Developers: Ezra Boley*
+=======
 # Pod 4 Operator's Dashboard &nbsp; ![GitHub Logo](https://raw.githubusercontent.com/badgerloop-software/pod-dashboard/master/src/public/images/icon.png)
 *Authors: Eric Udlis, Luke Houge, Alex Vesel*
 
@@ -15,7 +21,6 @@ cd pod-dashboard/src
 npm install
 npm start
 ```
-
 
 ## Testing &nbsp; [![Build Status](https://travis-ci.com/badgerloop-software/pod-dashboard.svg?branch=master)](https://travis-ci.com/badgerloop-software/pod-dashboard)
 - Configured with eslint for formatting tests
