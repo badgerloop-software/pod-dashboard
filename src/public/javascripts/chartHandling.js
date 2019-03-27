@@ -24,11 +24,10 @@ chartFirstCreation2 = 0;
 chartTitles2 = ['', ''];
 
 sampleRate = 1000; // sample rate in ms per sample
-xmax = 30; //x-axis range (seconds)
+xmax = 30; // x-axis range (seconds)
 
 // function to generate blank chart on startup and clear
 function generateBlankChart(id, title, chartType) { // eslint-disable-line no-unused-vars
-
   const layout = {
     xaxis: { range: [0, xmax] },
     title,
