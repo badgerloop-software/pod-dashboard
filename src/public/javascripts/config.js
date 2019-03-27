@@ -30,9 +30,11 @@ function updateConstants() {
   module.exports.constants = constants;
 }
 
-function writeJSON(obj, callback) {
+function writeJSON(obj) {
   let configPath = getConstantsPath();
-  fs.writeFile(configPath, JSON.stringify(obj), callback);
+  fs.writeFile(configPath, JSON.stringify(obj), () => {
+      updateConstants();
+  }));
 }
 
 module.exports.updateConstants = updateConstants;
