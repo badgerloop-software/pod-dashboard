@@ -2,9 +2,11 @@
 Author: Eric Udlis, Luke Houge
 Purpose: Handles all responsive UI elements of the dashboard
 */
-const consts = require('./constants');
 
-const rate = consts.DATA_SEND_RATE;
+const config = require('./public/javascripts/config');
+const consts = require('./public/javascripts/config').constants;
+
+const RATE = consts.DATA_SEND_RATE;
 
 /*
 Modals
@@ -52,7 +54,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       document.getElementById('header_value_1').innerHTML = value; // sets the value tp the box
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
       document.getElementById('header_label_1').innerHTML = name; // sets that as the label for the box
-    }, rate); // updates every 300 ms
+    }, RATE); // updates every 300 ms
     x += 1;
   } else if (x === 2) {
     // clone for box 2
@@ -61,7 +63,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       document.getElementById('header_value_2').innerHTML = value;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_2').innerHTML = name;
-    }, rate);
+    }, RATE);
     x += 1;
   } else if (x === 3) {
     // clone for box 3
@@ -70,7 +72,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       document.getElementById('header_value_3').innerHTML = value;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_3').innerHTML = name;
-    }, rate);
+    }, RATE);
     x += 1;
   } else if (x === 4) {
     // clone for box 4
@@ -79,7 +81,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       document.getElementById('header_value_4').innerHTML = value;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_4').innerHTML = name;
-    }, rate);
+    }, RATE);
     x += 1;
   } else if (x > 4) {
     alert('Max of 4 values reached, please remove one and try again');
@@ -97,6 +99,7 @@ function clear() { // eslint-disable-line no-unused-vars
       `header_label_${String(i)}`,
     ).innerHTML = `Value ${String(i)}`;
   }
+  x = 1;
 }
 
 if (focusClear) focusClear.addEventListener('click', clear); // In if statement for testing tool fix
@@ -143,7 +146,7 @@ setInterval(() => {
       document.getElementById(statusIDs[u]).className = 'disconnected';
     }
   }
-}, rate);
+}, RATE);
 
 
 // Table Search Boxes
@@ -198,16 +201,40 @@ Purpose:
 
 // Submits Entries to File
 settingsSubmit.addEventListener('click', () => {
-  consts.serverAddr.ip = document.getElementById('podIP').value;
-  consts.serverAddr.port = Number(document.getElementById('podPort').value);
-  consts.scanningRate = Number(document.getElementById('scanningRate').value);
-  document.getElementById('formFeedback').innerHTML = 'Settings Applied';
+  let constsCache = {
+    dataSendRate: null,
+    serverAddr: {
+      ip: null,
+      port: null,
+    },
+    hvBone: {
+      ip: null,
+      port: null,
+    },
+    lvBone: {
+      ip: null,
+      port: null,
+    },
+  };
+  constsCache.serverAddr.ip = document.getElementById('podIP').value;
+  constsCache.serverAddr.port = Number(document.getElementById('podPort').value);
+  constsCache.dataSendRate = Number(document.getElementById('scanningRate').value);
+  constsCache.hvBone.ip = document.getElementById('hvBoneIP').value;
+  constsCache.hvBone.port = Number(document.getElementById('hvBonePort').value);
+  constsCache.lvBone.ip = document.getElementById('lvBoneIP').value;
+  constsCache.lvBone.port = Number(document.getElementById('lvBonePort').value);
+  document.getElementById('formFeedback').innerHTML = config.writeJSON(constsCache);
 });
 
 // Fills entries in text boxes
 function fillConstants() { // eslint-disable-line no-unused-vars
+  config.updateConstants();
   document.getElementById('formFeedback').innerHTML = '';
   document.getElementById('podIP').value = String(consts.serverAddr.ip);
   document.getElementById('podPort').value = consts.serverAddr.port;
-  document.getElementById('scanningRate').value = consts.scanningRate;
+  document.getElementById('scanningRate').value = consts.dataSendRate;
+  document.getElementById('lvBoneIP').value = consts.lvBone.ip;
+  document.getElementById('lvBonePort').value = consts.hvBone.port;
+  document.getElementById('hvBoneIP').value = consts.lvBone.ip;
+  document.getElementById('hvBonePort').value = consts.hvBone.port;
 }

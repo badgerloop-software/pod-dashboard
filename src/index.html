@@ -213,15 +213,29 @@
               <form class="settingsForm">
                 <div id="formLeft">
                   <h4 id="formTitle">Pod Settings</h4>
-                  <label for="podIP" id="first-name">Pod IP</label>
+                  <label for="podIP" id="pod-ip">Pod IP</label>
                   <input id="podIP" class="formInput" type="text">
                   
-                  <label for="podPort" id="last-name">Pod Port</label>
+                  <label for="podPort" id="pod-port">Pod Port</label>
                   <input id="podPort" class="formInput" type="number">
+                </div>
+                <div id="formRight">
+                  <h4 id="formTitle">BeagleBone Settings</h4>
+                  <label for="lvBoneIP" id="lv-bone-ip">LV Bone IP</label>
+                  <input id="lvBoneIP" class="formInput" type="text">
+                  
+                  <label for="lvBonePort" id="lv-bone-port">LV Bone Port</label>
+                  <input id="lvBonePort" class="formInput" type="number">
+                  
+                  <label for="hvBoneIP" id="hv-bone-ip">HV Bone IP</label>
+                  <input id="hvBoneIP" class="formInput" type="text">
+                  
+                  <label for="hvBonePort" id="hv-bone-port">HV Bone Port</label>
+                  <input id="hvBonePort" class="formInput" type="number">
                 </div>
                 <div id="formFull">
                   <h4 id="formTitle">Dashboard Settings</h4>
-                  <label for="scanningRate">Scanning Rate: <span id="value"></span> </label>
+                  <label for="scanningRate">Data Send/ Scanning Rate (Note: Requires Restart For Changes To Take Place): <span id="value"></span> </label>
                   <input id="scanningRate" class="formInput" type="number" min="0" max="500" class="inputNotSearchable">
                   <button id="podSettingsSubmit" type="button">Submit</button>
                   <p id="formFeedback"></p>

@@ -9,7 +9,6 @@ const constants = require('./constants');
 const storedData = require('./database.json');
 const cache = require('./cache');
 const dl = require('./public/javascripts/dynamicloading');
-const dr = require('./public/javascripts/dynamicloadingdropdowns');
 
 const d = document;
 const archiveButton = d.getElementById('archiveButton');
@@ -180,7 +179,7 @@ d.getElementById('secBrakeVentOff').addEventListener('click', () => {
 
 function init() {
   di.createCache();
-  dr.fillAllItems();
+  dl.fillAllItems();
   dl.fillAllTables();
 }
 // Run at init
