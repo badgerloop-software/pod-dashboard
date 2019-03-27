@@ -1,5 +1,5 @@
 /*
-Author: Eric Udlis
+Author: Eric Udlis, Luke Houge
 Purpose: Dynamically fill the dashboard with content based off database.JSON
 */
 const database = require('../../database.json');

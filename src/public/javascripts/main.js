@@ -50,8 +50,9 @@ function clone(id) { // eslint-disable-line no-unused-vars
   if (x === 1) {
     // clone for box 1
     focusOne = setInterval(() => {
-      const value = document.getElementById(id).innerHTML; // gets value from table
-      document.getElementById('header_value_1').innerHTML = value; // sets the value tp the box
+      const value = Number(document.getElementById(id).innerHTML); // gets value from table
+      const fixedValue = value.toFixed(3);
+      document.getElementById('header_value_1').innerHTML = fixedValue; // sets the value tp the box
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
       document.getElementById('header_label_1').innerHTML = name; // sets that as the label for the box
     }, RATE); // updates every 300 ms
@@ -59,8 +60,9 @@ function clone(id) { // eslint-disable-line no-unused-vars
   } else if (x === 2) {
     // clone for box 2
     focusTwo = setInterval(() => {
-      const value = document.getElementById(id).innerHTML;
-      document.getElementById('header_value_2').innerHTML = value;
+      const value = Number(document.getElementById(id).innerHTML);
+      const fixedValue = value.toFixed(3);
+      document.getElementById('header_value_2').innerHTML = fixedValue;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_2').innerHTML = name;
     }, RATE);
@@ -68,8 +70,9 @@ function clone(id) { // eslint-disable-line no-unused-vars
   } else if (x === 3) {
     // clone for box 3
     focusThree = setInterval(() => {
-      const value = document.getElementById(id).innerHTML;
-      document.getElementById('header_value_3').innerHTML = value;
+      const value = Number(document.getElementById(id).innerHTML);
+      const fixedValue = value.toFixed(3);
+      document.getElementById('header_value_3').innerHTML = fixedValue;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_3').innerHTML = name;
     }, RATE);
@@ -77,8 +80,9 @@ function clone(id) { // eslint-disable-line no-unused-vars
   } else if (x === 4) {
     // clone for box 4
     focusFour = setInterval(() => {
-      const value = document.getElementById(id).innerHTML;
-      document.getElementById('header_value_4').innerHTML = value;
+      const value = Number(document.getElementById(id).innerHTML);
+      const fixedValue = value.toFixed(3);
+      document.getElementById('header_value_4').innerHTML = fixedValue;
       const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_4').innerHTML = name;
     }, RATE);
