@@ -33,8 +33,8 @@ function updateConstants() {
 function writeJSON(obj) {
   let configPath = getConstantsPath();
   fs.writeFile(configPath, JSON.stringify(obj), () => {
-      updateConstants();
-  }));
+    updateConstants();
+  });
 }
 
 module.exports.updateConstants = updateConstants;
