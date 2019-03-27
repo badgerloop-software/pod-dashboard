@@ -99,6 +99,7 @@ function clear() { // eslint-disable-line no-unused-vars
       `header_label_${String(i)}`,
     ).innerHTML = `Value ${String(i)}`;
   }
+  x=1;
 }
 
 if (focusClear) focusClear.addEventListener('click', clear); // In if statement for testing tool fix
