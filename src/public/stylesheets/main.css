@@ -664,6 +664,7 @@ label {
 #formFull {
   grid-column: 1/3;
   grid-row: 2;
+  margin-top: -35px;
 }
 hr {
   display: block;
