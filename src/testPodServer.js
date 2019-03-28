@@ -9,6 +9,7 @@ const DATA_SEND_RATE = constants.dataSendRate;
 const IP = '127.0.0.1';
 const PORT = constants.serverAddr.port;
 const client = dgram.createSocket('udp4');
+let counter = 0;
 
 function getRandomIntInclusive(min, max) {
   const myMin = Math.ceil(min);
@@ -39,7 +40,7 @@ function sendJSON(object) {
   sendData(JSON.stringify(object));
 }
 
-function sendTestData() {
+function sendTestData() { // eslint-disable-line
   const testSocket = {
     motion: {
       stoppingDistance: getRandomValue(),
@@ -78,7 +79,56 @@ function sendTestData() {
   sendJSON(testSocket);
 }
 
-// The line where test data is sent. setInterval(function, ms)
-//
+function sendSpecificData(data) {
+  let testSocket = {
+    motion: {
+      stoppingDistance: data,
+      position: data,
+      retro: data,
+      velocity: data,
+      acceleration: data,
+    },
+    battery: {
+      packVoltage: data,
+      packCurrent: data,
+      packSOC: data,
+      packAH: data,
+      cellMaxVoltage: data,
+      cellMinVoltage: data,
+      highTemp: data,
+      lowTemp: data,
+    },
+    braking: {
+      secondaryTank: data,
+      secondaryLine: data,
+      secondaryActuation: data,
+      primaryTank: data,
+      primaryLine: data,
+      primaryActuation: data,
+      pressureVesselPressure: data,
+      currentPressure: data,
+    },
+    motor: {
+      commandTorque: data,
+      actualTorque: data,
+      motorSpeed: data,
+      motorTemp: data,
+    },
+  };
+  sendJSON(testSocket);
+}
 
-setInterval(sendTestData, DATA_SEND_RATE);
+function sendSinusodalData() {
+  let increase = Math.PI * 2 / 100;
+  let y = Math.sin(counter) / 2 + 0.5;
+  sendSpecificData(y);
+  counter += increase;
+}
+
+// The line where test data is sent. setInterval(function, ms)
+
+// Send random data
+// setInterval(sendTestData, DATA_SEND_RATE);
+
+// Send Sinusodial Data
+setInterval(sendSinusodalData, DATA_SEND_RATE);
