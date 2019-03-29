@@ -606,7 +606,7 @@ span2{
 #header4Middle {
   float: right;
   width: 30%;
-  padding-left: 70px;
+  padding-left: 40px;
   line-height: 30px;
   color: #808080;
   padding-top: 15px;
@@ -623,7 +623,7 @@ span2{
   padding-left: 16px;
 }
 #connectionDot2 {
-  padding-left: 9px;
+  padding-left: 11px;
 }
 .connectionGood {
   color: green;
