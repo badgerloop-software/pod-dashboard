@@ -551,14 +551,18 @@ span2{
 #statusConnection1 {
   display: inline-block;
   vertical-align: middle;
-  color: green;
   font-weight: 800;
 }
 #statusConnection2 {
   display: inline-block;
   vertical-align: middle;
-  color: red;
   font-weight: 800;
+}
+.statusGood {
+  color: green;
+}
+.statusBad {
+  color: red;
 }
 #age {
   display: inline-block;

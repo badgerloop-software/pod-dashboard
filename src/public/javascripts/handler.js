@@ -177,6 +177,28 @@ d.getElementById('secBrakeVentOff').addEventListener('click', () => {
   console.log('secBrakeVentOff');
 });
 
+function setRecieve(state) {
+  let indicator = d.getElementById('statusConnection1');
+  if (state) indicator.className = 'statusGood';
+  if (!state) indicator.className = 'statusBad';
+}
+
+function setTransmit(state) {
+  let indicator = d.getElementById('statusConnection2');
+  if (state) indicator.className = 'statusGood';
+  if (!state) indicator.className = 'statusBad';
+}
+
+function getSampleSensor() {
+  let subsystemArray = Object.values(cache);
+  let sensorArray = Object.values(subsystemArray[0]);
+  return sensorArray[0];
+}
+
+function checkRecieve() {
+
+}
+
 function init() {
   di.createCache();
   dl.fillAllItems();
