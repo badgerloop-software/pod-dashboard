@@ -75,22 +75,16 @@ function resetAllButtons() {
   document.getElementById('postRun').className = 'stateButton3Inactive';
   document.getElementById('propulsionStart').className = 'stateButton5Inactive';
   document.getElementById('preRunFault').className = 'stateButton6Inactive';
-  document.getElementById('primBrakeOn').className = 'stateButton7Inactive';
-  document.getElementById('primBrakeOff').className = 'stateButton7Inactive';
   document.getElementById('idle').className = 'stateButton2Inactive';
   document.getElementById('ready').className = 'stateButton2Inactive';
   document.getElementById('serviceLowSpeed').className = 'stateButton3Inactive';
   document.getElementById('propulsionDistanceSense').className = 'stateButton5Inactive';
   document.getElementById('duringRunFault').className = 'stateButton6Inactive';
-  document.getElementById('hvEnable').className = 'stateButton8Inactive';
-  document.getElementById('hvDisable').className = 'stateButton8Inactive';
   document.getElementById('readyForPumpdown').className = 'stateButton4Inactive';
   document.getElementById('pumpdown').className = 'stateButton4Inactive';
   document.getElementById('safeToApproach').className = 'stateButton3Inactive';
   document.getElementById('brakingStart').className = 'stateButton5Inactive';
   document.getElementById('postRunFault').className = 'stateButton6Inactive';
-  document.getElementById('secBrakeVentOn').className = 'stateButton9Inactive';
-  document.getElementById('secBrakeVentOff').className = 'stateButton9Inactive';
 }
 // Handles power off button click
 d.getElementById('powerOff').addEventListener('click', () => {
@@ -129,15 +123,11 @@ d.getElementById('preRunFault').addEventListener('click', () => {
 // Handles primBrakeOn button click
 d.getElementById('primBrakeOn').addEventListener('click', () => {
   console.log('primary brake on');
-  resetAllButtons();
-  document.getElementById('primBrakeOn').className = 'stateButton7Active';
 });
 
 // Handles primBreakOff button click
 d.getElementById('primBrakeOff').addEventListener('click', () => {
   console.log('primary brake off');
-  resetAllButtons();
-  document.getElementById('primBrakeOff').className = 'stateButton7Active';
 });
 
 // Handles idle button click
@@ -178,15 +168,11 @@ d.getElementById('duringRunFault').addEventListener('click', () => {
 // Handles hvEnable button click
 d.getElementById('hvEnable').addEventListener('click', () => {
   console.log('hvEnable');
-  resetAllButtons();
-  document.getElementById('hvEnable').className = 'stateButton8Active';
 });
 
 // Handles hvDisable button click
 d.getElementById('hvDisable').addEventListener('click', () => {
   console.log('hvDisable');
-  resetAllButtons();
-  document.getElementById('hvDisable').className = 'stateButton8Active';
 });
 
 // Handles readyForPumpdown button click
@@ -227,15 +213,11 @@ d.getElementById('postRunFault').addEventListener('click', () => {
 // Handles secBrakeVentOn button click
 d.getElementById('secBrakeVentOn').addEventListener('click', () => {
   console.log('secBrakeVentOn');
-  resetAllButtons();
-  document.getElementById('secBrakeVentOn').className = 'stateButton9Active';
 });
 
 // Handles secBrakeVentOff button click
 d.getElementById('secBrakeVentOff').addEventListener('click', () => {
   console.log('secBrakeVentOff');
-  resetAllButtons();
-  document.getElementById('secBrakeVentOff').className = 'stateButton9Active';
 });
 
 function init() {

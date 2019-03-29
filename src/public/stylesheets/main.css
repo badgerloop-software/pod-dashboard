@@ -494,9 +494,22 @@ span2{
   background-color: black;
   color: black;
 }
-.stateButtonInative {
+.stateButton {
   background-color: hotpink;
 }
+.stateButton7{
+  background-color: #554188;
+  color: white;
+}
+.stateButton8 {
+  background-color: #203060;
+  color: white;
+}
+.stateButton9 {
+  background-color: #388767;
+  color: white;
+}
+
 .stateButton1 {
   background-color: #C10000; 
   color: white;
@@ -521,22 +534,7 @@ span2{
   background-color: #C10000;
   color: white;
 }
-.stateButton7Active{
-  background-color: #554188;
-  color: white;
-}
-.stateButton8Active {
-  background-color: #203060;
-  color: white;
-}
-.stateButton9Active {
-  background-color: #388767;
-  color: white;
-}
-#archiveButtonActive {
-  background-color: black;;
-  color: white;
-}
+
 .stateButton2Inactive, .stateButton3Inactive, .stateButton4Inactive, .stateButton5Inactive, .stateButton6Inactive, .stateButton7Inactive, .stateButton8Inactive, .stateButton9Inactive, .statebuttonInactive, #archiveButtonInactive  {
   background-color: gray;
 }
