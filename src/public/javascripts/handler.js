@@ -201,9 +201,65 @@ function getSampleSensor() {
 }
 
 function checkRecieve() {
-
+  let sampleSensor = getSampleSensor();
+  try {
+    if (!(sampleSensor.length > oldLength)) {
+      setRecieve(false);
+    } else {
+      setRecieve(true);
+    }
+    oldLength = sampleSensor.length;
+  } catch (err) {
+    oldLength = 0;
+  }
 }
 
+function sendHeartbeats() {
+  client.sendLVPing();
+  client.sendHVPing();
+}
+function lostLVBone(state) {
+  try {
+    if (state !== undefined) myState = state;
+    return myState;
+  } catch (err) {
+    myState = false;
+    return myState;
+  }
+}
+
+function lostHVBone(state) {
+  try {
+    if (state !== undefined) myState = state;
+    return myState;
+  } catch (err) {
+    myState = false;
+    return myState;
+  }
+}
+comms.on('Lost', (ip) => {
+  if (ip === constants.lvBone.ip) {
+    lostLVBone(true);
+  }
+  if (ip === constants.hvBone.ip) {
+    lostHVBone(true);
+  }
+});
+function checkTransmit() {
+  setTransmit(true);
+  if (lostLVBone() || lostHVBone()) {
+    console.error('Dropped a bone');
+    setTransmit(false);
+  }
+}
+
+function podConnectionCheck() {
+  checkRecieve();
+  sendHeartbeats();
+  checkTransmit();
+}
+
+setInterval(podConnectionCheck, 1000);
 function init() {
   di.createCache();
   dl.fillAllItems();
