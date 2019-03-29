@@ -548,7 +548,13 @@ span2{
   vertical-align: middle;
   padding-left: 30px;
 }
-#statusConnection {
+#statusConnection1 {
+  display: inline-block;
+  vertical-align: middle;
+  font-weight: 800;
+  color: #808080;
+}
+#statusConnection2 {
   display: inline-block;
   vertical-align: middle;
   font-weight: 800;

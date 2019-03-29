@@ -14,7 +14,8 @@ const d = document;
 const archiveButton = d.getElementById('archiveButton');
 const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
-const recieveIndicator = d.getElementById('statusConnection');
+const recieveIndicator1 = d.getElementById('statusConnection1');
+const recieveIndicator2 = d.getElementById('statusConnection2');
 let timeOld;
 
 // Data in recieved
@@ -186,8 +187,10 @@ d.getElementById('secBrakeVentOff').addEventListener('click', () => {
 });
 
 function setRecieve(state) {
-  if (state) recieveIndicator.className = 'statusGood';
-  if (!state) recieveIndicator.className = 'statusBad';
+  if (state) recieveIndicator1.className = 'statusGood';
+  if (state) recieveIndicator2.className = 'statusGood';
+  if (!state) recieveIndicator1.className = 'statusBad';
+  if (!state) recieveIndicator2.className = 'statusBad';
 }
 
 function setLVIndicator(state) {
