@@ -591,12 +591,42 @@ span2{
   justify-content: center; /* vertically centering */
 }
 #header4Left {
-  width: 30%;
+  width: 10%;
 }
 #header4Right {
   float: right;
-  width: 70%;
-  padding-left: 90px;
+  width: 60%;
+  padding-left: 20px;
+}
+#header4Middle {
+  float: right;
+  width: 30%;
+  padding-left: 70px;
+  line-height: 30px;
+  color: #808080;
+}
+.connectionTitle {
+  display: inline;
+}
+#connectionDot1, #connectionDot2, #connectionDot3 {
+  display: inline;
+  font-size: 40px;
+  line-height: 20px;
+}
+#connectionDot1 {
+  padding-left: 16px;
+}
+#connectionDot2 {
+  padding-left: 9px;
+}
+#connectionDot3 {
+  padding-left: 97px;
+}
+.connectionGood {
+  color: green;
+}
+.connectionBad {
+  color: red;
 }
 .link {
   font-size: 50px;
