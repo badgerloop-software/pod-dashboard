@@ -42,9 +42,9 @@ function updateData(group, sensor) {
 function setAgeLabel(staleness) {
   d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
   if (staleness >= 150) {
-    d.getElementById('ageDisplay').className = 'ageDisplayError';
+    d.getElementById('ageDisplay').className = 'connectionError';
   } else {
-    d.getElementById('ageDisplay').className = 'ageDisplayGood';
+    d.getElementById('ageDisplay').className = 'connectionOk';
   }
 }
 

@@ -574,12 +574,6 @@ span2{
   vertical-align: middle;
   margin-top: -20px;
 }
-.ageDisplayError { /* styling status for the latency */
-  color: red;
-}
-.ageDisplayGood { /* styling status for the latency */
-  color: green;
-}
 
 /* Header 4 (link and latency) styling */
 #header4{
@@ -625,22 +619,17 @@ span2{
 #connectionDot2 {
   padding-left: 11px;
 }
-.connectionGood { /* styling status for the TCP connection dots */
-  color: green;
-}
-.connectionBad { /* styling status for the TCP connection dots */
+.connectionError { /* styling status  */
   color: red;
+}
+.connectionOk { /* styling status */
+  color: green;
 }
 #link {
   font-size: 50px;
   line-height: 0px;
 }
-.linkConnectionGood { /* styling status for the link connection lines */
-  color: green;
-}
-.linkConnectionBad{ /* styling status for the link connection lines */
-  color: red;
-}
+
 
 /* something ??? */
 .modebar {
