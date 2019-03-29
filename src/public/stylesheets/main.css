@@ -477,7 +477,7 @@ span2{
 }
 
 /* state machine styling */
-.stateButton1, .stateButton2, .stateButton3, .stateButton4, .stateButton5, .stateButton6, .stateButton7, .stateButton8, .stateButton9, .statebutton, #archiveButton  {
+#powerOff, #archiveButton, #postRun, #propulsionStart, #preRunFault, #primBrakeOn, #primBrakeOff, #idle, #ready, #serviceLowSpeed, #propulsionDistanceSense, #duringRunFault, #hvEnable, #hvDisable, #readyForPumpdown, #pumpdown, #safeToApproach, #brakingStart, #postRunFault, #secBrakeVentOff, #secBrakeVentOn {
   text-decoration: none;
   position: inline-block;
   margin: 4px 3px;
@@ -494,31 +494,10 @@ span2{
   background-color: black;
   color: black;
 }
-.stateButton1 {
-  background-color: #C10000;
-  color: white;
+.stateButton {
+  background-color: hotpink;
 }
-.stateButton2 {
-  background-color: #3C9159;
-  color: white;
-}
-.stateButton3 {
-  background-color: #A84671;
-  color: white;
-}
-.stateButton4 {
-  background-color: #C66553;
-  color: white;
-}
-.stateButton5 {
-  background-color: #C6A153;
-  color: white;
-}
-.stateButton6 {
-  background-color: #C10000;
-  color: white;
-}
-.stateButton7 {
+.stateButton7{
   background-color: #554188;
   color: white;
 }
@@ -530,9 +509,34 @@ span2{
   background-color: #388767;
   color: white;
 }
-#archiveButton {
-  background-color: gray;
+
+.stateButton1 {
+  background-color: #C10000; 
   color: white;
+}
+.stateButton2Active {
+  background-color: #3C9159;
+  color: white;
+}
+.stateButton3Active {
+  background-color: #A84671;
+  color: white;
+}
+.stateButton4Active {
+  background-color: #C66553;
+  color: white;
+}
+.stateButton5Active {
+  background-color: #C6A153;
+  color: white;
+}
+.stateButton6Active {
+  background-color: #C10000;
+  color: white;
+}
+
+.stateButton2Inactive, .stateButton3Inactive, .stateButton4Inactive, .stateButton5Inactive, .stateButton6Inactive, .stateButton7Inactive, .stateButton8Inactive, .stateButton9Inactive, .statebuttonInactive, #archiveButtonInactive  {
+  background-color: gray;
 }
 
 /* status styling */
