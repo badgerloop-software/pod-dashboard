@@ -40,8 +40,7 @@ function setAgeLabel(staleness) {
   d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
   if (staleness >= 150) {
     d.getElementById('ageDisplay').className = 'ageDisplayError';
-  }
-  else {
+  } else {
     d.getElementById('ageDisplay').className = 'ageDisplayGood';
   }
 }
