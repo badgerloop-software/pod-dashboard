@@ -580,12 +580,6 @@ span2{
   vertical-align: middle;
   margin-top: -20px;
 }
-.ageDisplayError {
-  color: red;
-}
-.ageDisplayGood {
-  color: green;
-}
 
 /* Header 4 (link and latency) styling */
 #header4{
@@ -631,16 +625,17 @@ span2{
 #connectionDot2 {
   padding-left: 11px;
 }
-.connectionGood {
-  color: green;
-}
-.connectionBad {
+.connectionError { /* styling status  */
   color: red;
 }
-.link {
+.connectionOk { /* styling status */
+  color: green;
+}
+#link {
   font-size: 50px;
   line-height: 0px;
 }
+
 
 /* something ??? */
 .modebar {
