@@ -552,11 +552,13 @@ span2{
   display: inline-block;
   vertical-align: middle;
   font-weight: 800;
+  color: #808080;
 }
 #statusConnection2 {
   display: inline-block;
   vertical-align: middle;
   font-weight: 800;
+  color: #808080;
 }
 .statusGood {
   color: green;
