@@ -110,7 +110,7 @@ d.getElementById('primBrakeOn').addEventListener('click', () => {
 // Handles primBreakOff button click
 d.getElementById('primBrakeOff').addEventListener('click', () => {
   console.log('primary brake off');
-  document.getElementById("primBreakOff").className = "stateButton7Active";
+  document.getElementById("primBrakeOff").className = "stateButton7Active";
 });
 
 // Handles idle button click
@@ -134,7 +134,7 @@ d.getElementById('serviceLowSpeed').addEventListener('click', () => {
 // Handles propulsionDistanceSense button click
 d.getElementById('propulsionDistanceSense').addEventListener('click', () => {
   console.log('propulsionDistanceSense');
-  document.getElementById("propulsionDistanceSrnse").className = "stateButton5Active";
+  document.getElementById("propulsionDistanceSense").className = "stateButton5Active";
 });
 
 // Handles duringRunFault button click
@@ -188,7 +188,7 @@ d.getElementById('postRunFault').addEventListener('click', () => {
 // Handles secBrakeVentOn button click
 d.getElementById('secBrakeVentOn').addEventListener('click', () => {
   console.log('secBrakeVentOn');
-  document.getElementById("secBrakeVentOn").className = "stateButton9";
+  document.getElementById("secBrakeVentOn").className = "stateButton9Active";
 });
 
 // Handles secBrakeVentOff button click
