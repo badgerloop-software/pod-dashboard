@@ -92,13 +92,14 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
           x: [[xpos]],
           y: [[chartData1[0]]],
         };
+        Plotly.extendTraces(lineChartOne, update, traceArray1);
       } else if (numTraces1 === 2) {
         update = {
           x: [[xpos], [xpos]],
           y: [[chartData1[0]], [chartData1[1]]],
         };
+        Plotly.extendTraces(lineChartOne, update, traceArray1);
       }
-      Plotly.extendTraces(lineChartOne, update, traceArray1);
       if (xpos > 30) {
         Plotly.relayout(lineChartOne, 'xaxis.range', [xpos - xmax, xpos]);
       }
@@ -204,13 +205,14 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
           x: [[xpos]],
           y: [[chartData2[0]]],
         };
+        Plotly.extendTraces(lineChartTwo, update, traceArray2);
       } else if (numTraces2 === 2) {
         update = {
           x: [[xpos], [xpos]],
           y: [[chartData2[0]], [chartData2[1]]],
         };
+        Plotly.extendTraces(lineChartTwo, update, traceArray2);
       }
-      Plotly.extendTraces(lineChartTwo, update, traceArray2);
       if (xpos > 30) {
         Plotly.relayout(lineChartTwo, 'xaxis.range', [xpos - xmax, xpos]);
       }
