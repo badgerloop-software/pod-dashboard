@@ -69,6 +69,19 @@ di.updater.on('updateData', () => {
     setAgeLabel(elapsedTime);
   }
 });
+
+// Master Start Button Handler
+d.getElementById('start').addEventListener('click', () => {
+  // Launch Log-in Window to enter password
+  // If password is successfully entered, pass string to console
+  console.log('master start');
+});
+
+// Emergency Stop Button Handler
+d.getElementById('estop').addEventListener('click', () =>{
+  console.log('emergency stop');
+});
+
 // State Machine Control Panel Event Listeners
 
 // Handles power off button click
