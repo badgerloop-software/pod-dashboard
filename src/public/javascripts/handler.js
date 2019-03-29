@@ -17,7 +17,7 @@ let timeOld;
 // Data in recieved
 comms.on('dataIn', () => {
   // Log it to be sure
-  console.log(client.inData);
+  // console.log(client.inData);
   // Tell the Data Interfacer to start sorting it
   di.updateData(client.inData);
 });
@@ -200,15 +200,16 @@ function checkRecieve() {
   try {
     if (!(sampleSensor.length > oldLength)) {
       setRecieve(false);
+    } else {
+      setRecieve(true);
     }
-    setRecieve(true);
     oldLength = sampleSensor.length;
   } catch (err) {
-    let oldLength = 0;
+    oldLength = 0;
   }
 }
 
-setInterval(checkRecieve, 1000);
+setInterval(checkRecieve, 500);
 
 function init() {
   di.createCache();
