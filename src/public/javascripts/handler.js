@@ -196,8 +196,19 @@ function getSampleSensor() {
 }
 
 function checkRecieve() {
-
+  let sampleSensor = getSampleSensor();
+  try {
+    if (!(sampleSensor.length > oldLength)) {
+      setRecieve(false);
+    }
+    setRecieve(true);
+    oldLength = sampleSensor.length;
+  } catch (err) {
+    let oldLength = 0;
+  }
 }
+
+setInterval(checkRecieve, 1000);
 
 function init() {
   di.createCache();
