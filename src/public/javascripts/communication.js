@@ -47,7 +47,7 @@ function sendPacket(ip, port, msg) {
     console.log(`Recieved: ${e}`);
   });
 
-  tcpSender.on('error', (e) => {
+  tcpSender.on('error', () => {
     // console.error(e);  // Commented out for dev without beaglebone connected
     recievedEmitter.emit('Lost', ip);
   });

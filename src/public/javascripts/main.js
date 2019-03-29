@@ -198,10 +198,8 @@ function filterFunction(id) { // eslint-disable-line no-unused-vars
   }
 }
 
-/*
-Settings form
-Purpose:
-*/
+
+// Settings form
 
 // Submits Entries to File
 settingsSubmit.addEventListener('click', () => {
