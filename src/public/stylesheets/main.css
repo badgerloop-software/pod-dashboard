@@ -572,6 +572,8 @@ span2{
   text-align: center;
   vertical-align: middle;
   margin: 0;
+  margin-top: -10px;
+  color: #808080;
 }
 #ageDisplay {
   padding: 0px;
@@ -594,6 +596,7 @@ span2{
 }
 #header4Left {
   width: 10%;
+  padding-left: 30px;
 }
 #header4Right {
   float: right;
@@ -606,11 +609,12 @@ span2{
   padding-left: 70px;
   line-height: 30px;
   color: #808080;
+  padding-top: 15px;
 }
 .connectionTitle {
   display: inline;
 }
-#connectionDot1, #connectionDot2, #connectionDot3 {
+#connectionDot1, #connectionDot2{
   display: inline;
   font-size: 40px;
   line-height: 20px;
@@ -620,9 +624,6 @@ span2{
 }
 #connectionDot2 {
   padding-left: 9px;
-}
-#connectionDot3 {
-  padding-left: 97px;
 }
 .connectionGood {
   color: green;
