@@ -12,6 +12,9 @@ const dl = require('./public/javascripts/dynamicloading');
 
 const d = document;
 const archiveButton = d.getElementById('archiveButton');
+const lvIndicator = d.getElementById('connectionDot1');
+const hvIndicator = d.getElementById('connectionDot2');
+const recieveIndicator = d.getElementById('statusConnection');
 let timeOld;
 
 // Data in recieved
@@ -183,15 +186,18 @@ d.getElementById('secBrakeVentOff').addEventListener('click', () => {
 });
 
 function setRecieve(state) {
-  let indicator = d.getElementById('statusConnection1');
-  if (state) indicator.className = 'statusGood';
-  if (!state) indicator.className = 'statusBad';
+  if (state) recieveIndicator.className = 'statusGood';
+  if (!state) recieveIndicator.className = 'statusBad';
 }
 
-function setTransmit(state) {
-  let indicator = d.getElementById('statusConnection2');
-  if (state) indicator.className = 'statusGood';
-  if (!state) indicator.className = 'statusBad';
+function setLVIndicator(state) {
+  if (state) lvIndicator.className = 'statusGood';
+  if (!state) lvIndicator.className = 'statusBad';
+}
+
+function setHVIndicator(state) {
+  if (state) hvIndicator.className = 'statusGood';
+  if (!state) hvIndicator.className = 'statusBad';
 }
 
 function getSampleSensor() {
@@ -246,11 +252,10 @@ comms.on('Lost', (ip) => {
   }
 });
 function checkTransmit() {
-  setTransmit(true);
-  if (lostLVBone() || lostHVBone()) {
-    console.error('Dropped a bone');
-    setTransmit(false);
-  }
+  setLVIndicator(true);
+  setHVIndicator(true);
+  if (lostLVBone()) setLVIndicator(false);
+  if (lostHVBone()) setHVIndicator(false);
 }
 
 function podConnectionCheck() {
@@ -260,6 +265,7 @@ function podConnectionCheck() {
 }
 
 setInterval(podConnectionCheck, 1000);
+
 function init() {
   di.createCache();
   dl.fillAllItems();

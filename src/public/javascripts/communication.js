@@ -48,17 +48,12 @@ function sendPacket(ip, port, msg) {
   });
 
   tcpSender.on('error', (e) => {
-    console.error(e);
+    // console.error(e);  // Commented out for dev without beaglebone connected
     recievedEmitter.emit('Lost', ip);
   });
 
-  // tcpSender.on('timeout', (e) => {
-  //   console.error(`Connection to ${ip} Timedout`);
-  //   recievedEmitter.emit('Lost', ip);
-  // });
-
   tcpSender.on('close', () => {
-    console.log('Connection Closed');
+    // console.log('Connection Closed'); //Commented out for dev without beaglebone connected
   });
 }
 
