@@ -625,10 +625,10 @@ span2{
 #connectionDot2 {
   padding-left: 11px;
 }
-.connectionGood { /* styling status for the TCF connection dots */
+.connectionGood { /* styling status for the TCP connection dots */
   color: green;
 }
-.connectionBad { /* styling status for the TCF connection dots */
+.connectionBad { /* styling status for the TCP connection dots */
   color: red;
 }
 .link {
