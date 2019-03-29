@@ -47,6 +47,16 @@ function sendPacket(ip, port, msg) {
     console.log(`Recieved: ${e}`);
   });
 
+  tcpSender.on('error', (e) => {
+    console.error(e);
+    recievedEmitter.emit('Lost', ip);
+  });
+
+  // tcpSender.on('timeout', (e) => {
+  //   console.error(`Connection to ${ip} Timedout`);
+  //   recievedEmitter.emit('Lost', ip);
+  // });
+
   tcpSender.on('close', () => {
     console.log('Connection Closed');
   });
@@ -55,13 +65,13 @@ function sendPacket(ip, port, msg) {
 module.exports.sendPacket = sendPacket;
 
 function sendLVCommand(msg) {
-  sendPacket(LV_BONE_IP, LV_BONE_PORT, msg);
+  return sendPacket(LV_BONE_IP, LV_BONE_PORT, msg);
 }
 
 module.exports.sendLVCommand = sendLVCommand;
 
 function sendHVCommand(msg) {
-  sendPacket(HV_BONE_IP, HV_BONE_PORT, msg);
+  return sendPacket(HV_BONE_IP, HV_BONE_PORT, msg);
 }
 
 module.exports.sendHVCommand = sendHVCommand;
@@ -84,4 +94,12 @@ module.exports.sendPropulse = function sendPropulse() {
 
 module.exports.sendEBrake = function sendEBrake() {
   sendHVCommand('emergencyBrake');
+};
+
+module.exports.sendLVPing = function sendLVPing() {
+  sendLVCommand('ping');
+};
+
+module.exports.sendHVPing = function sendHVPing() {
+  sendHVCommand('ping');
 };
