@@ -498,41 +498,44 @@ span2{
   background-color: #C10000;
   color: white;
 }
-.stateButton2 {
+.stateButton2Active {
   background-color: #3C9159;
   color: white;
 }
-.stateButton3 {
+.stateButton3Active {
   background-color: #A84671;
   color: white;
 }
-.stateButton4 {
+.stateButton4Active {
   background-color: #C66553;
   color: white;
 }
-.stateButton5 {
+.stateButton5Avtive {
   background-color: #C6A153;
   color: white;
 }
-.stateButton6 {
+.stateButton6Active {
   background-color: #C10000;
   color: white;
 }
-.stateButton7 {
+.stateButton7Active{
   background-color: #554188;
   color: white;
 }
-.stateButton8 {
+.stateButton8Active {
   background-color: #203060;
   color: white;
 }
-.stateButton9 {
+.stateButton9Active {
   background-color: #388767;
   color: white;
 }
-#archiveButton {
-  background-color: gray;
+#archiveButtonActive {
+  background-color: black;;
   color: white;
+}
+.stateButton2Inactive, .stateButton3Inactive, .stateButton4Inactive, .stateButton5Inactive, .stateButton6Inactive, .stateButton7Inactive, .stateButton8Inactive, .stateButton9Inactive, .statebuttonInactive, #archiveButtonInactive  {
+  background-color: gray;
 }
 
 /* status styling */
