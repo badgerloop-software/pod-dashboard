@@ -580,6 +580,12 @@ span2{
   vertical-align: middle;
   margin-top: -20px;
 }
+.ageDisplayError {
+  color: red;
+}
+.ageDisplayGood {
+  color: green;
+}
 
 /* Header 4 (link and latency) styling */
 #header4{
