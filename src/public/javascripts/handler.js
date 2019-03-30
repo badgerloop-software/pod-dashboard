@@ -14,8 +14,8 @@ const d = document;
 const archiveButton = d.getElementById('archiveButton');
 const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
-const recieveIndicator1 = d.getElementById('statusConnection1');
-const recieveIndicator2 = d.getElementById('statusConnection2');
+const recieveIndicator1 = d.getElementById('link1');
+const recieveIndicator2 = d.getElementById('link2');
 let timeOld;
 
 // Data in recieved

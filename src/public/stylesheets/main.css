@@ -631,7 +631,7 @@ span2{
 .connectionOk { /* styling status */
   color: green;
 }
-#link {
+#link1, #link2 {
   font-size: 50px;
   line-height: 0px;
 }
