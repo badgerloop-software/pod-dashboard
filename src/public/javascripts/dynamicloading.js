@@ -133,11 +133,11 @@ function createItem(name, group, units) { // eslint-disable-line no-unused-vars
   switch (group) {
     case 'myDropdown1':
       header.onclick = function onclick() { // sets the onclick value
-        clone('stoppingDistance');
+        clone(name);
         return false;
       };
       break;
-    case 'myDropdown2':
+    case '':
       header.onclick = function onclick() { // sets the onclick value
         generateLineChartOne(name, fixedName);
         return false;
