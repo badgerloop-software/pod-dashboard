@@ -187,20 +187,21 @@ d.getElementById('secBrakeVentOff').addEventListener('click', () => {
 });
 
 function setRecieve(state) {
-  if (state) recieveIndicator1.className = 'connectionOk';
-  if (state) recieveIndicator2.className = 'connectionOk';
-  if (!state) recieveIndicator1.className = 'connectionError';
-  if (!state) recieveIndicator2.className = 'connectionError';
+  if (state) recieveIndicator1.className = 'statusGood';
+  console.info(recieveIndicator1.className);
+  if (state) recieveIndicator2.className = 'statusGood';
+  if (!state) recieveIndicator1.className = 'statusBad';
+  if (!state) recieveIndicator2.className = 'statusBad';
 }
 
 function setLVIndicator(state) {
-  if (state) lvIndicator.className = 'connectionOk';
-  if (!state) lvIndicator.className = 'connectionError';
+  if (state) lvIndicator.className = 'statusGood';
+  if (!state) lvIndicator.className = 'statusBad';
 }
 
 function setHVIndicator(state) {
-  if (state) hvIndicator.className = 'connectionOk';
-  if (!state) hvIndicator.className = 'connectionError';
+  if (state) hvIndicator.className = 'statusGood';
+  if (!state) hvIndicator.className = 'statusBad';
 }
 
 function getSampleSensor() {
@@ -213,8 +214,10 @@ function checkRecieve() {
   let sampleSensor = getSampleSensor();
   try {
     if (!(sampleSensor.length > oldLength)) {
+      console.log('bad');
       setRecieve(false);
     } else {
+      console.log('good');
       setRecieve(true);
     }
     oldLength = sampleSensor.length;
