@@ -192,6 +192,8 @@ function setRecieve(state) {
   if (state) recieveIndicator2.className = 'statusGood';
   if (!state) recieveIndicator1.className = 'statusBad';
   if (!state) recieveIndicator2.className = 'statusBad';
+  if (!state) d.getElementById('ageDisplay').innerHTML= "N/A";
+  if (!state) d.getElementById('ageDisplay').className = "connectionError";
 }
 
 function setLVIndicator(state) {
