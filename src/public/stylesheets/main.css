@@ -107,7 +107,7 @@ h5 {
   margin: 5px;
   background-color: #fff;
   color: black;
-  border-color: gray;
+  border-color: #282728;
   border-style: solid;
   border-radius: 10px;
 }
@@ -134,7 +134,7 @@ h5 {
   height: 500px;
   margin: 5px;
   background-color: #fff;
-  border-color: gray;
+  border-color: #646569;
   border-style: solid;
   border-radius: 10px;
   padding: 10px;
@@ -354,34 +354,33 @@ span2{
   text-align: center;
 }
 #header_focus_1{
-  border-color: lightblue;
+  border-color: #646569;
 }
 #header_focus_1:hover{
-  background-color: lightblue;
+  background-color: #f2f2f2;
 }
 #header_focus_2{
-  border-color: lightsalmon;
+  border-color: #646569;
 }
 #header_focus_2:hover{
-  background-color: lightsalmon;
+  background-color: #f2f2f2;
 }
 #header_focus_3{
-  border-color: lightseagreen;
+  border-color: #646569;
 }
 #header_focus_3:hover{
-  background-color: lightseagreen;
+  background-color: #f2f2f2;
 }
 #header_focus_4{
-  border-color: lightcoral;
+  border-color: #646569;
   box-sizing: border-box;
 }
 #header_focus_4:hover{
-  background-color: lightcoral;
+  background-color: #f2f2f2;
 }
 .header_focus:hover {
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
-  color: white;
 }
 .header_focus h1{
   color: black;
@@ -402,14 +401,12 @@ span2{
 .header_focus_chart {
   border-radius: 8px;
   border-style: solid;
+  border-color: #646569;
   float: left;
   margin: 4px 2px;
   color: black;
   width: 100%;
   text-align: center;
-}
-#header_focus_chart1{
-  border-color: lightblue;
 }
 
 /*master start styling */
@@ -484,11 +481,12 @@ span2{
   -webkit-transition-duration: 0.4s; /* Safari */
   transition-duration: 0.4s;
   cursor: pointer;
-  border: 2px solid #808080;
   border-radius: 6px;
   width: 100px;
   height: 80px;
   font-weight: 800;
+  color: #ADADAD;
+
 }
 .stateButton:hover {
   background-color: black;
@@ -498,16 +496,19 @@ span2{
   background-color: hotpink;
 }
 .stateButton7{
-  background-color: #554188;
-  color: white;
+  background-color: #34495E;
+  color: white !important;
+  border: 2px solid #23242A;
 }
 .stateButton8 {
-  background-color: #203060;
-  color: white;
+  background-color: #F4D76F;
+  color: #000000 !important;
+  border: 2px solid #D35500;
 }
 .stateButton9 {
-  background-color: #388767;
-  color: white;
+  background-color: #5C97BF;
+  color: black !important;
+  border: 2px solid #23242A;
 }
 
 .stateButton1 {
