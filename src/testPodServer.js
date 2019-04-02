@@ -128,7 +128,7 @@ function sendSinusodalData() {
 // The line where test data is sent. setInterval(function, ms)
 
 // Send random data
-// setInterval(sendTestData, DATA_SEND_RATE);
+setInterval(sendTestData, DATA_SEND_RATE);
 
 // Send Sinusodial Data
-setInterval(sendSinusodalData, DATA_SEND_RATE);
+// setInterval(sendSinusodalData, DATA_SEND_RATE);

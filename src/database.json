@@ -322,72 +322,104 @@
         }
       }
     },
-    "packAH": {
-      "units": "AH",
-      "limits": {
-        "idle": {
-          "max": 321,
-          "min": 123
-        },
-        "powerOn": {
-          "max": 543,
-          "min": 210
-        }
-      }
-    },
     "cellMaxVoltage": {
       "units": "V",
       "limits": {
-        "idle": {
-          "max": 321,
-          "min": 123
+        "powerOff": {
+          "max": 4.2,
+          "min": 3.1
         },
-        "powerOn": {
-          "max": 543,
-          "min": 210
+        "idle": {
+          "max": 4.2,
+          "min": 3.1
+        },
+        "readyForPumpdown": {
+          "max": 4.2,
+          "min": 3.1
+        },
+        "pumpdown": {
+          "max": 4.2,
+          "min": 3.1
+        },
+        "readyForPropulsion":{
+          "max": 4.2,
+          "min": 3.1
+        },
+        "propulsion": {
+          "max": 4.2,
+          "min": 3.1
+        },
+        "braking": {
+          "max": 4.2,
+          "min": 3.1
+        },
+        "stopped": {
+          "max": 4.2,
+          "min": 3.1
+        },
+        "crawl": {
+          "max": 4.2,
+          "min": 3.1
+        },
+        "postRun": {
+          "max": 4.2,
+          "min": 3.1
+        },
+        "safeToApproach": {
+          "max": 4.2,
+          "min": 3.1
         }
       }
     },
-    "cellMinVoltage": {
-      "units": "V",
-      "limits": {
-        "idle": {
-          "max": 321,
-          "min": 123
-        },
-        "powerOn": {
-          "max": 543,
-          "min": 210
-        }
-      }
-    },
-    "highTemp": {
+    "cellTemp": {
       "units": "C",
       "limits": {
-        "idle": {
-          "max": 321,
-          "min": 123
+        "powerOff": {
+          "max": 32.5,
+          "min": 0
         },
-        "powerOn": {
-          "max": 543,
-          "min": 210
+        "idle": {
+          "max": 32.5,
+          "min": 0
+        },
+        "readyForPumpdown": {
+          "max": 32.5,
+          "min": 0
+        },
+        "pumpdown": {
+          "max": 32.5,
+          "min": 0
+        },
+        "readyForPropulsion":{
+          "max": 32.5,
+          "min": 0
+        },
+        "propulsion": {
+          "max": 47.5,
+          "min": 0
+        },
+        "braking": {
+          "max": 47.5,
+          "min": 0
+        },
+        "stopped": {
+          "max": 47.5,
+          "min": 0
+        },
+        "crawl": {
+          "max": 47.5,
+          "min": 0
+        },
+        "postRun": {
+          "max": 47.5,
+          "min": 0
+        },
+        "safeToApproach": {
+          "max": 47.5,
+          "min": 0
         }
       }
-    },
-    "lowTemp": {
-      "units": "C",
-      "limits": {
-        "idle": {
-          "max": 321,
-          "min": 123
-        },
-        "powerOn": {
-          "max": 543,
-          "min": 210
-        }
-      }
-    }
-  },
+      },
   "motor": {
     "commandTorque": {
       "units": "NM",
