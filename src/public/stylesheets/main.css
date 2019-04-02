@@ -134,7 +134,6 @@ h5 {
   height: 500px;
   margin: 5px;
   background-color: #fff;
-  border-color: #646569;
   border-style: solid;
   border-radius: 10px;
   padding: 10px;
@@ -386,7 +385,7 @@ span2{
   color: black;
 }
 .header_focus:hover h1{
-  color: white;
+  color: black;
 }
 .header_focus2 {
   border-radius: 8px;
@@ -535,14 +534,21 @@ span2{
   background-color: #C10000;
   color: white;
 }
-
+#archiveButton {
+  background-color: #AEA8D3;
+  border: 2px solid #684072;
+  color: black;
+}
+#powerOff {
+  color: white;
+}
 .stateButton2Inactive, .stateButton3Inactive, .stateButton4Inactive, .stateButton5Inactive, .stateButton6Inactive, .stateButton7Inactive, .stateButton8Inactive, .stateButton9Inactive, .statebuttonInactive, #archiveButtonInactive  {
   background-color: gray;
 }
 
 /* status styling */
 #podStatus {
-  height: 30px;
+  height: 20px;
   display: inline-block;
   vertical-align: middle;
   padding-right: 30px;
