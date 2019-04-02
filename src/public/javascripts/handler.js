@@ -76,7 +76,7 @@ di.updater.on('updateData', () => {
 // Master Start Button Handler
 d.getElementById('start').addEventListener('click', () => {
   // Launch Log-in Window to enter password
-  var passInput = prompt("Enter password to start:")
+  var passInput = prompt("Enter password to start:");
 
   // If password is successfully entered, pass string to console
   // The password is badgerloop
@@ -84,9 +84,8 @@ d.getElementById('start').addEventListener('click', () => {
   if (passInput == password){
     console.log('master start');
   } else {
-    alert("Incorrect Password")
+    alert('Incorrect Password - Master Start Aborted');
   }
-    
 });
 
 // Emergency Stop Button Handler
