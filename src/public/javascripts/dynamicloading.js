@@ -137,7 +137,7 @@ function createItem(name, group, units) { // eslint-disable-line no-unused-vars
         return false;
       };
       break;
-    case '':
+    case 'myDropdown2':
       header.onclick = function onclick() { // sets the onclick value
         generateLineChartOne(name, fixedName);
         return false;
