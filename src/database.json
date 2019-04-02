@@ -419,7 +419,8 @@
           "min": 0
         }
       }
-      },
+      }
+    },
   "motor": {
     "commandTorque": {
       "units": "NM",
