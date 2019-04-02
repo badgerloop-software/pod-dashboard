@@ -333,6 +333,11 @@ td.last {
 .connected span2 {
   display: none;
 }
+#disconnected {
+  height: 40px;
+  position: absolute;
+  fill: red;
+}
 span2{
   color: #FC6962;
 }
