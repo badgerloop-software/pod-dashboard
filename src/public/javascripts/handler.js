@@ -13,6 +13,7 @@ const dl = require('./public/javascripts/dynamicloading');
 const d = document;
 const archiveButton = d.getElementById('archiveButton');
 
+// **PASSWORD HERE**
 const password = 'badgerloop';
 
 let timeOld;
@@ -75,12 +76,10 @@ di.updater.on('updateData', () => {
 
 // Master Start Button Handler
 d.getElementById('start').addEventListener('click', () => {
-  // Launch Log-in Window to enter password
   var passInput = prompt("Enter password to start:");
-
+  // **TO CHANGE PASSWORD**: go to const password at top of handler.js
+  
   // If password is successfully entered, pass string to console
-  // The password is badgerloop
-  // To change password, go to const password at top of handler.js
   if (passInput == password){
     console.log('master start');
   } else {
