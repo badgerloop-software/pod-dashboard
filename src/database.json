@@ -277,48 +277,48 @@
       "units": "%",
       "limits": {
         "powerOff": {
-          "max": 90,
-          "min": 100
+          "min": 90,
+          "max": 100
         },
         "idle": {
-          "min": 266.4,
-          "max": 302.5
+          "min": 90,
+          "max": 100
         },
         "readyForPumpdown": {
-          "min": 266.4,
-          "max": 302.5
+          "min": 90,
+          "max": 100
         },
         "pumpdown": {
-          "min": 266.4,
-          "max": 302.5
+          "min": 90,
+          "max": 100
         },
         "readyForPropulsion": {
-          "min": 266.4,
-          "max": 302.5 
+          "min": 90,
+          "max": 100 
         },
         "propulsion": {
-          "min": 235,
-          "max": 302.5
+          "min": 75,
+          "max": 100
         },
         "braking": {
-          "min": 235,
-          "max": 302.5
+          "min": 75,
+          "max": 92.5
         },
         "stopped": {
-          "min": 235,
-          "max": 302.5
+          "min": 75,
+          "max": 92.5
         },
         "crawl": {
-          "min": 224,
-          "max": 302.5
+          "min": 60,
+          "max": 90
         },
         "postRun": {
-          "min": 224,
-          "max": 302.5
+          "min": 60,
+          "max": 90
         },
         "safeToApproach": {
-         "min": 224,
-         "max": 302.5
+         "min": 60,
+         "max": 90
         }
       }
     },
