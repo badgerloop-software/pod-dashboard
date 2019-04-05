@@ -76,15 +76,7 @@ di.updater.on('updateData', () => {
 
 // Master Start Button Handler
 d.getElementById('start').addEventListener('click', () => {
-  const passInput = prompt('Enter password to start:');
-  // **TO CHANGE PASSWORD**: go to const password at top of handler.js
-
-  // If password is successfully entered, pass string to console
-  if (passInput === password) {
-    console.log('master start');
-  } else {
-    alert('Incorrect Password - Master Start Aborted');
-  }
+  
 });
 
 // Emergency Stop Button Handler
