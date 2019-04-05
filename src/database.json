@@ -5,7 +5,7 @@
       "type": "unint_32",
       "units": "PSI",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -18,7 +18,7 @@
     "primaryLine": {
       "units": "PSI",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -31,7 +31,7 @@
     "primaryActuation": {
       "units": "PSI",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -44,7 +44,7 @@
     "secondaryTank": {
       "units": "PSI",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -57,7 +57,7 @@
     "secondaryLine": {
       "units": "PSI",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -70,7 +70,7 @@
     "secondaryActuation": {
       "units": "PSI",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -83,7 +83,7 @@
     "pressureVesselPressure": {
       "units": "PSI",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -96,7 +96,7 @@
     "currentPressure": {
       "units": "PSI",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -111,7 +111,7 @@
     "stoppingDistance": {
       "units": "M",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -124,7 +124,7 @@
     "position": {
       "units": "M",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -137,7 +137,7 @@
     "retro": {
       "units": "M",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -150,7 +150,7 @@
     "velocity": {
       "units": "M/S",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -163,7 +163,7 @@
     "acceleration": {
       "units": "M/S^2",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -425,7 +425,7 @@
     "commandTorque": {
       "units": "NM",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -438,7 +438,7 @@
     "actualTorque": {
       "units": "NM",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -451,7 +451,7 @@
     "motorSpeed": {
       "units": "RPM",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },
@@ -464,7 +464,7 @@
     "motorTemp": {
       "units": "C",
       "limits": {
-        "powerOFf": {
+        "powerOff": {
           "max": 321,
           "min": 123
         },

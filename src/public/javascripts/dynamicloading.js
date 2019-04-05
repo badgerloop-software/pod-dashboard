@@ -37,7 +37,7 @@ function createMaxCol(name, group) {
   let col = document.createElement('td');
   col.className = 'max';
   col.id = `${name}Max`;
-  col.innerHTML = `${database[group][name].limits.idle.max}`;
+  col.innerHTML = `${database[group][name].limits.powerOff.max}`;
   return col;
 }
 
