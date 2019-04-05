@@ -118,7 +118,7 @@ function sendSpecificData(data) {
   sendJSON(testSocket);
 }
 
-function sendSinusodalData() {
+function sendSinusodalData() { // eslint-disable-line no-unused-vars
   let increase = Math.PI * 2 / 100;
   let y = Math.sin(counter) / 2 + 0.5;
   sendSpecificData(y);
