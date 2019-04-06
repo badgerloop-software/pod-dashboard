@@ -150,7 +150,7 @@ module.exports.switchState = function switchState(state) {
   stateStr = getStateName(state);
   stateNum = state;
 
-  fillAllBounds();
+  fillAllBounds(stateStr);
 };
 
 // Dynamic Dropdowns
