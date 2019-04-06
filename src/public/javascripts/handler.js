@@ -19,7 +19,7 @@ comms.on('dataIn', () => {
   // Log it to be sure
   console.log(client.inData);
   // Tell the Data Interfacer to start sorting it
-  dl.switchState(client.inData.state);
+  dl.switchState(client.state);
   di.updateData(client.inData);
 });
 
@@ -96,8 +96,6 @@ d.getElementById('powerOff').addEventListener('click', () => {
 archiveButton.addEventListener('click', () => {
   di.archiveData();
   console.log('archiving data');
-  resetAllButtons();
-  document.getElementById('archiveButton').className = 'stateButton';
 });
 
 // Handles postRun (magenta) button click
@@ -220,8 +218,6 @@ d.getElementById('secBrakeVentOn').addEventListener('click', () => {
 d.getElementById('secBrakeVentOff').addEventListener('click', () => {
   console.log('secBrakeVentOff');
 });
-
-
 
 function init() {
   di.createCache();

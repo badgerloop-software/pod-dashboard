@@ -110,12 +110,12 @@ function fillTableBounds(subsystem, state) {
   });
 }
 
-module.exports.fillAllBounds = function fillAllBounds(state) { // eslint-disable-line no-unused-vars
+function fillAllBounds(state) { // eslint-disable-line no-unused-vars
   subsystems = Object.keys(database);
   subsystems.forEach((system) => {
     fillTableBounds(system, state);
   });
-};
+}
 
 function getStateName(stateNum) {
   switch (stateNum) {
@@ -146,10 +146,33 @@ function getStateName(stateNum) {
   }
 }
 
-module.exports.switchState = function switchState(state) {
-  stateStr = getStateName(state);
-  stateNum = state;
+function resetAllButtons() {
+  document.getElementById('powerOff').className = 'stateButtonInactive';
+  document.getElementById('postRun').className = 'stateButtonInactive';
+  document.getElementById('propulsionStart').className = 'stateButtonInactive';
+  document.getElementById('preRunFault').className = 'stateButtonInactive';
+  document.getElementById('idle').className = 'stateButtonInactive';
+  document.getElementById('ready').className = 'stateButtonInactive';
+  document.getElementById('serviceLowSpeed').className = 'stateButtonInactive';
+  document.getElementById('propulsionDistanceSense').className = 'stateButtonInactive';
+  document.getElementById('duringRunFault').className = 'stateButtonInactive';
+  document.getElementById('readyForPumpdown').className = 'stateButtonInactive';
+  document.getElementById('pumpdown').className = 'stateButtonInactive';
+  document.getElementById('safeToApproach').className = 'stateButtonInactive';
+  document.getElementById('brakingStart').className = 'stateButtonInactive';
+  document.getElementById('postRunFault').className = 'stateButtonInactive';
+}
 
+function setIndicator(state) {
+  resetAllButtons();
+  document.getElementById(state).className = 'stateButton';
+}
+
+module.exports.setIndicator = setIndicator;
+
+module.exports.switchState = function switchState(state) {
+  let stateStr = getStateName(state);
+  setIndicator(stateStr);
   fillAllBounds(stateStr);
 };
 

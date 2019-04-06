@@ -28,6 +28,7 @@ udpServer.on('listening', () => {
 udpServer.on('message', (message) => {
   const recieved = JSON.parse(message);
   module.exports.inData = recieved;
+  module.exports.currentState = recieved.state;
   // Emit to handler.js that data has been recieved
   recievedEmitter.emit('dataIn');
 });
