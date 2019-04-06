@@ -19,6 +19,7 @@ comms.on('dataIn', () => {
   // Log it to be sure
   console.log(client.inData);
   // Tell the Data Interfacer to start sorting it
+  dl.switchState(client.inData.state);
   di.updateData(client.inData);
 });
 

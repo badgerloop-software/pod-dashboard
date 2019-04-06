@@ -118,6 +118,41 @@ module.exports.fillAllBounds = function fillAllBounds(state) { // eslint-disable
   });
 };
 
+function getStateName(stateNum) {
+  switch (stateNum) {
+    default:
+      return undefined;
+    case 0:
+      return 'powerOff';
+    case 1:
+      return 'idle';
+    case 2:
+      return 'readyForPumpdown';
+    case 3:
+      return 'pumpdown';
+    case 4:
+      return 'readyForPropulsion';
+    case 5:
+      return 'propulsion';
+    case 6:
+      return 'braking';
+    case 7:
+      return 'stopped';
+    case 8:
+      return 'crawl';
+    case 9:
+      return 'postRun';
+    case 10:
+      return 'safeToApproach';
+  }
+}
+
+module.exports.switchState = function switchState(state) {
+  stateStr = getStateName(state);
+  stateNum = state;
+
+  fillAllBounds();
+};
 
 // Dynamic Dropdowns
 
