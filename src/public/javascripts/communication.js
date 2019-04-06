@@ -29,6 +29,8 @@ udpServer.on('message', (message) => {
   const recieved = JSON.parse(message);
   module.exports.inData = recieved;
   module.exports.currentState = recieved.state;
+  // If in fault state emit to handler that the pod has faulted
+  if (recieved.state >= 11 && recieved.state <= 13) recievedEmitter.emit('fault');
   // Emit to handler.js that data has been recieved
   recievedEmitter.emit('dataIn');
 });

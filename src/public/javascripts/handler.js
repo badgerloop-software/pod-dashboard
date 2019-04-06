@@ -19,7 +19,9 @@ comms.on('dataIn', () => {
   // Log it to be sure
   console.log(client.inData);
   // Tell the Data Interfacer to start sorting it
-  dl.switchState(client.state);
+  if (!(client.currentState >= 11 && client.currentState <= 13)) {
+    dl.switchState(client.currentState);
+  } else dl.setFault(client.currentState);
   di.updateData(client.inData);
 });
 

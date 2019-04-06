@@ -143,6 +143,12 @@ function getStateName(stateNum) {
       return 'postRun';
     case 10:
       return 'safeToApproach';
+    case 11:
+      return 'preRunFault';
+    case 12:
+      return 'duringRunFault';
+    case 13:
+      return 'postRunFault';
   }
 }
 
@@ -172,8 +178,15 @@ module.exports.setIndicator = setIndicator;
 
 module.exports.switchState = function switchState(state) {
   let stateStr = getStateName(state);
+  if (stateStr === undefined) console.error('Undefined State');
   setIndicator(stateStr);
   fillAllBounds(stateStr);
+};
+
+module.exports.setFault = function setFault(faultNum) {
+  let faultStr = getStateName(faultNum);
+  console.error(`Entering a ${faultStr}`);
+  setIndicator(faultStr);
 };
 
 // Dynamic Dropdowns
