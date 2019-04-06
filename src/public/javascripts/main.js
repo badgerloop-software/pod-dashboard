@@ -118,7 +118,6 @@ Purpose: Dynamically styles cells and table based on values in range or not
 */
 const tableIDs = ['motion', 'braking', 'battery', 'motor']; // arrays for loop to iterate through
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
-const statusIDs = ['motion_status', 'braking_status', 'battery_status', 'motor_status'];
 
 setInterval(() => {
   let errorChecker = 0;
@@ -146,13 +145,6 @@ setInterval(() => {
       errorChecker = 0;
     }
     // dummy function for status, 2-10= connected, 1= disconected
-    const c = 2;
-    if (c > 1) {
-      document.getElementById(statusIDs[u]).className = 'connected';
-    }
-    if (c === 1) {
-      document.getElementById(statusIDs[u]).className = 'disconnected';
-    }
   }
 }, RATE);
 
