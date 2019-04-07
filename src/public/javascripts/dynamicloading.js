@@ -23,7 +23,7 @@ function createMinCol(name, group) {
   let col = document.createElement('td'); // Creates Element
   col.className = 'min'; // Assigns class
   col.id = `${name}Min`; // Assigns ID
-  col.innerHTML = String(database[group][name].limits.idle.min); // Fills box with correct value
+  col.innerHTML = String(database[group][name].limits.powerOff.min); // Fills box with correct value
   return col;
 }
 
@@ -33,12 +33,11 @@ function createActualCol(name) {
   col.id = `${name}`;
   return col;
 }
-
 function createMaxCol(name, group) {
   let col = document.createElement('td');
   col.className = 'max';
   col.id = `${name}Max`;
-  col.innerHTML = `${database[group][name].limits.idle.max}`;
+  col.innerHTML = `${database[group][name].limits.powerOff.max}`;
   return col;
 }
 
@@ -133,7 +132,7 @@ function createItem(name, group, units) { // eslint-disable-line no-unused-vars
   switch (group) {
     case 'myDropdown1':
       header.onclick = function onclick() { // sets the onclick value
-        clone('stoppingDistance');
+        clone(name);
         return false;
       };
       break;
