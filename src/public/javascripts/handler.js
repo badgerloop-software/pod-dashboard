@@ -188,7 +188,6 @@ d.getElementById('secBrakeVentOff').addEventListener('click', () => {
 
 function setRecieve(state) {
   if (state) recieveIndicator1.className = 'statusGood';
-  console.info(recieveIndicator1.className);
   if (state) recieveIndicator2.className = 'statusGood';
   if (!state) recieveIndicator1.className = 'statusBad';
   if (!state) recieveIndicator2.className = 'statusBad';
@@ -216,10 +215,8 @@ function checkRecieve() {
   let sampleSensor = getSampleSensor();
   try {
     if (!(sampleSensor.length > oldLength)) {
-      console.log('bad');
       setRecieve(false);
     } else {
-      console.log('good');
       setRecieve(true);
     }
     oldLength = sampleSensor.length;
@@ -272,7 +269,7 @@ function podConnectionCheck() {
   checkTransmit();
 }
 
-setInterval(podConnectionCheck, 1000);
+setInterval(podConnectionCheck, 5000);
 
 function init() {
   di.createCache();
