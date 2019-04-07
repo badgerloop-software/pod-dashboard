@@ -269,7 +269,7 @@ function podConnectionCheck() {
   checkTransmit();
 }
 
-setInterval(podConnectionCheck, 500);
+setInterval(podConnectionCheck, 5000);
 
 function init() {
   di.createCache();
