@@ -567,20 +567,14 @@ span2{
 #statusConnection1 {
   display: inline-block;
   vertical-align: middle;
+  color: green;
   font-weight: 800;
-  color: #808080;
 }
 #statusConnection2 {
   display: inline-block;
   vertical-align: middle;
-  font-weight: 800;
-  color: #808080;
-}
-.statusGood {
-  color: green;
-}
-.statusBad {
   color: red;
+  font-weight: 800;
 }
 #age {
   display: inline-block;
@@ -588,8 +582,6 @@ span2{
   text-align: center;
   vertical-align: middle;
   margin: 0;
-  margin-top: -10px;
-  color: #808080;
 }
 #ageDisplay {
   padding: 0px;
@@ -611,47 +603,17 @@ span2{
   justify-content: center; /* vertically centering */
 }
 #header4Left {
-  width: 10%;
-  padding-left: 30px;
+  width: 30%;
 }
 #header4Right {
   float: right;
-  width: 60%;
-  padding-left: 20px;
+  width: 70%;
+  padding-left: 90px;
 }
-#header4Middle {
-  float: right;
-  width: 30%;
-  padding-left: 40px;
-  line-height: 30px;
-  color: #808080;
-  padding-top: 15px;
-}
-.connectionTitle {
-  display: inline;
-}
-#connectionDot1, #connectionDot2{
-  display: inline;
-  font-size: 40px;
-  line-height: 20px;
-}
-#connectionDot1 {
-  padding-left: 16px;
-}
-#connectionDot2 {
-  padding-left: 11px;
-}
-.connectionError { /* styling status  */
-  color: red;
-}
-.connectionOk { /* styling status */
-  color: green;
-}
-#link1, #link2 {
+.link {
   font-size: 50px;
   line-height: 0px;
 }
-
 
 /* something ??? */
 .modebar {

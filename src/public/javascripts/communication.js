@@ -47,26 +47,21 @@ function sendPacket(ip, port, msg) {
     console.log(`Recieved: ${e}`);
   });
 
-  tcpSender.on('error', (e) => {
-    console.error(e); // Commented out for dev without beaglebone connected
-    recievedEmitter.emit('Lost', ip);
-  });
-
   tcpSender.on('close', () => {
-    // console.log('Connection Closed'); //Commented out for dev without beaglebone connected
+    console.log('Connection Closed');
   });
 }
 
 module.exports.sendPacket = sendPacket;
 
 function sendLVCommand(msg) {
-  return sendPacket(LV_BONE_IP, LV_BONE_PORT, msg);
+  sendPacket(LV_BONE_IP, LV_BONE_PORT, msg);
 }
 
 module.exports.sendLVCommand = sendLVCommand;
 
 function sendHVCommand(msg) {
-  return sendPacket(HV_BONE_IP, HV_BONE_PORT, msg);
+  sendPacket(HV_BONE_IP, HV_BONE_PORT, msg);
 }
 
 module.exports.sendHVCommand = sendHVCommand;
@@ -89,12 +84,4 @@ module.exports.sendPropulse = function sendPropulse() {
 
 module.exports.sendEBrake = function sendEBrake() {
   sendHVCommand('emergencyBrake');
-};
-
-module.exports.sendLVPing = function sendLVPing() {
-  sendLVCommand('ping');
-};
-
-module.exports.sendHVPing = function sendHVPing() {
-  sendHVCommand('ping');
 };

@@ -1,302 +1,342 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">    
-    <link rel="stylesheet" type="text/css" href="public/stylesheets/main.grid.css">
-    <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
-    <script src="public/javascripts/charthandling.js"></script>
-    <script src="../node_modules/plotly.js-dist/plotly.js"></script>
-    <title>Badgerloop Pod IV Dashboard</title>
-  </head>
-  
-  <body>
-    <!-- Top Bar -->
-    <div class="banner">
-      <a class="left"><img src="public/images/logo.png" height="30px"></a>
-      <a id="title" class="left">Control Dashboard</a>
-      <a id="banner-drop"class="right">
-        <div class="banner_dropdown">
-          <button class="banner_dropbtn">Change View</button>
-          <img src="public/images/dropdown.png" height="25px">
-          <div class="banner_dropdown-content">
-            <a href="#">Main</a>
-            <a href="testing.html">Analysis</a>
-            <!-- <a href="#">Custom</a> -->
+
+<head>
+  <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">
+  <link rel="stylesheet" type="text/css" href="public/stylesheets/main.grid.css">
+  <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
+  <script src="public/javascripts/charthandling.js"></script>
+  <script src="../node_modules/plotly.js-dist/plotly.js"></script>
+  <title>Badgerloop Pod IV Dashboard</title>
+</head>
+
+<body>
+  <!-- Top Bar -->
+  <div class="banner">
+    <a class="left"><img src="public/images/logo.png" height="30px"></a>
+    <a id="title" class="left">Control Dashboard</a>
+    <a id="banner-drop" class="right">
+      <div class="banner_dropdown">
+        <button class="banner_dropbtn">Change View</button>
+        <img src="public/images/dropdown.png" height="25px">
+        <div class="banner_dropdown-content">
+          <a href="#">Main</a>
+          <a href="testing.html">Analysis</a>
+          <!-- <a href="#">Custom</a> -->
+        </div>
+      </div>
+    </a>
+    <a class="trigger"><img src="public/images/settings.png" height="35px"></a>
+  </div>
+
+  <!-- main grid layout-->
+  <div class="grid">
+    <!-- Focus Box -->
+    <div id="header1" class="box">
+      <div class="grid_focus">
+        <div class="dropdown">
+          <button id="focus_add_button" onclick="dropdown('1')" class="dropbtn">
+            <h5>Add Values</h5>
+          </button>
+          <button id="focus_clear_button" class="dropbtn">
+            <h5>Clear</h5>
+          </button>
+          <div id="myDropdown1" class="dropdown-content">
+            <input type="text" placeholder="Search.." id="dropdownInput1" onkeyup="filterFunction('1')">
           </div>
-        </div> 
-      </a>
-      <a class="trigger"><img src="public/images/settings.png" height="35px"></a>
+        </div>
+        <div class="header_focus" id="header_focus_1">
+          <p id="header_label_1">Value 1</p>
+          <h1 id="header_value_1"></h1>
+        </div>
+        <div class="header_focus" id="header_focus_2">
+          <p id="header_label_2">Value 2</p>
+          <h1 id="header_value_2"></h1>
+        </div>
+        <div class="header_focus" id="header_focus_3">
+          <p id="header_label_3">Value 3</p>
+          <h1 id="header_value_3"></h1>
+        </div>
+        <div class="header_focus" id="header_focus_4">
+          <p id="header_label_4">Value 4</p>
+          <h1 id="header_value_4"></h1>
+        </div>
+      </div>
     </div>
-    
-    <!-- main grid layout-->
-    <div class="grid">
-      <!-- Focus Box -->
-      <div id="header1" class="box">
-        <div class="grid_focus">
-          <div class="dropdown">
-            <button id="focus_add_button" onclick="dropdown('1')" class="dropbtn"><h5>Add Values</h5></button>
-            <button id="focus_clear_button" class="dropbtn"><h5>Clear</h5></button>
-            <div id="myDropdown1" class="dropdown-content">
-              <input type="text" placeholder="Search.." id="dropdownInput1" onkeyup="filterFunction('1')">
-            </div>
+    <!-- Charts -->
+    <div id="header2" class="box">
+      <div class="grid_focus2">
+        <div class="dropdown">
+          <button id="focus_chart_add_button" onclick="dropdown('2')" class="dropbtn">
+            <h5>Add Values Chart 1</h5>
+          </button>
+          <button id="focus_chart_add_button2" onclick="dropdown('3')" class="dropbtn">
+            <h5>Add Values Chart 2</h5>
+          </button>
+          <button id="focus_chart_clear_button"
+            onclick="removeTraces(); generateBlankChart('lineChartOne', 'Chart 1', 'line'); generateBlankChart('lineChartTwo', 'Chart 2', 'line');"
+            class="dropbtn">
+            <h5>Clear Charts</h5>
+          </button>
+          <div id="myDropdown2" class="dropdown-content">
+            <input type="text" placeholder="Search.." id="dropdownInput2" onkeyup="filterFunction('2')" autofocus>
           </div>
-          <div class="header_focus" id="header_focus_1">
-            <p id="header_label_1">Value 1</p>
-            <h1 id="header_value_1"></h1>
+          <div id="myDropdown3" class="dropdown-content">
+            <input type="text" placeholder="Search.." id="dropdownInput3" onkeyup="filterFunction('3')">
           </div>
-          <div class="header_focus" id="header_focus_2">
-            <p id="header_label_2">Value 2</p>
-            <h1 id="header_value_2"></h1>
-          </div>
-          <div class="header_focus" id="header_focus_3">
-            <p id="header_label_3">Value 3</p>
-            <h1 id="header_value_3"></h1>
-          </div>
-          <div class="header_focus" id="header_focus_4">
-            <p id="header_label_4">Value 4</p>
-            <h1 id="header_value_4"></h1>
-          </div>
+        </div>
+        <div class="header_focus_chart" id="header_focus_chart1">
+          <div style="height: 20px"></div>
+          <div id="lineChartOne"></div>
+          <script>document.onload = generateBlankChart('lineChartOne', 'Chart 1', 'line')</script>
+        </div>
+        <div class="header_focus_chart" id="header_focus_chart2">
+          <div style="height: 20px"></div>
+          <div id="lineChartTwo"></div>
+          <script>document.onload = generateBlankChart('lineChartTwo', 'Chart 2', 'line')</script>
         </div>
       </div>
-      <!-- Charts -->
-      <div id="header2" class="box">
-        <div class="grid_focus2">
-          <div class="dropdown">
-            <button id="focus_chart_add_button" onclick="dropdown('2')" class="dropbtn"><h5>Add Values Chart 1</h5></button>
-            <button id="focus_chart_add_button2" onclick="dropdown('3')" class="dropbtn"><h5>Add Values Chart 2</h5></button>
-            <button id="focus_chart_clear_button" onclick="removeTraces(); generateBlankChart('lineChartOne', 'Chart 1', 'line'); generateBlankChart('lineChartTwo', 'Chart 2', 'line');" class="dropbtn"><h5>Clear Charts</h5></button>
-            <div id="myDropdown2" class="dropdown-content">
-              <input type="text" placeholder="Search.." id="dropdownInput2"  onkeyup="filterFunction('2')" autofocus>
-            </div>
-            <div id="myDropdown3" class="dropdown-content">
-              <input type="text" placeholder="Search.."  id="dropdownInput3" onkeyup="filterFunction('3')">
-            </div>
-          </div>
-          <div class="header_focus_chart" id="header_focus_chart1">
-            <div style="height: 20px"></div>
-            <div id="lineChartOne"></div>
-            <script>document.onload = generateBlankChart('lineChartOne', 'Chart 1', 'line')</script>
-          </div>
-          <div class="header_focus_chart" id="header_focus_chart2">
-            <div style="height: 20px"></div>
-            <div id="lineChartTwo"></div>
-            <script>document.onload = generateBlankChart('lineChartTwo', 'Chart 2', 'line')</script>
-          </div>
-        </div>
-      </div>
-      <!-- State Machine Control Panel -->
-      <div id="header3" class="box">
-        <div class="gridStateMachine">
-          <button id="powerOff" class="stateButton1">
-            <p>Power Off</p>
-          </button>
-          <button id="archiveButton" class="stateButton">
-            <p>Archive Data</p>
-          </button>
-          <button id="postRun" class="stateButton3Inactive">
-            <p>Post Run</p>
-          </button>
-          <button id="propulsionStart" class="stateButton5Inactive">
-            <p>Propulsion Start</p>
-          </button>
-          <button id="preRunFault" class="stateButton6Inactive">
-            <p>Pre Run Fault</p>
-          </button>
-          <button id="primBrakeOn" class="stateButton7">
-            <p>Prim. Brake On</p>
-          </button>
-          <button id="primBrakeOff" class="stateButton7">
-            <p>Prim. Brake Off</p>
-          </button>
-      
-          <button id="idle" class="stateButton2Inactive">
-            <p>Idle</p>
-          </button>
-          <button id="ready" class="stateButton2Inactive">
-            <p>Ready</p>
-          </button>
-          <button id="serviceLowSpeed" class="stateButton3Inactive">
-            <p>Service Low Speed</p>
-          </button>
-          <button id="propulsionDistanceSense" class="stateButton5Inactive">
-            <p>Prop - Dist Sense Active</p>
-          </button>
-          <button id="duringRunFault" class="stateButton6Inactive">
-            <p>During Run Fault</p>
-          </button>
-          <button id="secBrakeVentOn" class="stateButton9">
-            <p>Sec. Brake Vent On</p>
-          </button>
-          <button id="secBrakeVentOff" class="stateButton9">
-            <p>Sec. Brake Vent Off</p>
-          </button>
-          <button id="readyForPumpdown" class="stateButton4Inactive">
-            <p>Ready for Pumpdown</p>
-          </button>
-          <button id="pumpdown" class="stateButton4Inactive">
-            <p>Pumpdown</p>
-          </button>
-          <button id="safeToApproach" class="stateButton3Inactive">
-            <p>Safe to Approach</p>
-          </button>
-          <button id="brakingStart" class="stateButton5Inactive">
-            <p>Braking</p>
-          </button>
-          <button id="postRunFault" class="stateButton6Inactive">
-            <p>Post Run Fault</p>
-          </button>
-          <button id="hvEnable" class="stateButton8">
-            <p>HV Enable</p>
-          </button>
-          <button id="hvDisable" class="stateButton8">
-            <p>HV Disable</p>
-          </button>
-        </div>
-      </div>
-      
-      <!-- Latency Indicator-->
-      <div id="header4" class="box">
-        <div id="header4Left">
-          <h1>Link <br>Status</h1>
-        </div>
-        <div id="header4Middle">
-          <h4 class="connectionTitle">LV BeagleBone</h4>
-          <p id="connectionDot1" class="statusBad">●</p><br>
-          <h4 class="connectionTitle">HV BeagleBone</h4>
-          <p id="connectionDot2" class="statusBad">●</p>
-        </div>
-        <div id="header4Right">
-          <div class="status">
-            <img src="public/images/pod.png" id="podStatus">
-            <div id="statusConnection1" class="">
-              <p id="link1" class="">---</p>
-            </div>
-            <div id="age">
-              <h4>Latency</h4>
-              <h1 id="ageDisplay">ms</h1>
-            </div>
-            <div id="statusConnection2" class="">
-              <p id="link2" class="">---</p>
-            </div>
-            <img src="public/images/macbook.png" id="hostStatus">
-          </div>
-        </div>
-      </div>
-          
-          <!-- Emergency Start and Stop Buttons -->
-          <div id="extra" class="box">
-            <button id="start"><h1>MASTER START</h1></button>
-            <button id="estop"><h1>E-STOP</h1></button>
-          </div>
-          
-          <!-- Motion Table -->
-          <div id="motion_div" class="box ok">
-            <div class="item-content">
-              <h1 style="display:inline;">Motion </h1>
-              <h2 id="motion_status" class="disconnected"><span2 style="display:inline;">Disconnected</span2></h2><br><br>
-              <input type="text" id="motioninput" onkeyup="searchTable('motion')" placeholder="Search for values.." title="Type in a value">
-              <table id="motion">
-                <tr class="header">
-                  <th class="valueTableMotion">Value</th>
-                  <th class="min">Min</th>
-                  <th class="actual">Actual</th>
-                  <th class="max">Max</th>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <!-- Braking Table -->
-          <div id="braking_div" class="box ok">
-            <div class="item-content">
-              <h1 style="display:inline;">Braking </h1>
-              <h2 id="braking_status" class="disconnected"><span2 style="display:inline;">Disconnected</span2></h2><br><br>
-              <input type="text" id="brakinginput" onkeyup="searchTable('braking')" placeholder="Search for values.." title="Type in a value">
-              <table id="braking">
-                <tr class="header">
-                  <th class="valueTableBraking">Value</th>
-                  <th class="min">Min</th>
-                  <th class="actual">Actual</th>
-                  <th class="max">Max</th>
-                </tr>
-              </table>
-            </div>
-          </div>
-          
-          <!-- Battery Table -->
-          <div id="battery_pack_div" class="box ok">
-            <div class="item-content">
-              <h1 style="display:inline;">Battery </h1>
-              <h2 id="battery_status" class="disconnected"><span2 style="display:inline;">Disconnected</span2></h2><br><br>
-              <input type="text" id="batteryinput" onkeyup="searchTable('battery')" placeholder="Search for values.." title="Type in a value">
-              <table id="battery">
-                <tr class="header">
-                  <th class="valueTableBattery">Value</th>
-                  <th class="min">Min</th>
-                  <th class="actual">Actual</th>
-                  <th class="max" >Max</th>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <!-- Motor Table -->
-          <div id="motor_div" class="box ok">
-            <div class="item-content">
-              <h1 style="display:inline;">Motor </h1>
-              <h2 id="motor_status" class="disconnected"><span2 style="display:inline;">Disconnected</span2></h2><br><br>
-              <input type="text" id="motorinput" onkeyup="searchTable('motor')" placeholder="Search for values.." title="Type in a value">
-              <table id="motor">
-                <tr class="header">
-                  <th class="valueTableMotor">Value</th>
-                  <th class="min">Min</th>
-                  <th class="actual">Actual</th>
-                  <th class="max" >Max</th>
-                </tr>
-              </table>
-            </div>
-          </div>
-          <!-- Dashboard Settings Modal -->
-          <div class="modal">
-            <div class="modal-content">
-              <span class="close-button">×</span>
-              <h1>Dashboard Settings</h1>
-              <form class="settingsForm">
-                <div id="formLeft">
-                  <h4 id="formTitle">Pod Settings</h4>
-                  <label for="podIP" id="pod-ip">Pod IP</label>
-                  <input id="podIP" class="formInput" type="text">
-                  
-                  <label for="podPort" id="pod-port">Pod Port</label>
-                  <input id="podPort" class="formInput" type="number">
-                </div>
-                <div id="formRight">
-                  <h4 id="formTitle">BeagleBone Settings</h4>
-                  <label for="lvBoneIP" id="lv-bone-ip">LV Bone IP</label>
-                  <input id="lvBoneIP" class="formInput" type="text">
-                  
-                  <label for="lvBonePort" id="lv-bone-port">LV Bone Port</label>
-                  <input id="lvBonePort" class="formInput" type="number">
-                  
-                  <label for="hvBoneIP" id="hv-bone-ip">HV Bone IP</label>
-                  <input id="hvBoneIP" class="formInput" type="text">
-                  
-                  <label for="hvBonePort" id="hv-bone-port">HV Bone Port</label>
-                  <input id="hvBonePort" class="formInput" type="number">
-                </div>
-                <div id="formFull">
-                  <h4 id="formTitle">Dashboard Settings</h4>
-                  <label for="scanningRate">Data Send/ Scanning Rate (Note: Requires Restart For Changes To Take Place): <span id="value"></span> </label>
-                  <input id="scanningRate" class="formInput" type="number" min="0" max="500" class="inputNotSearchable">
-                  <button id="podSettingsSubmit" type="button">Submit</button>
-                  <p id="formFeedback"></p>
-                </div>
-              </form>
-            </div>
-          </div>   
-        </div>
-      </div>   
     </div>
-    <script src="public/javascripts/main.js"></script>
-    <script src="public/javascripts/handler.js"></script>
-  </body>
+    <!-- State Machine Control Panel -->
+    <div id="header3" class="box">
+      <div class="gridStateMachine">
+        <button id="powerOff" class="stateButton1">
+          <p>Power Off</p>
+        </button>
+        <button id="archiveButton" class="stateButton">
+          <p>Archive Data</p>
+        </button>
+        <button id="postRun" class="stateButton3Inactive">
+          <p>Post Run</p>
+        </button>
+        <button id="propulsionStart" class="stateButton5Inactive">
+          <p>Propulsion Start</p>
+        </button>
+        <button id="preRunFault" class="stateButton6Inactive">
+          <p>Pre Run Fault</p>
+        </button>
+        <button id="primBrakeOn" class="stateButton7">
+          <p>Prim. Brake On</p>
+        </button>
+        <button id="primBrakeOff" class="stateButton7">
+          <p>Prim. Brake Off</p>
+        </button>
+
+        <button id="idle" class="stateButton2Inactive">
+          <p>Idle</p>
+        </button>
+        <button id="ready" class="stateButton2Inactive">
+          <p>Ready</p>
+        </button>
+        <button id="serviceLowSpeed" class="stateButton3Inactive">
+          <p>Service Low Speed</p>
+        </button>
+        <button id="propulsionDistanceSense" class="stateButton5Inactive">
+          <p>Prop - Dist Sense Active</p>
+        </button>
+        <button id="duringRunFault" class="stateButton6Inactive">
+          <p>During Run Fault</p>
+        </button>
+        <button id="secBrakeVentOn" class="stateButton9">
+          <p>Sec. Brake Vent On</p>
+        </button>
+        <button id="secBrakeVentOff" class="stateButton9">
+          <p>Sec. Brake Vent Off</p>
+        </button>
+        <button id="readyForPumpdown" class="stateButton4Inactive">
+          <p>Ready for Pumpdown</p>
+        </button>
+        <button id="pumpdown" class="stateButton4Inactive">
+          <p>Pumpdown</p>
+        </button>
+        <button id="safeToApproach" class="stateButton3Inactive">
+          <p>Safe to Approach</p>
+        </button>
+        <button id="brakingStart" class="stateButton5Inactive">
+          <p>Braking</p>
+        </button>
+        <button id="postRunFault" class="stateButton6Inactive">
+          <p>Post Run Fault</p>
+        </button>
+        <button id="hvEnable" class="stateButton8">
+          <p>HV Enable</p>
+        </button>
+        <button id="hvDisable" class="stateButton8">
+          <p>HV Disable</p>
+        </button>
+      </div>
+    </div>
+
+    <!-- Latency Indicator-->
+    <div id="header4" class="box">
+      <div id="header4Left">
+        <h1>Link Connection <br>and Latency</h1>
+      </div>
+      <div id="header4Right">
+        <div class="status">
+          <img src="public/images/pod.png" id="podStatus">
+          <div id="statusConnection2">
+            <p class="link">----</p>
+          </div>
+          <div id="age">
+            <h5>Measured Latency</h5>
+            <h1 id="ageDisplay">ms</h1>
+          </div>
+          <div id="statusConnection2">
+            <p class="link">----</p>
+          </div>
+          <img src="public/images/macbook.png" id="hostStatus">
+        </div>
+      </div>
+    </div>
+
+    <!-- Emergency Start and Stop Buttons -->
+    <div id="extra" class="box">
+      <button id="start">
+        <h1>MASTER START</h1>
+      </button>
+      <button id="estop">
+        <h1>E-STOP</h1>
+      </button>
+    </div>
+
+    <!-- Motion Table -->
+    <div id="motion_div" class="box ok">
+      <div class="item-content">
+        <h1 style="display:inline;">Motion </h1>
+        <h2 id="motion_status" class="disconnected">
+          <span2 style="display:inline;">
+            <svg id="disconnected" viewBox="0 0 50 50">
+              <path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z" overflow="visible" font-family="Sans" />
+            </svg>
+          </span2>
+        </h2><br><br>
+        <input type="text" id="motioninput" onkeyup="searchTable('motion')" placeholder="Search for values.."
+          title="Type in a value">
+        <table id="motion">
+          <tr class="header">
+            <th class="valueTableMotion">Value</th>
+            <th class="min">Min</th>
+            <th class="actual">Actual</th>
+            <th class="max">Max</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- Braking Table -->
+    <div id="braking_div" class="box ok">
+      <div class="item-content">
+        <h1 style="display:inline;">Braking </h1>
+        <h2 id="braking_status" class="disconnected">
+          <span2 style="display:inline;">
+            <svg id="disconnected" viewBox="0 0 50 50">
+              <path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z" overflow="visible" font-family="Sans" />
+            </svg>
+          </span2>
+        </h2><br><br>
+        <input type="text" id="brakinginput" onkeyup="searchTable('braking')" placeholder="Search for values.."
+          title="Type in a value">
+        <table id="braking">
+          <tr class="header">
+            <th class="valueTableBraking">Value</th>
+            <th class="min">Min</th>
+            <th class="actual">Actual</th>
+            <th class="max">Max</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <!-- Battery Table -->
+    <div id="battery_pack_div" class="box ok">
+      <div class="item-content">
+        <h1 style="display:inline;">Battery </h1>
+        <h2 id="battery_status" class="disconnected">
+          <span2 style="display:inline;">
+            <svg id="disconnected" viewBox="0 0 50 50">
+              <path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z" overflow="visible" font-family="Sans" />
+            </svg>
+          </span2>
+        </h2><br><br>
+        <input type="text" id="batteryinput" onkeyup="searchTable('battery')" placeholder="Search for values.."
+          title="Type in a value">
+        <table id="battery">
+          <tr class="header">
+            <th class="valueTableBattery">Value</th>
+            <th class="min">Min</th>
+            <th class="actual">Actual</th>
+            <th class="max">Max</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- Motor Table -->
+    <div id="motor_div" class="box ok">
+      <div class="item-content">
+        <h1 style="display:inline;">Motor </h1>
+          <span2 style="display:inline;">
+            <svg id="disconnected" viewBox="0 0 50 50">
+              <path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z" overflow="visible" font-family="Sans" />
+            </svg>
+          </span2>
+        </h2><br><br>
+        <input type="text" id="motorinput" onkeyup="searchTable('motor')" placeholder="Search for values.."
+          title="Type in a value">
+        <table id="motor">
+          <tr class="header">
+            <th class="valueTableMotor">Value</th>
+            <th class="min">Min</th>
+            <th class="actual">Actual</th>
+            <th class="max">Max</th>
+          </tr>
+        </table>
+      </div>
+    </div>
+    <!-- Dashboard Settings Modal -->
+    <div class="modal">
+      <div class="modal-content">
+        <span class="close-button">×</span>
+        <h1>Dashboard Settings</h1>
+        <form class="settingsForm">
+          <div id="formLeft">
+            <h4 id="formTitle">Pod Settings</h4>
+            <label for="podIP" id="pod-ip">Pod IP</label>
+            <input id="podIP" class="formInput" type="text">
+
+            <label for="podPort" id="pod-port">Pod Port</label>
+            <input id="podPort" class="formInput" type="number">
+            <div class=charteric> <p ></p></div>
+          </div>
+          <div id="formRight">
+            <h4 id="formTitle">BeagleBone Settings</h4>
+            <label for="lvBoneIP" id="lv-bone-ip">LV Bone IP</label>
+            <input id="lvBoneIP" class="formInput" type="text">
+
+            <label for="lvBonePort" id="lv-bone-port">LV Bone Port</label>
+            <input id="lvBonePort" class="formInput" type="number">
+
+            <label for="hvBoneIP" id="hv-bone-ip">HV Bone IP</label>
+            <input id="hvBoneIP" class="formInput" type="text">
+
+            <label for="hvBonePort" id="hv-bone-port">HV Bone Port</label>
+            <input id="hvBonePort" class="formInput" type="number">
+          </div>
+          <div id="formFull">
+            <h4 id="formTitle">Dashboard Settings</h4>
+            <label for="scanningRate">Data Send/ Scanning Rate (Note: Requires Restart For Changes To Take Place): <span
+                id="value"></span> </label>
+            <input id="scanningRate" class="formInput" type="number" min="0" max="500" class="inputNotSearchable">
+            <button id="podSettingsSubmit" type="button">Submit</button>
+            <p id="formFeedback"></p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+  </div>
+  </div>
+  <script src="public/javascripts/main.js"></script>
+  <script src="public/javascripts/handler.js"></script>
+</body>
+
 </html>
-    
