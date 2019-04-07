@@ -92,8 +92,11 @@ function sendSpecificData(data) {
       packVoltage: data,
       packCurrent: data,
       packSOC: data,
+      packAH: data,
       cellMaxVoltage: data,
-      cellTemp: data,
+      cellMinVoltage: data,
+      highTemp: data,
+      lowTemp: data,
     },
     braking: {
       secondaryTank: data,
@@ -125,7 +128,7 @@ function sendSinusodalData() { // eslint-disable-line no-unused-vars
 // The line where test data is sent. setInterval(function, ms)
 
 // Send random data
-// setInterval(sendTestData, DATA_SEND_RATE);
+setInterval(sendTestData, DATA_SEND_RATE);
 
 // Send Sinusodial Data
-setInterval(sendSinusodalData, DATA_SEND_RATE);
+// setInterval(sendSinusodalData, DATA_SEND_RATE);
