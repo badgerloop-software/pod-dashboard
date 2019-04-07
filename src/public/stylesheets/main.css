@@ -478,7 +478,9 @@ span2{
 }
 
 /* state machine styling */
-#powerOff, #archiveButton, #postRun, #propulsionStart, #preRunFault, #primBrakeOn, #primBrakeOff, #idle, #ready, #serviceLowSpeed, #propulsionDistanceSense, #duringRunFault, #hvEnable, #hvDisable, #readyForPumpdown, #pumpdown, #safeToApproach, #brakingStart, #postRunFault, #secBrakeVentOff, #secBrakeVentOn {
+
+/* default button styles */
+.stateButton {
   text-decoration: none;
   position: inline-block;
   margin: 4px 3px;
@@ -490,52 +492,59 @@ span2{
   height: 80px;
   font-weight: 800;
   color: #ADADAD;
+}
+.stateButtonInactive{
+  text-decoration: none;
+  position: inline-block;
+  margin: 4px 3px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border-radius: 6px;
+  width: 100px;
+  height: 80px;
+  font-weight: 800;
+  color: #ADADAD;
+  background-color: grey !important;
+}
 
-}
-.stateButton:hover {
-  background-color: black;
-  color: black;
-}
-.stateButton {
-  background-color: hotpink;
-}
-.stateButton7{
+/* individual button styles */
+#primBrakeOn, #primBrakeOff{
   background-color: #34495E;
   color: white !important;
   border: 2px solid #23242A;
 }
-.stateButton8 {
+#hvEnable, #hvDisable {
   background-color: #F4D76F;
   color: #000000 !important;
   border: 2px solid #D35500;
 }
-.stateButton9 {
+#secBrakeVentOn, #secBrakeVentOff {
   background-color: #5C97BF;
   color: black !important;
   border: 2px solid #23242A;
 }
-
-.stateButton1 {
+#powerOff {
   background-color: #C10000; 
   color: white;
 }
-.stateButton2Active {
+#idle, #ready {
   background-color: #3C9159;
   color: white;
 }
-.stateButton3Active {
+#serviceLowSpeed, #safeToApproach, #postRun {
   background-color: #A84671;
   color: white;
 }
-.stateButton4Active {
+#readyForPumpdown, #pumpdown {
   background-color: #C66553;
   color: white;
 }
-.stateButton5Active {
+#propulsionStart, #propulsionDistanceSense, #brakingStart{
   background-color: #C6A153;
   color: white;
 }
-.stateButton6Active {
+#preRunFault, #duringRunFault, #postRunFault {
   background-color: #C10000;
   color: white;
 }
@@ -546,9 +555,6 @@ span2{
 }
 #powerOff {
   color: white;
-}
-.stateButton2Inactive, .stateButton3Inactive, .stateButton4Inactive, .stateButton5Inactive, .stateButton6Inactive, .stateButton7Inactive, .stateButton8Inactive, .stateButton9Inactive, .statebuttonInactive, #archiveButtonInactive  {
-  background-color: gray;
 }
 
 /* status styling */
@@ -567,14 +573,14 @@ span2{
 #statusConnection1 {
   display: inline-block;
   vertical-align: middle;
+  color: green;
   font-weight: 800;
-  color: #808080;
 }
 #statusConnection2 {
   display: inline-block;
   vertical-align: middle;
+  color: red;
   font-weight: 800;
-  color: #808080;
 }
 .statusGood {
   color: green;

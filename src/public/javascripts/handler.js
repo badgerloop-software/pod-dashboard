@@ -23,6 +23,9 @@ comms.on('dataIn', () => {
   // Log it to be sure
   console.log(client.inData);
   // Tell the Data Interfacer to start sorting it
+  if (!(client.currentState >= 11 && client.currentState <= 13)) {
+    dl.switchState(client.currentState);
+  } else dl.setFault(client.currentState);
   di.updateData(client.inData);
 });
 
@@ -42,11 +45,6 @@ function updateData(group, sensor) {
 // Sets the latency counter
 function setAgeLabel(staleness) {
   d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
-  if (staleness >= 150) {
-    d.getElementById('ageDisplay').className = 'connectionError';
-  } else {
-    d.getElementById('ageDisplay').className = 'connectionOk';
-  }
 }
 
 di.updater.on('updateData', () => {
@@ -59,7 +57,7 @@ di.updater.on('updateData', () => {
     sensors.forEach((sensor) => {
       // Check to see if that particular sensor is being rendered at the time
       try {
-        if (group !== 'connections') updateData(group, sensor);
+        updateData(group, sensor);
       } catch (error) {
         // If not, alert the user and move on
         console.log(`Unreconized Sensor- ${sensor} -Skipping`);
@@ -78,11 +76,18 @@ di.updater.on('updateData', () => {
     setAgeLabel(elapsedTime);
   }
 });
+
+function overrideState(num, stn) {
+  console.error(`OVERIDING STATE TO ${stn} STATE`);
+  client.sendOverride(stn);
+  dl.switchState(num, stn);
+}
+
 // State Machine Control Panel Event Listeners
 
 // Handles power off button click
-d.getElementById('powerOff').addEventListener('click', () => {
-  console.log('powering off');
+d.getElementById('powerOff').addEventListener('click', (e) => {
+  overrideState(null, `${e.target.id}`);
 });
 
 // Handles the archive button click
@@ -92,23 +97,23 @@ archiveButton.addEventListener('click', () => {
 });
 
 // Handles postRun (magenta) button click
-d.getElementById('postRun').addEventListener('click', () => {
-  console.log('postRun');
+d.getElementById('postRun').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles propulsionStart button click
-d.getElementById('propulsionStart').addEventListener('click', () => {
-  console.log('propulsion start');
+d.getElementById('propulsionStart').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles preRunFault button click
 d.getElementById('preRunFault').addEventListener('click', () => {
-  console.log('preRunFault');
+  console.log('Pre Run Fault');
 });
 
 // Handles primBrakeOn button click
 d.getElementById('primBrakeOn').addEventListener('click', () => {
-  console.log('primary brake on');
+  // TODO: Send command
 });
 
 // Handles primBreakOff button click
@@ -117,23 +122,23 @@ d.getElementById('primBrakeOff').addEventListener('click', () => {
 });
 
 // Handles idle button click
-d.getElementById('idle').addEventListener('click', () => {
-  console.log('idling');
+d.getElementById('idle').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles ready button click
-d.getElementById('ready').addEventListener('click', () => {
-  console.log('ready');
+d.getElementById('ready').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles serviceLowSpeed button click
-d.getElementById('serviceLowSpeed').addEventListener('click', () => {
-  console.log('serviceLowSpeed');
+d.getElementById('serviceLowSpeed').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles propulsionDistanceSense button click
-d.getElementById('propulsionDistanceSense').addEventListener('click', () => {
-  console.log('propulsionDistanceSense');
+d.getElementById('propulsionDistanceSense').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles duringRunFault button click
@@ -152,23 +157,24 @@ d.getElementById('hvDisable').addEventListener('click', () => {
 });
 
 // Handles readyForPumpdown button click
-d.getElementById('readyForPumpdown').addEventListener('click', () => {
-  console.log('ready for pumpdown');
+d.getElementById('readyForPumpdown').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles pumpdown button click
-d.getElementById('pumpdown').addEventListener('click', () => {
+d.getElementById('pumpdown').addEventListener('click', (e) => {
   console.log('pumpdown');
+  overrideState(null, e.target.id);
 });
 
 // Handles safeToApproach button click
-d.getElementById('safeToApproach').addEventListener('click', () => {
-  console.log('safe to approach');
+d.getElementById('safeToApproach').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles brakingStart button click
-d.getElementById('brakingStart').addEventListener('click', () => {
-  console.log('braking start');
+d.getElementById('brakingStart').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles postRunFault button click
@@ -189,6 +195,7 @@ d.getElementById('secBrakeVentOff').addEventListener('click', () => {
 function setRecieve(state) {
   if (state) recieveIndicator1.className = 'statusGood';
   if (state) recieveIndicator2.className = 'statusGood';
+  if (state) d.getElementById('ageDisplay').className = 'statusGood';
   if (!state) recieveIndicator1.className = 'statusBad';
   if (!state) recieveIndicator2.className = 'statusBad';
   if (!state) d.getElementById('ageDisplay').innerHTML = 'N/A';

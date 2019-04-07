@@ -23,7 +23,7 @@ function createMinCol(name, group) {
   let col = document.createElement('td'); // Creates Element
   col.className = 'min'; // Assigns class
   col.id = `${name}Min`; // Assigns ID
-  col.innerHTML = String(database[group][name].limits.idle.min); // Fills box with correct value
+  col.innerHTML = String(database[group][name].limits.powerOff.min); // Fills box with correct value
   return col;
 }
 
@@ -33,12 +33,11 @@ function createActualCol(name) {
   col.id = `${name}`;
   return col;
 }
-
 function createMaxCol(name, group) {
   let col = document.createElement('td');
   col.className = 'max';
   col.id = `${name}Max`;
-  col.innerHTML = `${database[group][name].limits.idle.max}`;
+  col.innerHTML = `${database[group][name].limits.powerOff.max}`;
   return col;
 }
 
@@ -111,13 +110,90 @@ function fillTableBounds(subsystem, state) {
   });
 }
 
-module.exports.fillAllBounds = function fillAllBounds(state) { // eslint-disable-line no-unused-vars
+function fillAllBounds(state) { // eslint-disable-line no-unused-vars
   subsystems = Object.keys(database);
   subsystems.forEach((system) => {
     fillTableBounds(system, state);
   });
+}
+
+function getStateName(stateNum) {
+  switch (stateNum) {
+    case 0:
+      return 'powerOff';
+    case 1:
+      return 'idle';
+    case 2:
+      return 'readyForPumpdown';
+    case 3:
+      return 'pumpdown';
+    case 4:
+      return 'readyForPropulsion';
+    case 5:
+      return 'propulsion';
+    case 6:
+      return 'braking';
+    case 7:
+      return 'stopped';
+    case 8:
+      return 'crawl';
+    case 9:
+      return 'postRun';
+    case 10:
+      return 'safeToApproach';
+    case 11:
+      return 'preRunFault';
+    case 12:
+      return 'duringRunFault';
+    case 13:
+      return 'postRunFault';
+    default:
+      return undefined;
+  }
+}
+
+function resetAllButtons() {
+  document.getElementById('powerOff').className = 'stateButtonInactive';
+  document.getElementById('postRun').className = 'stateButtonInactive';
+  document.getElementById('propulsionStart').className = 'stateButtonInactive';
+  document.getElementById('preRunFault').className = 'stateButtonInactive';
+  document.getElementById('idle').className = 'stateButtonInactive';
+  document.getElementById('ready').className = 'stateButtonInactive';
+  document.getElementById('serviceLowSpeed').className = 'stateButtonInactive';
+  document.getElementById('propulsionDistanceSense').className = 'stateButtonInactive';
+  document.getElementById('duringRunFault').className = 'stateButtonInactive';
+  document.getElementById('readyForPumpdown').className = 'stateButtonInactive';
+  document.getElementById('pumpdown').className = 'stateButtonInactive';
+  document.getElementById('safeToApproach').className = 'stateButtonInactive';
+  document.getElementById('brakingStart').className = 'stateButtonInactive';
+  document.getElementById('postRunFault').className = 'stateButtonInactive';
+}
+
+function setIndicator(state) {
+  resetAllButtons();
+  document.getElementById(state).className = 'stateButton';
+}
+
+module.exports.setIndicator = setIndicator;
+
+module.exports.switchState = function switchState(num, str) {
+  let stateNum = num;
+  let stateStr = str;
+  if (!stateStr) stateStr = getStateName(stateNum);
+  if (stateStr === undefined) {
+    console.error('Undefined State');
+  } else {
+    console.log(stateStr);
+    setIndicator(stateStr);
+    fillAllBounds(stateStr);
+  }
 };
 
+module.exports.setFault = function setFault(faultNum) {
+  let faultStr = getStateName(faultNum);
+  console.error(`Entering a ${faultStr}`);
+  setIndicator(faultStr);
+};
 
 // Dynamic Dropdowns
 
@@ -133,7 +209,7 @@ function createItem(name, group, units) { // eslint-disable-line no-unused-vars
   switch (group) {
     case 'myDropdown1':
       header.onclick = function onclick() { // sets the onclick value
-        clone('stoppingDistance');
+        clone(name);
         return false;
       };
       break;
