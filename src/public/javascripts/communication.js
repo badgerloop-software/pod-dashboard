@@ -92,8 +92,4 @@ module.exports.sendEBrake = function sendEBrake() {
 
 module.exports.sendOverride = function sendOverride(state) {
   sendHVCommand(`overrride${state}`);
-<<<<<<< HEAD
 };
-=======
-}
->>>>>>> 33b0e47be308d43881bb8033a64a5f90303368ab
