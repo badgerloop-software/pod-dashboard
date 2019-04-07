@@ -54,11 +54,8 @@ function sendTestData() { // eslint-disable-line
       packVoltage: getRandomValue(),
       packCurrent: getRandomValue(),
       packSOC: getRandomValue(),
-      packAH: getRandomValue(),
       cellMaxVoltage: getRandomValue(),
-      cellMinVoltage: getRandomValue(),
-      highTemp: getRandomValue(),
-      lowTemp: getRandomValue(),
+      cellTemp: getRandomValue(),
     },
     braking: {
       secondaryTank: getRandomValue(),

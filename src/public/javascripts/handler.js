@@ -12,6 +12,10 @@ const dl = require('./public/javascripts/dynamicloading');
 
 const d = document;
 const archiveButton = d.getElementById('archiveButton');
+const lvIndicator = d.getElementById('connectionDot1');
+const hvIndicator = d.getElementById('connectionDot2');
+const recieveIndicator1 = d.getElementById('link1');
+const recieveIndicator2 = d.getElementById('link2');
 let timeOld;
 
 // Data in recieved
@@ -187,6 +191,92 @@ d.getElementById('secBrakeVentOn').addEventListener('click', () => {
 d.getElementById('secBrakeVentOff').addEventListener('click', () => {
   console.log('secBrakeVentOff');
 });
+
+function setRecieve(state) {
+  if (state) recieveIndicator1.className = 'statusGood';
+  if (state) recieveIndicator2.className = 'statusGood';
+  if (state) d.getElementById('ageDisplay').className = 'statusGood';
+  if (!state) recieveIndicator1.className = 'statusBad';
+  if (!state) recieveIndicator2.className = 'statusBad';
+  if (!state) d.getElementById('ageDisplay').innerHTML = 'N/A';
+  if (!state) d.getElementById('ageDisplay').className = 'connectionError';
+}
+
+function setLVIndicator(state) {
+  if (state) lvIndicator.className = 'statusGood';
+  if (!state) lvIndicator.className = 'statusBad';
+}
+
+function setHVIndicator(state) {
+  if (state) hvIndicator.className = 'statusGood';
+  if (!state) hvIndicator.className = 'statusBad';
+}
+
+function getSampleSensor() {
+  let subsystemArray = Object.values(cache);
+  let sensorArray = Object.values(subsystemArray[0]);
+  return sensorArray[0];
+}
+
+function checkRecieve() {
+  let sampleSensor = getSampleSensor();
+  try {
+    if (!(sampleSensor.length > oldLength)) {
+      setRecieve(false);
+    } else {
+      setRecieve(true);
+    }
+    oldLength = sampleSensor.length;
+  } catch (err) {
+    oldLength = 0;
+  }
+}
+
+function sendHeartbeats() {
+  client.sendLVPing();
+  client.sendHVPing();
+}
+function lostLVBone(state) {
+  try {
+    if (state !== undefined) myState = state;
+    return myState;
+  } catch (err) {
+    myState = false;
+    return myState;
+  }
+}
+
+function lostHVBone(state) {
+  try {
+    if (state !== undefined) myState = state;
+    return myState;
+  } catch (err) {
+    myState = false;
+    return myState;
+  }
+}
+comms.on('Lost', (ip) => {
+  if (ip === constants.lvBone.ip) {
+    lostLVBone(true);
+  }
+  if (ip === constants.hvBone.ip) {
+    lostHVBone(true);
+  }
+});
+function checkTransmit() {
+  setLVIndicator(true);
+  setHVIndicator(true);
+  if (lostLVBone()) setLVIndicator(false);
+  if (lostHVBone()) setHVIndicator(false);
+}
+
+function podConnectionCheck() {
+  checkRecieve();
+  sendHeartbeats();
+  checkTransmit();
+}
+
+setInterval(podConnectionCheck, 5000);
 
 function init() {
   di.createCache();

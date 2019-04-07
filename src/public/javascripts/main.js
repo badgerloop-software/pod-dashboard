@@ -124,8 +124,8 @@ setInterval(() => {
   for (let u = 0; u < 4; u += 1) {
     const table = document.getElementById(tableIDs[u]); // creates table array
     for (let r = 1, n = table.rows.length; r < n; r += 1) { // iterates through rows in given table
-      const min = parseInt(table.rows[r].cells[1].innerHTML, 10); // sets the min value to min
-      const y = parseInt(table.rows[r].cells[2].innerHTML, 10); // sets the value to y
+      const min = Number(table.rows[r].cells[1].innerHTML); // sets the min value to min
+      const y = Number(table.rows[r].cells[2].innerHTML); // sets the value to y
       if (y < min) { // checks if too low
         table.rows[r].cells[2].style.backgroundColor = '#FC6962'; // makes red
         errorChecker += 1; // adds to w, signifying that there is an error present in the table
@@ -234,7 +234,7 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   document.getElementById('podPort').value = consts.serverAddr.port;
   document.getElementById('scanningRate').value = consts.dataSendRate;
   document.getElementById('lvBoneIP').value = consts.lvBone.ip;
-  document.getElementById('lvBonePort').value = consts.hvBone.port;
-  document.getElementById('hvBoneIP').value = consts.lvBone.ip;
+  document.getElementById('lvBonePort').value = consts.lvBone.port;
+  document.getElementById('hvBoneIP').value = consts.hvBone.ip;
   document.getElementById('hvBonePort').value = consts.hvBone.port;
 }

@@ -582,12 +582,20 @@ span2{
   color: red;
   font-weight: 800;
 }
+.statusGood {
+  color: green;
+}
+.statusBad {
+  color: red;
+}
 #age {
   display: inline-block;
   width: 150px;
   text-align: center;
   vertical-align: middle;
   margin: 0;
+  margin-top: -10px;
+  color: #808080;
 }
 #ageDisplay {
   padding: 0px;
@@ -609,17 +617,47 @@ span2{
   justify-content: center; /* vertically centering */
 }
 #header4Left {
-  width: 30%;
+  width: 10%;
+  padding-left: 30px;
 }
 #header4Right {
   float: right;
-  width: 70%;
-  padding-left: 90px;
+  width: 60%;
+  padding-left: 20px;
 }
-.link {
+#header4Middle {
+  float: right;
+  width: 30%;
+  padding-left: 40px;
+  line-height: 30px;
+  color: #808080;
+  padding-top: 15px;
+}
+.connectionTitle {
+  display: inline;
+}
+#connectionDot1, #connectionDot2{
+  display: inline;
+  font-size: 40px;
+  line-height: 20px;
+}
+#connectionDot1 {
+  padding-left: 16px;
+}
+#connectionDot2 {
+  padding-left: 11px;
+}
+.connectionError { /* styling status  */
+  color: red;
+}
+.connectionOk { /* styling status */
+  color: green;
+}
+#link1, #link2 {
   font-size: 50px;
   line-height: 0px;
 }
+
 
 /* something ??? */
 .modebar {
