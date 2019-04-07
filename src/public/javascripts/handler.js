@@ -75,25 +75,12 @@ di.updater.on('updateData', () => {
 
 function overrideState(num, stn) {
   console.error(`OVERIDING STATE TO ${stn} STATE`);
+  client.sendOverride(stn);
   dl.switchState(num, stn);
 }
 
 // State Machine Control Panel Event Listeners
-function resetAllButtons() {
-  document.getElementById('postRun').className = 'stateButtonInactive';
-  document.getElementById('propulsionStart').className = 'stateButtonInactive';
-  document.getElementById('preRunFault').className = 'stateButtonInactive';
-  document.getElementById('idle').className = 'stateButtonInactive';
-  document.getElementById('ready').className = 'stateButtonInactive';
-  document.getElementById('serviceLowSpeed').className = 'stateButtonInactive';
-  document.getElementById('propulsionDistanceSense').className = 'stateButtonInactive';
-  document.getElementById('duringRunFault').className = 'stateButtonInactive';
-  document.getElementById('readyForPumpdown').className = 'stateButtonInactive';
-  document.getElementById('pumpdown').className = 'stateButtonInactive';
-  document.getElementById('safeToApproach').className = 'stateButtonInactive';
-  document.getElementById('brakingStart').className = 'stateButtonInactive';
-  document.getElementById('postRunFault').className = 'stateButtonInactive';
-}
+
 // Handles power off button click
 d.getElementById('powerOff').addEventListener('click', (e) => {
   overrideState(null, `${e.target.id}`);
@@ -116,8 +103,8 @@ d.getElementById('propulsionStart').addEventListener('click', (e) => {
 });
 
 // Handles preRunFault button click
-d.getElementById('preRunFault').addEventListener('click', (e) => {
-  console.log('Pre Run Fault')
+d.getElementById('preRunFault').addEventListener('click', () => {
+  console.log('Pre Run Fault');
 });
 
 // Handles primBrakeOn button click
@@ -187,7 +174,7 @@ d.getElementById('brakingStart').addEventListener('click', (e) => {
 });
 
 // Handles postRunFault button click
-d.getElementById('postRunFault').addEventListener('click', (e) => {
+d.getElementById('postRunFault').addEventListener('click', () => {
   console.log('postRunFault');
 });
 

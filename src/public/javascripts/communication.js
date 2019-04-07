@@ -89,3 +89,7 @@ module.exports.sendPropulse = function sendPropulse() {
 module.exports.sendEBrake = function sendEBrake() {
   sendHVCommand('emergencyBrake');
 };
+
+module.exports.sendOverride = function sendOverride(state) {
+  sendHVCommand(`overrride${state}`);
+}
