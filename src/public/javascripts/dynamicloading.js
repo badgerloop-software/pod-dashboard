@@ -119,8 +119,6 @@ function fillAllBounds(state) { // eslint-disable-line no-unused-vars
 
 function getStateName(stateNum) {
   switch (stateNum) {
-    default:
-      return undefined;
     case 0:
       return 'powerOff';
     case 1:
@@ -149,6 +147,8 @@ function getStateName(stateNum) {
       return 'duringRunFault';
     case 13:
       return 'postRunFault';
+    default:
+      return undefined;
   }
 }
 
@@ -176,11 +176,17 @@ function setIndicator(state) {
 
 module.exports.setIndicator = setIndicator;
 
-module.exports.switchState = function switchState(state) {
-  let stateStr = getStateName(state);
-  if (stateStr === undefined) console.error('Undefined State');
-  setIndicator(stateStr);
-  fillAllBounds(stateStr);
+module.exports.switchState = function switchState(num, str) {
+  let stateNum = num;
+  let stateStr = str;
+  if (!stateStr) stateStr = getStateName(stateNum);
+  if (stateStr === undefined) {
+    console.error('Undefined State');
+  } else {
+    console.log(stateStr);
+    setIndicator(stateStr);
+    fillAllBounds(stateStr);
+  }
 };
 
 module.exports.setFault = function setFault(faultNum) {

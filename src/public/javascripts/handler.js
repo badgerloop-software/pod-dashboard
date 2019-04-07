@@ -53,7 +53,7 @@ di.updater.on('updateData', () => {
     sensors.forEach((sensor) => {
       // Check to see if that particular sensor is being rendered at the time
       try {
-        if (group !== 'connections') updateData(group, sensor);
+        updateData(group, sensor);
       } catch (error) {
         // If not, alert the user and move on
         console.log(`Unreconized Sensor- ${sensor} -Skipping`);
@@ -73,6 +73,11 @@ di.updater.on('updateData', () => {
   }
 });
 
+function overrideState(num, stn) {
+  console.error(`OVERIDING STATE TO ${stn} STATE`);
+  dl.switchState(num, stn);
+}
+
 // State Machine Control Panel Event Listeners
 function resetAllButtons() {
   document.getElementById('postRun').className = 'stateButtonInactive';
@@ -90,8 +95,8 @@ function resetAllButtons() {
   document.getElementById('postRunFault').className = 'stateButtonInactive';
 }
 // Handles power off button click
-d.getElementById('powerOff').addEventListener('click', () => {
-  console.log('powering off');
+d.getElementById('powerOff').addEventListener('click', (e) => {
+  overrideState(null, `${e.target.id}`);
 });
 
 // Handles the archive button click
@@ -101,29 +106,23 @@ archiveButton.addEventListener('click', () => {
 });
 
 // Handles postRun (magenta) button click
-d.getElementById('postRun').addEventListener('click', () => {
-  console.log('postRun');
-  resetAllButtons();
-  document.getElementById('postRun').className = 'stateButton';
+d.getElementById('postRun').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles propulsionStart button click
-d.getElementById('propulsionStart').addEventListener('click', () => {
-  console.log('propulsion start');
-  resetAllButtons();
-  document.getElementById('propulsionStart').className = 'stateButton';
+d.getElementById('propulsionStart').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles preRunFault button click
-d.getElementById('preRunFault').addEventListener('click', () => {
-  console.log('preRunFault');
-  resetAllButtons();
-  document.getElementById('preRunFault').className = 'stateButton';
+d.getElementById('preRunFault').addEventListener('click', (e) => {
+  console.log('Pre Run Fault')
 });
 
 // Handles primBrakeOn button click
 d.getElementById('primBrakeOn').addEventListener('click', () => {
-  console.log('primary brake on');
+  // TODO: Send command
 });
 
 // Handles primBreakOff button click
@@ -132,38 +131,28 @@ d.getElementById('primBrakeOff').addEventListener('click', () => {
 });
 
 // Handles idle button click
-d.getElementById('idle').addEventListener('click', () => {
-  console.log('idling');
-  resetAllButtons();
-  document.getElementById('idle').className = 'stateButton';
+d.getElementById('idle').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles ready button click
-d.getElementById('ready').addEventListener('click', () => {
-  console.log('ready');
-  resetAllButtons();
-  document.getElementById('ready').className = 'stateButton';
+d.getElementById('ready').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles serviceLowSpeed button click
-d.getElementById('serviceLowSpeed').addEventListener('click', () => {
-  console.log('serviceLowSpeed');
-  resetAllButtons();
-  document.getElementById('serviceLowSpeed').className = 'stateButton';
+d.getElementById('serviceLowSpeed').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles propulsionDistanceSense button click
-d.getElementById('propulsionDistanceSense').addEventListener('click', () => {
-  console.log('propulsionDistanceSense');
-  resetAllButtons();
-  document.getElementById('propulsionDistanceSense').className = 'stateButton';
+d.getElementById('propulsionDistanceSense').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles duringRunFault button click
 d.getElementById('duringRunFault').addEventListener('click', () => {
   console.log('duringRunFault');
-  resetAllButtons();
-  document.getElementById('duringRunFault').className = 'stateButton';
 });
 
 // Handles hvEnable button click
@@ -177,38 +166,29 @@ d.getElementById('hvDisable').addEventListener('click', () => {
 });
 
 // Handles readyForPumpdown button click
-d.getElementById('readyForPumpdown').addEventListener('click', () => {
-  console.log('ready for pumpdown');
-  resetAllButtons();
-  document.getElementById('readyForPumpdown').className = 'stateButton';
+d.getElementById('readyForPumpdown').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles pumpdown button click
-d.getElementById('pumpdown').addEventListener('click', () => {
+d.getElementById('pumpdown').addEventListener('click', (e) => {
   console.log('pumpdown');
-  resetAllButtons();
-  document.getElementById('pumpdown').className = 'stateButton';
+  overrideState(null, e.target.id);
 });
 
 // Handles safeToApproach button click
-d.getElementById('safeToApproach').addEventListener('click', () => {
-  console.log('safe to approach');
-  resetAllButtons();
-  document.getElementById('safeToApproach').className = 'stateButton';
+d.getElementById('safeToApproach').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles brakingStart button click
-d.getElementById('brakingStart').addEventListener('click', () => {
-  console.log('braking start');
-  resetAllButtons();
-  document.getElementById('brakingStart').className = 'stateButton';
+d.getElementById('brakingStart').addEventListener('click', (e) => {
+  overrideState(null, e.target.id);
 });
 
 // Handles postRunFault button click
-d.getElementById('postRunFault').addEventListener('click', () => {
+d.getElementById('postRunFault').addEventListener('click', (e) => {
   console.log('postRunFault');
-  resetAllButtons();
-  document.getElementById('postRunFault').className = 'stateButton';
 });
 
 // Handles secBrakeVentOn button click
