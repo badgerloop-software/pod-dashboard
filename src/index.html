@@ -170,20 +170,26 @@
     <!-- Latency Indicator-->
     <div id="header4" class="box">
       <div id="header4Left">
-        <h1>Link Connection <br>and Latency</h1>
+        <h1>Link <br>Status</h1>
+      </div>
+      <div id="header4Middle">
+        <h4 class="connectionTitle">LV BeagleBone</h4>
+        <p id="connectionDot1" class="statusBad">●</p><br>
+        <h4 class="connectionTitle">HV BeagleBone</h4>
+        <p id="connectionDot2" class="statusBad">●</p>
       </div>
       <div id="header4Right">
         <div class="status">
           <img src="public/images/pod.png" id="podStatus">
-          <div id="statusConnection2">
-            <p class="link">----</p>
+          <div id="statusConnection1" class="">
+            <p id="link1" class="">---</p>
           </div>
           <div id="age">
-            <h5>Measured Latency</h5>
+            <h4>Latency</h4>
             <h1 id="ageDisplay">ms</h1>
           </div>
-          <div id="statusConnection2">
-            <p class="link">----</p>
+          <div id="statusConnection2" class="">
+            <p id="link2" class="">---</p>
           </div>
           <img src="public/images/macbook.png" id="hostStatus">
         </div>
