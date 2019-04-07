@@ -116,7 +116,7 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
           y: [chartData1[0]],
           type: 'scatter',
           mode: 'lines',
-          line: { color: '#95A5A6' },
+          line: { color: 'green' },
         },
       ],
       layout,
@@ -136,7 +136,7 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
         y: [chartData1[1]],
         type: 'scatter',
         mode: 'lines',
-        line: { color: '#2D3131' },
+        line: { color: 'blue' },
       },
     ]);
   }
@@ -228,7 +228,7 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
           y: [chartData2[0]],
           type: 'scatter',
           mode: 'lines',
-          line: { color: '#95A5A6' },
+          line: { color: 'green' },
         },
       ],
       layout,
@@ -248,7 +248,7 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
         y: [chartData2[1]],
         type: 'scatter',
         mode: 'lines',
-        line: { color: '#2D3131' },
+        line: { color: 'blue' },
       },
     ]);
   }

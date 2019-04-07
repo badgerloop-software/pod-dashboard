@@ -53,8 +53,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       const value = Number(document.getElementById(id).innerHTML); // gets value from table
       const fixedValue = value.toFixed(3);
       document.getElementById('header_value_1').innerHTML = fixedValue; // sets the value tp the box
-      let name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
-      name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalizes first letter
+      const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
       document.getElementById('header_label_1').innerHTML = name; // sets that as the label for the box
     }, RATE); // updates every 300 ms
     x += 1;
@@ -64,8 +63,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       const value = Number(document.getElementById(id).innerHTML);
       const fixedValue = value.toFixed(3);
       document.getElementById('header_value_2').innerHTML = fixedValue;
-      let name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
-      name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalizes first letter
+      const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_2').innerHTML = name;
     }, RATE);
     x += 1;
@@ -75,8 +73,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       const value = Number(document.getElementById(id).innerHTML);
       const fixedValue = value.toFixed(3);
       document.getElementById('header_value_3').innerHTML = fixedValue;
-      let name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
-      name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalizes first letter
+      const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_3').innerHTML = name;
     }, RATE);
     x += 1;
@@ -86,8 +83,7 @@ function clone(id) { // eslint-disable-line no-unused-vars
       const value = Number(document.getElementById(id).innerHTML);
       const fixedValue = value.toFixed(3);
       document.getElementById('header_value_4').innerHTML = fixedValue;
-      let name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
-      name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalizes first letter
+      const name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2');
       document.getElementById('header_label_4').innerHTML = name;
     }, RATE);
     x += 1;
@@ -118,6 +114,7 @@ Purpose: Dynamically styles cells and table based on values in range or not
 */
 const tableIDs = ['motion', 'braking', 'battery', 'motor']; // arrays for loop to iterate through
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
+const statusIDs = ['motion_status', 'braking_status', 'battery_status', 'motor_status'];
 
 setInterval(() => {
   let errorChecker = 0;
@@ -145,6 +142,13 @@ setInterval(() => {
       errorChecker = 0;
     }
     // dummy function for status, 2-10= connected, 1= disconected
+    const c = 2;
+    if (c > 1) {
+      document.getElementById(statusIDs[u]).className = 'connected';
+    }
+    if (c === 1) {
+      document.getElementById(statusIDs[u]).className = 'disconnected';
+    }
   }
 }, RATE);
 
