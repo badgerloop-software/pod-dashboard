@@ -42,6 +42,7 @@ function sendJSON(object) {
 
 function sendTestData() { // eslint-disable-line
   const testSocket = {
+    state: 1,
     motion: {
       stoppingDistance: getRandomValue(),
       position: getRandomValue(),
@@ -78,6 +79,7 @@ function sendTestData() { // eslint-disable-line
 
 function sendSpecificData(data) {
   let testSocket = {
+    state: 13,
     motion: {
       stoppingDistance: data,
       position: data,
@@ -122,7 +124,7 @@ function sendSinusodalData() { // eslint-disable-line no-unused-vars
 // The line where test data is sent. setInterval(function, ms)
 
 // Send random data
-setInterval(sendTestData, DATA_SEND_RATE);
+// setInterval(sendTestData, DATA_SEND_RATE);
 
 // Send Sinusodial Data
-// setInterval(sendSinusodalData, DATA_SEND_RATE);
+setInterval(sendSinusodalData, DATA_SEND_RATE);
