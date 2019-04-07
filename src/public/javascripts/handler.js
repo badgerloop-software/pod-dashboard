@@ -227,6 +227,7 @@ d.getElementById('secBrakeVentOff').addEventListener('click', () => {
 function setRecieve(state) {
   if (state) recieveIndicator1.className = 'statusGood';
   if (state) recieveIndicator2.className = 'statusGood';
+  if (state) d.getElementById('ageDisplay').className = 'statusGood';
   if (!state) recieveIndicator1.className = 'statusBad';
   if (!state) recieveIndicator2.className = 'statusBad';
   if (!state) d.getElementById('ageDisplay').innerHTML = 'N/A';
