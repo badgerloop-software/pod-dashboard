@@ -11,7 +11,7 @@ const cache = require('./cache');
 const dl = require('./public/javascripts/dynamicloading');
 
 const d = document;
-const smControlPanel = d.getElementsByClassName('gridStateMachine');
+const smControlPanel = d.getElementById('header3');
 const smButtons = smControlPanel.getElementsByTagName('button');
 const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
@@ -93,7 +93,7 @@ function makeListener(btn) {
 }
 
 // iterate through list of buttons and call makeListener
-for (let i = 0; i < smButtons.length(); i += 1) {
+for (let i = 0; i < smButtons.length; i += 1) {
   // archive data is an exception
   if (smButtons[i] === d.getElementById('archiveButton')) {
     di.archiveData();
