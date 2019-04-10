@@ -12,7 +12,7 @@ const dl = require('./public/javascripts/dynamicloading');
 
 const d = document;
 const smControlPanel = d.getElementsByClassName('gridStateMachine');
-const smButtons = d.getElementsByTagName('button');
+const smButtons = smControlPanel.getElementsByTagName('button');
 const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
@@ -93,23 +93,15 @@ function makeListener(btn) {
 }
 
 // iterate through list of buttons and call makeListener
-for(let i = 0; i < smButtons.length(); i += 1) {
+for (let i = 0; i < smButtons.length(); i += 1) {
   // archive data is an exception
-  if(smButtons[i] === d.getElementById('archiveButton')){
+  if (smButtons[i] === d.getElementById('archiveButton')) {
     di.archiveData();
-    console.log('archiving data')
-  } else {       // all other buttons
+    console.log('archiving data');
+  } else { // all other buttons
     makeListener(smButtons[i]);
   }
 }
-
-// Handles the archive button click
-//archiveButton.addEventListener('click', () => {
-  //di.archiveData();
-  //console.log('archiving data');
-//});
-
-
 
 function setRecieve(state) {
   if (state) recieveIndicator1.className = 'statusGood';
