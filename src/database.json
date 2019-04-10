@@ -917,6 +917,189 @@
           "min": 0,
           "max": 0.1
         },
+        "readyForPumpdown": {
+          "min": 0,
+          "max": 0.1
+        },
+        "pumpdown": {
+          "min": 0,
+          "max": 0.1
+        },
+        "readyForPropulsion": {
+          "min": 0,
+          "max": 0.1
+        },
+        "propulsion": {
+          "min": 0,
+          "max": 452
+        },
+        "braking": {
+          "min": 0,
+          "max": 0.1
+        },
+        "stopped": {
+          "min": 0,
+          "max": 0.1
+        },
+        "crawl": {
+          "min": 0,
+          "max": 200
+        },
+        "postRun": {
+          "min": 0,
+          "max": 0.1
+        },
+        "safeToApproach": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "busVoltage": {
+      "units": "V",
+      "limits": {
+        "powerOff": {
+          "min": 0,
+          "max": 0
+        },
+        "idle": {
+          "min": 0,
+          "max": 360
+        },
+        "readyForPumpdown": {
+          "min": 0,
+          "max": 360
+        },
+        "pumpdown": {
+          "min": 0,
+          "max": 360
+        },
+        "readyForPropulsion": {
+          "min": 0,
+          "max": 360
+        },
+        "propulsion": {
+          "min": 0,
+          "max": 360
+        },
+        "braking": {
+          "min": 0,
+          "max": 360
+        },
+        "stopped": {
+          "min": 0,
+          "max": 360
+        },
+        "crawl": {
+          "min": 0,
+          "max": 360
+        },
+        "postRun": {
+          "min": 0,
+          "max": 360
+        },
+        "safeToApproach": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "commandedTorque": {
+      "units": "Nm",
+      "limits": {
+        "powerOff": {
+          "min": 0,
+          "max": 0
+        },
+        "idle": {
+          "min": 0,
+          "max": 0
+        },
+        "readyForPumpdown": {
+          "min": 0,
+          "max": 0
+        },
+        "pumpdown": {
+          "min": 0,
+          "max": 0
+        },
+        "readyForPropulsion": {
+          "min": 0,
+          "max": 0
+        },
+        "propulsion": {
+          "min": 0,
+          "max": 90
+        },
+        "braking": {
+          "min": 0,
+          "max": 0
+        },
+        "stopped": {
+          "min": 0,
+          "max": 0
+        },
+        "crawl": {
+          "min": 0,
+          "max": 0
+        },
+        "postRun": {
+          "min": 0,
+          "max": 0
+        },
+        "safeToApproach": {
+          "min": 0,
+          "max": 0
+        }
+      }
+    },
+    "torqueFeedback": {
+      "units": "Nm",
+      "limits": {
+        "powerOff": {
+          "min": 0,
+          "max": 20
+        },
+        "idle": {
+          "min": 0,
+          "max": 20
+        },
+        "readyForPumpdown": {
+          "min": 0,
+          "max": 20
+        },
+        "pumpdown": {
+          "min": 0,
+          "max": 20
+        },
+        "readyForPropulsion": {
+          "min": 0,
+          "max": 20
+        },
+        "propulsion": {
+          "min": 0,
+          "max": 90
+        },
+        "braking": {
+          "min": -100,
+          "max": 0
+        },
+        "stopped": {
+          "min": 0,
+          "max": 1
+        },
+        "crawl": {
+          "min": 0,
+          "max": 40
+        },
+        "postRun": {
+          "min": 0,
+          "max": 20
+        },
+        "safeToApproach": {
+          "min": 0,
+          "max": 20
+        }
       }
     }
   }
