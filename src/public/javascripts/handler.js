@@ -86,7 +86,22 @@ function overrideState(num, stn) {
 
 // State Machine Control Panel Event Listeners
 
+function makeListener(btn) {
+  btn.addEventListener('click', (e) => {
+    overrideState(null, e.target.id);
+  });
+}
 
+// iterate through list of buttons and call makeListener
+for(let i = 0; i < smButtons.length(); i += 1) {
+  // archive data is an exception
+  if(smButtons[i] === d.getElementById('archiveButton')){
+    di.archiveData();
+    console.log('archiving data')
+  } else {       // all other buttons
+    makeListener(smButtons[i]);
+  }
+}
 
 // Handles the archive button click
 //archiveButton.addEventListener('click', () => {
