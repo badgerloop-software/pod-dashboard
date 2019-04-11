@@ -14,7 +14,7 @@
   <!-- Top Bar -->
   <div class="banner">
     <a class="left"><img src="public/images/logo.png" height="30px"></a>
-    <a id="title" class="left">Control Dashboard</a>
+    <a id="title" class="left">CONTROL DASHBOARD</a>
     <a id="banner-drop" class="right">
       <div class="banner_dropdown">
         <button class="banner_dropbtn">Change View</button>
@@ -100,68 +100,67 @@
     <!-- State Machine Control Panel -->
     <div id="header3" class="box">
       <div class="gridStateMachine">
-        <button id="powerOff" class="stateButton1">
+        <button id="powerOff" class="stateButton">
           <p>Power Off</p>
         </button>
         <button id="archiveButton" class="stateButton">
           <p>Archive Data</p>
         </button>
-        <button id="postRun" class="stateButton3Inactive">
+        <button id="postRun" class="stateButtonInactive">
           <p>Post Run</p>
         </button>
-        <button id="propulsionStart" class="stateButton5Inactive">
+        <button id="propulsionStart" class="stateButtonInactive">
           <p>Propulsion Start</p>
         </button>
-        <button id="preRunFault" class="stateButton6Inactive">
+        <button id="preRunFault" class="stateButtonInactive">
           <p>Pre Run Fault</p>
         </button>
-        <button id="primBrakeOn" class="stateButton7">
+        <button id="primBrakeOn" class="stateButton">
           <p>Prim. Brake On</p>
         </button>
-        <button id="primBrakeOff" class="stateButton7">
+        <button id="primBrakeOff" class="stateButton">
           <p>Prim. Brake Off</p>
         </button>
-
-        <button id="idle" class="stateButton2Inactive">
+        <button id="idle" class="stateButtonInactive">
           <p>Idle</p>
         </button>
-        <button id="ready" class="stateButton2Inactive">
+        <button id="ready" class="stateButtonInactive">
           <p>Ready</p>
         </button>
-        <button id="serviceLowSpeed" class="stateButton3Inactive">
+        <button id="serviceLowSpeed" class="stateButtonInactive">
           <p>Service Low Speed</p>
         </button>
-        <button id="propulsionDistanceSense" class="stateButton5Inactive">
+        <button id="propulsionDistanceSense" class="stateButtonInactive">
           <p>Prop - Dist Sense Active</p>
         </button>
-        <button id="duringRunFault" class="stateButton6Inactive">
+        <button id="duringRunFault" class="stateButtonInactive">
           <p>During Run Fault</p>
         </button>
-        <button id="secBrakeVentOn" class="stateButton9">
+        <button id="secBrakeVentOn" class="stateButton">
           <p>Sec. Brake Vent On</p>
         </button>
-        <button id="secBrakeVentOff" class="stateButton9">
+        <button id="secBrakeVentOff" class="stateButton">
           <p>Sec. Brake Vent Off</p>
         </button>
-        <button id="readyForPumpdown" class="stateButton4Inactive">
+        <button id="readyForPumpdown" class="stateButtonInactive">
           <p>Ready for Pumpdown</p>
         </button>
-        <button id="pumpdown" class="stateButton4Inactive">
+        <button id="pumpdown" class="stateButtonInactive">
           <p>Pumpdown</p>
         </button>
-        <button id="safeToApproach" class="stateButton3Inactive">
+        <button id="safeToApproach" class="stateButtonInactive">
           <p>Safe to Approach</p>
         </button>
-        <button id="brakingStart" class="stateButton5Inactive">
+        <button id="brakingStart" class="stateButtonInactive">
           <p>Braking</p>
         </button>
-        <button id="postRunFault" class="stateButton6Inactive">
+        <button id="postRunFault" class="stateButtonInactive">
           <p>Post Run Fault</p>
         </button>
-        <button id="hvEnable" class="stateButton8">
+        <button id="hvEnable" class="stateButton">
           <p>HV Enable</p>
         </button>
-        <button id="hvDisable" class="stateButton8">
+        <button id="hvDisable" class="stateButton">
           <p>HV Disable</p>
         </button>
       </div>
@@ -170,20 +169,26 @@
     <!-- Latency Indicator-->
     <div id="header4" class="box">
       <div id="header4Left">
-        <h1>Link Connection <br>and Latency</h1>
+        <h1>Link <br>Status</h1>
+      </div>
+      <div id="header4Middle">
+        <h4 class="connectionTitle">LV BeagleBone</h4>
+        <p id="connectionDot1" class="statusBad">●</p><br>
+        <h4 class="connectionTitle">HV BeagleBone</h4>
+        <p id="connectionDot2" class="statusBad">●</p>
       </div>
       <div id="header4Right">
         <div class="status">
           <img src="public/images/pod.png" id="podStatus">
-          <div id="statusConnection2">
-            <p class="link">----</p>
+          <div id="statusConnection1" class="">
+            <p id="link1" class="">---</p>
           </div>
           <div id="age">
-            <h5>Measured Latency</h5>
+            <h4>Latency</h4>
             <h1 id="ageDisplay">ms</h1>
           </div>
-          <div id="statusConnection2">
-            <p class="link">----</p>
+          <div id="statusConnection2" class="">
+            <p id="link2" class="">---</p>
           </div>
           <img src="public/images/macbook.png" id="hostStatus">
         </div>
@@ -203,7 +208,7 @@
     <!-- Motion Table -->
     <div id="motion_div" class="box ok">
       <div class="item-content">
-        <h1 style="display:inline;">Motion </h1>
+        <h1 style="display:inline;">MOTION </h1>
         <h2 id="motion_status" class="disconnected">
           <span2 style="display:inline;">
             <svg id="disconnected" viewBox="0 0 50 50">
@@ -226,7 +231,7 @@
     <!-- Braking Table -->
     <div id="braking_div" class="box ok">
       <div class="item-content">
-        <h1 style="display:inline;">Braking </h1>
+        <h1 style="display:inline;">BRAKING </h1>
         <h2 id="braking_status" class="disconnected">
           <span2 style="display:inline;">
             <svg id="disconnected" viewBox="0 0 50 50">
@@ -250,7 +255,7 @@
     <!-- Battery Table -->
     <div id="battery_pack_div" class="box ok">
       <div class="item-content">
-        <h1 style="display:inline;">Battery </h1>
+        <h1 style="display:inline;">BATTERY </h1>
         <h2 id="battery_status" class="disconnected">
           <span2 style="display:inline;">
             <svg id="disconnected" viewBox="0 0 50 50">
@@ -273,7 +278,7 @@
     <!-- Motor Table -->
     <div id="motor_div" class="box ok">
       <div class="item-content">
-        <h1 style="display:inline;">Motor </h1>
+        <h1 style="display:inline;">MOTOR </h1>
           <span2 style="display:inline;">
             <svg id="disconnected" viewBox="0 0 50 50">
               <path style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans" d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z" overflow="visible" font-family="Sans" />

@@ -234,7 +234,7 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   document.getElementById('podPort').value = consts.serverAddr.port;
   document.getElementById('scanningRate').value = consts.dataSendRate;
   document.getElementById('lvBoneIP').value = consts.lvBone.ip;
-  document.getElementById('lvBonePort').value = consts.hvBone.port;
-  document.getElementById('hvBoneIP').value = consts.lvBone.ip;
+  document.getElementById('lvBonePort').value = consts.lvBone.port;
+  document.getElementById('hvBoneIP').value = consts.hvBone.ip;
   document.getElementById('hvBonePort').value = consts.hvBone.port;
 }
