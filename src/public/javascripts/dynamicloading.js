@@ -154,16 +154,18 @@ function getStateName(stateNum) {
 
 function resetAllButtons() {
   document.getElementById('powerOff').className = 'stateButtonInactive';
-  document.getElementById('postRun').className = 'stateButtonInactive';
-  document.getElementById('propulsionStart').className = 'stateButtonInactive';
-  document.getElementById('preRunFault').className = 'stateButtonInactive';
   document.getElementById('idle').className = 'stateButtonInactive';
-  document.getElementById('duringRunFault').className = 'stateButtonInactive';
   document.getElementById('readyForPumpdown').className = 'stateButtonInactive';
   document.getElementById('pumpdown').className = 'stateButtonInactive';
-  document.getElementById('safeToApproach').className = 'stateButtonInactive';
+  document.getElementById('readyForPropulsion').className = 'stateButtonInactive';
+  document.getElementById('propulsionStart').className = 'stateButtonInactive';
   document.getElementById('brakingStart').className = 'stateButtonInactive';
+  document.getElementById('stopped').className = 'stateButtonInactive';
+  document.getElementById('crawl').className = 'stateButtonInactive';
   document.getElementById('postRunFault').className = 'stateButtonInactive';
+  document.getElementById('preRunFault').className = 'stateButtonInactive';
+  document.getElementById('duringRunFault').className = 'stateButtonInactive';
+  document.getElementById('safeToApproach').className = 'stateButtonInactive';
 }
 
 function setIndicator(state) {

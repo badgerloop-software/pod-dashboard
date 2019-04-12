@@ -26,14 +26,8 @@ udpServer.on('listening', () => {
 });
 
 udpServer.on('message', (message) => {
-  const recieved = JSON.parse(message);
-  module.exports.currentState = recieved.state;
-  delete recieved.state; // Remove state key
-  module.exports.inData = recieved;
-  // If in fault state emit to handler that the pod has faulted
-  if (recieved.state >= 11 && recieved.state <= 13) recievedEmitter.emit('fault');
-  // Emit to handler.js that data has been recieved
-  recievedEmitter.emit('dataIn');
+  const recieved = JSON.parse(message); // Turn String into JSON
+  recievedEmitter.emit('dataIn', recieved); // Send it to handler.js
 });
 
 udpServer.bind(PORT, HOST);

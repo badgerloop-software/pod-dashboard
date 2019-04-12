@@ -20,14 +20,8 @@ const recieveIndicator2 = d.getElementById('link2');
 let timeOld;
 
 // Data in recieved
-comms.on('dataIn', () => {
-  // Log it to be sure
-  console.log(client.inData);
-  // Tell the Data Interfacer to start sorting it
-  if (!(client.currentState >= 11 && client.currentState <= 13)) {
-    dl.switchState(client.currentState);
-  } else dl.setFault(client.currentState);
-  di.updateData(client.inData);
+comms.on('dataIn', (input) => {
+  di.normalizePacket(input);
 });
 
 // Update the Database and Render the latest entry
@@ -41,8 +35,6 @@ function updateData(group, sensor) {
   }
   t.innerHTML = String(stored[stored.length - 1]);
 }
-
-// Render command
 // Sets the latency counter
 function setAgeLabel(staleness) {
   d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
@@ -92,12 +84,18 @@ function makeListener(btn) {
   });
 }
 
+function makeArchiveListener(btn) {
+  btn.addEventListener('click', () => {
+    di.archiveData();
+    console.log('archiving data');
+  });
+}
+
 // iterate through list of buttons and call makeListener
 for (let i = 0; i < smButtons.length; i += 1) {
   // archive data is an exception
   if (smButtons[i] === d.getElementById('archiveButton')) {
-    di.archiveData();
-    console.log('archiving data');
+    makeArchiveListener(smButtons[i]);
   } else { // all other buttons
     makeListener(smButtons[i]);
   }

@@ -24,20 +24,40 @@ module.exports.createCache = function createCache() { // eslint-disable-line no-
 };
 
 module.exports.updateData = function updateData(dataIn) {
-  // Sort through the data and append the new values to their respective arrays in database.js
+  // Sort through the data and append the new values to their respective arrays in cache.js
+  // NormalizePacket -> [UpdateData] -> RenderData
   const groups = Object.keys(dataIn);
   groups.forEach((group) => {
     const sensors = Object.keys(dataIn[group]);
-    // console.log(i);
     sensors.forEach((sensor) => {
-      const input = Number(dataIn[group][sensor]);
-      const target = cache[group][sensor];
-      const temp = input.toFixed(5);
-      target.push(temp);
+      try {
+        const input = Number(dataIn[group][sensor]);
+        const target = cache[group][sensor];
+        const temp = input.toFixed(5);
+        target.push(temp);
+      } catch (error) {
+        console.error(`Error: Sensor ${sensor} in ${group} not found`);
+      }
     });
   });
   // Tell proto.js to render the data
   updater.emit('updateData');
+};
+
+module.exports.normalizePacket = function normalizePacket(input) {
+  // Read and remove anything from the packet that is not data
+  // [NormalizePacket] -> UpdateData -> RenderData
+  const { state } = input;
+  let fixedPacket = input;
+  console.info('Incomming Packet:');
+  console.info(input);
+  if (!(state >= 11 && state <= 13)) {
+    dl.switchState(state);
+  } else dl.setFault(state);
+  delete fixedPacket.state;
+
+  // Move packet to UpdateData
+  updateData(fixedPacket);
 };
 
 // Exporting
