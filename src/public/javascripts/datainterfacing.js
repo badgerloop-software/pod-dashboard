@@ -30,7 +30,7 @@ function calculate(input) {
   // NormalizePacket -> UpdateData -> [Calculations] -> RenderData
   let fixedPacket = input;
   // Take the Max of the three motor controller temp sensors and put the max in maxControllerTemp
-  fixedPacket.motor.maxControllerTemp = Math.max(input.motor.controllerBoardTemp, 
+  fixedPacket.motor.maxControllerTemp = Math.max(input.motor.controllerBoardTemp,
     input.motor.gateDriverBoardTemp, input.motorphaseAIGBTTemp);
   delete fixedPacket.motor.controllerBoardTemp;
   delete fixedPacket.motor.gateDriverBoardTemp;
@@ -38,7 +38,7 @@ function calculate(input) {
 
   // Send Updated packet to be rendered in handler.js
   packetHandler.emit('renderData');
-};
+}
 
 function updateData(dataIn) {
   // Sort through the data and append the new values to their respective arrays in cache.js

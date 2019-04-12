@@ -24,7 +24,8 @@ function createMinCol(name, group) {
   let col = document.createElement('td'); // Creates Element
   col.className = 'min'; // Assigns class
   col.id = `${name}Min`; // Assigns ID
-  col.innerHTML = String(renderable[group][name].limits.powerOff.min); // Fills box with correct value
+  // Fills box with correct value
+  col.innerHTML = String(renderable[group][name].limits.powerOff.min);
   return col;
 }
 
