@@ -7,8 +7,8 @@ const fs = require('fs');
 const storedData = require('../../database.json');
 let cache = require('../../cache');
 
-const updater = new events.EventEmitter();
-module.exports.updater = updater;
+const packetHandler = new events.EventEmitter();
+module.exports.packetHandler = packetHandler;
 
 // Creates cache based off of database.JSON
 module.exports.createCache = function createCache() { // eslint-disable-line no-unused-vars
@@ -36,12 +36,12 @@ module.exports.updateData = function updateData(dataIn) {
         const temp = input.toFixed(5);
         target.push(temp);
       } catch (error) {
-        console.error(`Error: Sensor ${sensor} in ${group} not found`);
+        console.error(`Error: Sensor ${sensor} in ${group} not found in cache`);
       }
     });
   });
-  // Tell proto.js to render the data
-  updater.emit('updateData');
+  // Tell handler.js to render the data
+  packetHandler.emit('renderData');
 };
 
 module.exports.normalizePacket = function normalizePacket(input) {
