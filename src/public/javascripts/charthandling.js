@@ -240,7 +240,7 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
       Plotly.extendTraces(lineChartTwo, update, traceArray2);
       if (xpos > 30) {
         Plotly.relayout(lineChartTwo, 'xaxis.range', [xpos - xmax, xpos]);
-      } 
+      }
       if (chartDataPrev2 === chartData2[0]) {
         noData2 = 1;
       } else {
