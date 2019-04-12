@@ -577,7 +577,7 @@ span2{
 #statusConnection1 {
   display: inline-block;
   vertical-align: middle;
-  color: green;
+  color: red;
   font-weight: 800;
 }
 #statusConnection2 {
