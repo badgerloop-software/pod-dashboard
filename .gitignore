@@ -250,3 +250,10 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/c,c++,node,java,linux,macos,windows
+
+# ignore exports folder
+/exports/*
+
+# except these
+!*/exports/Example.json
+!*/exports/README.MD

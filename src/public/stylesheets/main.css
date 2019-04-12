@@ -527,12 +527,13 @@ span2{
 #powerOff {
   background-color: #C10000; 
   color: white;
+  height: 168px;
 }
 #idle {
   background-color: #3C9159;
   color: white;
 }
-#postRunFault, #crawl {
+#preRunFault, #duringRunFault, #postRunFault, #crawl {
   background-color: #A84671;
   color: white;
 }
@@ -540,7 +541,11 @@ span2{
   background-color: #C66553;
   color: white;
 }
-#propulsionStart{
+#propulsion{
+  background-color: #C6A153;
+  color: white;
+}
+#readyForPropulsion{
   background-color: #C6A153;
   color: white;
 }

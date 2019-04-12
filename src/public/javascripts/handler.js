@@ -6,7 +6,6 @@ const client = require('./public/javascripts/communication');
 const di = require('./public/javascripts/datainterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
-const storedData = require('./database.json');
 const cache = require('./cache');
 const dl = require('./public/javascripts/dynamicloading');
 
@@ -20,18 +19,12 @@ const recieveIndicator2 = d.getElementById('link2');
 let timeOld;
 
 // Data in recieved
-comms.on('dataIn', () => {
-  // Log it to be sure
-  console.log(client.inData);
-  // Tell the Data Interfacer to start sorting it
-  if (!(client.currentState >= 11 && client.currentState <= 13)) {
-    dl.switchState(client.currentState);
-  } else dl.setFault(client.currentState);
-  di.updateData(client.inData);
+comms.on('dataIn', (input) => {
+  di.normalizePacket(input);
 });
 
 // Update the Database and Render the latest entry
-function updateData(group, sensor) {
+function renderData(group, sensor) {
   // Get numbers
   const t = d.getElementById(String(sensor));
   const stored = cache[group][sensor];
@@ -41,27 +34,26 @@ function updateData(group, sensor) {
   }
   t.innerHTML = String(stored[stored.length - 1]);
 }
-
-// Render command
 // Sets the latency counter
 function setAgeLabel(staleness) {
   d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
 }
 
-di.updater.on('updateData', () => {
+di.packetHandler.on('renderData', () => {
   const counter = new Date();
   let elapsedTime;
   const timeNew = counter.getMilliseconds();
-  const groups = Object.keys(storedData);
+  const renderable = di.findRenderable();
+  const groups = Object.keys(renderable);
   groups.forEach((group) => {
-    const sensors = Object.keys(storedData[group]);
+    const sensors = Object.keys(renderable[group]);
     sensors.forEach((sensor) => {
       // Check to see if that particular sensor is being rendered at the time
       try {
-        updateData(group, sensor);
+        renderData(group, sensor);
       } catch (error) {
         // If not, alert the user and move on
-        console.log(`Unreconized Sensor- ${sensor} -Skipping`);
+        console.error(`Error: Sensor ${sensor} in ${group} not rendered`);
       }
     });
   });
