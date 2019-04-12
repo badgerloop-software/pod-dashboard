@@ -24,7 +24,7 @@ comms.on('dataIn', (input) => {
 });
 
 // Update the Database and Render the latest entry
-function updateData(group, sensor) {
+function renderData(group, sensor) {
   // Get numbers
   const t = d.getElementById(String(sensor));
   const stored = cache[group][sensor];
@@ -50,7 +50,7 @@ di.packetHandler.on('renderData', () => {
     sensors.forEach((sensor) => {
       // Check to see if that particular sensor is being rendered at the time
       try {
-        updateData(group, sensor);
+        renderData(group, sensor);
       } catch (error) {
         // If not, alert the user and move on
         console.error(`Error: Sensor ${sensor} in ${group} not rendered`);

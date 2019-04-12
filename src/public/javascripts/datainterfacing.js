@@ -23,15 +23,24 @@ module.exports.createCache = function createCache() { // eslint-disable-line no-
   }
 };
 
-module.exports.calculate = function calculate(input) {
+
+function calculate(input) {
   // Any Calcuations that need to be done after RECORDING data
   // but prior to RENDERING should be done here
   // NormalizePacket -> UpdateData -> [Calculations] -> RenderData
   let fixedPacket = input;
   // Take the Max of the three motor controller temp sensors and put the max in maxControllerTemp
+  fixedPacket.motor.maxControllerTemp = Math.max(input.motor.controllerBoardTemp, 
+    input.motor.gateDriverBoardTemp, input.motorphaseAIGBTTemp);
+  delete fixedPacket.motor.controllerBoardTemp;
+  delete fixedPacket.motor.gateDriverBoardTemp;
+  delete fixedPacket.motor.controllerBoardTemp;
+
+  // Send Updated packet to be rendered in handler.js
+  packetHandler.emit('renderData');
 };
 
-module.exports.updateData = function updateData(dataIn) {
+function updateData(dataIn) {
   // Sort through the data and append the new values to their respective arrays in cache.js
   // NormalizePacket -> [UpdateData] -> Calculations -> RenderData
   const groups = Object.keys(dataIn);
@@ -48,9 +57,8 @@ module.exports.updateData = function updateData(dataIn) {
       }
     });
   });
-  // Tell handler.js to render the data
-  packetHandler.emit('renderData');
-};
+  calculate(dataIn);
+}
 
 module.exports.normalizePacket = function normalizePacket(input) {
   // Read and remove anything from the packet that is not data
