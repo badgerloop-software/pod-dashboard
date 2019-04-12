@@ -1004,7 +1004,7 @@
         }
       }
     },
-    "commandedTorque": {
+    "commandTorque": {
       "units": "Nm",
       "limits": {
         "powerOff": {
