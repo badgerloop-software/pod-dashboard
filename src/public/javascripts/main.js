@@ -122,20 +122,20 @@ const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
 setInterval(() => {
   let errorChecker = 0;
   for (let u = 0; u < 4; u += 1) {
-    const table = document.getElementById(tableIDs[u]); // creates table array
+    const table = document.getElementById(tableIDs[u]); // Calls table from array
     for (let r = 1, n = table.rows.length; r < n; r += 1) { // iterates through rows in given table
-      const min = parseFloat(table.rows[r].cells[1].innerHTML); // sets the min value to min
+      const min = parseFloat(table.rows[r].cells[1].innerHTML);
       const max = parseFloat(table.rows[r].cells[3].innerHTML);
-      const y = parseFloat(table.rows[r].cells[2].innerHTML); // sets the value to y
+      const y = parseFloat(table.rows[r].cells[2].innerHTML);
       if (y < min || y > max) { // checks if too low
-        table.rows[r].cells[2].style.backgroundColor = '#FC6962'; // makes red
+        table.rows[r].cells[2].style.backgroundColor = '#FC6962';
         errorChecker += 1; // adds to w, signifying that there is an error present in the table
       } else {
         table.rows[r].cells[2].style.backgroundColor = '#fff'; // else sets to white background
       }
     }
     if (errorChecker !== 0) { // if there was an error in any row during one run of the for loop,
-      // meaning w is not 0 as it was created as,
+      // meaning errorChecker is not 0 as it was created as,
       // then change the class of the div that tavble is in to 'error',
       // which will make the border color red
       document.getElementById(divIDs[u]).className = 'error';
@@ -145,7 +145,6 @@ setInterval(() => {
       document.getElementById(divIDs[u]).className = 'ok';
       errorChecker = 0;
     }
-    // dummy function for status, 2-10= connected, 1= disconected
   }
 }, RATE);
 
@@ -180,7 +179,6 @@ function dropdown(num) { // eslint-disable-line no-unused-vars
 function filterFunction(id) { // eslint-disable-line no-unused-vars
   // determines which dropdown (1,2, or 3) is being called
   const inputnum = String(`dropdownInput${id}`);
-  // filter function
   let i;
   const input = document.getElementById(inputnum);
   const filter = input.value.toUpperCase();
@@ -197,7 +195,7 @@ function filterFunction(id) { // eslint-disable-line no-unused-vars
 
 /*
 Settings form
-Purpose:
+Purpose: Read and Write to Config File
 */
 
 // Submits Entries to File
