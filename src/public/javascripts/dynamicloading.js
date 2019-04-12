@@ -158,9 +158,6 @@ function resetAllButtons() {
   document.getElementById('propulsionStart').className = 'stateButtonInactive';
   document.getElementById('preRunFault').className = 'stateButtonInactive';
   document.getElementById('idle').className = 'stateButtonInactive';
-  document.getElementById('ready').className = 'stateButtonInactive';
-  document.getElementById('serviceLowSpeed').className = 'stateButtonInactive';
-  document.getElementById('propulsionDistanceSense').className = 'stateButtonInactive';
   document.getElementById('duringRunFault').className = 'stateButtonInactive';
   document.getElementById('readyForPumpdown').className = 'stateButtonInactive';
   document.getElementById('pumpdown').className = 'stateButtonInactive';
