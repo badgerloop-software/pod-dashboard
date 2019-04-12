@@ -505,6 +505,7 @@ span2{
   height: 80px;
   font-weight: 800;
   color: #ADADAD;
+  background-color: grey !important;
 }
 
 /* individual button styles */
