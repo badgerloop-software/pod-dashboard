@@ -528,11 +528,11 @@ span2{
   background-color: #C10000; 
   color: white;
 }
-#idle, #ready {
+#idle {
   background-color: #3C9159;
   color: white;
 }
-#serviceLowSpeed, #safeToApproach, #postRun {
+#postRunFault, #crawl {
   background-color: #A84671;
   color: white;
 }
@@ -540,12 +540,16 @@ span2{
   background-color: #C66553;
   color: white;
 }
-#propulsionStart, #propulsionDistanceSense, #brakingStart{
+#propulsionStart{
   background-color: #C6A153;
   color: white;
 }
-#preRunFault, #duringRunFault, #postRunFault {
-  background-color: #C10000;
+#brakingStart, #stopped{
+  background-color: #34495E;
+  color: white;
+}
+#safeToApproach {
+  background-color: #3C9159;
   color: white;
 }
 #archiveButton {
