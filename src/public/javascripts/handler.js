@@ -40,7 +40,7 @@ function setAgeLabel(staleness) {
   d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
 }
 
-di.updater.on('updateData', () => {
+di.packetHandler.on('renderData', () => {
   const counter = new Date();
   let elapsedTime;
   const timeNew = counter.getMilliseconds();
@@ -53,7 +53,7 @@ di.updater.on('updateData', () => {
         updateData(group, sensor);
       } catch (error) {
         // If not, alert the user and move on
-        console.log(`Unreconized Sensor- ${sensor} -Skipping`);
+        console.error(`Error: Sensor ${sensor} in ${group} not rendered`);
       }
     });
   });
