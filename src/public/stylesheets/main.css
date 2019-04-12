@@ -505,7 +505,6 @@ span2{
   height: 80px;
   font-weight: 800;
   color: #ADADAD;
-  background-color: grey !important;
 }
 
 /* individual button styles */
@@ -528,19 +527,11 @@ span2{
   background-color: #C10000; 
   color: white;
 }
-#crawl {
-  background-color: #3C9159; 
-  color: white;
-}
-#stopped {
-  background-color: #A84671; 
-  color: white;
-}
 #idle {
   background-color: #3C9159;
   color: white;
 }
-#safeToApproach, #postRun {
+#postRunFault, #crawl {
   background-color: #A84671;
   color: white;
 }
@@ -548,12 +539,16 @@ span2{
   background-color: #C66553;
   color: white;
 }
-#propulsionStart, #brakingStart{
+#propulsionStart{
   background-color: #C6A153;
   color: white;
 }
-#preRunFault, #duringRunFault, #postRunFault {
-  background-color: #C10000;
+#brakingStart, #stopped{
+  background-color: #34495E;
+  color: white;
+}
+#safeToApproach {
+  background-color: #3C9159;
   color: white;
 }
 #archiveButton {
