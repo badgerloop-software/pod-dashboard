@@ -4,6 +4,9 @@ Purpose: Create, fill, and clear charts using Plotly.js
 */
 
 // global variable initilization for chart execution
+noData1 = 0;
+noData2 = 0;
+
 xpos = 0;
 chartState1 = [0, 0];
 chartTDID1 = ['', ''];
@@ -53,6 +56,20 @@ function generateBlankChart(id, title, chartType) { // eslint-disable-line no-un
   );
 }
 
+// function to remove all traces from all charts, resets global variables
+function removeTraces() { // eslint-disable-line no-unused-vars
+  chartState1 = [0, 0];
+  chartState2 = [0, 0];
+  chartTDID1 = ['', ''];
+  chartTDID2 = ['', ''];
+  traceArray1 = [0];
+  traceArray2 = [0];
+  numTraces1 = 0;
+  numTraces2 = 0;
+  chartTitles1 = ['', ''];
+  chartTitles2 = ['', ''];
+}
+
 // contains all functions to add single and double traces to line chart one
 function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-vars
   let update;
@@ -84,15 +101,17 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
 
   // extends line chart one traces at each time step
   function getDataAtInterval() { // eslint-disable-line no-unused-vars
+    chartDataPrev1 = -1000;
     setInterval(() => {
       xpos += sampleRate / 1000;
       getData();
-      if (numTraces1 === 1) {
+      if (numTraces1 === 1 && !noData1) {
         update = {
           x: [[xpos]],
           y: [[chartData1[0]]],
         };
-      } else if (numTraces1 === 2) {
+        Plotly.extendTraces(lineChartOne, update, traceArray1);
+      } else if (numTraces1 === 2 && !noData1) {
         update = {
           x: [[xpos], [xpos]],
           y: [[chartData1[0]], [chartData1[1]]],
@@ -102,6 +121,12 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
       if (xpos > 30) {
         Plotly.relayout(lineChartOne, 'xaxis.range', [xpos - xmax, xpos]);
       }
+      if (chartDataPrev1 === chartData1[0]) {
+        noData1 = 1;
+      } else {
+        noData1 = 0;
+      }
+      chartDataPrev1 = chartData1[0];
     }, sampleRate);
   }
 
@@ -194,17 +219,19 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
 
   // extends line chart two traces at each time step
   function getDataAtInterval() { // eslint-disable-line no-unused-vars
+    chartDataPrev2 = -1000;
     setInterval(() => {
       if (chartFirstCreation1 === 0) {
         xpos += sampleRate / 1000;
       }
       getData();
-      if (numTraces2 === 1) {
+      if (numTraces2 === 1 && !noData2) {
         update = {
           x: [[xpos]],
           y: [[chartData2[0]]],
         };
-      } else if (numTraces2 === 2) {
+        Plotly.extendTraces(lineChartTwo, update, traceArray2);
+      } else if (numTraces2 === 2 && !noData2) {
         update = {
           x: [[xpos], [xpos]],
           y: [[chartData2[0]], [chartData2[1]]],
@@ -214,6 +241,12 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
       if (xpos > 30) {
         Plotly.relayout(lineChartTwo, 'xaxis.range', [xpos - xmax, xpos]);
       }
+      if (chartDataPrev2 === chartData2[0]) {
+        noData2 = 1;
+      } else {
+        noData2 = 0;
+      }
+      chartDataPrev2 = chartData2[0];
     }, sampleRate);
   }
 
@@ -273,18 +306,4 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
     addTrace();
     chartState2[1] = 1;
   }
-}
-
-// function to remove all traces from all charts, resets global variables
-function removeTraces() { // eslint-disable-line no-unused-vars
-  chartState1 = [0, 0];
-  chartState2 = [0, 0];
-  chartTDID1 = ['', ''];
-  chartTDID2 = ['', ''];
-  traceArray1 = [0];
-  traceArray2 = [0];
-  numTraces1 = 0;
-  numTraces2 = 0;
-  chartTitles1 = ['', ''];
-  chartTitles2 = ['', ''];
 }
