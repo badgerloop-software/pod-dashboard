@@ -1457,6 +1457,56 @@
           "max": 20
         }
       }
-    }
+    },
+    "lowVoltageSystem": {
+      "units": "V",,
+      "show": false,
+      "limits": {
+        "powerOff": {
+          "min": 0,
+          "max": 0
+        },
+        "idle": {
+          "min": 10,
+          "max": 14
+        },
+        "readyForPumpdown": {
+          "min": 10,
+          "max": 14
+        },
+        "pumpdown": {
+          "min": 10,
+          "max": 14
+        },
+        "readyForPropulsion": {
+          "min": 10,
+          "max": 14
+        },
+        "propulsion": {
+          "min": 10,
+          "max": 14
+        },
+        "braking": {
+          "min": 10,
+          "max": 14
+        },
+        "stopped": {
+          "min": 10,
+          "max": 14
+        },
+        "crawl": {
+          "min": 10,
+          "max": 14
+        },
+        "postRun": {
+          "min": 10,
+          "max": 14
+        },
+        "safeToApproach": {
+          "min": 10,
+          "max": 14
+        }
+      }
+}
   }
 }
