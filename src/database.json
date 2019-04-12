@@ -409,12 +409,48 @@
       "show": true,
       "limits": {
         "powerOff": {
-          "max": 321,
-          "min": 123
+          "min": 0,
+          "max": 16
         },
-        "powerOn": {
-          "max": 543,
-          "min": 210
+        "idle": {
+          "min": 0,
+          "max": 16
+        },
+        "readyForPumpdown": {
+          "min": 0,
+          "max": 16
+        },
+        "pumpdown": {
+          "min": 0,
+          "max": 16
+        },
+        "readyForPropulsion": {
+          "min": 0,
+          "max": 16
+        },
+        "propulsion": {
+          "min": 0,
+          "max": 16
+        },
+        "braking": {
+          "min": 0,
+          "max": 16
+        },
+        "stopped": {
+          "min": 0,
+          "max": 16
+        },
+        "crawl": {
+          "min": 0,
+          "max": 16
+        },
+        "postRun": {
+          "min": 0,
+          "max": 16
+        },
+        "safeToApproach": {
+          "min": 0,
+          "max": 16
         }
       }
     },
@@ -423,12 +459,48 @@
       "show": true,
       "limits": {
         "powerOff": {
-          "max": 321,
-          "min": 123
+          "min": 0,
+          "max": 16
         },
-        "powerOn": {
-          "max": 543,
-          "min": 210
+        "idle": {
+          "min": 0,
+          "max": 16
+        },
+        "readyForPumpdown": {
+          "min": 0,
+          "max": 16
+        },
+        "pumpdown": {
+          "min": 0,
+          "max": 16
+        },
+        "readyForPropulsion": {
+          "min": 0,
+          "max": 16
+        },
+        "propulsion": {
+          "min": 0,
+          "max": 16
+        },
+        "braking": {
+          "min": 0,
+          "max": 16
+        },
+        "stopped": {
+          "min": 0,
+          "max": 16
+        },
+        "crawl": {
+          "min": 0,
+          "max": 16
+        },
+        "postRun": {
+          "min": 0,
+          "max": 16
+        },
+        "safeToApproach": {
+          "min": 0,
+          "max": 16
         }
       }
     },
@@ -437,12 +509,48 @@
       "show": true,
       "limits": {
         "powerOff": {
-          "max": 321,
-          "min": 123
+          "min": 0,
+          "max": 16
         },
-        "powerOn": {
-          "max": 543,
-          "min": 210
+        "idle": {
+          "min": 0,
+          "max": 16
+        },
+        "readyForPumpdown": {
+          "min": 0,
+          "max": 16
+        },
+        "pumpdown": {
+          "min": 0,
+          "max": 16
+        },
+        "readyForPropulsion": {
+          "min": 0,
+          "max": 16
+        },
+        "propulsion": {
+          "min": 0,
+          "max": 16
+        },
+        "braking": {
+          "min": 0,
+          "max": 16
+        },
+        "stopped": {
+          "min": 0,
+          "max": 16
+        },
+        "crawl": {
+          "min": 0,
+          "max": 16
+        },
+        "postRun": {
+          "min": 0,
+          "max": 16
+        },
+        "safeToApproach": {
+          "min": 0,
+          "max": 16
         }
       }
     },
@@ -451,12 +559,48 @@
       "show": true,
       "limits": {
         "powerOff": {
-          "max": 321,
-          "min": 123
+          "min": 0,
+          "max": 16
         },
-        "powerOn": {
-          "max": 543,
-          "min": 210
+        "idle": {
+          "min": 0,
+          "max": 16
+        },
+        "readyForPumpdown": {
+          "min": 0,
+          "max": 16
+        },
+        "pumpdown": {
+          "min": 0,
+          "max": 16
+        },
+        "readyForPropulsion": {
+          "min": 0,
+          "max": 16
+        },
+        "propulsion": {
+          "min": 0,
+          "max": 16
+        },
+        "braking": {
+          "min": 0,
+          "max": 16
+        },
+        "stopped": {
+          "min": 0,
+          "max": 16
+        },
+        "crawl": {
+          "min": 0,
+          "max": 16
+        },
+        "postRun": {
+          "min": 0,
+          "max": 16
+        },
+        "safeToApproach": {
+          "min": 0,
+          "max": 16
         }
       }
     },
@@ -465,12 +609,48 @@
       "show": true,
       "limits": {
         "powerOff": {
-          "max": 321,
-          "min": 123
+          "min": 0,
+          "max": 16
         },
-        "powerOn": {
-          "max": 543,
-          "min": 210
+        "idle": {
+          "min": 0,
+          "max": 16
+        },
+        "readyForPumpdown": {
+          "min": 0,
+          "max": 16
+        },
+        "pumpdown": {
+          "min": 0,
+          "max": 16
+        },
+        "readyForPropulsion": {
+          "min": 0,
+          "max": 16
+        },
+        "propulsion": {
+          "min": 0,
+          "max": 16
+        },
+        "braking": {
+          "min": 0,
+          "max": 16
+        },
+        "stopped": {
+          "min": 0,
+          "max": 16
+        },
+        "crawl": {
+          "min": 0,
+          "max": 16
+        },
+        "postRun": {
+          "min": 0,
+          "max": 16
+        },
+        "safeToApproach": {
+          "min": 0,
+          "max": 16
         }
       }
     }
@@ -755,6 +935,156 @@
         "propulsion": {
           "min": 10,
           "max": 50
+        },
+        "braking": {
+          "min": 10,
+          "max": 87.5
+        },
+        "stopped": {
+          "min": 10,
+          "max": 87.5
+        },
+        "crawl": {
+          "min": 10,
+          "max": 87.5
+        },
+        "postRun": {
+          "min": 10,
+          "max": 87.5
+        },
+        "safeToApproach": {
+          "min": 10,
+          "max": 87.5
+        }
+      }
+    },
+    "phaseAIGBTTemp": {
+      "units": "C",
+      "show": false,
+      "limits": {
+        "powerOff": {
+          "min": 10,
+          "max": 50
+        },
+        "idle": {
+          "min": 10,
+          "max": 50
+        },
+        "readyForPumpdown": {
+          "min": 10,
+          "max": 50
+        },
+        "pumpdown": {
+          "min": 10,
+          "max": 50
+        },
+        "readyForPropulsion": {
+          "min": 10,
+          "max": 50
+        },
+        "propulsion": {
+          "min": 10,
+          "max": 100
+        },
+        "braking": {
+          "min": 10,
+          "max": 100
+        },
+        "stopped": {
+          "min": 10,
+          "max": 100
+        },
+        "crawl": {
+          "min": 10,
+          "max": 100
+        },
+        "postRun": {
+          "min": 10,
+          "max": 100
+        },
+        "safeToApproach": {
+          "min": 10,
+          "max": 100
+        }
+      }
+    },
+    "gateDriverBoardTemp": {
+      "units": "C",
+      "show": false,
+      "limits": {
+        "powerOff": {
+          "min": 10,
+          "max": 50
+        },
+        "idle": {
+          "min": 10,
+          "max": 50
+        },
+        "readyForPumpdown": {
+          "min": 10,
+          "max": 50
+        },
+        "pumpdown": {
+          "min": 10,
+          "max": 50
+        },
+        "readyForPropulsion": {
+          "min": 10,
+          "max": 100
+        },
+        "propulsion": {
+          "min": 10,
+          "max": 100
+        },
+        "braking": {
+          "min": 10,
+          "max": 100
+        },
+        "stopped": {
+          "min": 10,
+          "max": 100
+        },
+        "crawl": {
+          "min": 10,
+          "max": 100
+        },
+        "postRun": {
+          "min": 10,
+          "max": 100
+        },
+        "safeToApproach": {
+          "min": 10,
+          "max": 100
+        }
+      }
+    },
+    "controlBoardTemp": {
+      "units": "C",
+      "show": false,
+      "limits": {
+        "powerOff": {
+          "min": 10,
+          "max": 50
+        },
+        "idle": {
+          "min": 10,
+          "max": 50
+        },
+        "readyForPumpdown": {
+          "min": 10,
+          "max": 87.5
+        },
+        "pumpdown": {
+          "min": 10,
+          "max": 87.5
+        },
+        "readyForPropulsion": {
+          "min": 10,
+          "max": 87.5
+        },
+        "propulsion": {
+          "min": 10,
+          "max": 87.5
         },
         "braking": {
           "min": 10,

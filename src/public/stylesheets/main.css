@@ -541,7 +541,11 @@ span2{
   background-color: #C66553;
   color: white;
 }
-#propulsionStart{
+#propulsion{
+  background-color: #C6A153;
+  color: white;
+}
+#readyForPropulsion{
   background-color: #C6A153;
   color: white;
 }

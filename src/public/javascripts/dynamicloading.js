@@ -20,10 +20,11 @@ function createHeaderCol(name, group, units) {
 
 
 function createMinCol(name, group) {
+  let renderable = di.findRenderable();
   let col = document.createElement('td'); // Creates Element
   col.className = 'min'; // Assigns class
   col.id = `${name}Min`; // Assigns ID
-  col.innerHTML = String(database[group][name].limits.powerOff.min); // Fills box with correct value
+  col.innerHTML = String(renderable[group][name].limits.powerOff.min); // Fills box with correct value
   return col;
 }
 
@@ -34,10 +35,11 @@ function createActualCol(name) {
   return col;
 }
 function createMaxCol(name, group) {
+  let renderable = di.findRenderable();
   let col = document.createElement('td');
   col.className = 'max';
   col.id = `${name}Max`;
-  col.innerHTML = `${database[group][name].limits.powerOff.max}`;
+  col.innerHTML = `${renderable[group][name].limits.powerOff.max}`;
   return col;
 }
 
@@ -63,7 +65,8 @@ function createRow(name, group, units) { // eslint-disable-line no-unused-vars
 
 // Uses above functions to fill a table with rows
 function fillTable(table) { // eslint-disable-line
-  let currentSystem = database[table];
+  let renderable = di.findRenderable();
+  let currentSystem = renderable[table];
   sensors = Object.keys(currentSystem); // Create an array with all sensors in the subsystem
 
   sensors.forEach((sensor) => {
@@ -73,7 +76,8 @@ function fillTable(table) { // eslint-disable-line
 
 // Uses fillTable to fill every table
 module.exports.fillAllTables = function fillAllTables() { // eslint-disable-line
-  let subsystems = Object.keys(database); // Create array of each subsystem
+  let renderable = di.findRenderable();
+  let subsystems = Object.keys(renderable); // Create array of each subsystem
   subsystems.forEach((subsystem) => {
     fillTable(`${subsystem}`); // For each subsystem create a table
   });
@@ -98,22 +102,27 @@ function setMaxCell(sensor, value) {
 }
 
 function fillRowBounds(subsystem, sensor, state) {
-  let stored = database[subsystem][sensor].limits[state];
+  let renderable = di.findRenderable();
+  let stored = renderable[subsystem][sensor].limits[state];
   setMinCell(sensor, stored.min);
   setMaxCell(sensor, stored.max);
 }
 
 function fillTableBounds(subsystem, state) {
-  sensors = Object.keys(database[subsystem]);
+  let renderable = di.findRenderable();
+  sensors = Object.keys(renderable[subsystem]);
   sensors.forEach((sensor) => {
     fillRowBounds(subsystem, sensor, state);
   });
 }
 
 function fillAllBounds(state) { // eslint-disable-line no-unused-vars
-  subsystems = Object.keys(database);
+  let renderable = di.findRenderable();
+  subsystems = Object.keys(renderable);
   subsystems.forEach((system) => {
+    // console.log(`Starting ${system}`);
     fillTableBounds(system, state);
+    // console.log(`Finised ${system}`);
   });
 }
 
@@ -158,7 +167,7 @@ function resetAllButtons() {
   document.getElementById('readyForPumpdown').className = 'stateButtonInactive';
   document.getElementById('pumpdown').className = 'stateButtonInactive';
   document.getElementById('readyForPropulsion').className = 'stateButtonInactive';
-  document.getElementById('propulsionStart').className = 'stateButtonInactive';
+  document.getElementById('propulsion').className = 'stateButtonInactive';
   document.getElementById('brakingStart').className = 'stateButtonInactive';
   document.getElementById('stopped').className = 'stateButtonInactive';
   document.getElementById('crawl').className = 'stateButtonInactive';

@@ -6,7 +6,6 @@ const client = require('./public/javascripts/communication');
 const di = require('./public/javascripts/datainterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
-const storedData = require('./database.json');
 const cache = require('./cache');
 const dl = require('./public/javascripts/dynamicloading');
 
