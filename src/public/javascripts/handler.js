@@ -92,12 +92,18 @@ function makeListener(btn) {
   });
 }
 
+function makeArchiveListener(btn) {
+  btn.addEventListener('click', () => {
+    di.archiveData();
+    console.log('archiving data');
+  });
+}
+
 // iterate through list of buttons and call makeListener
 for (let i = 0; i < smButtons.length; i += 1) {
   // archive data is an exception
   if (smButtons[i] === d.getElementById('archiveButton')) {
-    di.archiveData();
-    console.log('archiving data');
+    makeArchiveListener(smButtons[i]);
   } else { // all other buttons
     makeListener(smButtons[i]);
   }
@@ -187,7 +193,7 @@ function podConnectionCheck() {
   checkTransmit();
 }
 
-setInterval(podConnectionCheck, 5000);
+setInterval(podConnectionCheck, 2000);
 
 function init() {
   di.createCache();
