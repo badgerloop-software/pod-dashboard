@@ -124,9 +124,10 @@ setInterval(() => {
   for (let u = 0; u < 4; u += 1) {
     const table = document.getElementById(tableIDs[u]); // creates table array
     for (let r = 1, n = table.rows.length; r < n; r += 1) { // iterates through rows in given table
-      const min = parseInt(table.rows[r].cells[1].innerHTML, 10); // sets the min value to min
-      const y = parseInt(table.rows[r].cells[2].innerHTML, 10); // sets the value to y
-      if (y < min) { // checks if too low
+      const min = parseFloat(table.rows[r].cells[1].innerHTML); // sets the min value to min
+      const max = parseFloat(table.rows[r].cells[3].innerHTML);
+      const y = parseFloat(table.rows[r].cells[2].innerHTML); // sets the value to y
+      if (y < min || y > max) { // checks if too low
         table.rows[r].cells[2].style.backgroundColor = '#FC6962'; // makes red
         errorChecker += 1; // adds to w, signifying that there is an error present in the table
       } else {
