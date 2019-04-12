@@ -69,9 +69,14 @@ function sendTestData() { // eslint-disable-line
     },
     motor: {
       commandTorque: getRandomValue(),
-      actualTorque: getRandomValue(),
+      torqueFeedback: getRandomValue(),
       motorSpeed: getRandomValue(),
       motorTemp: getRandomValue(),
+      phaseACurrent: getRandomValue(),
+      busCurrent: getRandomValue(),
+      busVoltage: getRandomValue(),
+      lowVoltageSystem: getRandomValue(),
+      maxControllerTemp: getRandomValue(),
     },
   };
   sendJSON(testSocket);
@@ -106,9 +111,14 @@ function sendSpecificData(data) {
     },
     motor: {
       commandTorque: data,
-      actualTorque: data,
+      torqueFeedback: data,
       motorSpeed: data,
       motorTemp: data,
+      phaseACurrent: data,
+      busCurrent: data,
+      busVoltage: data,
+      lowVoltageSystem: data,
+      maxControllerTemp: data,
     },
   };
   sendJSON(testSocket);
