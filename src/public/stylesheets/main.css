@@ -528,6 +528,14 @@ span2{
   background-color: #C10000; 
   color: white;
 }
+#crawl {
+  background-color: #3C9159; 
+  color: white;
+}
+#stopped {
+  background-color: #A84671; 
+  color: white;
+}
 #idle {
   background-color: #3C9159;
   color: white;
