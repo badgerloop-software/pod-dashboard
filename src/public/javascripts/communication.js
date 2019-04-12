@@ -27,7 +27,11 @@ udpServer.on('listening', () => {
 
 udpServer.on('message', (message) => {
   const recieved = JSON.parse(message);
+  module.exports.currentState = recieved.state;
+  delete recieved.state; // Remove state key
   module.exports.inData = recieved;
+  // If in fault state emit to handler that the pod has faulted
+  if (recieved.state >= 11 && recieved.state <= 13) recievedEmitter.emit('fault');
   // Emit to handler.js that data has been recieved
   recievedEmitter.emit('dataIn');
 });
@@ -47,21 +51,26 @@ function sendPacket(ip, port, msg) {
     console.log(`Recieved: ${e}`);
   });
 
+  tcpSender.on('error', (e) => {
+    console.error(e); // Commented out for dev without beaglebone connected
+    recievedEmitter.emit('Lost', ip);
+  });
+
   tcpSender.on('close', () => {
-    console.log('Connection Closed');
+    // console.log('Connection Closed'); //Commented out for dev without beaglebone connected
   });
 }
 
 module.exports.sendPacket = sendPacket;
 
 function sendLVCommand(msg) {
-  sendPacket(LV_BONE_IP, LV_BONE_PORT, msg);
+  return sendPacket(LV_BONE_IP, LV_BONE_PORT, msg);
 }
 
 module.exports.sendLVCommand = sendLVCommand;
 
 function sendHVCommand(msg) {
-  sendPacket(HV_BONE_IP, HV_BONE_PORT, msg);
+  return sendPacket(HV_BONE_IP, HV_BONE_PORT, msg);
 }
 
 module.exports.sendHVCommand = sendHVCommand;
@@ -84,4 +93,16 @@ module.exports.sendPropulse = function sendPropulse() {
 
 module.exports.sendEBrake = function sendEBrake() {
   sendHVCommand('emergencyBrake');
+};
+
+module.exports.sendOverride = function sendOverride(state) {
+  sendHVCommand(`overrride${state}`);
+};
+
+module.exports.sendLVPing = function sendLVPing() {
+  sendLVCommand('ping');
+};
+
+module.exports.sendHVPing = function sendHVPing() {
+  sendHVCommand('ping');
 };

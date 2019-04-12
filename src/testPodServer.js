@@ -42,6 +42,7 @@ function sendJSON(object) {
 
 function sendTestData() { // eslint-disable-line
   const testSocket = {
+    state: 1,
     motion: {
       stoppingDistance: getRandomValue(),
       position: getRandomValue(),
@@ -53,11 +54,8 @@ function sendTestData() { // eslint-disable-line
       packVoltage: getRandomValue(),
       packCurrent: getRandomValue(),
       packSOC: getRandomValue(),
-      packAH: getRandomValue(),
       cellMaxVoltage: getRandomValue(),
-      cellMinVoltage: getRandomValue(),
-      highTemp: getRandomValue(),
-      lowTemp: getRandomValue(),
+      cellTemp: getRandomValue(),
     },
     braking: {
       secondaryTank: getRandomValue(),
@@ -71,9 +69,14 @@ function sendTestData() { // eslint-disable-line
     },
     motor: {
       commandTorque: getRandomValue(),
-      actualTorque: getRandomValue(),
+      torqueFeedback: getRandomValue(),
       motorSpeed: getRandomValue(),
       motorTemp: getRandomValue(),
+      phaseACurrent: getRandomValue(),
+      busCurrent: getRandomValue(),
+      busVoltage: getRandomValue(),
+      lowVoltageSystem: getRandomValue(),
+      maxControllerTemp: getRandomValue(),
     },
   };
   sendJSON(testSocket);
@@ -81,6 +84,7 @@ function sendTestData() { // eslint-disable-line
 
 function sendSpecificData(data) {
   let testSocket = {
+    state: 13,
     motion: {
       stoppingDistance: data,
       position: data,
@@ -92,11 +96,8 @@ function sendSpecificData(data) {
       packVoltage: data,
       packCurrent: data,
       packSOC: data,
-      packAH: data,
       cellMaxVoltage: data,
-      cellMinVoltage: data,
-      highTemp: data,
-      lowTemp: data,
+      cellTemp: data,
     },
     braking: {
       secondaryTank: data,
@@ -110,15 +111,20 @@ function sendSpecificData(data) {
     },
     motor: {
       commandTorque: data,
-      actualTorque: data,
+      torqueFeedback: data,
       motorSpeed: data,
       motorTemp: data,
+      phaseACurrent: data,
+      busCurrent: data,
+      busVoltage: data,
+      lowVoltageSystem: data,
+      maxControllerTemp: data,
     },
   };
   sendJSON(testSocket);
 }
 
-function sendSinusodalData() {
+function sendSinusodalData() { // eslint-disable-line no-unused-vars
   let increase = Math.PI * 2 / 100;
   let y = Math.sin(counter) / 2 + 0.5;
   sendSpecificData(y);
