@@ -1459,7 +1459,7 @@
       }
     },
     "lowVoltageSystem": {
-      "units": "V",,
+      "units": "V",
       "show": false,
       "limits": {
         "powerOff": {
