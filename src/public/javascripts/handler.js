@@ -44,9 +44,10 @@ di.packetHandler.on('renderData', () => {
   const counter = new Date();
   let elapsedTime;
   const timeNew = counter.getMilliseconds();
-  const groups = Object.keys(storedData);
+  const renderable = di.findRenderable();
+  const groups = Object.keys(renderable);
   groups.forEach((group) => {
-    const sensors = Object.keys(storedData[group]);
+    const sensors = Object.keys(renderable[group]);
     sensors.forEach((sensor) => {
       // Check to see if that particular sensor is being rendered at the time
       try {

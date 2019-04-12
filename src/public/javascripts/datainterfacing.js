@@ -60,6 +60,19 @@ module.exports.normalizePacket = function normalizePacket(input) {
   updateData(fixedPacket);
 };
 
+module.exports.findRenderable = function findRenderable() {
+  let renderable = storedData;
+  let subsystems = Object.keys(renderable);
+  subsystems.forEach((subsystem) => {
+    sensors = Object.keys(renderable[subsystem]);
+    sensors.forEach((sensor) => {
+      let currentLocaton = renderable[subsystem][sensor];
+      if (!currentLocaton.show) delete renderable[subsystem][sensor];
+    });
+  });
+  return renderable;
+};
+
 // Exporting
 function createID() {
   let d = new Date();

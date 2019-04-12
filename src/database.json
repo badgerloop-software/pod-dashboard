@@ -4,6 +4,7 @@
       "name": "PS1",
       "type": "unint_32",
       "units": "PSI",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -53,6 +54,7 @@
     },
     "primaryLine": {
       "units": "PSI",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -102,6 +104,7 @@
     },
     "primaryActuation": {
       "units": "PSI",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -151,6 +154,7 @@
     },
     "secondaryTank": {
       "units": "PSI",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -200,6 +204,7 @@
     },
     "secondaryLine": {
       "units": "PSI",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -249,6 +254,7 @@
     },
     "secondaryActuation": {
       "units": "PSI",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -298,6 +304,7 @@
     },
     "pressureVesselPressure": {
       "units": "PSI",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 10,
@@ -347,6 +354,7 @@
     },
     "currentPressure": {
       "units": "PSI",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -398,6 +406,7 @@
   "motion": {
     "stoppingDistance": {
       "units": "M",
+      "show": true,
       "limits": {
         "powerOff": {
           "max": 321,
@@ -411,6 +420,7 @@
     },
     "position": {
       "units": "M",
+      "show": true,
       "limits": {
         "powerOff": {
           "max": 321,
@@ -424,6 +434,7 @@
     },
     "retro": {
       "units": "M",
+      "show": true,
       "limits": {
         "powerOff": {
           "max": 321,
@@ -437,6 +448,7 @@
     },
     "velocity": {
       "units": "M/S",
+      "show": true,
       "limits": {
         "powerOff": {
           "max": 321,
@@ -450,6 +462,7 @@
     },
     "acceleration": {
       "units": "M/S^2",
+      "show": true,
       "limits": {
         "powerOff": {
           "max": 321,
@@ -465,6 +478,7 @@
   "battery": {
     "packVoltage": {
       "units": "V",
+      "show": true,
       "limits": {
         "powerOff": {
           "max": 302.5,
@@ -514,6 +528,7 @@
     },
     "packCurrent": {
       "units": "A",
+      "show": true,
       "limits": {
         "powerOff": {
           "max": 0,
@@ -563,6 +578,7 @@
     },
     "packSOC": {
       "units": "%",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 90,
@@ -612,6 +628,7 @@
     },
     "cellMaxVoltage": {
       "units": "V",
+      "show": true,
       "limits": {
         "powerOff": {
           "max": 4.2,
@@ -661,6 +678,7 @@
     },
     "cellTemp": {
       "units": "C",
+      "show": true,
       "limits": {
         "powerOff": {
           "max": 32.5,
@@ -712,6 +730,7 @@
   "motor": {
     "maxControllerTemp": {
       "units": "C",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 10,
@@ -761,6 +780,7 @@
     },
     "motorTemp": {
       "units": "C",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 10,
@@ -810,6 +830,7 @@
     },
     "motorSpeed": {
       "units": "RPM",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": -350,
@@ -859,6 +880,7 @@
     },
     "phaseACurrent": {
       "units": "A",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -908,6 +930,7 @@
     },
     "busCurrent": {
       "units": "A",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -957,6 +980,7 @@
     },
     "busVoltage": {
       "units": "V",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -1006,6 +1030,7 @@
     },
     "commandTorque": {
       "units": "Nm",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -1055,6 +1080,7 @@
     },
     "torqueFeedback": {
       "units": "Nm",
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
