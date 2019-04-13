@@ -222,7 +222,7 @@
             </svg>
           </span2>
         </h2><br><br>
-        <input type="text" id="motioninput" onkeyup="searchTable('motion')" placeholder="Search for values.."
+        <input type="text" id="motioninput" class="searchBox" onkeyup="searchTable('motion')" placeholder="Search for values.."
           title="Type in a value">
         <table id="motion">
           <tr class="header">
@@ -248,7 +248,7 @@
             </svg>
           </span2>
         </h2><br><br>
-        <input type="text" id="brakinginput" onkeyup="searchTable('braking')" placeholder="Search for values.."
+        <input type="text" id="brakinginput" class="searchBox" onkeyup="searchTable('braking')" placeholder="Search for values.."
           title="Type in a value">
         <table id="braking">
           <tr class="header">
@@ -275,7 +275,7 @@
             </svg>
           </span2>
         </h2><br><br>
-        <input type="text" id="batteryinput" onkeyup="searchTable('battery')" placeholder="Search for values.."
+        <input type="text" id="batteryinput" class="searchBox" onkeyup="searchTable('battery')" placeholder="Search for values.."
           title="Type in a value">
         <table id="battery">
           <tr class="header">
@@ -300,7 +300,7 @@
           </svg>
         </span2>
         </h2><br><br>
-        <input type="text" id="motorinput" onkeyup="searchTable('motor')" placeholder="Search for values.."
+        <input type="text" id="motorinput" class="searchBox" onkeyup="searchTable('motor')" placeholder="Search for values.."
           title="Type in a value">
         <table id="motor">
           <tr class="header">
@@ -359,8 +359,20 @@
           </form>
         </div>
         <div id="sensors" class="tabcontent">
-          <h3>Paris</h3>
-          <p>Paris is the capital of France.</p> 
+          <h3>Sensor Selection</h3>
+          <form action="" id="sensorsForm">
+            <ul class="checkboxes">
+              <li><label><input type="checkbox" name="text1" value="value1" />Text 1</label></li>
+              <li><label><input type="checkbox" name="text2" value="value2" />Text 2</label></li>
+              <li><label><input type="checkbox" name="text3" value="value3" />Text 3</label></li>
+              <li><label><input type="checkbox" name="text4" value="value4" />Text 4</label></li>
+              <li><label><input type="checkbox" name="text5" value="value5" />Text 5</label></li>
+              <li><label><input type="checkbox" name="text6" value="value6" />Text 6</label></li>
+              <li><label><input type="checkbox" name="text7" value="value7" />Text 7</label></li>
+              <li><label><input type="checkbox" name="text8" value="value8" />Text 8</label></li>
+            </ul>
+            <input type="submit" value="Submit">
+          </form>
         </div>  
       </div>
     </div>
