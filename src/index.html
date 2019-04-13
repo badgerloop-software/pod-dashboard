@@ -316,42 +316,52 @@
     <div class="modal">
       <div class="modal-content">
         <span class="close-button">×</span>
-        <h1>Dashboard Settings</h1>
-        <form class="settingsForm">
-          <div id="formLeft">
-            <h4 id="formTitle">Pod Settings</h4>
-            <label for="podIP" id="pod-ip">Pod IP</label>
-            <input id="podIP" class="formInput" type="text">
-
-            <label for="podPort" id="pod-port">Pod Port</label>
-            <input id="podPort" class="formInput" type="number">
-            <div class=charteric>
-              <p></p>
+        <div class="tab">
+          <button class="tablinks" onclick="tabs(event, 'settings')">Dashboard Settings</button>
+          <button class="tablinks" onclick="tabs(event, 'sensors')">Sensor Selection</button>
+        </div>
+        <div id="settings" class="tabcontent">
+          <h1>Dashboard Settings</h1>
+          <form class="settingsForm">
+            <div id="formLeft">
+              <h4 id="formTitle">Pod Settings</h4>
+              <label for="podIP" id="pod-ip">Pod IP</label>
+              <input id="podIP" class="formInput" type="text">
+          
+              <label for="podPort" id="pod-port">Pod Port</label>
+              <input id="podPort" class="formInput" type="number">
+              <div class=charteric>
+                <p></p>
+              </div>
             </div>
-          </div>
-          <div id="formRight">
-            <h4 id="formTitle">BeagleBone Settings</h4>
-            <label for="lvBoneIP" id="lv-bone-ip">LV Bone IP</label>
-            <input id="lvBoneIP" class="formInput" type="text">
-
-            <label for="lvBonePort" id="lv-bone-port">LV Bone Port</label>
-            <input id="lvBonePort" class="formInput" type="number">
-
-            <label for="hvBoneIP" id="hv-bone-ip">HV Bone IP</label>
-            <input id="hvBoneIP" class="formInput" type="text">
-
-            <label for="hvBonePort" id="hv-bone-port">HV Bone Port</label>
-            <input id="hvBonePort" class="formInput" type="number">
-          </div>
-          <div id="formFull">
-            <h4 id="formTitle">Dashboard Settings</h4>
-            <label for="scanningRate">Data Send/ Scanning Rate (Note: Requires Restart For Changes To Take Place): <span
-                id="value"></span> </label>
-            <input id="scanningRate" class="formInput" type="number" min="0" max="500" class="inputNotSearchable">
-            <button id="podSettingsSubmit" type="button">Submit</button>
-            <p id="formFeedback"></p>
-          </div>
-        </form>
+            <div id="formRight">
+              <h4 id="formTitle">BeagleBone Settings</h4>
+              <label for="lvBoneIP" id="lv-bone-ip">LV Bone IP</label>
+              <input id="lvBoneIP" class="formInput" type="text">
+          
+              <label for="lvBonePort" id="lv-bone-port">LV Bone Port</label>
+              <input id="lvBonePort" class="formInput" type="number">
+          
+              <label for="hvBoneIP" id="hv-bone-ip">HV Bone IP</label>
+              <input id="hvBoneIP" class="formInput" type="text">
+          
+              <label for="hvBonePort" id="hv-bone-port">HV Bone Port</label>
+              <input id="hvBonePort" class="formInput" type="number">
+            </div>
+            <div id="formFull">
+              <h4 id="formTitle">Dashboard Settings</h4>
+              <label for="scanningRate">Data Send/ Scanning Rate (Note: Requires Restart For Changes To Take Place): <span
+                  id="value"></span> </label>
+              <input id="scanningRate" class="formInput" type="number" min="0" max="500" class="inputNotSearchable">
+              <button id="podSettingsSubmit" type="button">Submit</button>
+              <p id="formFeedback"></p>
+            </div>
+          </form>
+        </div>
+        <div id="sensors" class="tabcontent">
+          <h3>Paris</h3>
+          <p>Paris is the capital of France.</p> 
+        </div>  
       </div>
     </div>
   </div>
