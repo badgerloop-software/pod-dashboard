@@ -16,6 +16,13 @@ h5 {
 * {
   box-sizing: border-box;
 }
+a {
+  -webkit-app-region: no-drag;
+}
+button {
+  -webkit-app-region: no-drag;
+}
+
 
 /* banner styling */
 .banner {
@@ -25,6 +32,7 @@ h5 {
   top: 0;
   width: 100vw;
   z-index: 1;
+  -webkit-app-region: drag;
 }
 .banner .left {
   float: left;
@@ -36,6 +44,7 @@ h5 {
   padding-bottom: 15px;
   padding-left: 30px;
   font-size: 25px;
+  -webkit-app-region: no-drag;
 }
 .banner .right {
   float: right;
@@ -74,6 +83,7 @@ h5 {
   font-family: inherit;
   margin: 0;
   height: 100%;
+  -webkit-app-region: no-drag;
 }
 .banner_dropdown-content {
   display: none;
