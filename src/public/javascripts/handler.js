@@ -191,9 +191,8 @@ function init() {
   di.createCache();
   dl.fillAllItems();
   dl.fillAllTables();
+  dl.fillAllCheckboxes();
   tabs(event, 'settings');
-  dl.fillAllSensors();
-
 }
 // Run at init
 init();

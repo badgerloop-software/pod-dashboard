@@ -263,19 +263,14 @@ module.exports.fillAllItems = function fillAllItems() { // eslint-disable-line
 
 // code that actually creates the element with the passed in information from fillAllItems
 function createCheckbox(name, units) { // eslint-disable-line no-unused-vars
-  let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') // Splits the camel case into two words and adds the units
+  let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // Splits the camel case into two words and adds the units
   fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
-
   let li = document.createElement('li'); // Creates the li element
-  
   let label = document.createElement('label'); // creates the label element
-  
-
   let input = document.createElement('input'); // creates the input element
   input.type = 'checkbox'; // Sets type to checkbox
   input.name = `${fixedName}`; // sets the name
   input.value = `${fixedName}`; // sets the value
-
   let list = document.getElementById('sensorCheckboxes');
   label.appendChild(input); // puts checkbox inside of the label
   li.appendChild(label); // puts label inside of the li
@@ -284,7 +279,7 @@ function createCheckbox(name, units) { // eslint-disable-line no-unused-vars
 }
 
 //
-module.exports.fillAllItems = function fillAllItems() { // eslint-disable-line
+module.exports.fillAllCheckboxes = function fillAllCheckboxes() { // eslint-disable-line
   let subsystems = Object.keys(database); // Create array of each subsystem
   subsystems.forEach((subsystem) => {
     let currentSystem = database[subsystem];
