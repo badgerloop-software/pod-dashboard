@@ -3,6 +3,9 @@ Author: Eric Udlis, Luke Houge
 Purpose: Handles all responsive UI elements of the dashboard
 */
 
+const { remote } = require('electron');
+
+const electronWindow = remote.getCurrentWindow();
 const config = require('./public/javascripts/config');
 const consts = require('./public/javascripts/config').constants;
 
@@ -237,3 +240,18 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   document.getElementById('hvBoneIP').value = consts.hvBone.ip;
   document.getElementById('hvBonePort').value = consts.hvBone.port;
 }
+
+// Window Handling
+
+document.getElementById('min-window').addEventListener('click', () => {
+  electronWindow.minimize();
+});
+
+document.getElementById('max-window').addEventListener('click', () => {
+  if (!electronWindow.isMaximized()) electronWindow.maximize();
+  else electronWindow.unmaximize();
+});
+
+document.getElementById('close-window').addEventListener('click', () => {
+  electronWindow.close();
+});
