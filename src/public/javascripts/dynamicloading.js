@@ -267,15 +267,15 @@ function createCheckbox(name, units) { // eslint-disable-line no-unused-vars
   let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
   fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
 
-  let li = document.createElement('li'); // Creates the actual DOM element
+  let li = document.createElement('li'); // Creates the li element
   
   let label = document.createElement('label'); // creates the label element
   label.innerHTML = `${fixedName}`; // Sets name of sensors
 
-  let input = document.createElement('input'); // creates the label element
-  input.type = 'checkbox'; // Sets name of sensors
-  input.name = `${fixedName}`;
-  input.value = `${fixedName}`;
+  let input = document.createElement('input'); // creates the input element
+  input.type = 'checkbox'; // Sets type to checkbox
+  input.name = `${fixedName}`; // sets the name
+  input.value = `${fixedName}`; // sets the value
 
   let list = document.getElementById('sensorCheckboxes');
   label.appendChild(input); // puts checkbox inside of the label
