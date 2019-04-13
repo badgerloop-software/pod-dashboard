@@ -544,7 +544,7 @@ span2{
   color: white;
 }
 #preRunFault, #duringRunFault, #postRunFault, #crawl {
-  background-color: #A84671;
+  background-color: red;
   color: white;
 }
 #readyForPumpdown, #pumpdown {

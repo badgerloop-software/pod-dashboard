@@ -70,17 +70,21 @@ di.packetHandler.on('renderData', () => {
   }
 });
 
-function overrideState(num, stn) {
-  console.error(`OVERIDING STATE TO ${stn} STATE`);
-  client.sendOverride(stn);
-  dl.switchState(num, stn);
+function overrideState(state) {
+  console.error(`OVERIDING STATE TO ${state} STATE`);
+  if (state.endsWith('Fault')) {
+    dl.setFault(state);
+  } else {
+    client.sendOverride(state);
+    dl.switchState(state);
+  }
 }
 
 // State Machine Control Panel Event Listeners
 
 function makeListener(btn) {
   btn.addEventListener('click', (e) => {
-    overrideState(null, e.target.id);
+    overrideState(e.target.id);
   });
 }
 

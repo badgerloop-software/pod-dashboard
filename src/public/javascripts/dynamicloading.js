@@ -185,23 +185,25 @@ function setIndicator(state) {
 
 module.exports.setIndicator = setIndicator;
 
-module.exports.switchState = function switchState(num, str) {
-  let stateNum = num;
-  let stateStr = str;
-  if (!stateStr) stateStr = getStateName(stateNum);
-  if (stateStr === undefined) {
+module.exports.switchState = function switchState(state) {
+  let type = typeof state;
+  let targetState = state;
+  if (type === 'number') targetState = getStateName(state);
+  if (targetState === undefined) {
     console.error('Undefined State');
   } else {
-    console.log(stateStr);
-    setIndicator(stateStr);
-    fillAllBounds(stateStr);
+    console.log(targetState);
+    setIndicator(targetState);
+    fillAllBounds(targetState);
   }
 };
 
-module.exports.setFault = function setFault(faultNum) {
-  let faultStr = getStateName(faultNum);
-  console.error(`Entering a ${faultStr}`);
-  setIndicator(faultStr);
+module.exports.setFault = function setFault(fault) {
+  let type = typeof fault;
+  let targetFault = fault;
+  if (type === 'number') targetFault = getStateName(fault);
+  console.error(`Entering a ${targetFault}`);
+  setIndicator(targetFault);
 };
 
 // Dynamic Dropdowns
