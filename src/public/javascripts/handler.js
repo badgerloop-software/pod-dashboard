@@ -191,6 +191,7 @@ function init() {
   di.createCache();
   dl.fillAllItems();
   dl.fillAllTables();
+  tabs(event, 'settings');
 }
 // Run at init
 init();
