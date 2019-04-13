@@ -262,6 +262,7 @@ Purpose: Tabs for multiple views in the settings modal
 function tabs(evt, tabName) { // eslint-disable-line no-unused-vars
   let i; let tabcontent; let
     tablinks;
+  let myEvt = evt;
   tabcontent = document.getElementsByClassName('tabcontent');
   for (i = 0; i < tabcontent.length; i += 1) {
     tabcontent[i].style.display = 'none';
@@ -271,5 +272,5 @@ function tabs(evt, tabName) { // eslint-disable-line no-unused-vars
     tablinks[i].className = tablinks[i].className.replace(' active', '');
   }
   document.getElementById(tabName).style.display = 'block';
-  evt.currentTarget.className += ' active';
+  myEvt.currentTarget.className += ' active';
 }

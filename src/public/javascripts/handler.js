@@ -192,7 +192,7 @@ function init() {
   dl.fillAllItems();
   dl.fillAllTables();
   dl.fillAllCheckboxes();
-  tabs(event, 'settings');
+  tabs(Event, 'settings');
 }
 // Run at init
 init();
