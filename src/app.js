@@ -15,7 +15,7 @@ function createWindow() {
     width: 1920,
     height: 1080,
     frame: false,
-    backgroundColor:  '#FFF',
+    backgroundColor: '#FFF',
     icon: path.join(__dirname, '/public/images/icon.png'),
     webPreferences: { webSecurity: true, nodeIntegration: true },
   });
