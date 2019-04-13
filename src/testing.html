@@ -62,7 +62,7 @@
             <h5>Clear Charts</h5>
           </button>
           <div id="myDropdown2" class="dropdown-content">
-            <input type="text" placeholder="Search.." id="dropdownInput2" onkeyup="filterFunction('2')" autofocus>
+            <input type="text" class="searchBox" placeholder="Search.." id="dropdownInput2" onkeyup="filterFunction('2')" autofocus>
             <a href="" onclick="generateLineChartOne('secondaryTank', 'Secondary Tank (PSI)');return false;">Secondary
               Tank (PSI)</a>
             <a href="" onclick="generateLineChartOne('secondaryLine', 'Secondary Line (PSI)');return false;">Secondary
@@ -91,7 +91,7 @@
               (m/s<sup>2</sup>)</a>
           </div>
           <div id="myDropdown3" class="dropdown-content">
-            <input type="text" placeholder="Search.." id="dropdownInput3" onkeyup="filterFunction('3')">
+            <input type="text" class="searchBox" placeholder="Search.." id="dropdownInput3" onkeyup="filterFunction('3')">
             <a href="" onclick="generateLineChartTwo('secondaryTank', 'Secondary Tank (PSI)');return false;">Secondary
               Tank (PSI)</a>
             <a href="" onclick="generateLineChartTwo('secondaryLine', 'Secondary Line (PSI)');return false;">Secondary
@@ -216,7 +216,7 @@
         <h2 id="motion_status" class="disconnected">
           <span2 style="display:inline;">Disconnected</span2>
         </h2><br><br>
-        <input type="text" id="motioninput" onkeyup="searchTable('motion')" placeholder="Search for values.."
+        <input type="text" class="searchBox" id="motioninput" onkeyup="searchTable('motion')" placeholder="Search for values.."
           title="Type in a value">
         <table id="motion">
           <tr class="header">
@@ -235,7 +235,7 @@
         <h2 id="braking_status" class="disconnected">
           <span2 style="display:inline;">Disconnected</span2>
         </h2><br><br>
-        <input type="text" id="brakinginput" onkeyup="searchTable('braking')" placeholder="Search for values.."
+        <input type="text" class="searchBox" id="brakinginput" onkeyup="searchTable('braking')" placeholder="Search for values.."
           title="Type in a value">
         <table id="braking">
           <tr class="header">
@@ -255,7 +255,7 @@
         <h2 id="battery_status" class="disconnected">
           <span2 style="display:inline;">Disconnected</span2>
         </h2><br><br>
-        <input type="text" id="batteryinput" onkeyup="searchTable('battery')" placeholder="Search for values.."
+        <input type="text" class="searchBox" id="batteryinput" onkeyup="searchTable('battery')" placeholder="Search for values.."
           title="Type in a value">
         <table id="battery">
           <tr class="header">
@@ -274,7 +274,7 @@
         <h2 id="motor_status" class="disconnected">
           <span2 style="display:inline;">Disconnected</span2>
         </h2><br><br>
-        <input type="text" id="motorinput" onkeyup="searchTable('motor')" placeholder="Search for values.."
+        <input type="text" class="searchBox" id="motorinput" onkeyup="searchTable('motor')" placeholder="Search for values.."
           title="Type in a value">
         <table id="motor">
           <tr class="header">
