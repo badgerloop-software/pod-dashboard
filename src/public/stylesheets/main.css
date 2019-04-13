@@ -245,7 +245,7 @@ td.last {
   cursor: pointer;
   border: 2px solid #808080;
   border-radius: 6px;
-  width: 100px;
+  width: 120px;
 }
 .dropbtn:hover, .dropbtn:focus {
   background-color: #A9A9A9;
