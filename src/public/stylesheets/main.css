@@ -853,7 +853,14 @@ hr {
     columns:  8em;
     list-style-type:none;
 }
-
-.checkboxes li {
-    border: 1px solid #CCC;
+.checkboxes label {
+  font-style: normal;
+}
+#sensorsSubmit {
+  font-size: 15px;
+  background: #D3D3D3;
+  border: 1px solid white;
+  border-radius:8px;
+  width: 100%;
+  height: 30px;
 }
