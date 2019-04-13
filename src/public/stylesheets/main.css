@@ -850,11 +850,14 @@ hr {
 
 /* sensors tab styling */
 .checkboxes {
-    columns:  8em;
+    columns:  12em;
     list-style-type:none;
 }
 .checkboxes label {
   font-style: normal;
+}
+.checkboxes li {
+  padding-top: 10px;
 }
 #sensorsSubmit {
   font-size: 15px;
