@@ -259,10 +259,10 @@ document.getElementById('close-window').addEventListener('click', () => {
 Tabs view
 Purpose: Tabs for multiple views in the settings modal
 */
-function tabs(evt, tabName) { // eslint-disable-line no-unused-vars
+function tabs(target, tabName) { // eslint-disable-line no-unused-vars
   let i; let tabcontent; let
     tablinks;
-  let myEvt = evt;
+  let myTarget = target;
   tabcontent = document.getElementsByClassName('tabcontent');
   for (i = 0; i < tabcontent.length; i += 1) {
     tabcontent[i].style.display = 'none';
@@ -271,6 +271,9 @@ function tabs(evt, tabName) { // eslint-disable-line no-unused-vars
   for (i = 0; i < tablinks.length; i += 1) {
     tablinks[i].className = tablinks[i].className.replace(' active', '');
   }
-  document.getElementById(tabName).style.display = 'block';
-  myEvt.currentTarget.className += ' active';
+  if (!myTarget) document.getElementById('settings').className += ' active';
+  else {
+    document.getElementById(tabName).style.display = 'block';
+    myTarget.currentTarget.className += ' active';
+  }
 }
