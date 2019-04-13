@@ -256,3 +256,42 @@ module.exports.fillAllItems = function fillAllItems() { // eslint-disable-line
     });
   });
 };
+
+
+// Dynamic sensors checkboxes
+
+
+// code that actually creates the element with the passed in information from fillAllItems
+function createCheckbox(name, units) { // eslint-disable-line no-unused-vars
+  let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
+  let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
+  fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
+
+  let li = document.createElement('li'); // Creates the actual DOM element
+  
+  let label = document.createElement('label'); // creates the label element
+  label.innerHTML = `${fixedName}`; // Sets name of sensors
+
+  let input = document.createElement('input'); // creates the label element
+  input.type = 'checkbox'; // Sets name of sensors
+  input.name = `${fixedName}`;
+  input.value = `${fixedName}`;
+
+  let list = document.getElementById('sensorCheckboxes');
+  label.appendChild(input); // puts checkbox inside of the label
+  li.appendChild(label); // puts label inside of the li
+  list.appendChild(li); // adds each li to the ul
+}
+
+//
+module.exports.fillAllItems = function fillAllItems() { // eslint-disable-line
+  let subsystems = Object.keys(database); // Create array of each subsystem
+  subsystems.forEach((subsystem) => {
+    let currentSystem = database[subsystem];
+    sensors = Object.keys(currentSystem); // Create an array with all sensors in the subsystem
+
+    sensors.forEach((sensor) => {
+      createCheckbox(`${sensor}`, `${currentSystem[sensor].units}`); // For each sensor create an element
+    });
+  });
+};

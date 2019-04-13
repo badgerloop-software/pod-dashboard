@@ -192,6 +192,8 @@ function init() {
   dl.fillAllItems();
   dl.fillAllTables();
   tabs(event, 'settings');
+  dl.fillAllSensors();
+
 }
 // Run at init
 init();
