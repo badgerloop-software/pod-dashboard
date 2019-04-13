@@ -17,6 +17,7 @@ const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
 let timeOld;
+let firstCheck = true;
 
 // Data in recieved
 comms.on('dataIn', (input) => {
@@ -149,6 +150,7 @@ function sendHeartbeats() {
   client.sendLVPing();
   client.sendHVPing();
 }
+
 function lostLVBone(state) {
   try {
     if (state !== undefined) myState = state;
@@ -176,9 +178,13 @@ comms.on('Lost', (ip) => {
     lostHVBone(true);
   }
 });
+
 function checkTransmit() {
-  setLVIndicator(true);
-  setHVIndicator(true);
+  if (!firstCheck) {
+    setLVIndicator(true);
+    setHVIndicator(true);
+  }
+  firstCheck = false;
   if (lostLVBone()) setLVIndicator(false);
   if (lostHVBone()) setHVIndicator(false);
 }
