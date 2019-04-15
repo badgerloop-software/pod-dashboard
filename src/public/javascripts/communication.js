@@ -43,6 +43,7 @@ function sendPacket(ip, port, msg) {
 
   tcpSender.on('data', (e) => {
     console.log(`Recieved: ${e}`);
+    recievedEmitter.emit('ok', ip);
   });
 
   tcpSender.on('error', (e) => {

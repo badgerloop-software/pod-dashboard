@@ -17,6 +17,7 @@ const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
 let timeOld;
+let boneStatus = [false, false]; // [LV, HV]
 
 // Data in recieved
 comms.on('dataIn', (input) => {
@@ -145,38 +146,27 @@ function sendHeartbeats() {
   client.sendLVPing();
   client.sendHVPing();
 }
-function lostLVBone(state) {
-  try {
-    if (state !== undefined) myState = state;
-    return myState;
-  } catch (err) {
-    myState = false;
-    return myState;
-  }
-}
 
-function lostHVBone(state) {
-  try {
-    if (state !== undefined) myState = state;
-    return myState;
-  } catch (err) {
-    myState = false;
-    return myState;
-  }
-}
 comms.on('Lost', (ip) => {
   if (ip === constants.lvBone.ip) {
-    lostLVBone(true);
+    console.log('lost lv bone');
+    boneStatus[0] = false;
   }
   if (ip === constants.hvBone.ip) {
-    lostHVBone(true);
+    boneStatus[1] = false;
   }
 });
+
+comms.on('ok', (ip) => {
+  console.log('ok');
+  if (ip === constants.lvBone.ip) { boneStatus[0] = true; }
+  if (ip === constants.hvBone.ip) { boneStatus[1] = true; }
+});
+
 function checkTransmit() {
-  setLVIndicator(true);
-  setHVIndicator(true);
-  if (lostLVBone()) setLVIndicator(false);
-  if (lostHVBone()) setHVIndicator(false);
+  console.log(`lv: ${boneStatus[0]} | hv: ${boneStatus[1]}`);
+  setLVIndicator(boneStatus[0]);
+  setHVIndicator(boneStatus[1]);
 }
 
 function podConnectionCheck() {
