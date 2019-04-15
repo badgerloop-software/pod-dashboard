@@ -149,22 +149,21 @@ function sendHeartbeats() {
 
 comms.on('Lost', (ip) => {
   if (ip === constants.lvBone.ip) {
-    console.log('lost lv bone');
+    console.error('lost lv bone');
     boneStatus[0] = false;
   }
   if (ip === constants.hvBone.ip) {
+    console.error('lost hv bone');
     boneStatus[1] = false;
   }
 });
 
 comms.on('ok', (ip) => {
-  console.log('ok');
   if (ip === constants.lvBone.ip) { boneStatus[0] = true; }
   if (ip === constants.hvBone.ip) { boneStatus[1] = true; }
 });
 
 function checkTransmit() {
-  console.log(`lv: ${boneStatus[0]} | hv: ${boneStatus[1]}`);
   setLVIndicator(boneStatus[0]);
   setHVIndicator(boneStatus[1]);
 }
