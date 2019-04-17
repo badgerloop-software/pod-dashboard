@@ -52,7 +52,6 @@ di.packetHandler.on('renderData', () => {
     elapsedTime = timeNew - timeOld - constants.dataSendRate;
   }
   timeOld = timeNew;
-  console.log(elapsedTime);
   if (elapsedTime > 0) {
     setAgeLabel(elapsedTime);
   }
@@ -133,16 +132,21 @@ function getSampleSensor() {
 
 function checkRecieve() {
   let sampleSensor = getSampleSensor();
+  let good;
   try {
     if (!(sampleSensor.length > oldLength)) {
       setRecieve(false);
+      good = false;
     } else {
       setRecieve(true);
+      good = true;
     }
     oldLength = sampleSensor.length;
   } catch (err) {
     oldLength = 0;
   }
+  console.log(`Check Recieve State is ${good}`);
+  return good;
 }
 
 function sendHeartbeats() {
@@ -171,15 +175,24 @@ function checkTransmit() {
   setHVIndicator(boneStatus[1]);
 }
 
+let renderer;
+
 function podConnectionCheck() {
-  checkRecieve();
+  
+  // checkRecieve();
   sendHeartbeats();
   checkTransmit();
+  let good = checkRecieve();
+  if (!good && renderer) {
+    clearInterval(renderer);
+    renderer = false;
+  } else if (good && !renderer) {
+    renderer = setInterval(() => { di.packetHandler.emit('renderData'); }, 200);
+  }
 }
 
-setInterval(() => { di.packetHandler.emit('renderData'); }, 150);
 
-setInterval(podConnectionCheck, 2000);
+setInterval(() => { podConnectionCheck(); }, 2000);
 
 function init() {
   di.createCache();
