@@ -49,7 +49,6 @@ function updateData(dataIn) {
       }
     });
   });
-  packetHandler.emit('renderData');
 }
 
 function calculate(input) {

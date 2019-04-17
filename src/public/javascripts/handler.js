@@ -45,6 +45,17 @@ di.packetHandler.on('renderData', () => {
   let elapsedTime;
   const timeNew = counter.getMilliseconds();
   const renderable = di.findRenderable();
+  // Lag Counter, when testing should be equal to DATA_SEND_RATE
+  if (!timeOld) {
+    elapsedTime = counter.getMilliseconds() - timeNew - constants.dataSendRate;
+  } else {
+    elapsedTime = timeNew - timeOld - constants.dataSendRate;
+  }
+  timeOld = timeNew;
+  console.log(elapsedTime);
+  if (elapsedTime > 0) {
+    setAgeLabel(elapsedTime);
+  }
   const groups = Object.keys(renderable);
   groups.forEach((group) => {
     const sensors = Object.keys(renderable[group]);
@@ -58,18 +69,6 @@ di.packetHandler.on('renderData', () => {
       }
     });
   });
-
-  // Lag Counter, when testing should be equal to DATA_SEND_RATE
-  if (!timeOld) {
-    elapsedTime = counter.getMilliseconds() - timeNew - constants.dataSendRate;
-  } else {
-    elapsedTime = timeNew - timeOld - constants.dataSendRate;
-  }
-  timeOld = timeNew;
-  console.log(elapsedTime);
-  if (elapsedTime > 0) {
-    setAgeLabel(elapsedTime);
-  }
 });
 
 function overrideState(state) {
@@ -177,6 +176,8 @@ function podConnectionCheck() {
   sendHeartbeats();
   checkTransmit();
 }
+
+setInterval(() => { di.packetHandler.emit('renderData'); }, 150);
 
 setInterval(podConnectionCheck, 2000);
 
