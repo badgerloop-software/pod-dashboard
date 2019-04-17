@@ -59,7 +59,7 @@ function calculate(input) {
   try {
     fixedPacket = getMaxMotorControllerTemp(fixedPacket);
   } catch (err) {
-    console.error(err);
+    console.error('Error doing calcuations');
   }
   // Send Updated packet to be rendered in handler.js
   updateData(fixedPacket);

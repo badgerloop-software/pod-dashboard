@@ -119,7 +119,7 @@ if (focusClear) focusClear.addEventListener('click', clear); // In if statement 
 Tables
 Purpose: Dynamically styles cells and table based on values in range or not
 */
-const tableIDs = ['motion', 'braking', 'battery', 'motor']; // arrays for loop to iterate through
+const tableIDs = ['motion', 'braking_table', 'battery', 'motor']; // arrays for loop to iterate through
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
 
 setInterval(() => {

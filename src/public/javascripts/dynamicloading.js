@@ -45,7 +45,8 @@ function createMaxCol(name, group) {
 }
 
 // Uses above functions to create a row
-function createRow(name, group, units) { // eslint-disable-line no-unused-vars
+function createRow(name, group, units) {
+  this.group = group;
   let row = document.createElement('tr');
 
   let header = createHeaderCol(name, group, units);
@@ -60,7 +61,8 @@ function createRow(name, group, units) { // eslint-disable-line no-unused-vars
   let max = createMaxCol(name, group);
   row.appendChild(max);
   console.log(row);
-  let table = document.getElementById(group);
+  if (group === 'braking') this.group = 'braking_table';
+  let table = document.getElementById(this.group);
   table.appendChild(row);
 }
 
@@ -113,7 +115,9 @@ function fillTableBounds(subsystem, state) {
   let renderable = di.findRenderable();
   sensors = Object.keys(renderable[subsystem]);
   sensors.forEach((sensor) => {
+    // console.log(`Starting ${sensor}`);
     fillRowBounds(subsystem, sensor, state);
+    // console.log(`Finised ${sensor}`);
   });
 }
 
@@ -169,7 +173,7 @@ function resetAllButtons() {
   document.getElementById('pumpdown').className = 'stateButtonInactive';
   document.getElementById('readyForPropulsion').className = 'stateButtonInactive';
   document.getElementById('propulsion').className = 'stateButtonInactive';
-  document.getElementById('brakingStart').className = 'stateButtonInactive';
+  document.getElementById('braking').className = 'stateButtonInactive';
   document.getElementById('stopped').className = 'stateButtonInactive';
   document.getElementById('crawl').className = 'stateButtonInactive';
   document.getElementById('postFault').className = 'stateButtonInactive';
@@ -185,19 +189,18 @@ function setIndicator(state) {
 
 module.exports.setIndicator = setIndicator;
 
-module.exports.switchState = function switchState(num, str) {
-  let stateNum = num;
-  let stateStr = str;
-  if (!stateStr) stateStr = getStateName(stateNum);
-  if (stateStr === undefined) {
+module.exports.switchState = function switchState(state) {
+  let type = typeof state;
+  let targetState = state;
+  if (type === 'number') targetState = getStateName(state);
+  if (targetState === undefined) {
     console.error('Undefined State');
   } else {
-    console.log(stateStr);
-    setIndicator(stateStr);
-    fillAllBounds(stateStr);
+    console.log(targetState);
+    setIndicator(targetState);
+    fillAllBounds(targetState);
   }
 };
-
 module.exports.setFault = function setFault(faultNum) {
   let faultStr = getStateName(faultNum);
   console.error(`Entering a ${faultStr}`);

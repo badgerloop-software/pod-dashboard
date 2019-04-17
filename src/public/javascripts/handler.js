@@ -71,10 +71,10 @@ di.packetHandler.on('renderData', () => {
   }
 });
 
-function overrideState(num, stn) {
-  console.error(`OVERIDING STATE TO ${stn} STATE`);
-  client.sendOverride(stn);
-  dl.switchState(num, stn);
+function overrideState(state) {
+  console.error(`OVERIDING STATE TO ${state} STATE`);
+  client.sendOverride(state);
+  dl.switchState(state);
 }
 
 // State Machine Control Panel Event Listeners
@@ -84,7 +84,7 @@ function makeListener(btn) {
     let clicked = String(e.target.tagName);
     let temp = String(e.target.id);
     if (clicked === 'P') temp = e.target.parentElement.id;
-    overrideState(null, temp);
+    overrideState(temp);
   });
 }
 
