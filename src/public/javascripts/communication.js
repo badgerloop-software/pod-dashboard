@@ -91,7 +91,7 @@ module.exports.sendEBrake = function sendEBrake() {
 };
 
 module.exports.sendOverride = function sendOverride(state) {
-  sendHVCommand(`overrride-${state}`);
+  sendHVCommand(`override-${state}`);
 };
 
 module.exports.sendLVPing = function sendLVPing() {

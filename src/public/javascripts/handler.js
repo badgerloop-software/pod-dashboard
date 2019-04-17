@@ -66,6 +66,7 @@ di.packetHandler.on('renderData', () => {
     elapsedTime = timeNew - timeOld - constants.dataSendRate;
   }
   timeOld = timeNew;
+  console.log(elapsedTime);
   if (elapsedTime > 0) {
     setAgeLabel(elapsedTime);
   }

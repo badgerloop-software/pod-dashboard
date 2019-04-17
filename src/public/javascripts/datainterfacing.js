@@ -25,10 +25,11 @@ module.exports.createCache = function createCache() { // eslint-disable-line no-
 
 function getMaxMotorControllerTemp(input) {
   let fixedPacket = input;
-  console.log(`${input.motor.controlBoardTemp} | ${input.motor.gateDriverBoardTemp} | ${input.motor.phaseAIGBTTemp}`);
+  // console.log(`${input.motor.controlBoardTemp} | ${input.motor.gateDriverBoardTemp}
+  // | ${input.motor.phaseAIGBTTemp}`);
   fixedPacket.motor.maxControllerTemp.push = Math.max(Number(input.motor.controlBoardTemp),
     Number(input.motor.gateDriverBoardTemp), Number(input.phaseAIGBTTemp));
-  console.log(fixedPacket.motor.maxControllerTemp);
+  // console.log(fixedPacket.motor.maxControllerTemp);
   return fixedPacket;
 }
 function updateData(dataIn) {

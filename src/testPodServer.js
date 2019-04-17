@@ -77,9 +77,9 @@ function sendTestData() { // eslint-disable-line
       busVoltage: getRandomValue(),
       lowVoltageSystem: getRandomValue(),
       maxControllerTemp: getRandomValue(),
-      controllerBoardTemp: getRandomValue(),
+      controlBoardTemp: getRandomValue(),
       gateDriverBoardTemp: getRandomValue(),
-      motorPhaseAIGBTTemp: getRandomValue(),
+      phaseAIGBTTemp: getRandomValue(),
     },
   };
   sendJSON(testSocket);
@@ -140,7 +140,7 @@ function sendSinusodalData() { // eslint-disable-line no-unused-vars
 // The line where test data is sent. setInterval(function, ms)
 
 // Send random data
-// setInterval(sendTestData, DATA_SEND_RATE);
+setInterval(sendTestData, DATA_SEND_RATE);
 
 // Send Sinusodial Data
-setInterval(sendSinusodalData, DATA_SEND_RATE);
+// setInterval(sendSinusodalData, DATA_SEND_RATE);
