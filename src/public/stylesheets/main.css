@@ -543,8 +543,12 @@ span2{
   background-color: #3C9159;
   color: white;
 }
-#preRunFault, #duringRunFault, #postRunFault, #crawl {
+ #crawl {
   background-color: #A84671;
+  color: white;
+}
+#runFault, #preFault, #postFault {
+  background-color: red;
   color: white;
 }
 #readyForPumpdown, #pumpdown {

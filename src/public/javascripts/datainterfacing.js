@@ -23,26 +23,18 @@ module.exports.createCache = function createCache() { // eslint-disable-line no-
   }
 };
 
-
-function calculate(input) {
-  // Any Calcuations that need to be done after RECORDING data
-  // but prior to RENDERING should be done here
-  // NormalizePacket -> UpdateData -> [Calculations] -> RenderData
+function getMaxMotorControllerTemp(input) {
   let fixedPacket = input;
-  // Take the Max of the three motor controller temp sensors and put the max in maxControllerTemp
   fixedPacket.motor.maxControllerTemp = Math.max(input.motor.controllerBoardTemp,
     input.motor.gateDriverBoardTemp, input.motorphaseAIGBTTemp);
   delete fixedPacket.motor.controllerBoardTemp;
   delete fixedPacket.motor.gateDriverBoardTemp;
   delete fixedPacket.motor.controllerBoardTemp;
-
-  // Send Updated packet to be rendered in handler.js
-  packetHandler.emit('renderData');
+  return fixedPacket;
 }
-
 function updateData(dataIn) {
   // Sort through the data and append the new values to their respective arrays in cache.js
-  // NormalizePacket -> [UpdateData] -> Calculations -> RenderData
+  // NormalizePacket -> Calculations -> [UpdateData] -> RenderData
   const groups = Object.keys(dataIn);
   groups.forEach((group) => {
     const sensors = Object.keys(dataIn[group]);
@@ -57,13 +49,27 @@ function updateData(dataIn) {
       }
     });
   });
-  calculate(dataIn);
+  packetHandler.emit('renderData');
+}
+
+function calculate(input) {
+  // Any Calcuations that need to be done prior to RECORDING should be done here
+  // NormalizePacket ->  [Calculations] -> UpdateData -> RenderData
+  let fixedPacket = input;
+  // Take the Max of the three motor controller temp sensors and put the max in maxControllerTemp
+  try {
+    fixedPacket = getMaxMotorControllerTemp(fixedPacket);
+  } catch (err) {
+    console.error(err);
+  }
+  // Send Updated packet to be rendered in handler.js
+  updateData(fixedPacket);
 }
 
 module.exports.normalizePacket = function normalizePacket(input) {
   // Read and remove anything from the packet that is not data
   // Any calculations that need to be done before prior to RECORDING the data should be done here
-  // [NormalizePacket] -> UpdateData -> Calcuations -> RenderData
+  // [NormalizePacket] -> Calcuations -> UpdateData ->  RenderData
   const { state } = input;
   let fixedPacket = input;
   console.info('Incomming Packet:');
@@ -74,7 +80,7 @@ module.exports.normalizePacket = function normalizePacket(input) {
   delete fixedPacket.state;
 
   // Move packet to UpdateData
-  updateData(fixedPacket);
+  calculate(fixedPacket);
 };
 
 module.exports.findRenderable = function findRenderable() {
