@@ -18,6 +18,7 @@ const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
 let timeOld;
 let boneStatus = [false, false]; // [LV, HV]
+let renderer;
 
 // Data in recieved
 comms.on('dataIn', (input) => {
@@ -145,7 +146,6 @@ function checkRecieve() {
   } catch (err) {
     oldLength = 0;
   }
-  console.log(`Check Recieve State is ${good}`);
   return good;
 }
 
@@ -175,10 +175,7 @@ function checkTransmit() {
   setHVIndicator(boneStatus[1]);
 }
 
-let renderer;
-
 function podConnectionCheck() {
-  
   // checkRecieve();
   sendHeartbeats();
   checkTransmit();
@@ -192,7 +189,7 @@ function podConnectionCheck() {
 }
 
 
-setInterval(() => { podConnectionCheck(); }, 2000);
+setInterval(() => { podConnectionCheck(); }, 100);
 
 function init() {
   di.createCache();
