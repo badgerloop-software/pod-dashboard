@@ -81,7 +81,10 @@ function overrideState(num, stn) {
 
 function makeListener(btn) {
   btn.addEventListener('click', (e) => {
-    overrideState(null, e.target.id);
+    let clicked = String(e.target.tagName);
+    let temp = String(e.target.id);
+    if (clicked === 'P') temp = e.target.parentElement.id;
+    overrideState(null, temp);
   });
 }
 

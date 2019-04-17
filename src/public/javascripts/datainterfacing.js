@@ -29,9 +29,6 @@ function getMaxMotorControllerTemp(input) {
   fixedPacket.motor.maxControllerTemp.push = Math.max(Number(input.motor.controlBoardTemp),
     Number(input.motor.gateDriverBoardTemp), Number(input.phaseAIGBTTemp));
   console.log(fixedPacket.motor.maxControllerTemp);
-  // delete fixedPacket.motor.controllerBoardTemp;
-  // delete fixedPacket.motor.gateDriverBoardTemp;
-  // delete fixedPacket.motor.phaseAIGBTTemp;
   return fixedPacket;
 }
 function updateData(dataIn) {
