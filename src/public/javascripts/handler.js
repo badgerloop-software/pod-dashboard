@@ -16,13 +16,15 @@ const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
+let timeNew;
 let timeOld;
 let boneStatus = [false, false]; // [LV, HV]
-let renderer;
+// let renderer;
 
 // Data in recieved
-comms.on('dataIn', (input) => {
+comms.on('dataIn', (input, time) => {
   di.normalizePacket(input);
+  timeNew = time;
 });
 
 // Update the Database and Render the latest entry
@@ -42,10 +44,19 @@ function setAgeLabel(staleness) {
 }
 
 di.packetHandler.on('renderData', () => {
+  console.log('starting render');
   const counter = new Date();
   let elapsedTime;
-  const timeNew = counter.getMilliseconds();
   const renderable = di.findRenderable();
+
+
+  // if (!timeOld) { elapsedTime = timeNew; } else {
+  //   console.log(timeNew);
+  //   elapsedTime = timeNew - timeOld;
+  //   console.log(elapsedTime);
+  //   setAgeLabel(elapsedTime);
+  //   timeOld = timeNew;
+  // }
   // Lag Counter, when testing should be equal to DATA_SEND_RATE
   if (!timeOld) {
     elapsedTime = counter.getMilliseconds() - timeNew - constants.dataSendRate;
@@ -69,6 +80,7 @@ di.packetHandler.on('renderData', () => {
       }
     });
   });
+  console.log('done rendering');
 });
 
 function overrideState(state) {
@@ -112,7 +124,7 @@ function setRecieve(state) {
   if (!state) recieveIndicator1.className = 'statusBad';
   if (!state) recieveIndicator2.className = 'statusBad';
   if (!state) d.getElementById('ageDisplay').innerHTML = 'N/A';
-  if (!state) d.getElementById('ageDisplay').className = 'connectionError';
+  if (!state) d.getElementById('ageDisplay').className = 'statusGood';
 }
 
 function setLVIndicator(state) {
@@ -128,6 +140,8 @@ function setHVIndicator(state) {
 function getSampleSensor() {
   let subsystemArray = Object.values(cache);
   let sensorArray = Object.values(subsystemArray[0]);
+  if (sensorArray[0]) return sensorArray[0];
+  sensorArray = Object.values(subsystemArray[2]);
   return sensorArray[0];
 }
 
@@ -176,20 +190,20 @@ function checkTransmit() {
 }
 
 function podConnectionCheck() {
-  // checkRecieve();
+  checkRecieve();
   sendHeartbeats();
   checkTransmit();
-  let good = checkRecieve();
-  if (!good && renderer) {
-    clearInterval(renderer);
-    renderer = false;
-  } else if (good && !renderer) {
-    renderer = setInterval(() => { di.packetHandler.emit('renderData'); }, 200);
-  }
+  // let good = checkRecieve();
+  // if (!good && renderer) {
+  //   clearInterval(renderer);
+  //   renderer = false;
+  // } else if (good && !renderer) {
+  //   renderer = setInterval(() => { di.packetHandler.emit('renderData'); }, 200);
+  // }
 }
 
-
-setInterval(() => { podConnectionCheck(); }, 100);
+// setInterval(() => { di.packetHandler.emit('renderData'); }, 150);
+setInterval(podConnectionCheck, 1000);
 
 function init() {
   di.createCache();

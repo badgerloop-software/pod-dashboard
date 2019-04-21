@@ -27,9 +27,10 @@ function getMaxMotorControllerTemp(input) {
   let fixedPacket = input;
   // console.log(`${input.motor.controlBoardTemp} | ${input.motor.gateDriverBoardTemp}
   // | ${input.motor.phaseAIGBTTemp}`);
-  fixedPacket.motor.maxControllerTemp.push = Math.max(Number(input.motor.controlBoardTemp),
-    Number(input.motor.gateDriverBoardTemp), Number(input.phaseAIGBTTemp));
-  // console.log(fixedPacket.motor.maxControllerTemp);
+  // fixedPacket.motor.maxControllerTemp = Math.max(Number(input.motor.controlBoardTemp),
+  //   Number(input.motor.gateDriverBoardTemp), Number(input.phaseAIGBTTemp));
+
+  fixedPacket.motor.maxControllerTemp = input.motor.controlBoardTemp;
   return fixedPacket;
 }
 function updateData(dataIn) {
@@ -42,13 +43,14 @@ function updateData(dataIn) {
       try {
         const input = Number(dataIn[group][sensor]);
         const target = cache[group][sensor];
-        const temp = input.toFixed(5);
+        const temp = input.toFixed(3);
         target.push(temp);
       } catch (error) {
         console.error(`Error: Sensor ${sensor} in ${group} not found in cache`);
       }
     });
   });
+  packetHandler.emit('renderData');
 }
 
 function calculate(input) {
@@ -60,8 +62,10 @@ function calculate(input) {
     fixedPacket = getMaxMotorControllerTemp(fixedPacket);
   } catch (err) {
     console.error('Error doing calcuations');
+    console.error(err);
   }
   // Send Updated packet to be rendered in handler.js
+  console.log('done calculating');
   updateData(fixedPacket);
 }
 
@@ -73,12 +77,14 @@ module.exports.normalizePacket = function normalizePacket(input) {
   let fixedPacket = input;
   console.info('Incomming Packet:');
   console.info(input);
-  if (!(state >= 11 && state <= 13)) {
-    dl.switchState(state);
-  } else dl.setFault(state);
-  delete fixedPacket.state;
-
+  if (state) {
+    if (!(state >= 11 && state <= 13)) {
+      dl.switchState(state);
+    } else dl.setFault(state);
+    delete fixedPacket.state;
+  }
   // Move packet to UpdateData
+  console.log('done nornamlizing');
   calculate(fixedPacket);
 };
 
