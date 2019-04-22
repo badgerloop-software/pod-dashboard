@@ -111,58 +111,58 @@
           <p>Power Off</p>
         </button>
         <button id="idle" class="stateButtonInactive">
-          <p>Idle</p>
+          <p id="pidle">Idle</p>
         </button>
         <button id="readyForPumpdown" class="stateButtonInactive">
-          <p>Ready for Pumpdown</p>
+          <p id="preadyForPumpdown">Ready for Pumpdown</p>
         </button>
         <button id="pumpdown" class="stateButtonInactive">
-          <p>Pumpdown</p>
+          <p id="ppumpdown">Pumpdown</p>
         </button>
         <button id="readyForPropulsion" class="stateButtonInactive">
-          <p>Ready for Propulsion</p>
+          <p id="preadyForPropulsion">Ready for Propulsion</p>
         </button>
         <button id="propulsion" class="stateButtonInactive">
-          <p>Propulsion Start</p>
+          <p id="pproulsion">Propulsion Start</p>
         </button>
-        <button id="brakingStart" class="stateButtonInactive">
-          <p>Braking</p>
+        <button id="braking" class="stateButtonInactive">
+          <p id="pbraking">Braking</p>
         </button>
         <button id="stopped" class="stateButtonInactive">
-          <p>Stopped</p>
+          <p id="pstopped">Stopped</p>
         </button>
         <button id="crawl" class="stateButtonInactive">
-          <p>Crawl</p>
+          <p id="pcrawl">Crawl</p>
         </button>
         <button id="safeToApproach" class="stateButtonInactive">
-          <p>Safe to Approach</p>
+          <p id="psafeToApproach">Safe to Approach</p>
         </button>
-        <button id="preRunFault" class="stateButtonInactive">
-          <p>Pre Run Fault</p>
+        <button id="preFault" class="stateButtonInactive">
+          <p id="ppreFault">Pre Run Fault</p>
         </button>
-        <button id="duringRunFault" class="stateButtonInactive">
-          <p>During Run Fault</p>
+        <button id="runFault" class="stateButtonInactive">
+          <p id="prunFault">During Run Fault</p>
         </button>
-        <button id="postRunFault" class="stateButtonInactive">
-          <p>Post Run Fault</p>
+        <button id="postFault" class="stateButtonInactive">
+          <p id="ppostFault">Post Run Fault</p>
         </button>
         <button id="primBrakeOn" class="stateButton">
-          <p>Prim. Brake On</p>
+          <p id="">Prim. Brake On</p>
         </button>
         <button id="secBrakeVentOn" class="stateButton">
-          <p>Sec. Brake Vent On</p>
+          <p id="">Sec. Brake Vent On</p>
         </button>
         <button id="hvEnable" class="stateButton">
-          <p>HV Enable</p>
+          <p id="">HV Enable</p>
         </button>
         <button id="primBrakeOff" class="stateButton">
-          <p>Prim. Brake Off</p>
+          <p id="">Prim. Brake Off</p>
         </button>
         <button id="secBrakeVentOff" class="stateButton">
-          <p>Sec. Brake Vent Off</p>
+          <p id="">Sec. Brake Vent Off</p>
         </button>
         <button id="hvDisable" class="stateButton">
-          <p>HV Disable</p>
+          <p id="">HV Disable</p>
         </button>
       </div>
     </div>
@@ -187,7 +187,7 @@
             <p id="link1" class="">---</p>
           </div>
           <div id="age">
-            <h4>Latency</h4>
+            <h5>Time Since Last Render</h5>
             <h1 id="ageDisplay">ms</h1>
           </div>
           <div id="statusConnection2" class="">
@@ -216,7 +216,7 @@
           <span2 style="display:inline;">
             <svg id="disconnected" viewBox="0 0 50 50">
               <path
-                style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans"
+                style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans; display: none;"
                 d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z"
                 overflow="visible" font-family="Sans" />
             </svg>
@@ -242,7 +242,7 @@
           <span2 style="display:inline;">
             <svg id="disconnected" viewBox="0 0 50 50">
               <path
-                style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans"
+                style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans; "
                 d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z"
                 overflow="visible" font-family="Sans" />
             </svg>
@@ -250,7 +250,7 @@
         </h2><br><br>
         <input type="text" id="brakinginput" onkeyup="searchTable('braking')" placeholder="Search for values.."
           title="Type in a value">
-        <table id="braking">
+        <table id="braking_table">
           <tr class="header">
             <th class="valueTableBraking">Value</th>
             <th class="min">Min</th>
@@ -269,7 +269,7 @@
           <span2 style="display:inline;">
             <svg id="disconnected" viewBox="0 0 50 50">
               <path
-                style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans"
+                style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans; display: none;"
                 d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z"
                 overflow="visible" font-family="Sans" />
             </svg>
@@ -294,7 +294,7 @@
         <span2 style="display:inline;">
           <svg id="disconnected" viewBox="0 0 50 50">
             <path
-              style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans"
+              style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans; display: none;"
               d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z"
               overflow="visible" font-family="Sans" />
           </svg>
@@ -345,11 +345,10 @@
           </div>
           <div id="formFull">
             <h4 id="formTitle">Dashboard Settings</h4>
-            <label for="scanningRate">Data Send/ Scanning Rate (Note: Requires Restart For Changes To Take Place): <span
-                id="value"></span> </label>
+            <label for="scanningRate">Data Send/ Scanning Rate <span id="value"></span> </label>
             <input id="scanningRate" class="formInput" type="number" min="0" max="500" class="inputNotSearchable">
             <button id="podSettingsSubmit" type="button">Submit</button>
-            <p id="formFeedback"></p>
+            <p id="formFeedback">(Will restart for changes to take place):</p>
           </div>
         </form>
       </div>

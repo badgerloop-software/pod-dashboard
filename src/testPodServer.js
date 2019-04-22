@@ -77,6 +77,9 @@ function sendTestData() { // eslint-disable-line
       busVoltage: getRandomValue(),
       lowVoltageSystem: getRandomValue(),
       maxControllerTemp: getRandomValue(),
+      controlBoardTemp: getRandomValue(),
+      gateDriverBoardTemp: getRandomValue(),
+      phaseAIGBTTemp: getRandomValue(),
     },
   };
   sendJSON(testSocket);
@@ -119,6 +122,9 @@ function sendSpecificData(data) {
       busVoltage: data,
       lowVoltageSystem: data,
       maxControllerTemp: data,
+      controlBoardTemp: data,
+      gateDriverBoardTemp: data,
+      phaseAIGBTTemp: data,
     },
   };
   sendJSON(testSocket);

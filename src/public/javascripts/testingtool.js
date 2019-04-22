@@ -67,6 +67,7 @@ function handleFiles() {
 
 // Filling Tables
 function fillCell(subsystem, sensor, time) {
+  // console.log(`Starting ${sensor}`);
   if (time >= runMax) {
     maxReached = true;
     currentTime = runMax;
@@ -80,10 +81,12 @@ function fillCell(subsystem, sensor, time) {
       console.log('Error - No Data');
     }
   }
+  // console.log(`Finished ${sensor}`);
 }
 function fillTable(subsystem, time) {
   let sensors = Object.keys(runData[subsystem]);
   sensors.forEach((sensor) => {
+    if (!document.getElementById(`${sensor}`)) return;
     fillCell(`${subsystem}`, `${sensor}`, time);
   });
 }

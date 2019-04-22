@@ -543,8 +543,12 @@ span2{
   background-color: #3C9159;
   color: white;
 }
-#preRunFault, #duringRunFault, #postRunFault, #crawl {
+ #crawl {
   background-color: #A84671;
+  color: white;
+}
+#runFault, #preFault, #postFault {
+  background-color: red;
   color: white;
 }
 #readyForPumpdown, #pumpdown {
@@ -559,7 +563,7 @@ span2{
   background-color: #C6A153;
   color: white;
 }
-#brakingStart, #stopped{
+#braking, #stopped{
   background-color: #34495E;
   color: white;
 }

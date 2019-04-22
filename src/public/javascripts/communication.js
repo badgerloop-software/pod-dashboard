@@ -18,6 +18,7 @@ const HV_BONE_PORT = constants.hvBone.port;
 const recievedEmitter = new events.EventEmitter();
 module.exports.recievedEmitter = recievedEmitter;
 
+
 // UDP Data Recieving
 
 udpServer.on('listening', () => {
@@ -27,7 +28,8 @@ udpServer.on('listening', () => {
 
 udpServer.on('message', (message) => {
   const recieved = JSON.parse(message); // Turn String into JSON
-  recievedEmitter.emit('dataIn', recieved); // Send it to handler.js
+  const time = new Date().getMilliseconds();
+  recievedEmitter.emit('dataIn', recieved, Number(time)); // Send it to handler.js
 });
 
 udpServer.bind(PORT, HOST);
@@ -43,6 +45,7 @@ function sendPacket(ip, port, msg) {
 
   tcpSender.on('data', (e) => {
     console.log(`Recieved: ${e}`);
+    recievedEmitter.emit('ok', ip);
   });
 
   tcpSender.on('error', (e) => {
@@ -90,7 +93,7 @@ module.exports.sendEBrake = function sendEBrake() {
 };
 
 module.exports.sendOverride = function sendOverride(state) {
-  sendHVCommand(`overrride${state}`);
+  sendHVCommand(`override-${state}`);
 };
 
 module.exports.sendLVPing = function sendLVPing() {

@@ -119,7 +119,7 @@ if (focusClear) focusClear.addEventListener('click', clear); // In if statement 
 Tables
 Purpose: Dynamically styles cells and table based on values in range or not
 */
-const tableIDs = ['motion', 'braking', 'battery', 'motor']; // arrays for loop to iterate through
+const tableIDs = ['motion', 'braking_table', 'battery', 'motor']; // arrays for loop to iterate through
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
 
 setInterval(() => {
@@ -226,12 +226,13 @@ settingsSubmit.addEventListener('click', () => {
   constsCache.lvBone.ip = document.getElementById('lvBoneIP').value;
   constsCache.lvBone.port = Number(document.getElementById('lvBonePort').value);
   document.getElementById('formFeedback').innerHTML = config.writeJSON(constsCache);
+  electronWindow.reload();
 });
 
 // Fills entries in text boxes
 function fillConstants() { // eslint-disable-line no-unused-vars
   config.updateConstants();
-  document.getElementById('formFeedback').innerHTML = '';
+  document.getElementById('formFeedback').innerHTML = 'Will restart for changes to take place.';
   document.getElementById('podIP').value = String(consts.serverAddr.ip);
   document.getElementById('podPort').value = consts.serverAddr.port;
   document.getElementById('scanningRate').value = consts.dataSendRate;
