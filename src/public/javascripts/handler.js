@@ -16,15 +16,18 @@ const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
-let timeNew;
-let timeOld;
 let boneStatus = [false, false]; // [LV, HV]
-// let renderer;
+
+// Sets the latency counter
+function setAgeLabel(staleness) {
+  d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
+}
+
 
 // Data in recieved
 comms.on('dataIn', (input, time) => {
   di.normalizePacket(input);
-  timeNew = time;
+  setAgeLabel(time);
 });
 
 // Update the Database and Render the latest entry
@@ -38,35 +41,11 @@ function renderData(group, sensor) {
   }
   t.innerHTML = String(stored[stored.length - 1]);
 }
-// Sets the latency counter
-function setAgeLabel(staleness) {
-  d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
-}
 
 di.packetHandler.on('renderData', () => {
   console.log('starting render');
-  const counter = new Date();
-  let elapsedTime;
   const renderable = di.findRenderable();
 
-
-  // if (!timeOld) { elapsedTime = timeNew; } else {
-  //   console.log(timeNew);
-  //   elapsedTime = timeNew - timeOld;
-  //   console.log(elapsedTime);
-  //   setAgeLabel(elapsedTime);
-  //   timeOld = timeNew;
-  // }
-  // Lag Counter, when testing should be equal to DATA_SEND_RATE
-  if (!timeOld) {
-    elapsedTime = counter.getMilliseconds() - timeNew - constants.dataSendRate;
-  } else {
-    elapsedTime = timeNew - timeOld - constants.dataSendRate;
-  }
-  timeOld = timeNew;
-  if (elapsedTime > 0) {
-    setAgeLabel(elapsedTime);
-  }
   const groups = Object.keys(renderable);
   groups.forEach((group) => {
     const sensors = Object.keys(renderable[group]);

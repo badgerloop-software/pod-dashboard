@@ -43,6 +43,7 @@ function sendJSON(object) {
 function sendTestData() { // eslint-disable-line
   const testSocket = {
     state: 1,
+    time: new Date().getMilliseconds(),
     motion: {
       stoppingDistance: getRandomValue(),
       position: getRandomValue(),
@@ -88,6 +89,7 @@ function sendTestData() { // eslint-disable-line
 function sendSpecificData(data) {
   let testSocket = {
     state: 2,
+    time: new Date().getMilliseconds(),
     motion: {
       stoppingDistance: data,
       position: data,

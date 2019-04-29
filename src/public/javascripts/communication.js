@@ -18,6 +18,11 @@ const HV_BONE_PORT = constants.hvBone.port;
 const recievedEmitter = new events.EventEmitter();
 module.exports.recievedEmitter = recievedEmitter;
 
+function getLatency(timeIn) {
+  let now = new Date().getMilliseconds(); // Replace getMilliseconds() with whatever controls sends
+  return now - timeIn;
+}
+
 
 // UDP Data Recieving
 
@@ -28,8 +33,9 @@ udpServer.on('listening', () => {
 
 udpServer.on('message', (message) => {
   const recieved = JSON.parse(message); // Turn String into JSON
-  const time = new Date().getMilliseconds();
-  recievedEmitter.emit('dataIn', recieved, Number(time)); // Send it to handler.js
+  const timeSent = recieved.time;
+  const latency = getLatency(timeSent);
+  recievedEmitter.emit('dataIn', recieved, latency); // Send it to handler.js
 });
 
 udpServer.bind(PORT, HOST);
