@@ -205,6 +205,7 @@ Purpose: Read and Write to Config File
 settingsSubmit.addEventListener('click', () => {
   let constsCache = {
     dataSendRate: null,
+    renderInterval: null,
     serverAddr: {
       ip: null,
       port: null,
@@ -225,6 +226,7 @@ settingsSubmit.addEventListener('click', () => {
   constsCache.hvBone.port = Number(document.getElementById('hvBonePort').value);
   constsCache.lvBone.ip = document.getElementById('lvBoneIP').value;
   constsCache.lvBone.port = Number(document.getElementById('lvBonePort').value);
+  constsCache.renderInterval = Number(document.getElementById('renderInterval').value);
   document.getElementById('formFeedback').innerHTML = config.writeJSON(constsCache);
   electronWindow.reload();
 });
@@ -240,6 +242,7 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   document.getElementById('lvBonePort').value = consts.lvBone.port;
   document.getElementById('hvBoneIP').value = consts.hvBone.ip;
   document.getElementById('hvBonePort').value = consts.hvBone.port;
+  document.getElementById('renderInterval').value = consts.renderInterval;
 }
 
 // Window Handling

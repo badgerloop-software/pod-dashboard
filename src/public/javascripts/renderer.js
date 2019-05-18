@@ -1,8 +1,10 @@
+const { constants } = require('./config');
+
 module.exports = function Renderer() { // eslint-disable-line
   let self = this;
   this.counter = false;
   this.subCounter = false;
-  this.interval = 500;
+  this.interval = constants.renderInterval;
   this.run = false;
   this.lastRecievedTime = null;
 
