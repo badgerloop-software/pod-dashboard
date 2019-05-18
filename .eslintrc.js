@@ -12,6 +12,7 @@ module.exports = {
     "import/no-unresolved": "off",
     "prefer-const": "off",
     "prefer-destructuring": ["error", { "object": true, "array": false }],
-    "linebreak-style": "off"
+    "linebreak-style": "off",
+    "no-plusplus": "off"
   }
 };

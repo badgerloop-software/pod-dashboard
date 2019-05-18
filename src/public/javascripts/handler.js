@@ -6,8 +6,9 @@ const client = require('./public/javascripts/communication');
 const di = require('./public/javascripts/datainterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
-const cache = require('./cache');
 const dl = require('./public/javascripts/dynamicloading');
+const Renderer = require('./public/javascripts/renderer');
+const cache = require('./cache');
 
 const d = document;
 const smControlPanel = d.getElementById('header3');
@@ -16,6 +17,9 @@ const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
+const renderer = new Renderer();
+const TIMEOUT = 5;
+
 let boneStatus = [false, false]; // [LV, HV]
 
 // Sets the latency counter
@@ -28,6 +32,7 @@ function setAgeLabel(staleness) {
 comms.on('dataIn', (input, time) => {
   di.normalizePacket(input);
   setAgeLabel(time);
+  renderer.lastRecievedTime = new Date().getUTCSeconds();
 });
 
 // Update the Database and Render the latest entry
@@ -37,13 +42,13 @@ function renderData(group, sensor) {
   const stored = cache[group][sensor];
   // Set number
   if (stored[stored.length - 1] == null) {
-    console.log(`${group} ${sensor} ${stored[stored.length - 1]}`);
+    t.innerHTML = 'Not Available';
+  } else {
+    t.innerHTML = String(stored[stored.length - 1]);
   }
-  t.innerHTML = String(stored[stored.length - 1]);
 }
 
 di.packetHandler.on('renderData', () => {
-  console.log('starting render');
   const renderable = di.findRenderable();
 
   const groups = Object.keys(renderable);
@@ -59,7 +64,6 @@ di.packetHandler.on('renderData', () => {
       }
     });
   });
-  console.log('done rendering');
 });
 
 function overrideState(state) {
@@ -95,7 +99,7 @@ for (let i = 0; i < smButtons.length; i += 1) {
     makeListener(smButtons[i]);
   }
 }
-
+// Connection Indicators
 function setRecieve(state) {
   if (state) recieveIndicator1.className = 'statusGood';
   if (state) recieveIndicator2.className = 'statusGood';
@@ -103,7 +107,7 @@ function setRecieve(state) {
   if (!state) recieveIndicator1.className = 'statusBad';
   if (!state) recieveIndicator2.className = 'statusBad';
   if (!state) d.getElementById('ageDisplay').innerHTML = 'N/A';
-  if (!state) d.getElementById('ageDisplay').className = 'statusGood';
+  if (!state) d.getElementById('ageDisplay').className = 'statusBad';
 }
 
 function setLVIndicator(state) {
@@ -116,30 +120,17 @@ function setHVIndicator(state) {
   if (!state) hvIndicator.className = 'statusBad';
 }
 
-function getSampleSensor() {
-  let subsystemArray = Object.values(cache);
-  let sensorArray = Object.values(subsystemArray[0]);
-  if (sensorArray[0]) return sensorArray[0];
-  sensorArray = Object.values(subsystemArray[2]);
-  return sensorArray[0];
-}
-
 function checkRecieve() {
-  let sampleSensor = getSampleSensor();
-  let good;
-  try {
-    if (!(sampleSensor.length > oldLength)) {
-      setRecieve(false);
-      good = false;
-    } else {
-      setRecieve(true);
-      good = true;
-    }
-    oldLength = sampleSensor.length;
-  } catch (err) {
-    oldLength = 0;
+  let now = new Date().getUTCSeconds();
+  let difference = now - renderer.lastRecievedTime;
+  console.log(difference);
+  if (difference > TIMEOUT) {
+    setRecieve(false);
+    renderer.stopRenderer();
+  } else {
+    setRecieve(true);
+    renderer.startRenderer();
   }
-  return good;
 }
 
 function sendHeartbeats() {
@@ -172,16 +163,8 @@ function podConnectionCheck() {
   checkRecieve();
   sendHeartbeats();
   checkTransmit();
-  // let good = checkRecieve();
-  // if (!good && renderer) {
-  //   clearInterval(renderer);
-  //   renderer = false;
-  // } else if (good && !renderer) {
-  //   renderer = setInterval(() => { di.packetHandler.emit('renderData'); }, 200);
-  // }
 }
 
-// setInterval(() => { di.packetHandler.emit('renderData'); }, 150);
 setInterval(podConnectionCheck, 1000);
 
 function init() {
