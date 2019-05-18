@@ -8,6 +8,7 @@ const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
 const dl = require('./public/javascripts/dynamicloading');
 const Renderer = require('./public/javascripts/renderer');
+const cache = require('./cache');
 
 const d = document;
 const smControlPanel = d.getElementById('header3');
@@ -17,8 +18,9 @@ const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
 const renderer = new Renderer();
+const TIMEOUT = 5;
+
 let boneStatus = [false, false]; // [LV, HV]
-let cache = require('./cache');
 
 // Sets the latency counter
 function setAgeLabel(staleness) {
@@ -30,6 +32,7 @@ function setAgeLabel(staleness) {
 comms.on('dataIn', (input, time) => {
   di.normalizePacket(input);
   setAgeLabel(time);
+  renderer.lastRecievedTime = new Date().getUTCSeconds();
 });
 
 // Update the Database and Render the latest entry
@@ -118,6 +121,16 @@ function setHVIndicator(state) {
 }
 
 function checkRecieve() {
+  let now = new Date().getUTCSeconds();
+  let difference = now - renderer.lastRecievedTime;
+  console.log(difference);
+  if (difference > TIMEOUT) {
+    setRecieve(false);
+    renderer.stopRenderer();
+  } else {
+    setRecieve(true);
+    renderer.startRenderer();
+  }
 }
 
 function sendHeartbeats() {
@@ -158,8 +171,6 @@ function init() {
   di.createCache();
   dl.fillAllItems();
   dl.fillAllTables();
-  renderer.run = true;
-  renderer.startRenderer();
 }
 // Run at init
 init();
