@@ -1,17 +1,26 @@
 module.exports = function Renderer() { // eslint-disable-line
-  this.counter = null;
-  this.interval = 150;
+  let self = this;
+  this.counter = false;
+  this.subCounter = false;
+  this.interval = 500;
+  this.run = false;
 
   this.newCache = {};
   this.oldCache = {};
 
+  this.runCommand = () => {
+    di.packetHandler.emit('renderData');
+  };
+
   this.startRenderer = () => {
-    this.counter = setInterval(() => { di.packetHandler.emit('renderData', this.interval); });
+    self.run = true;
+    self.render();
   };
 
   this.stopRenderer = () => {
-    clearInterval(this.counter);
-    this.counter = false;
+    self.run = false;
+    clearTimeout(self.counter);
+    clearTimeout(self.subCounter);
   };
 
   this.setInterval = (newTime) => {
@@ -19,6 +28,17 @@ module.exports = function Renderer() { // eslint-disable-line
     this.stopRenderer();
     this.startRenderer();
   };
+
+  this.render = () => {
+    if (self.run) {
+      console.warn('heyyyyy');
+      self.counter = setTimeout(function run() {
+        self.runCommand();
+        console.warn('Hey');
+        self.subCounter = setTimeout(run, self.interval);
+      }, self.interval);
+    }
+  }
 
   this.isEqual = (a, b) => {
     console.log(a);
@@ -45,7 +65,7 @@ module.exports = function Renderer() { // eslint-disable-line
       // If values of same property are not equal,
       // objects are not equivalent
       if (a[propName] !== b[propName]) {
-        console.log('prop names are different')
+        console.log('prop names are different');
         return false;
       }
       let aSubProps = Object.getOwnPropertyNames(a[propName]);

@@ -63,8 +63,7 @@ function calculate(input) {
     console.error('Error doing calcuations');
     console.error(err);
   }
-  // Send Updated packet to be rendered in handler.js
-  console.log('done calculating');
+  // Put the new data in the cache
   updateData(fixedPacket);
 }
 
@@ -75,7 +74,7 @@ module.exports.normalizePacket = function normalizePacket(input) {
   const { state } = input;
   let fixedPacket = input;
   console.info('Incomming Packet:');
-  console.info(input);
+  // console.info(input);
   if (state) {
     if (!(state >= 11 && state <= 13)) {
       dl.switchState(state);
@@ -83,7 +82,6 @@ module.exports.normalizePacket = function normalizePacket(input) {
     delete fixedPacket.state;
   }
   // Move packet to UpdateData
-  console.log('done nornamlizing');
   calculate(fixedPacket);
 };
 

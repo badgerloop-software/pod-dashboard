@@ -7,7 +7,7 @@ const di = require('./public/javascripts/datainterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
 const dl = require('./public/javascripts/dynamicloading');
-const Renderer = require('./public/javascripts/Renderer');
+const Renderer = require('./public/javascripts/renderer');
 
 const d = document;
 const smControlPanel = d.getElementById('header3');
@@ -39,9 +39,10 @@ function renderData(group, sensor) {
   const stored = cache[group][sensor];
   // Set number
   if (stored[stored.length - 1] == null) {
-    t.innerHTML = 'Disconnected';
+    t.innerHTML = 'Not Available';
+  } else {
+    t.innerHTML = String(stored[stored.length - 1]);
   }
-  t.innerHTML = String(stored[stored.length - 1]);
 }
 
 di.packetHandler.on('renderData', () => {
@@ -117,21 +118,6 @@ function setHVIndicator(state) {
 }
 
 function checkRecieve() {
-  console.log(`setting new cache at ${new Date().getTime()}`);
-  renderer.newCache = cache;
-  if (renderer.isEqual(renderer.newCache, renderer.oldCache)) { // has cache changed?
-    console.log('cache has not changed');
-    setRecieve(false); // Set red and stop rendering
-    renderer.stopRenderer();
-  } else {
-    console.log('cache changed');
-    setRecieve(true); // Set green and start rendering
-    if (!renderer.counter) {
-      renderer.startRenderer();
-    }
-  }
-  console.log(`setting old cache at ${new Date().getTime()}`);
-  renderer.oldCache = renderer.newCache;
 }
 
 function sendHeartbeats() {
@@ -172,6 +158,8 @@ function init() {
   di.createCache();
   dl.fillAllItems();
   dl.fillAllTables();
+  renderer.run = true;
+  renderer.startRenderer();
 }
 // Run at init
 init();
