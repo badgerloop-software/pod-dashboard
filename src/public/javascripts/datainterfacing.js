@@ -35,7 +35,7 @@ function getMaxMotorControllerTemp(input) {
 }
 function updateData(dataIn) {
   // Sort through the data and append the new values to their respective arrays in cache.js
-  // NormalizePacket -> Calculations -> [UpdateData] -> RenderData
+  // NormalizePacket -> Calculations -> [UpdateData]
   const groups = Object.keys(dataIn);
   groups.forEach((group) => {
     const sensors = Object.keys(dataIn[group]);
@@ -50,12 +50,11 @@ function updateData(dataIn) {
       }
     });
   });
-  packetHandler.emit('renderData');
 }
 
 function calculate(input) {
   // Any Calcuations that need to be done prior to RECORDING should be done here
-  // NormalizePacket ->  [Calculations] -> UpdateData -> RenderData
+  // NormalizePacket ->  [Calculations] -> UpdateData
   let fixedPacket = input;
   // Take the Max of the three motor controller temp sensors and put the max in maxControllerTemp
   try {
@@ -72,7 +71,7 @@ function calculate(input) {
 module.exports.normalizePacket = function normalizePacket(input) {
   // Read and remove anything from the packet that is not data
   // Any calculations that need to be done before prior to RECORDING the data should be done here
-  // [NormalizePacket] -> Calcuations -> UpdateData ->  RenderData
+  // [NormalizePacket] -> Calcuations -> UpdateData
   const { state } = input;
   let fixedPacket = input;
   console.info('Incomming Packet:');

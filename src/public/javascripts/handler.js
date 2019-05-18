@@ -6,8 +6,8 @@ const client = require('./public/javascripts/communication');
 const di = require('./public/javascripts/datainterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
-const cache = require('./cache');
 const dl = require('./public/javascripts/dynamicloading');
+const Renderer = require('./public/javascripts/Renderer');
 
 const d = document;
 const smControlPanel = d.getElementById('header3');
@@ -16,7 +16,9 @@ const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
+const renderer = new Renderer();
 let boneStatus = [false, false]; // [LV, HV]
+let cache = require('./cache');
 
 // Sets the latency counter
 function setAgeLabel(staleness) {
@@ -37,13 +39,12 @@ function renderData(group, sensor) {
   const stored = cache[group][sensor];
   // Set number
   if (stored[stored.length - 1] == null) {
-    console.log(`${group} ${sensor} ${stored[stored.length - 1]}`);
+    t.innerHTML = 'Disconnected';
   }
   t.innerHTML = String(stored[stored.length - 1]);
 }
 
 di.packetHandler.on('renderData', () => {
-  console.log('starting render');
   const renderable = di.findRenderable();
 
   const groups = Object.keys(renderable);
@@ -59,7 +60,6 @@ di.packetHandler.on('renderData', () => {
       }
     });
   });
-  console.log('done rendering');
 });
 
 function overrideState(state) {
@@ -95,7 +95,7 @@ for (let i = 0; i < smButtons.length; i += 1) {
     makeListener(smButtons[i]);
   }
 }
-
+// Connection Indicators
 function setRecieve(state) {
   if (state) recieveIndicator1.className = 'statusGood';
   if (state) recieveIndicator2.className = 'statusGood';
@@ -103,7 +103,7 @@ function setRecieve(state) {
   if (!state) recieveIndicator1.className = 'statusBad';
   if (!state) recieveIndicator2.className = 'statusBad';
   if (!state) d.getElementById('ageDisplay').innerHTML = 'N/A';
-  if (!state) d.getElementById('ageDisplay').className = 'statusGood';
+  if (!state) d.getElementById('ageDisplay').className = 'statusBad';
 }
 
 function setLVIndicator(state) {
@@ -116,30 +116,22 @@ function setHVIndicator(state) {
   if (!state) hvIndicator.className = 'statusBad';
 }
 
-function getSampleSensor() {
-  let subsystemArray = Object.values(cache);
-  let sensorArray = Object.values(subsystemArray[0]);
-  if (sensorArray[0]) return sensorArray[0];
-  sensorArray = Object.values(subsystemArray[2]);
-  return sensorArray[0];
-}
-
 function checkRecieve() {
-  let sampleSensor = getSampleSensor();
-  let good;
-  try {
-    if (!(sampleSensor.length > oldLength)) {
-      setRecieve(false);
-      good = false;
-    } else {
-      setRecieve(true);
-      good = true;
+  console.log(`setting new cache at ${new Date().getTime()}`);
+  renderer.newCache = cache;
+  if (renderer.isEqual(renderer.newCache, renderer.oldCache)) { // has cache changed?
+    console.log('cache has not changed');
+    setRecieve(false); // Set red and stop rendering
+    renderer.stopRenderer();
+  } else {
+    console.log('cache changed');
+    setRecieve(true); // Set green and start rendering
+    if (!renderer.counter) {
+      renderer.startRenderer();
     }
-    oldLength = sampleSensor.length;
-  } catch (err) {
-    oldLength = 0;
   }
-  return good;
+  console.log(`setting old cache at ${new Date().getTime()}`);
+  renderer.oldCache = renderer.newCache;
 }
 
 function sendHeartbeats() {
@@ -172,16 +164,8 @@ function podConnectionCheck() {
   checkRecieve();
   sendHeartbeats();
   checkTransmit();
-  // let good = checkRecieve();
-  // if (!good && renderer) {
-  //   clearInterval(renderer);
-  //   renderer = false;
-  // } else if (good && !renderer) {
-  //   renderer = setInterval(() => { di.packetHandler.emit('renderData'); }, 200);
-  // }
 }
 
-// setInterval(() => { di.packetHandler.emit('renderData'); }, 150);
 setInterval(podConnectionCheck, 1000);
 
 function init() {
