@@ -5,8 +5,6 @@ Purpose: Dynamically fill the dashboard with content based off database.JSON
 const database = require('../../database.json');
 const di = require('./datainterfacing');
 
-console.log(database);
-
 // Dynamic Tables
 
 function createHeaderCol(name, group, units) {
@@ -61,7 +59,6 @@ function createRow(name, group, units) {
 
   let max = createMaxCol(name, group);
   row.appendChild(max);
-  console.log(row);
   if (group === 'braking') this.group = 'braking_table';
   let table = document.getElementById(this.group);
   table.appendChild(row);
@@ -85,6 +82,7 @@ module.exports.fillAllTables = function fillAllTables() { // eslint-disable-line
   subsystems.forEach((subsystem) => {
     fillTable(`${subsystem}`); // For each subsystem create a table
   });
+  console.log('Sucessfully Initiated Tables');
 };
 
 // Dynamic Loading of Maxs and Mins
@@ -197,7 +195,6 @@ module.exports.switchState = function switchState(state) {
   if (targetState === undefined) {
     console.error('Undefined State');
   } else {
-    console.log(targetState);
     setIndicator(targetState);
     fillAllBounds(targetState);
   }

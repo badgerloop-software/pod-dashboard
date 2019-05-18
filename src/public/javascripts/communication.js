@@ -54,8 +54,8 @@ function sendPacket(ip, port, msg) {
     recievedEmitter.emit('ok', ip);
   });
 
-  tcpSender.on('error', (e) => {
-    console.error(e); // Commented out for dev without beaglebone connected
+  tcpSender.on('error', (e) => { // eslint-disable-line no-unused-vars
+    // console.error(e); // Commented out for dev without beaglebone connected
     recievedEmitter.emit('Lost', ip);
   });
 

@@ -60,8 +60,7 @@ function calculate(input) {
   try {
     fixedPacket = getMaxMotorControllerTemp(fixedPacket);
   } catch (err) {
-    console.error('Error doing calcuations');
-    console.error(err);
+    console.error(`Calculation Error: ${err}`);
   }
   // Put the new data in the cache
   updateData(fixedPacket);
@@ -73,7 +72,7 @@ module.exports.normalizePacket = function normalizePacket(input) {
   // [NormalizePacket] -> Calcuations -> UpdateData
   const { state } = input;
   let fixedPacket = input;
-  console.info('Incomming Packet:');
+  // console.info('Incomming Packet:');
   // console.info(input);
   if (state) {
     if (!(state >= 11 && state <= 13)) {

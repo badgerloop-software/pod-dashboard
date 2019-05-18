@@ -123,7 +123,6 @@ function setHVIndicator(state) {
 function checkRecieve() {
   let now = new Date().getUTCSeconds();
   let difference = now - renderer.lastRecievedTime;
-  console.log(difference);
   if (difference > TIMEOUT) {
     setRecieve(false);
     renderer.stopRenderer();
@@ -140,11 +139,11 @@ function sendHeartbeats() {
 
 comms.on('Lost', (ip) => {
   if (ip === constants.lvBone.ip) {
-    console.error('lost lv bone');
+    if (boneStatus[0]) console.error('lost LV bone');
     boneStatus[0] = false;
   }
   if (ip === constants.hvBone.ip) {
-    console.error('lost hv bone');
+    if (boneStatus[1]) console.error('lost LV bone');
     boneStatus[1] = false;
   }
 });
