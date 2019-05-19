@@ -1,0 +1,10 @@
+.grid-container {
+    display: grid;
+    padding-top: 80px;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "Terminal Helper";
+  }
+  
+  .Terminal { grid-area: Terminal; }
+  
+  .Helper { grid-area: Helper; }

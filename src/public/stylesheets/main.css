@@ -813,3 +813,47 @@ hr {
   background-color: #C10000;
   color: white;
 }
+
+#terminal {
+  background-color: black;
+  height: 60vm;
+  color: white;
+  font: 1em Inconsolata, monospace;
+}
+
+
+#terminalOutput li:before {
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+
+.echo::before{
+  content: '$';
+}
+
+#terminalOutput li {
+  list-style: none;
+  word-wrap: break-word;
+  position: relative;
+  padding: 0 0 0 15px;
+}
+
+#terminalInput {
+  bottom: 0px;
+}
+
+#terminalInput input[type='text'] {
+  font: 1em Inconsolata, monospace;
+  color: white;
+  width: 97%;
+  text-indent: 0;
+}
+
+#terminalInput  input:focus {
+  outline: none;
+}
+
+#terminalInputPreface #terminalInputBox {
+  display: inline;
+}
