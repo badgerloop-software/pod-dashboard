@@ -814,46 +814,50 @@ hr {
   color: white;
 }
 
+/*
+Terminal styling
+*/
+
+/* main terminal box */
 #terminal {
   background-color: black;
-  height: 60vm;
+  height: 91vh;
   color: white;
   font: 1em Inconsolata, monospace;
+  border-radius: 10px;
+  margin-left: 10px;
 }
 
-
-#terminalOutput li:before {
-  position: absolute;
-  left: 0;
-  top: 0;
+/* output line/box styling */
+#prompt {
+  display:inline;
+}
+#terminalInputBox {
+  border-bottom: none!important;
+  box-shadow: none!important;
+}
+#terminalInput input:focus {
+  outline: none;
+}
+.message {
+  color: green;
 }
 
-.echo::before{
-  content: '$';
+/* output and input text styling */
+#terminalOutput, #terminalInput{
+  padding-left: 20px;
 }
 
-#terminalOutput li {
+/* styling for the list of outputs */
+#terminalOutputList {
   list-style: none;
-  word-wrap: break-word;
-  position: relative;
-  padding: 0 0 0 15px;
-}
-
-#terminalInput {
-  bottom: 0px;
+    padding-left: 0;
 }
 
 #terminalInput input[type='text'] {
   font: 1em Inconsolata, monospace;
   color: white;
-  width: 97%;
-  text-indent: 0;
+  margin-top: -50px;
+  margin-left: -40px;
 }
 
-#terminalInput  input:focus {
-  outline: none;
-}
-
-#terminalInputPreface #terminalInputBox {
-  display: inline;
-}

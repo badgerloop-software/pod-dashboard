@@ -6,8 +6,14 @@ const terminalCommands = ['help', 'clear'];
 
 function createOutputLine(stg, echo) {
   let output = document.createElement('li');
+  output.innerHTML = '$ ' + stg;
+  terminalOutput.appendChild(output);
+}
+
+function createOutputLineMessage(stg, echo) {
+  let output = document.createElement('li');
   output.innerHTML = stg;
-  if (echo) output.className = 'echo';
+  output.className = 'message';
   terminalOutput.appendChild(output);
 }
 
@@ -20,11 +26,11 @@ function clearTerminal() {
 function runHelp() {
   let outputString = 'Current commands are ';
   outputString = outputString.concat(terminalCommands);
-  createOutputLine(outputString);
+  createOutputLineMessage(outputString);
 }
 
 function unknownCommand() {
-  createOutputLine('Unrecognized Command');
+  createOutputLineMessage('Unrecognized Command');
 }
 
 function runTerminalCommand(command) {
@@ -50,6 +56,9 @@ function handleInput() {
     unknownCommand();
   }
   terminalInput.value = '';
+  let lineBreak = document.createElement('br');
+  terminalOutput.appendChild(lineBreak);
+
 }
 
 

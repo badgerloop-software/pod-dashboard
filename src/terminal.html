@@ -32,16 +32,20 @@
         <a class="trigger"><img src="public/images/settings.png" height="35px"></a>
     </div>
     <div class="grid-container">
-            <div class="Terminal" id="terminal">
-                <div id="terminalOutput">Badgerloop Utility Shell
-                    <ul id="terminalOutputList">
-                        <li>Type 'help' for a list of commands</li>
+        <div class="Terminal" id="terminal">
+            <div id="terminalOutput">
+                <p class="message">Badgerloop Utility Shell<br>
+                Type 'help' for a list of commands</p>
+                <ul id="terminalOutputList">
                 </ul>
             </div>
-                <div id="terminalInput">$<input id="terminalInputBox" class="inputNotSearchable" type="text"></div>
+            <div id="terminalInput">
+                <p id="prompt">$</p>
+                <input id="terminalInputBox" class="inputNotSearchable" type="text">
             </div>
-            <div class="Helper">I have the high ground</div>
-          </div>
+        </div>
+        <div class="Helper">I have the high ground</div>
+    </div>
 </body>
 <script src="public/javascripts/terminal.js"></script>
 </html>
