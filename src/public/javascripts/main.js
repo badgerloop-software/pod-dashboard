@@ -3,6 +3,9 @@ Author: Eric Udlis, Luke Houge
 Purpose: Handles all responsive UI elements of the dashboard
 */
 
+const { remote } = require('electron');
+
+const electronWindow = remote.getCurrentWindow();
 const config = require('./public/javascripts/config');
 const consts = require('./public/javascripts/config').constants;
 
@@ -116,25 +119,26 @@ if (focusClear) focusClear.addEventListener('click', clear); // In if statement 
 Tables
 Purpose: Dynamically styles cells and table based on values in range or not
 */
-const tableIDs = ['motion', 'braking', 'battery', 'motor']; // arrays for loop to iterate through
+const tableIDs = ['motion', 'braking_table', 'battery', 'motor']; // arrays for loop to iterate through
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
 
 setInterval(() => {
   let errorChecker = 0;
   for (let u = 0; u < 4; u += 1) {
-    const table = document.getElementById(tableIDs[u]); // creates table array
+    const table = document.getElementById(tableIDs[u]); // Calls table from array
     for (let r = 1, n = table.rows.length; r < n; r += 1) { // iterates through rows in given table
-      const min = parseInt(table.rows[r].cells[1].innerHTML, 10); // sets the min value to min
-      const y = parseInt(table.rows[r].cells[2].innerHTML, 10); // sets the value to y
-      if (y < min) { // checks if too low
-        table.rows[r].cells[2].style.backgroundColor = '#FC6962'; // makes red
+      const min = parseFloat(table.rows[r].cells[1].innerHTML);
+      const max = parseFloat(table.rows[r].cells[3].innerHTML);
+      const y = parseFloat(table.rows[r].cells[2].innerHTML);
+      if (y < min || y > max) { // checks if too low
+        table.rows[r].cells[2].style.backgroundColor = '#FC6962';
         errorChecker += 1; // adds to w, signifying that there is an error present in the table
       } else {
         table.rows[r].cells[2].style.backgroundColor = '#fff'; // else sets to white background
       }
     }
     if (errorChecker !== 0) { // if there was an error in any row during one run of the for loop,
-      // meaning w is not 0 as it was created as,
+      // meaning errorChecker is not 0 as it was created as,
       // then change the class of the div that tavble is in to 'error',
       // which will make the border color red
       document.getElementById(divIDs[u]).className = 'error';
@@ -144,7 +148,6 @@ setInterval(() => {
       document.getElementById(divIDs[u]).className = 'ok';
       errorChecker = 0;
     }
-    // dummy function for status, 2-10= connected, 1= disconected
   }
 }, RATE);
 
@@ -179,7 +182,6 @@ function dropdown(num) { // eslint-disable-line no-unused-vars
 function filterFunction(id) { // eslint-disable-line no-unused-vars
   // determines which dropdown (1,2, or 3) is being called
   const inputnum = String(`dropdownInput${id}`);
-  // filter function
   let i;
   const input = document.getElementById(inputnum);
   const filter = input.value.toUpperCase();
@@ -196,13 +198,14 @@ function filterFunction(id) { // eslint-disable-line no-unused-vars
 
 /*
 Settings form
-Purpose:
+Purpose: Read and Write to Config File
 */
 
 // Submits Entries to File
 settingsSubmit.addEventListener('click', () => {
   let constsCache = {
     dataSendRate: null,
+    renderInterval: null,
     serverAddr: {
       ip: null,
       port: null,
@@ -223,13 +226,15 @@ settingsSubmit.addEventListener('click', () => {
   constsCache.hvBone.port = Number(document.getElementById('hvBonePort').value);
   constsCache.lvBone.ip = document.getElementById('lvBoneIP').value;
   constsCache.lvBone.port = Number(document.getElementById('lvBonePort').value);
+  constsCache.renderInterval = Number(document.getElementById('renderInterval').value);
   document.getElementById('formFeedback').innerHTML = config.writeJSON(constsCache);
+  electronWindow.reload();
 });
 
 // Fills entries in text boxes
 function fillConstants() { // eslint-disable-line no-unused-vars
   config.updateConstants();
-  document.getElementById('formFeedback').innerHTML = '';
+  document.getElementById('formFeedback').innerHTML = 'Will restart for changes to take place.';
   document.getElementById('podIP').value = String(consts.serverAddr.ip);
   document.getElementById('podPort').value = consts.serverAddr.port;
   document.getElementById('scanningRate').value = consts.dataSendRate;
@@ -237,4 +242,20 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   document.getElementById('lvBonePort').value = consts.lvBone.port;
   document.getElementById('hvBoneIP').value = consts.hvBone.ip;
   document.getElementById('hvBonePort').value = consts.hvBone.port;
+  document.getElementById('renderInterval').value = consts.renderInterval;
 }
+
+// Window Handling
+
+document.getElementById('min-window').addEventListener('click', () => {
+  electronWindow.minimize();
+});
+
+document.getElementById('max-window').addEventListener('click', () => {
+  if (!electronWindow.isMaximized()) electronWindow.maximize();
+  else electronWindow.unmaximize();
+});
+
+document.getElementById('close-window').addEventListener('click', () => {
+  electronWindow.close();
+});

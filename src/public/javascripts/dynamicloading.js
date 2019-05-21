@@ -3,8 +3,7 @@ Author: Eric Udlis, Luke Houge
 Purpose: Dynamically fill the dashboard with content based off database.JSON
 */
 const database = require('../../database.json');
-
-console.log(database);
+const di = require('./datainterfacing');
 
 // Dynamic Tables
 
@@ -20,10 +19,12 @@ function createHeaderCol(name, group, units) {
 
 
 function createMinCol(name, group) {
+  let renderable = di.findRenderable();
   let col = document.createElement('td'); // Creates Element
   col.className = 'min'; // Assigns class
   col.id = `${name}Min`; // Assigns ID
-  col.innerHTML = String(database[group][name].limits.powerOff.min); // Fills box with correct value
+  // Fills box with correct value
+  col.innerHTML = String(renderable[group][name].limits.powerOff.min);
   return col;
 }
 
@@ -34,15 +35,17 @@ function createActualCol(name) {
   return col;
 }
 function createMaxCol(name, group) {
+  let renderable = di.findRenderable();
   let col = document.createElement('td');
   col.className = 'max';
   col.id = `${name}Max`;
-  col.innerHTML = `${database[group][name].limits.powerOff.max}`;
+  col.innerHTML = `${renderable[group][name].limits.powerOff.max}`;
   return col;
 }
 
 // Uses above functions to create a row
-function createRow(name, group, units) { // eslint-disable-line no-unused-vars
+function createRow(name, group, units) {
+  this.group = group;
   let row = document.createElement('tr');
 
   let header = createHeaderCol(name, group, units);
@@ -56,14 +59,15 @@ function createRow(name, group, units) { // eslint-disable-line no-unused-vars
 
   let max = createMaxCol(name, group);
   row.appendChild(max);
-  console.log(row);
-  let table = document.getElementById(group);
+  if (group === 'braking') this.group = 'braking_table';
+  let table = document.getElementById(this.group);
   table.appendChild(row);
 }
 
 // Uses above functions to fill a table with rows
 function fillTable(table) { // eslint-disable-line
-  let currentSystem = database[table];
+  let renderable = di.findRenderable();
+  let currentSystem = renderable[table];
   sensors = Object.keys(currentSystem); // Create an array with all sensors in the subsystem
 
   sensors.forEach((sensor) => {
@@ -73,10 +77,12 @@ function fillTable(table) { // eslint-disable-line
 
 // Uses fillTable to fill every table
 module.exports.fillAllTables = function fillAllTables() { // eslint-disable-line
-  let subsystems = Object.keys(database); // Create array of each subsystem
+  let renderable = di.findRenderable();
+  let subsystems = Object.keys(renderable); // Create array of each subsystem
   subsystems.forEach((subsystem) => {
     fillTable(`${subsystem}`); // For each subsystem create a table
   });
+  console.log('Sucessfully Initiated Tables');
 };
 
 // Dynamic Loading of Maxs and Mins
@@ -98,22 +104,29 @@ function setMaxCell(sensor, value) {
 }
 
 function fillRowBounds(subsystem, sensor, state) {
-  let stored = database[subsystem][sensor].limits[state];
+  let renderable = di.findRenderable();
+  let stored = renderable[subsystem][sensor].limits[state];
   setMinCell(sensor, stored.min);
   setMaxCell(sensor, stored.max);
 }
 
 function fillTableBounds(subsystem, state) {
-  sensors = Object.keys(database[subsystem]);
+  let renderable = di.findRenderable();
+  sensors = Object.keys(renderable[subsystem]);
   sensors.forEach((sensor) => {
+    // console.log(`Starting ${sensor}`);
     fillRowBounds(subsystem, sensor, state);
+    // console.log(`Finised ${sensor}`);
   });
 }
 
 function fillAllBounds(state) { // eslint-disable-line no-unused-vars
-  subsystems = Object.keys(database);
+  let renderable = di.findRenderable();
+  subsystems = Object.keys(renderable);
   subsystems.forEach((system) => {
+    // console.log(`Starting ${system}`);
     fillTableBounds(system, state);
+    // console.log(`Finised ${system}`);
   });
 }
 
@@ -142,11 +155,11 @@ function getStateName(stateNum) {
     case 10:
       return 'safeToApproach';
     case 11:
-      return 'preRunFault';
+      return 'preFault';
     case 12:
-      return 'duringRunFault';
+      return 'runFault';
     case 13:
-      return 'postRunFault';
+      return 'postFault';
     default:
       return undefined;
   }
@@ -154,16 +167,18 @@ function getStateName(stateNum) {
 
 function resetAllButtons() {
   document.getElementById('powerOff').className = 'stateButtonInactive';
-  document.getElementById('postRun').className = 'stateButtonInactive';
-  document.getElementById('propulsionStart').className = 'stateButtonInactive';
-  document.getElementById('preRunFault').className = 'stateButtonInactive';
   document.getElementById('idle').className = 'stateButtonInactive';
-  document.getElementById('duringRunFault').className = 'stateButtonInactive';
   document.getElementById('readyForPumpdown').className = 'stateButtonInactive';
   document.getElementById('pumpdown').className = 'stateButtonInactive';
+  document.getElementById('readyForPropulsion').className = 'stateButtonInactive';
+  document.getElementById('propulsion').className = 'stateButtonInactive';
+  document.getElementById('braking').className = 'stateButtonInactive';
+  document.getElementById('stopped').className = 'stateButtonInactive';
+  document.getElementById('crawl').className = 'stateButtonInactive';
+  document.getElementById('postFault').className = 'stateButtonInactive';
+  document.getElementById('runFault').className = 'stateButtonInactive';
+  document.getElementById('preFault').className = 'stateButtonInactive';
   document.getElementById('safeToApproach').className = 'stateButtonInactive';
-  document.getElementById('brakingStart').className = 'stateButtonInactive';
-  document.getElementById('postRunFault').className = 'stateButtonInactive';
 }
 
 function setIndicator(state) {
@@ -173,19 +188,17 @@ function setIndicator(state) {
 
 module.exports.setIndicator = setIndicator;
 
-module.exports.switchState = function switchState(num, str) {
-  let stateNum = num;
-  let stateStr = str;
-  if (!stateStr) stateStr = getStateName(stateNum);
-  if (stateStr === undefined) {
+module.exports.switchState = function switchState(state) {
+  let type = typeof state;
+  let targetState = state;
+  if (type === 'number') targetState = getStateName(state);
+  if (targetState === undefined) {
     console.error('Undefined State');
   } else {
-    console.log(stateStr);
-    setIndicator(stateStr);
-    fillAllBounds(stateStr);
+    setIndicator(targetState);
+    fillAllBounds(targetState);
   }
 };
-
 module.exports.setFault = function setFault(faultNum) {
   let faultStr = getStateName(faultNum);
   console.error(`Entering a ${faultStr}`);

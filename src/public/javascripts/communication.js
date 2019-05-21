@@ -18,6 +18,12 @@ const HV_BONE_PORT = constants.hvBone.port;
 const recievedEmitter = new events.EventEmitter();
 module.exports.recievedEmitter = recievedEmitter;
 
+function getLatency(timeIn) {
+  let now = new Date().getMilliseconds(); // Replace getMilliseconds() with whatever controls sends
+  return now - timeIn;
+}
+
+
 // UDP Data Recieving
 
 udpServer.on('listening', () => {
@@ -26,14 +32,10 @@ udpServer.on('listening', () => {
 });
 
 udpServer.on('message', (message) => {
-  const recieved = JSON.parse(message);
-  module.exports.currentState = recieved.state;
-  delete recieved.state; // Remove state key
-  module.exports.inData = recieved;
-  // If in fault state emit to handler that the pod has faulted
-  if (recieved.state >= 11 && recieved.state <= 13) recievedEmitter.emit('fault');
-  // Emit to handler.js that data has been recieved
-  recievedEmitter.emit('dataIn');
+  const recieved = JSON.parse(message); // Turn String into JSON
+  const timeSent = recieved.time;
+  const latency = getLatency(timeSent);
+  recievedEmitter.emit('dataIn', recieved, latency); // Send it to handler.js
 });
 
 udpServer.bind(PORT, HOST);
@@ -49,10 +51,11 @@ function sendPacket(ip, port, msg) {
 
   tcpSender.on('data', (e) => {
     console.log(`Recieved: ${e}`);
+    recievedEmitter.emit('ok', ip);
   });
 
-  tcpSender.on('error', (e) => {
-    console.error(e); // Commented out for dev without beaglebone connected
+  tcpSender.on('error', (e) => { // eslint-disable-line no-unused-vars
+    // console.error(e); // Commented out for dev without beaglebone connected
     recievedEmitter.emit('Lost', ip);
   });
 
@@ -96,7 +99,7 @@ module.exports.sendEBrake = function sendEBrake() {
 };
 
 module.exports.sendOverride = function sendOverride(state) {
-  sendHVCommand(`overrride${state}`);
+  sendHVCommand(`override-${state}`);
 };
 
 module.exports.sendLVPing = function sendLVPing() {

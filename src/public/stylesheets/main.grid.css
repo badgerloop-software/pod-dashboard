@@ -1,11 +1,10 @@
 /* grid layout */
 .grid {
   display: grid;
-  grid-gap: 10px;
+  grid-gap: 10.8px;
   grid-template-columns: .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68% .68%;
   padding-top: 80px;
   padding-left: 30px;
-  padding-right: 30px;
   padding-bottom: 30px;
 }
 .grid_focus {
@@ -27,9 +26,13 @@
   padding-bottom: 10px;
 }
 .gridStateMachine {
-    display: grid;
-    grid-template-columns: 17% 17% 17% 17% 17% 17%;
-    padding: 10px;
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  height: 100%;
+  width: 100%;
+  padding-left: 20px;
+  padding-top: 15px;
 }
 
 /* general grid layout */

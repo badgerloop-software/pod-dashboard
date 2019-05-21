@@ -16,6 +16,13 @@ h5 {
 * {
   box-sizing: border-box;
 }
+a {
+  -webkit-app-region: no-drag;
+}
+button {
+  -webkit-app-region: no-drag;
+}
+
 
 /* banner styling */
 .banner {
@@ -25,6 +32,7 @@ h5 {
   top: 0;
   width: 100vw;
   z-index: 1;
+  -webkit-app-region: drag;
 }
 .banner .left {
   float: left;
@@ -36,6 +44,7 @@ h5 {
   padding-bottom: 15px;
   padding-left: 30px;
   font-size: 25px;
+  -webkit-app-region: no-drag;
 }
 .banner .right {
   float: right;
@@ -74,6 +83,7 @@ h5 {
   font-family: inherit;
   margin: 0;
   height: 100%;
+  -webkit-app-region: no-drag;
 }
 .banner_dropdown-content {
   display: none;
@@ -527,24 +537,33 @@ span2{
 #powerOff {
   background-color: #C10000; 
   color: white;
+  height: 168px;
 }
 #idle {
   background-color: #3C9159;
   color: white;
 }
-#postRunFault, #crawl {
+ #crawl {
   background-color: #A84671;
+  color: white;
+}
+#runFault, #preFault, #postFault {
+  background-color: red;
   color: white;
 }
 #readyForPumpdown, #pumpdown {
   background-color: #C66553;
   color: white;
 }
-#propulsionStart{
+#propulsion{
   background-color: #C6A153;
   color: white;
 }
-#brakingStart, #stopped{
+#readyForPropulsion{
+  background-color: #C6A153;
+  color: white;
+}
+#braking, #stopped{
   background-color: #34495E;
   color: white;
 }
@@ -577,7 +596,7 @@ span2{
 #statusConnection1 {
   display: inline-block;
   vertical-align: middle;
-  color: green;
+  color: red;
   font-weight: 800;
 }
 #statusConnection2 {

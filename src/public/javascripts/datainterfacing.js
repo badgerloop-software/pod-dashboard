@@ -7,8 +7,8 @@ const fs = require('fs');
 const storedData = require('../../database.json');
 let cache = require('../../cache');
 
-const updater = new events.EventEmitter();
-module.exports.updater = updater;
+const packetHandler = new events.EventEmitter();
+module.exports.packetHandler = packetHandler;
 
 // Creates cache based off of database.JSON
 module.exports.createCache = function createCache() { // eslint-disable-line no-unused-vars
@@ -23,21 +23,78 @@ module.exports.createCache = function createCache() { // eslint-disable-line no-
   }
 };
 
-module.exports.updateData = function updateData(dataIn) {
-  // Sort through the data and append the new values to their respective arrays in database.js
+function getMaxMotorControllerTemp(input) {
+  let fixedPacket = input;
+  // console.log(`${input.motor.controlBoardTemp} | ${input.motor.gateDriverBoardTemp}
+  // | ${input.motor.phaseAIGBTTemp}`);
+  // fixedPacket.motor.maxControllerTemp = Math.max(Number(input.motor.controlBoardTemp),
+  //   Number(input.motor.gateDriverBoardTemp), Number(input.phaseAIGBTTemp));
+
+  fixedPacket.motor.maxControllerTemp = input.motor.controlBoardTemp;
+  return fixedPacket;
+}
+function updateData(dataIn) {
+  // Sort through the data and append the new values to their respective arrays in cache.js
+  // NormalizePacket -> Calculations -> [UpdateData]
   const groups = Object.keys(dataIn);
   groups.forEach((group) => {
     const sensors = Object.keys(dataIn[group]);
-    // console.log(i);
     sensors.forEach((sensor) => {
-      const input = Number(dataIn[group][sensor]);
-      const target = cache[group][sensor];
-      const temp = input.toFixed(5);
-      target.push(temp);
+      try {
+        const input = Number(dataIn[group][sensor]);
+        const target = cache[group][sensor];
+        const temp = input.toFixed(3);
+        target.push(temp);
+      } catch (error) {
+        console.error(`Error: Sensor ${sensor} in ${group} not found in cache`);
+      }
     });
   });
-  // Tell proto.js to render the data
-  updater.emit('updateData');
+}
+
+function calculate(input) {
+  // Any Calcuations that need to be done prior to RECORDING should be done here
+  // NormalizePacket ->  [Calculations] -> UpdateData
+  let fixedPacket = input;
+  // Take the Max of the three motor controller temp sensors and put the max in maxControllerTemp
+  try {
+    fixedPacket = getMaxMotorControllerTemp(fixedPacket);
+  } catch (err) {
+    console.error(`Calculation Error: ${err}`);
+  }
+  // Put the new data in the cache
+  updateData(fixedPacket);
+}
+
+module.exports.normalizePacket = function normalizePacket(input) {
+  // Read and remove anything from the packet that is not data
+  // Any calculations that need to be done before prior to RECORDING the data should be done here
+  // [NormalizePacket] -> Calcuations -> UpdateData
+  const { state } = input;
+  let fixedPacket = input;
+  // console.info('Incomming Packet:');
+  // console.info(input);
+  if (state) {
+    if (!(state >= 11 && state <= 13)) {
+      dl.switchState(state);
+    } else dl.setFault(state);
+    delete fixedPacket.state;
+  }
+  // Move packet to UpdateData
+  calculate(fixedPacket);
+};
+
+module.exports.findRenderable = function findRenderable() {
+  let renderable = storedData;
+  let subsystems = Object.keys(renderable);
+  subsystems.forEach((subsystem) => {
+    sensors = Object.keys(renderable[subsystem]);
+    sensors.forEach((sensor) => {
+      let currentLocaton = renderable[subsystem][sensor];
+      if (!currentLocaton.show) delete renderable[subsystem][sensor];
+    });
+  });
+  return renderable;
 };
 
 // Exporting

@@ -43,6 +43,7 @@ function sendJSON(object) {
 function sendTestData() { // eslint-disable-line
   const testSocket = {
     state: 1,
+    time: new Date().getMilliseconds(),
     motion: {
       stoppingDistance: getRandomValue(),
       position: getRandomValue(),
@@ -77,6 +78,9 @@ function sendTestData() { // eslint-disable-line
       busVoltage: getRandomValue(),
       lowVoltageSystem: getRandomValue(),
       maxControllerTemp: getRandomValue(),
+      controlBoardTemp: getRandomValue(),
+      gateDriverBoardTemp: getRandomValue(),
+      phaseAIGBTTemp: getRandomValue(),
     },
   };
   sendJSON(testSocket);
@@ -84,7 +88,8 @@ function sendTestData() { // eslint-disable-line
 
 function sendSpecificData(data) {
   let testSocket = {
-    state: 13,
+    state: 2,
+    time: new Date().getMilliseconds(),
     motion: {
       stoppingDistance: data,
       position: data,
@@ -119,6 +124,9 @@ function sendSpecificData(data) {
       busVoltage: data,
       lowVoltageSystem: data,
       maxControllerTemp: data,
+      controlBoardTemp: data,
+      gateDriverBoardTemp: data,
+      phaseAIGBTTemp: data,
     },
   };
   sendJSON(testSocket);

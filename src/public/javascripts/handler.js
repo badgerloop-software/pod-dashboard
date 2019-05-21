@@ -6,9 +6,9 @@ const client = require('./public/javascripts/communication');
 const di = require('./public/javascripts/datainterfacing');
 const comms = require('./public/javascripts/communication').recievedEmitter;
 const constants = require('./constants');
-const storedData = require('./database.json');
-const cache = require('./cache');
 const dl = require('./public/javascripts/dynamicloading');
+const Renderer = require('./public/javascripts/renderer');
+const cache = require('./cache');
 
 const d = document;
 const smControlPanel = d.getElementById('header3');
@@ -17,78 +17,76 @@ const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
-let timeOld;
+const renderer = new Renderer();
+const TIMEOUT = 5;
 
-// Data in recieved
-comms.on('dataIn', () => {
-  // Log it to be sure
-  console.log(client.inData);
-  // Tell the Data Interfacer to start sorting it
-  if (!(client.currentState >= 11 && client.currentState <= 13)) {
-    dl.switchState(client.currentState);
-  } else dl.setFault(client.currentState);
-  di.updateData(client.inData);
-});
+let boneStatus = [false, false]; // [LV, HV]
 
-// Update the Database and Render the latest entry
-function updateData(group, sensor) {
-  // Get numbers
-  const t = d.getElementById(String(sensor));
-  const stored = cache[group][sensor];
-  // Set number
-  if (stored[stored.length - 1] == null) {
-    console.log(`${group} ${sensor} ${stored[stored.length - 1]}`);
-  }
-  t.innerHTML = String(stored[stored.length - 1]);
-}
-
-// Render command
 // Sets the latency counter
 function setAgeLabel(staleness) {
   d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
 }
 
-di.updater.on('updateData', () => {
-  const counter = new Date();
-  let elapsedTime;
-  const timeNew = counter.getMilliseconds();
-  const groups = Object.keys(storedData);
+
+// Data in recieved
+comms.on('dataIn', (input, time) => {
+  di.normalizePacket(input);
+  setAgeLabel(time);
+  renderer.lastRecievedTime = new Date().getUTCSeconds();
+});
+
+// Update the Database and Render the latest entry
+function renderData(group, sensor) {
+  // Get numbers
+  const t = d.getElementById(String(sensor));
+  const stored = cache[group][sensor];
+  // Set number
+  if (stored[stored.length - 1] == null) {
+    t.innerHTML = 'Not Available';
+  } else {
+    t.innerHTML = String(stored[stored.length - 1]);
+  }
+}
+
+di.packetHandler.on('renderData', () => {
+  const renderable = di.findRenderable();
+
+  const groups = Object.keys(renderable);
   groups.forEach((group) => {
-    const sensors = Object.keys(storedData[group]);
+    const sensors = Object.keys(renderable[group]);
     sensors.forEach((sensor) => {
       // Check to see if that particular sensor is being rendered at the time
       try {
-        updateData(group, sensor);
+        renderData(group, sensor);
       } catch (error) {
         // If not, alert the user and move on
-        console.log(`Unreconized Sensor- ${sensor} -Skipping`);
+        console.error(`Error: Sensor ${sensor} in ${group} not rendered`);
       }
     });
   });
-
-  // Lag Counter, when testing should be equal to DATA_SEND_RATE
-  if (!timeOld) {
-    elapsedTime = counter.getMilliseconds() - timeNew - constants.dataSendRate;
-  } else {
-    elapsedTime = timeNew - timeOld - constants.dataSendRate;
-  }
-  timeOld = timeNew;
-  if (elapsedTime > 0) {
-    setAgeLabel(elapsedTime);
-  }
 });
 
-function overrideState(num, stn) {
-  console.error(`OVERIDING STATE TO ${stn} STATE`);
-  client.sendOverride(stn);
-  dl.switchState(num, stn);
+function overrideState(state) {
+  console.error(`OVERIDING STATE TO ${state} STATE`);
+  client.sendOverride(state);
+  dl.switchState(state);
 }
 
 // State Machine Control Panel Event Listeners
 
 function makeListener(btn) {
   btn.addEventListener('click', (e) => {
-    overrideState(null, e.target.id);
+    let clicked = String(e.target.tagName);
+    let temp = String(e.target.id);
+    if (clicked === 'P') temp = e.target.parentElement.id;
+    overrideState(temp);
+  });
+}
+
+function makeArchiveListener(btn) {
+  btn.addEventListener('click', () => {
+    di.archiveData();
+    console.log('archiving data');
   });
 }
 
@@ -96,13 +94,12 @@ function makeListener(btn) {
 for (let i = 0; i < smButtons.length; i += 1) {
   // archive data is an exception
   if (smButtons[i] === d.getElementById('archiveButton')) {
-    di.archiveData();
-    console.log('archiving data');
+    makeArchiveListener(smButtons[i]);
   } else { // all other buttons
     makeListener(smButtons[i]);
   }
 }
-
+// Connection Indicators
 function setRecieve(state) {
   if (state) recieveIndicator1.className = 'statusGood';
   if (state) recieveIndicator2.className = 'statusGood';
@@ -110,7 +107,7 @@ function setRecieve(state) {
   if (!state) recieveIndicator1.className = 'statusBad';
   if (!state) recieveIndicator2.className = 'statusBad';
   if (!state) d.getElementById('ageDisplay').innerHTML = 'N/A';
-  if (!state) d.getElementById('ageDisplay').className = 'connectionError';
+  if (!state) d.getElementById('ageDisplay').className = 'statusBad';
 }
 
 function setLVIndicator(state) {
@@ -123,23 +120,15 @@ function setHVIndicator(state) {
   if (!state) hvIndicator.className = 'statusBad';
 }
 
-function getSampleSensor() {
-  let subsystemArray = Object.values(cache);
-  let sensorArray = Object.values(subsystemArray[0]);
-  return sensorArray[0];
-}
-
 function checkRecieve() {
-  let sampleSensor = getSampleSensor();
-  try {
-    if (!(sampleSensor.length > oldLength)) {
-      setRecieve(false);
-    } else {
-      setRecieve(true);
-    }
-    oldLength = sampleSensor.length;
-  } catch (err) {
-    oldLength = 0;
+  let now = new Date().getUTCSeconds();
+  let difference = now - renderer.lastRecievedTime;
+  if (difference > TIMEOUT) {
+    setRecieve(false);
+    renderer.stopRenderer();
+  } else {
+    setRecieve(true);
+    renderer.startRenderer();
   }
 }
 
@@ -147,38 +136,26 @@ function sendHeartbeats() {
   client.sendLVPing();
   client.sendHVPing();
 }
-function lostLVBone(state) {
-  try {
-    if (state !== undefined) myState = state;
-    return myState;
-  } catch (err) {
-    myState = false;
-    return myState;
-  }
-}
 
-function lostHVBone(state) {
-  try {
-    if (state !== undefined) myState = state;
-    return myState;
-  } catch (err) {
-    myState = false;
-    return myState;
-  }
-}
 comms.on('Lost', (ip) => {
   if (ip === constants.lvBone.ip) {
-    lostLVBone(true);
+    if (boneStatus[0]) console.error('lost LV bone');
+    boneStatus[0] = false;
   }
   if (ip === constants.hvBone.ip) {
-    lostHVBone(true);
+    if (boneStatus[1]) console.error('lost LV bone');
+    boneStatus[1] = false;
   }
 });
+
+comms.on('ok', (ip) => {
+  if (ip === constants.lvBone.ip) { boneStatus[0] = true; }
+  if (ip === constants.hvBone.ip) { boneStatus[1] = true; }
+});
+
 function checkTransmit() {
-  setLVIndicator(true);
-  setHVIndicator(true);
-  if (lostLVBone()) setLVIndicator(false);
-  if (lostHVBone()) setHVIndicator(false);
+  setLVIndicator(boneStatus[0]);
+  setHVIndicator(boneStatus[1]);
 }
 
 function podConnectionCheck() {
@@ -187,7 +164,7 @@ function podConnectionCheck() {
   checkTransmit();
 }
 
-setInterval(podConnectionCheck, 5000);
+setInterval(podConnectionCheck, 1000);
 
 function init() {
   di.createCache();
