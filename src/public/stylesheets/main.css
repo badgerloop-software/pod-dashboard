@@ -432,7 +432,7 @@ span2{
   border: 5px solid green;
   border-radius: 10px;
   width: 100%;
-  height: 49%;
+  height: 23.5%;
   font-weight: 1000px;
   margin-top: -2px;
 }
@@ -449,6 +449,37 @@ span2{
   color: white;
 }
 
+/*motor safety toggle styling */
+#motor-safety {
+  background-color:black;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 5px solid black;
+  border-radius: 10px;
+  width: 100%;
+  height: 23.5%;
+  font-weight: 1000px;
+  margin-top: 10px;
+}
+#motor-safety:hover {
+  color: white;
+  animation-duration: 400ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  background-color: darkgrey;
+  border: 2px solid darkgrey;
+  padding: 10px;
+}
+#motor-safety h3, h1 {
+  color: white;
+}
+#motor-safety .status-on {
+  color: green;
+}
+#motor-safety .status-off {
+  color: red;
+}
 /* emergency stop styling */
 #estop {
   background-color:#C10000;
