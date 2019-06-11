@@ -471,7 +471,7 @@ span2{
   border: 2px solid darkgrey;
   padding: 10px;
 }
-#motor-safety h3, h1 {
+#motor-safety h3 {
   color: white;
 }
 #motor-safety .status-on {
