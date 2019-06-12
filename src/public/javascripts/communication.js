@@ -116,4 +116,4 @@ module.exports.toggleSafety = function toggleSafety(state) {
   } else {
     sendHVCommand('safetyOff');
   }
-}
+};

@@ -18,6 +18,7 @@ const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
 const motorSafteyToggle = d.getElementById('motor-safety');
+const estopButton = d.getElementById('estop');
 const renderer = new Renderer();
 const TIMEOUT = 5;
 
@@ -123,7 +124,11 @@ motorSafteyToggle.addEventListener('click', () => {
   } else {
     toggleMotorSafety(false);
   }
-})
+});
+
+estopButton.addEventListener('click', () => {
+  client.sendEBrake();
+});
 
 // Connection Indicators
 function setRecieve(state) {
