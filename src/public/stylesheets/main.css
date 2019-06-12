@@ -467,17 +467,17 @@ span2{
   animation-duration: 400ms;
   animation-iteration-count: infinite;
   animation-direction: alternate;
-  background-color: darkgrey;
-  border: 2px solid darkgrey;
+  background-color: #202020;
+  border: 2px solid #202020;
   padding: 10px;
 }
 #motor-safety h3 {
   color: white;
 }
-#motor-safety .status-on {
+.status-on {
   color: green;
 }
-#motor-safety .status-off {
+.status-off {
   color: red;
 }
 /* emergency stop styling */

@@ -17,7 +17,8 @@ const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
-const motorSafteyToggle = d.getElementById('motor-safety');
+const motorSafteyToggle = d.getElementById('motor-safety-status');
+const motorSafteyButton = d.getElementById('motor-safety');
 const estopButton = d.getElementById('estop');
 const renderer = new Renderer();
 const TIMEOUT = 5;
@@ -117,7 +118,7 @@ function toggleMotorSafety(state) {
 }
 
 
-motorSafteyToggle.addEventListener('click', () => {
+motorSafteyButton.addEventListener('click', () => {
   if (motorSafteyToggle.classList.contains('status-off')) {
     // If motor safety is off
     toggleMotorSafety(true);
