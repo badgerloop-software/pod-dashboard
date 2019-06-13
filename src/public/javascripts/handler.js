@@ -20,7 +20,7 @@ const recieveIndicator2 = d.getElementById('link2');
 const motorSafteyToggle = d.getElementById('motor-safety-status');
 const motorSafteyButton = d.getElementById('motor-safety');
 const estopButton = d.getElementById('estop');
-const confirmPropulseButton = d.getElementById('confirmPropulse')
+const confirmPropulseButton = d.getElementById('confirmStart');
 const renderer = new Renderer();
 const TIMEOUT = 5;
 
