@@ -4,13 +4,13 @@ const terminalOutput = document.getElementById('terminalOutputList');
 const terminalCommands = ['help', 'clear'];
 
 
-function createOutputLine(stg, echo) {
+function createOutputLine(stg, echo) { // eslint-disable-line no-unused-vars
   let output = document.createElement('li');
-  output.innerHTML = '$ ' + stg;
+  output.innerHTML = `$ ${stg}`;
   terminalOutput.appendChild(output);
 }
 
-function createOutputLineMessage(stg, echo) {
+function createOutputLineMessage(stg, echo) { // eslint-disable-line no-unused-vars
   let output = document.createElement('li');
   output.innerHTML = stg;
   output.className = 'message';
@@ -58,7 +58,6 @@ function handleInput() {
   terminalInput.value = '';
   let lineBreak = document.createElement('br');
   terminalOutput.appendChild(lineBreak);
-
 }
 
 
