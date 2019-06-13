@@ -20,6 +20,7 @@ const recieveIndicator2 = d.getElementById('link2');
 const motorSafteyToggle = d.getElementById('motor-safety-status');
 const motorSafteyButton = d.getElementById('motor-safety');
 const estopButton = d.getElementById('estop');
+const confirmPropulseButton = d.getElementById('confirmPropulse')
 const renderer = new Renderer();
 const TIMEOUT = 5;
 
@@ -131,6 +132,9 @@ estopButton.addEventListener('click', () => {
   client.sendEBrake();
 });
 
+confirmPropulseButton.addEventListener('click', () => {
+  client.sendPropulse();
+})
 // Connection Indicators
 function setRecieve(state) {
   if (state) recieveIndicator1.className = 'statusGood';
