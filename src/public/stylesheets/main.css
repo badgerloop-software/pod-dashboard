@@ -57,7 +57,7 @@ button {
   padding-right: 30px;
   font-size: 25px;
 }
-.banner .trigger {
+.banner .settingsTrigger {
   float: right;
   display: block;
   color: #f2f2f2;
@@ -297,7 +297,7 @@ td.last {
 }
 
 /* styling for pop-up modal */
-.modal {
+.modal, .settingsModal, .confirmationModal {
   position: fixed;
   left: 0;
   top: 0;
@@ -320,7 +320,7 @@ td.last {
   height: 65vh;
   border-radius: 0.5rem;
 }
-.close-button {
+.close-button, .close-button2 {
   float: right;
   width: 1.5rem;
   line-height: 1.5rem;
@@ -329,7 +329,7 @@ td.last {
   border-radius: 0.25rem;
   background-color: lightgray;
 }
-.close-button:hover {
+.close-button:hover, .close-button2:hover {
   background-color: darkgray;
 }
 .show-modal {
