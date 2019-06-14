@@ -134,7 +134,7 @@ estopButton.addEventListener('click', () => {
 
 confirmPropulseButton.addEventListener('click', () => {
   client.sendPropulse();
-})
+});
 // Connection Indicators
 function setRecieve(state) {
   if (state) recieveIndicator1.className = 'statusGood';
