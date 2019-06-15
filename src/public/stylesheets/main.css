@@ -57,7 +57,7 @@ button {
   padding-right: 30px;
   font-size: 25px;
 }
-.banner .trigger {
+.banner .settingsTrigger {
   float: right;
   display: block;
   color: #f2f2f2;
@@ -297,7 +297,7 @@ td.last {
 }
 
 /* styling for pop-up modal */
-.modal {
+.settingsModal {
   position: fixed;
   left: 0;
   top: 0;
@@ -309,7 +309,19 @@ td.last {
   transform: scale(1.1);
   transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
 }
-.modal-content {
+ .confirmationModal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  visibility: hidden;
+  transform: scale(1.1);
+  transition: visibility 0s linear 0.25s, opacity 0.25s 0s, transform 0.25s;
+}
+#settingsModalContent{
   position: absolute;
   top: 50%;
   left: 50%;
@@ -320,7 +332,18 @@ td.last {
   height: 65vh;
   border-radius: 0.5rem;
 }
-.close-button {
+#confirmationModalContent {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1rem 1.5rem;
+  width: 20vw;
+  height: 20vh;
+  border-radius: 0.5rem;
+}
+.close-button, .close-button2 {
   float: right;
   width: 1.5rem;
   line-height: 1.5rem;
@@ -329,7 +352,20 @@ td.last {
   border-radius: 0.25rem;
   background-color: lightgray;
 }
-.close-button:hover {
+.confirmationButton {
+  margin-left: 40%;
+  width: 100px;
+  height: 50px;
+  line-height: 1.5rem;
+  text-align: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: lightgray;
+}
+.confirmationText {
+text-align: center;
+}
+.close-button:hover, .close-button2:hover, .confirmationButton:hover {
   background-color: darkgray;
 }
 .show-modal {
@@ -432,7 +468,7 @@ span2{
   border: 5px solid green;
   border-radius: 10px;
   width: 100%;
-  height: 49%;
+  height: 23.5%;
   font-weight: 1000px;
   margin-top: -2px;
 }
@@ -449,6 +485,37 @@ span2{
   color: white;
 }
 
+/*motor safety toggle styling */
+#motor-safety {
+  background-color:black;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  cursor: pointer;
+  border: 5px solid black;
+  border-radius: 10px;
+  width: 100%;
+  height: 23.5%;
+  font-weight: 1000px;
+  margin-top: 10px;
+}
+#motor-safety:hover {
+  color: white;
+  animation-duration: 400ms;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  background-color: #202020;
+  border: 2px solid #202020;
+  padding: 10px;
+}
+#motor-safety h3 {
+  color: white;
+}
+.status-on {
+  color: green;
+}
+.status-off {
+  color: red;
+}
 /* emergency stop styling */
 #estop {
   background-color:#C10000;
@@ -813,3 +880,51 @@ hr {
   background-color: #C10000;
   color: white;
 }
+
+/*
+Terminal styling
+*/
+
+/* main terminal box */
+#terminal {
+  background-color: black;
+  height: 91vh;
+  color: white;
+  font: 1em Inconsolata, monospace;
+  border-radius: 10px;
+  margin-left: 10px;
+}
+
+/* output line/box styling */
+#prompt {
+  display:inline;
+}
+#terminalInputBox {
+  border-bottom: none!important;
+  box-shadow: none!important;
+}
+#terminalInput input:focus {
+  outline: none;
+}
+.message {
+  color: green;
+}
+
+/* output and input text styling */
+#terminalOutput, #terminalInput{
+  padding-left: 20px;
+}
+
+/* styling for the list of outputs */
+#terminalOutputList {
+  list-style: none;
+    padding-left: 0;
+}
+
+#terminalInput input[type='text'] {
+  font: 1em Inconsolata, monospace;
+  color: white;
+  margin-top: -50px;
+  margin-left: -40px;
+}
+

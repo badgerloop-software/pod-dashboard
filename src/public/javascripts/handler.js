@@ -17,6 +17,10 @@ const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
+const motorSafteyToggle = d.getElementById('motor-safety-status');
+const motorSafteyButton = d.getElementById('motor-safety');
+const estopButton = d.getElementById('estop');
+const confirmPropulseButton = d.getElementById('confirmStart');
 const renderer = new Renderer();
 const TIMEOUT = 5;
 
@@ -99,6 +103,38 @@ for (let i = 0; i < smButtons.length; i += 1) {
     makeListener(smButtons[i]);
   }
 }
+
+function toggleMotorSafety(state) {
+  if (state) {
+    // If Setting True
+    motorSafteyToggle.className = 'status-on';
+    motorSafteyToggle.innerHTML = 'ON';
+    client.toggleSafety(true);
+  } else {
+    // If setting false
+    motorSafteyToggle.className = 'status-off';
+    motorSafteyToggle.innerHTML = 'OFF';
+    client.toggleSafety(false);
+  }
+}
+
+
+motorSafteyButton.addEventListener('click', () => {
+  if (motorSafteyToggle.classList.contains('status-off')) {
+    // If motor safety is off
+    toggleMotorSafety(true);
+  } else {
+    toggleMotorSafety(false);
+  }
+});
+
+estopButton.addEventListener('click', () => {
+  client.sendEBrake();
+});
+
+confirmPropulseButton.addEventListener('click', () => {
+  client.sendPropulse();
+});
 // Connection Indicators
 function setRecieve(state) {
   if (state) recieveIndicator1.className = 'statusGood';
@@ -170,6 +206,7 @@ function init() {
   di.createCache();
   dl.fillAllItems();
   dl.fillAllTables();
+  toggleMotorSafety(true);
 }
 // Run at init
 init();

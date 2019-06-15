@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/terminal.grid.css">
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
+    <script src="public/javascripts/charthandling.js"></script>
+    <script src="../node_modules/plotly.js-dist/plotly.js"></script>
+    <title>Badgerloop Pod IV Dashboard</title>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <div class="banner">
+        <a class="left"><img src="public/images/logo.png" height="30px"></a>
+        <a id="title" class="left">CONTROL DASHBOARD</a>
+        <a id="close-window" class="right">&#10005;</a>
+        <a id="max-window" class="right">&#128470; </a>
+        <a id="min-window" class="right">&#8212;</a>
+        <a id="banner-drop" class="right">
+            <div class="banner_dropdown">
+                <button class="banner_dropbtn">Change View</button>
+                <img src="public/images/dropdown.png" height="25px">
+                <div class="banner_dropdown-content">
+                    <a href="index.html">Main</a>
+                    <a href="testing.html">Analysis</a>
+                    <a href="terminal.html">Terminal</a>
+                </div>
+            </div>
+        </a>
+        <a class="trigger"><img src="public/images/settings.png" height="35px"></a>
+    </div>
+    <div class="grid-container">
+        <div class="Terminal" id="terminal">
+            <div id="terminalOutput">
+                <p class="message">Badgerloop Utility Shell<br>
+                Type 'help' for a list of commands</p>
+                <ul id="terminalOutputList">
+                </ul>
+            </div>
+            <div id="terminalInput">
+                <p id="prompt">$</p>
+                <input id="terminalInputBox" class="inputNotSearchable" type="text">
+            </div>
+        </div>
+        <div class="Helper">I have the high ground</div>
+    </div>
+</body>
+<script src="public/javascripts/terminal.js"></script>
+</html>

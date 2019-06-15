@@ -109,3 +109,11 @@ module.exports.sendLVPing = function sendLVPing() {
 module.exports.sendHVPing = function sendHVPing() {
   sendHVCommand('ping');
 };
+
+module.exports.toggleSafety = function toggleSafety(state) {
+  if (state) {
+    sendHVCommand('safetyOn');
+  } else {
+    sendHVCommand('safetyOff');
+  }
+};
