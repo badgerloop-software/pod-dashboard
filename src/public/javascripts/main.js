@@ -17,7 +17,7 @@ Purpose: code for opening a pop up modal box
 */
 let settingsModal = document.querySelector('.settingsModal');
 let confirmationModal = document.querySelector('.confirmationModal');
-let settingsTrigger = document.querySelector('.settingsTrigger');
+let settingsTrigger = document.getElementById('settingsTrigger');
 let confirmationTrigger = document.querySelector('.confirmationTrigger');
 let closeButton = document.querySelector('.close-button');
 let closeButton2 = document.querySelector('.close-button2');
@@ -35,7 +35,7 @@ settingsTrigger.addEventListener('click', toggleSettingsModal);
 confirmationTrigger.addEventListener('click', toggleConfirmationModal);
 closeButton.addEventListener('click', toggleSettingsModal);
 closeButton2.addEventListener('click', toggleConfirmationModal);
-window.addEventListener('click', windowOnClick);
+// window.addEventListener('click', windowOnClick);
 
 /*
 Focus Clone

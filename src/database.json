@@ -352,7 +352,7 @@
         }
       }
     },
-    "currentPressure": {
+    "ambientPressure": {
       "units": "PSI",
       "show": true,
       "limits": {
