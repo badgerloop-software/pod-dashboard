@@ -50,6 +50,25 @@ function getPackPowerRemaining(input) {
 
   return fixedPacket;
 }
+
+function interpolateLVSOC(x) {
+  // From LV Pack SOC spreadsheet
+  // equation y= -2e^10x^6 + 6e^-8x^5 - 9e^-6x^4 + 0.0006x^3- 0.0195x^2 +0.3159x + 8.9316
+
+  let y = -(0.0000000002) * (x ** 6) + 0.00000006 * (x ** 5) - 0.000009 * (x ** 4)
+  + 0.0006 * (x ** 3) - 0.0195 * (x ** 2) + 0.3159 * x + 8.9316;
+
+  return Number(y);
+}
+
+function getLVSOC(input) {
+  let fixedPacket = input;
+  let x = Number(input.battery.batteryVoltage);
+  let lvSOC = interpolateLVSOC(x);
+  fixedPacket.battery.lvSOC = lvSOC;
+
+  return fixedPacket;
+}
 function updateData(dataIn) {
   // Sort through the data and append the new values to their respective arrays in cache.js
   // NormalizePacket -> Calculations -> [UpdateData]
@@ -78,6 +97,7 @@ function calculate(input) {
     fixedPacket = getMaxMotorControllerTemp(fixedPacket);
     fixedPacket = getPowerConsumed(fixedPacket);
     fixedPacket = getPackPowerRemaining(fixedPacket);
+    fixedPacket = getLVSOC(fixedPacket);
   } catch (err) {
     console.error(`Calculation Error: ${err}`);
   }

@@ -57,6 +57,7 @@ function sendTestData() { // eslint-disable-line
       packSOC: getRandomValue(),
       cellMaxVoltage: getRandomValue(),
       cellTemp: getRandomValue(),
+      batteryVoltage: getRandomValue(),
     },
     braking: {
       secondaryTank: getRandomValue(),
@@ -103,6 +104,7 @@ function sendSpecificData(data) {
       packSOC: data,
       cellMaxVoltage: data,
       cellTemp: data,
+      batteryVoltage: data,
     },
     braking: {
       secondaryTank: data,

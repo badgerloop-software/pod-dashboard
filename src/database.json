@@ -808,7 +808,7 @@
     },
     "packSOC": {
       "units": "%",
-      "show": false,
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 90,
@@ -1108,7 +1108,7 @@
     },
     "packPowerConsumed": {
       "units": "W",
-      "show": true,
+      "show": false,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -1158,7 +1158,7 @@
     },
     "packPowerRemaining": {
       "units": "WH",
-      "show": true,
+      "show": false,
       "limits": {
         "powerOff": {
           "min": 1260,
@@ -1203,6 +1203,56 @@
         "safeToApproach": {
          "min": 1260,
           "max": 1800
+        }
+      }
+    },
+    "lvSOC": {
+      "units": "%",
+      "show": true,
+      "limits": {
+        "powerOff": {
+          "min": 0,
+          "max": 100
+        },
+        "idle": {
+          "min": 0,
+          "max": 100
+        },
+        "readyForPumpdown": {
+         "min": 0,
+          "max": 100
+        },
+        "pumpdown": {
+         "min": 0,
+          "max": 100
+        },
+        "readyForPropulsion": {
+         "min": 0,
+          "max": 100
+        },
+        "propulsion": {
+         "min": 0,
+          "max": 100
+        },
+        "braking": {
+         "min": 0,
+          "max": 100
+        },
+        "stopped": {
+         "min": 0,
+          "max": 100
+        },
+        "crawl": {
+         "min": 0,
+          "max": 100
+        },
+        "postRun": {
+         "min": 0,
+          "max": 100
+        },
+        "safeToApproach": {
+         "min": 0,
+          "max": 100
         }
       }
     }
