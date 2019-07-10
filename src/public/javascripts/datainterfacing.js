@@ -33,6 +33,23 @@ function getMaxMotorControllerTemp(input) {
   fixedPacket.motor.maxControllerTemp = input.motor.controlBoardTemp;
   return fixedPacket;
 }
+
+function getPowerConsumed(input) {
+  let fixedPacket = input;
+
+  let power = input.battery.packCurrent * input.battery.packVoltage;
+  fixedPacket.battery.packPowerConsumed = power;
+  return fixedPacket;
+}
+
+function getPackPowerRemaining(input) {
+  let fixedPacket = input;
+  let ampHours = 6; // Got this value from Shelby
+  let wattHours = input.battery.packVoltage * ampHours * input.battery.packSOC;
+  fixedPacket.battery.packPowerRemaining = wattHours;
+
+  return fixedPacket;
+}
 function updateData(dataIn) {
   // Sort through the data and append the new values to their respective arrays in cache.js
   // NormalizePacket -> Calculations -> [UpdateData]
@@ -59,6 +76,8 @@ function calculate(input) {
   // Take the Max of the three motor controller temp sensors and put the max in maxControllerTemp
   try {
     fixedPacket = getMaxMotorControllerTemp(fixedPacket);
+    fixedPacket = getPowerConsumed(fixedPacket);
+    fixedPacket = getPackPowerRemaining(fixedPacket);
   } catch (err) {
     console.error(`Calculation Error: ${err}`);
   }
