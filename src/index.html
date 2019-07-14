@@ -104,18 +104,15 @@
       <div id="header3" class="box">
         <div class="gridStateMachine">
           <!-- Button [1][1] -->
-          <button id="archiveButton" class="stateButton">
-            <p>Archive Data</p>
-          </button>
           <button id="powerOff" class="stateButton">
             <p>Power Off</p>
           </button>
           <button id="idle" class="stateButtonInactive">
             <p id="pidle">Idle</p>
           </button>
-          <button id="readyForPumpdown" class="stateButtonInactive">
+          <!-- <button id="readyForPumpdown" class="stateButtonInactive">
             <p id="preadyForPumpdown">Ready for Pumpdown</p>
-          </button>
+          </button> -->
           <button id="pumpdown" class="stateButtonInactive">
             <p id="ppumpdown">Pumpdown</p>
           </button>
@@ -134,18 +131,24 @@
           <button id="crawl" class="stateButtonInactive">
             <p id="pcrawl">Crawl</p>
           </button>
+          <button id="postRun" class="stateButtonInactive">
+              <p>Post Run</p>
+            </button>
           <button id="safeToApproach" class="stateButtonInactive">
             <p id="psafeToApproach">Safe to Approach</p>
           </button>
-          <button id="preFault" class="stateButtonInactive">
+          <!-- <button id="preFault" class="stateButtonInactive">
             <p id="ppreFault">Pre Run Fault</p>
-          </button>
+          </button> -->
           <button id="runFault" class="stateButtonInactive">
-            <p id="prunFault">During Run Fault</p>
+            <p id="prunFault">Run Fault</p>
           </button>
-          <button id="postFault" class="stateButtonInactive">
-            <p id="ppostFault">Post Run Fault</p>
+          <button id="nonRunFault" class="stateButtonInactive">
+            <p id="ppostFault">Non-Run Fault</p>
           </button>
+          <button id="archiveButton" class="stateButton">
+              <p>Archive Data</p>
+            </button>
           <button id="primBrakeOn" class="stateButton">
             <p id="">Prim. Brake On</p>
           </button>
@@ -187,8 +190,8 @@
               <p id="link1" class="">---</p>
             </div>
             <div id="age">
-              <h5>Latency</h5>
-              <h1 id="ageDisplay">ms</h1>
+              <h5>Timer</h5>
+              <h1 id="ageDisplay"></h1>
             </div>
             <div id="statusConnection2" class="">
               <p id="link2" class="">---</p>
@@ -203,10 +206,10 @@
         <button id="start" class="confirmationTrigger">
           <h1>MASTER START</h1>
         </button>
-        <button id="motor-safety">
+        <!-- <button id="motor-safety">
           <h3>MOTOR  SAFETY</h3>
           <h1 id="motor-safety-status" class="status-on">ON</h1>
-        </button>
+        </button> -->
         <button id="estop">
           <h1>E-STOP</h1>
         </button>

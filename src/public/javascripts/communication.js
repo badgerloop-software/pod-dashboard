@@ -110,6 +110,30 @@ module.exports.sendHVPing = function sendHVPing() {
   sendHVCommand('ping');
 };
 
+module.exports.enableHV = function enableHV() {
+  sendHVCommand('hvEnable');
+};
+
+module.exports.disableHV = function disableHV() {
+  sendHVCommand('hvDisable');
+};
+
+module.exports.primBrakeOff = function primBrakeOff() {
+  sendHVCommand('primBrakeOff');
+};
+
+module.exports.primBrakeOn = function primBrakeOn() {
+  sendHVCommand('primBrakeOn');
+};
+
+module.exports.secBrakeOn = function secBrakeOn() {
+  sendHVCommand('secBrakeOff');
+};
+
+module.exports.secBrakeOff = function secBrakeOn() {
+  sendHVCommand('secBrakeOn');
+};
+
 module.exports.toggleSafety = function toggleSafety(state) {
   if (state) {
     sendHVCommand('safetyOn');

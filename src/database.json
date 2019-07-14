@@ -504,53 +504,53 @@
         }
       }
     },
-    "retro": {
+    "imuPosition": {
       "units": "M",
-      "show": false,
+      "show": true,
       "limits": {
         "powerOff": {
           "min": 0,
-          "max": 16
+          "max": 1300
         },
         "idle": {
           "min": 0,
-          "max": 16
+          "max": 1300
         },
         "readyForPumpdown": {
           "min": 0,
-          "max": 16
+          "max": 1300
         },
         "pumpdown": {
           "min": 0,
-          "max": 16
+          "max": 1300
         },
         "readyForPropulsion": {
           "min": 0,
-          "max": 16
+          "max": 1300
         },
         "propulsion": {
           "min": 0,
-          "max": 16
+          "max": 1300
         },
         "braking": {
           "min": 0,
-          "max": 16
+          "max": 1300
         },
         "stopped": {
           "min": 0,
-          "max": 16
+          "max": 1300
         },
         "crawl": {
           "min": 0,
-          "max": 16
+          "max": 1300
         },
         "postRun": {
           "min": 0,
-          "max": 16
+          "max": 1300
         },
         "safeToApproach": {
           "min": 0,
-          "max": 16
+          "max": 1300
         }
       }
     },
@@ -596,11 +596,11 @@
         },
         "postRun": {
           "min": 0,
-          "max": 0
+          "max": 1300
         },
         "safeToApproach": {
           "min": 0,
-          "max": 0
+          "max": 1300
         }
       }
     },
@@ -654,8 +654,8 @@
         }
       }
     },
-    "retroCount": {
-      "units": "Num",
+    "retro": {
+      "units": "Count",
       "show": true,
       "limits": {
         "powerOff": {

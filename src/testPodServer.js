@@ -89,7 +89,7 @@ function sendTestData() { // eslint-disable-line
 
 function sendSpecificData(data) {
   let testSocket = {
-    state: 2,
+    state: 3,
     time: new Date().getMilliseconds(),
     motion: {
       stoppingDistance: data,

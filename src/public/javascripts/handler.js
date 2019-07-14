@@ -17,12 +17,12 @@ const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
-const motorSafteyToggle = d.getElementById('motor-safety-status');
-const motorSafteyButton = d.getElementById('motor-safety');
+// const motorSafteyToggle = d.getElementById('motor-safety-status');
+// const motorSafteyButton = d.getElementById('motor-safety');
 const estopButton = d.getElementById('estop');
 const confirmPropulseButton = d.getElementById('confirmStart');
 const renderer = new Renderer();
-const TIMEOUT = 5;
+const TIMEOUT = 5000;
 
 let boneStatus = [false, false]; // [LV, HV]
 
@@ -36,7 +36,7 @@ function setAgeLabel(staleness) {
 comms.on('dataIn', (input, time) => {
   di.normalizePacket(input);
   setAgeLabel(time);
-  renderer.lastRecievedTime = new Date().getUTCSeconds();
+  renderer.lastRecievedTime = new Date().getTime();
 });
 
 // Update the Database and Render the latest entry
@@ -99,34 +99,60 @@ for (let i = 0; i < smButtons.length; i += 1) {
   // archive data is an exception
   if (smButtons[i] === d.getElementById('archiveButton')) {
     makeArchiveListener(smButtons[i]);
+  } if (smButtons[i] === d.getElementById('hvEnable') || smButtons[i] === d.getElementById('hvDisable') || smButtons[i] === d.getElementById('primBrakeOn') || smButtons[i] === d.getElementById('primBrakeOff') || smButtons[i] === d.getElementById('secBrakeVentOn') || smButtons[i] === d.getElementById('secBrakeVentOff')) {
+    break;
   } else { // all other buttons
     makeListener(smButtons[i]);
   }
 }
 
-function toggleMotorSafety(state) {
-  if (state) {
-    // If Setting True
-    motorSafteyToggle.className = 'status-on';
-    motorSafteyToggle.innerHTML = 'ON';
-    client.toggleSafety(true);
-  } else {
-    // If setting false
-    motorSafteyToggle.className = 'status-off';
-    motorSafteyToggle.innerHTML = 'OFF';
-    client.toggleSafety(false);
-  }
-}
-
-
-motorSafteyButton.addEventListener('click', () => {
-  if (motorSafteyToggle.classList.contains('status-off')) {
-    // If motor safety is off
-    toggleMotorSafety(true);
-  } else {
-    toggleMotorSafety(false);
-  }
+document.getElementById('hvEnable').addEventListener('click', () => {
+  client.enableHV();
 });
+
+document.getElementById('hvDisable').addEventListener('click', () => {
+  client.disableHV();
+});
+
+document.getElementById('primBrakeOff').addEventListener('click', () => {
+  client.primBrakeOff();
+});
+
+document.getElementById('primBrakeOn').addEventListener('click', () => {
+  client.primBrakeOn();
+});
+
+document.getElementById('secBrakeVentOn').addEventListener('click', () => {
+  client.secBrakeOn();
+});
+
+document.getElementById('secBrakeVentOff').addEventListener('click', () => {
+  client.secBrakeOff();
+});
+
+// function toggleMotorSafety(state) {
+//   if (state) {
+//     // If Setting True
+//     motorSafteyToggle.className = 'status-on';
+//     motorSafteyToggle.innerHTML = 'ON';
+//     client.toggleSafety(true);
+//   } else {
+//     // If setting false
+//     motorSafteyToggle.className = 'status-off';
+//     motorSafteyToggle.innerHTML = 'OFF';
+//     client.toggleSafety(false);
+//   }
+// }
+
+
+// motorSafteyButton.addEventListener('click', () => {
+//   if (motorSafteyToggle.classList.contains('status-off')) {
+//     // If motor safety is off
+//     toggleMotorSafety(true);
+//   } else {
+//     toggleMotorSafety(false);
+//   }
+// });
 
 estopButton.addEventListener('click', () => {
   client.sendEBrake();
@@ -137,13 +163,17 @@ confirmPropulseButton.addEventListener('click', () => {
 });
 // Connection Indicators
 function setRecieve(state) {
-  if (state) recieveIndicator1.className = 'statusGood';
-  if (state) recieveIndicator2.className = 'statusGood';
-  if (state) d.getElementById('ageDisplay').className = 'statusGood';
-  if (!state) recieveIndicator1.className = 'statusBad';
-  if (!state) recieveIndicator2.className = 'statusBad';
-  if (!state) d.getElementById('ageDisplay').innerHTML = 'N/A';
-  if (!state) d.getElementById('ageDisplay').className = 'statusBad';
+  if (state) {
+    recieveIndicator1.className = 'statusGood';
+    recieveIndicator2.className = 'statusGood';
+    d.getElementById('ageDisplay').className = 'statusGood';
+  }
+  if (!state) {
+    recieveIndicator1.className = 'statusBad';
+    recieveIndicator2.className = 'statusBad';
+    d.getElementById('ageDisplay').innerHTML = 'N/A';
+    d.getElementById('ageDisplay').className = 'statusBad';
+  }
 }
 
 function setLVIndicator(state) {
@@ -157,9 +187,10 @@ function setHVIndicator(state) {
 }
 
 function checkRecieve() {
-  let now = new Date().getUTCSeconds();
+  let now = new Date().getTime();
   let difference = now - renderer.lastRecievedTime;
-  if (difference > TIMEOUT) {
+  // console.log(`now: ${now} difference ${difference} timeout ${TIMEOUT}`);
+  if ((difference > TIMEOUT) || renderer.lastRecievedTime === 0) {
     setRecieve(false);
     renderer.stopRenderer();
   } else {
@@ -206,7 +237,7 @@ function init() {
   di.createCache();
   dl.fillAllItems();
   dl.fillAllTables();
-  toggleMotorSafety(true);
+  // toggleMotorSafety(true);
 }
 // Run at init
 init();
