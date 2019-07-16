@@ -48,7 +48,6 @@ function sendPacket(ip, port, msg) {
   });
 
   tcpSender.setTimeout(2000);
-
   tcpSender.on('data', (e) => {
     console.log(`Recieved: ${e}`);
     recievedEmitter.emit('ok', ip);

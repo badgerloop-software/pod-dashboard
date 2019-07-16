@@ -16,25 +16,18 @@ Modals
 Purpose: code for opening a pop up modal box
 */
 let settingsModal = document.querySelector('.settingsModal');
-let confirmationModal = document.querySelector('.confirmationModal');
 let settingsTrigger = document.getElementById('settingsTrigger');
-let confirmationTrigger = document.querySelector('.confirmationTrigger');
+
 let closeButton = document.querySelector('.close-button');
-let closeButton2 = document.querySelector('.close-button2');
+
 
 function toggleSettingsModal() {
   settingsModal.classList.toggle('show-modal');
   fillConstants(); // eslint-disable-line no-use-before-define
 }
-function toggleConfirmationModal() {
-  confirmationModal.classList.toggle('show-modal');
-  fillConstants(); // eslint-disable-line no-use-before-define
-}
-
 settingsTrigger.addEventListener('click', toggleSettingsModal);
-confirmationTrigger.addEventListener('click', toggleConfirmationModal);
 closeButton.addEventListener('click', toggleSettingsModal);
-closeButton2.addEventListener('click', toggleConfirmationModal);
+
 // window.addEventListener('click', windowOnClick);
 
 /*

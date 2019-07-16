@@ -149,15 +149,19 @@ function getStateName(stateNum) {
     case 7:
       return 'stopped';
     case 8:
-      return 'crawl';
+      return 'crawlPrecharge';
     case 9:
-      return 'postRun';
+      return 'crawl';
     case 10:
-      return 'safeToApproach';
+      return 'postRun';
     case 11:
-      return 'nonRunFault';
+      return 'safeToApproach';
     case 12:
+      return 'nonRunFault';
+    case 13:
       return 'runFault';
+    case 14:
+      return 'brakingFault';
     default:
       return undefined;
   }
@@ -172,10 +176,10 @@ function resetAllButtons() {
   document.getElementById('propulsion').className = 'stateButtonInactive';
   document.getElementById('braking').className = 'stateButtonInactive';
   document.getElementById('stopped').className = 'stateButtonInactive';
+  document.getElementById('crawlPrecharge').className = 'stateButtonInactive';
   document.getElementById('crawl').className = 'stateButtonInactive';
   document.getElementById('nonRunFault').className = 'stateButtonInactive';
   document.getElementById('runFault').className = 'stateButtonInactive';
-  // document.getElementById('preFault').className = 'stateButtonInactive';
   document.getElementById('safeToApproach').className = 'stateButtonInactive';
 }
 

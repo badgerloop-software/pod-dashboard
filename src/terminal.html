@@ -29,7 +29,7 @@
                 </div>
             </div>
         </a>
-        <a class="trigger"><img src="public/images/settings.png" height="35px"></a>
+        <!-- <a class="trigger"><img src="public/images/settings.png" height="35px"></a> -->
     </div>
     <div class="grid-container">
         <div class="Terminal" id="terminal">
@@ -41,7 +41,7 @@
             </div>
             <div id="terminalInput">
                 <p id="prompt">$</p>
-                <input id="terminalInputBox" class="inputNotSearchable" type="text">
+                <input id="terminalInputBox" class="inputNotSearchable" type="text" onkeydown="handleKeys()" autofocus>
             </div>
         </div>
         <div class="Helper"><!--TODO: HELPER--></div>

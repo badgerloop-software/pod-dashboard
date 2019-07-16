@@ -527,7 +527,7 @@ span2{
   border-radius: 10px;
   margin-top: 10px;
   width: 100%;
-  height: 49%;
+  height: 98%;
   font-weight: 1000px;
 }
 #estop:hover {
@@ -593,8 +593,12 @@ span2{
 }
 #hvEnable, #hvDisable {
   background-color: #F4D76F;
-  color: #000000 !important;
+  color: #000000;
   border: 2px solid #D35500;
+}
+
+#hvEnable .active {
+  color: #3C9159;
 }
 #secBrakeVentOn, #secBrakeVentOff {
   background-color: #5C97BF;
@@ -604,7 +608,6 @@ span2{
 #powerOff {
   background-color: #C10000; 
   color: white;
-  height: 260px;
 }
 #idle {
   background-color: #3C9159;
@@ -618,7 +621,11 @@ span2{
   background-color: #A84671;
   color: white;
 }
-#runFault, #nonRunFault {
+#crawlPrecharge {
+  background-color: #A84671;
+  color: white;
+}
+#runFault, #nonRunFault, #brakingFault {
   background-color: red;
   color: white;
 }

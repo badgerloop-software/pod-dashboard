@@ -1,0 +1,38 @@
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/main.grid.css">
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
+    <script src="public/javascripts/charthandling.js"></script>
+    <script src="../node_modules/plotly.js-dist/plotly.js"></script>
+    <title>Badgerloop Pod IV Dashboard</title>
+  </head>
+  <body>
+<div class="banner">
+  <a class="left"><img src="public/images/logo.png" height="30px"></a>
+  <a id="title" class="left">CONTROL DASHBOARD</a>
+  <a id="close-window" class="right">&#10005;</a>
+  <a id="max-window" class="right">&#128470; </a>
+  <a id="min-window" class="right">&#8212;</a>
+  <a id="banner-drop" class="right">
+    <div class="banner_dropdown">
+      <button class="banner_dropbtn">Change View</button>
+      <img src="public/images/dropdown.png" height="25px">
+      <div class="banner_dropdown-content">
+        <a href="#">Main</a>
+        <a href="testing.html">Analysis</a>
+        <a href="terminal.html">Terminal</a>
+        <a href="battery.html">Batteries</a>
+      </div>
+    </div>
+  </a>
+  <a class="settingsTrigger" id="settingsTrigger"><img src="public/images/settings.png" height="35px"></a>
+</div>
+<div style="padding-top: 80px;">
+<table id="batteryTable"></table>
+<h2 id="temps">Min Cell Temp:    Avg Cel Temp:   Max Cell Temp:</h2>
+</div>
+<script src="public/javascripts/batteries.js"></script>
+</body>
+</html>

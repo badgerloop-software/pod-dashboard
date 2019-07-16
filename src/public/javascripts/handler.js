@@ -17,10 +17,21 @@ const lvIndicator = d.getElementById('connectionDot1');
 const hvIndicator = d.getElementById('connectionDot2');
 const recieveIndicator1 = d.getElementById('link1');
 const recieveIndicator2 = d.getElementById('link2');
+const primBrakeOn = d.getElementById('primBrakeOn');
+const primBrakeOff = d.getElementById('primBrakeOff');
+const secBrakeOn = d.getElementById('secBrakeVentOn');
+const secBrakeOff = d.getElementById('secBrakeVentOff');
+const primBrakeOnText = d.getElementById('primEnText');
+const primBrakeOffText = d.getElementById('primDisText');
+const secBrakeOnText = d.getElementById('secEnText');
+const secBrakeOffText = d.getElementById('secDisText');
+const confirmationModal = document.querySelector('.confirmationModal');
+// const confirmationTrigger = document.querySelector('.confirmationTrigger');
+const closeButton2 = document.querySelector('.close-button2');
 // const motorSafteyToggle = d.getElementById('motor-safety-status');
 // const motorSafteyButton = d.getElementById('motor-safety');
 const estopButton = d.getElementById('estop');
-const confirmPropulseButton = d.getElementById('confirmStart');
+let confirmModalBtn = d.getElementById('confirmStart');
 const renderer = new Renderer();
 const TIMEOUT = 5000;
 
@@ -28,16 +39,8 @@ let boneStatus = [false, false]; // [LV, HV]
 
 // Sets the latency counter
 function setAgeLabel(staleness) {
-  d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
+  if (staleness > 0) d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
 }
-
-
-// Data in recieved
-comms.on('dataIn', (input, time) => {
-  di.normalizePacket(input);
-  setAgeLabel(time);
-  renderer.lastRecievedTime = new Date().getTime();
-});
 
 // Update the Database and Render the latest entry
 function renderData(group, sensor) {
@@ -94,73 +97,121 @@ function makeArchiveListener(btn) {
   });
 }
 
+function toggleConfirmationModal(msg, cb) {
+  confirmationModal.classList.toggle('show-modal');
+  if (msg && cb) {
+    let el = confirmModalBtn;
+    let elClone = el.cloneNode(true);
+    confirmModalBtn = elClone;
+    el.parentNode.replaceChild(elClone, el);
+    confirmModalBtn.addEventListener('click', toggleConfirmationModal);
+    document.getElementById('confirmMsg').innerHTML = `Are you sure you want to engage ${msg}`;
+    confirmModalBtn.addEventListener('click', cb);
+  }
+}
+
 // iterate through list of buttons and call makeListener
 for (let i = 0; i < smButtons.length; i += 1) {
-  // archive data is an exception
+  // handle exceptions
   if (smButtons[i] === d.getElementById('archiveButton')) {
     makeArchiveListener(smButtons[i]);
-  } if (smButtons[i] === d.getElementById('hvEnable') || smButtons[i] === d.getElementById('hvDisable') || smButtons[i] === d.getElementById('primBrakeOn') || smButtons[i] === d.getElementById('primBrakeOff') || smButtons[i] === d.getElementById('secBrakeVentOn') || smButtons[i] === d.getElementById('secBrakeVentOff')) {
-    break;
+  } if (smButtons[i] === d.getElementById('crawlPrecharge') || smButtons[i] === d.getElementById('crawl') || smButtons[i] === d.getElementById('propulsion') || smButtons[i] === d.getElementById('hvEnable') || smButtons[i] === d.getElementById('hvDisable') || smButtons[i] === d.getElementById('primBrakeOn') || smButtons[i] === d.getElementById('primBrakeOff') || smButtons[i] === d.getElementById('secBrakeVentOn') || smButtons[i] === d.getElementById('secBrakeVentOff')) {
+    continue; // eslint-disable-line
   } else { // all other buttons
     makeListener(smButtons[i]);
   }
 }
 
-document.getElementById('hvEnable').addEventListener('click', () => {
+function enableHV() {
+  document.getElementById('hvText').classList.add('active');
+  console.log('HV on');
   client.enableHV();
+}
+
+function sendPrecharge() {
+  overrideState('crawlPrecharge');
+}
+
+d.getElementById('crawlPrecharge').addEventListener('click', () => {
+  toggleConfirmationModal('service precharge?', sendPrecharge);
+});
+
+document.getElementById('hvEnable').addEventListener('click', () => {
+  toggleConfirmationModal('high voltage systems?', enableHV);
 });
 
 document.getElementById('hvDisable').addEventListener('click', () => {
+  document.getElementById('hvText').classList.remove('active');
   client.disableHV();
 });
 
-document.getElementById('primBrakeOff').addEventListener('click', () => {
-  client.primBrakeOff();
-});
+function togglePrimBrake(state, call) {
+  if (state) {
+    primBrakeOnText.style.color = 'lime';
+    primBrakeOffText.style.color = 'white';
+    if (call) client.primBrakeOn();
+  }
+  if (!state) {
+    primBrakeOffText.style.color = 'lime';
+    primBrakeOnText.style.color = 'white';
+    if (call) client.primBrakeOff();
+  }
+}
 
-document.getElementById('primBrakeOn').addEventListener('click', () => {
-  client.primBrakeOn();
-});
+function toggleSecBrake(state, call) {
+  if (state) {
+    secBrakeOnText.style.color = 'lime';
+    secBrakeOffText.style.color = 'black';
+    if (call) client.secBrakeOn();
+  }
+  if (!state) {
+    secBrakeOffText.style.color = 'lime';
+    secBrakeOnText.style.color = 'black';
+    if (call) client.secBrakeOff();
+  }
+}
 
-document.getElementById('secBrakeVentOn').addEventListener('click', () => {
-  client.secBrakeOn();
-});
+primBrakeOff.addEventListener('click', () => { togglePrimBrake(false, true); });
+primBrakeOn.addEventListener('click', () => { togglePrimBrake(true, true); });
+secBrakeOn.addEventListener('click', () => { toggleSecBrake(true, true); });
+secBrakeOff.addEventListener('click', () => { toggleSecBrake(false, true); });
 
-document.getElementById('secBrakeVentOff').addEventListener('click', () => {
-  client.secBrakeOff();
-});
-
-// function toggleMotorSafety(state) {
-//   if (state) {
-//     // If Setting True
-//     motorSafteyToggle.className = 'status-on';
-//     motorSafteyToggle.innerHTML = 'ON';
-//     client.toggleSafety(true);
-//   } else {
-//     // If setting false
-//     motorSafteyToggle.className = 'status-off';
-//     motorSafteyToggle.innerHTML = 'OFF';
-//     client.toggleSafety(false);
-//   }
-// }
-
-
-// motorSafteyButton.addEventListener('click', () => {
-//   if (motorSafteyToggle.classList.contains('status-off')) {
-//     // If motor safety is off
-//     toggleMotorSafety(true);
-//   } else {
-//     toggleMotorSafety(false);
-//   }
-// });
+function checkBraking(basePacket) {
+  let fixedPacket = basePacket;
+  if (basePacket.braking.primBrake === 1) togglePrimBrake(true);
+  else togglePrimBrake(false);
+  if (basePacket.braking.secBrake === 1) toggleSecBrake(true);
+  else toggleSecBrake(false);
+  delete fixedPacket.braking.primBrake;
+  delete fixedPacket.braking.secBrake;
+  return fixedPacket;
+}
 
 estopButton.addEventListener('click', () => {
   client.sendEBrake();
 });
 
-confirmPropulseButton.addEventListener('click', () => {
-  client.sendPropulse();
+function sendGo() {
+  console.log('go');
+  overrideState('propulsion');
+}
+
+function sendCrawl() {
+  console.log('crawl');
+  overrideState('crawl');
+}
+
+document.getElementById('propulsion').addEventListener('click', () => {
+  toggleConfirmationModal('propulsion systems?', sendGo);
 });
+
+document.getElementById('crawl').addEventListener('click', () => {
+  toggleConfirmationModal('service propulsion?', sendCrawl);
+});
+
+confirmModalBtn.addEventListener('click', toggleConfirmationModal);
+closeButton2.addEventListener('click', toggleConfirmationModal);
+
 // Connection Indicators
 function setRecieve(state) {
   if (state) {
@@ -241,3 +292,11 @@ function init() {
 }
 // Run at init
 init();
+
+// Data in recieved
+comms.on('dataIn', (input, time) => {
+  let fixedPacket = checkBraking(input);
+  di.normalizePacket(fixedPacket);
+  setAgeLabel(time);
+  renderer.lastRecievedTime = new Date().getTime();
+});

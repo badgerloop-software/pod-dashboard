@@ -26,6 +26,7 @@
             <a href="#">Main</a>
             <a href="testing.html">Analysis</a>
             <a href="terminal.html">Terminal</a>
+            <a href="battery.html">Batteries</a>
           </div>
         </div>
       </a>
@@ -104,6 +105,9 @@
       <div id="header3" class="box">
         <div class="gridStateMachine">
           <!-- Button [1][1] -->
+          <button id="archiveButton" class="stateButton">
+            <p>Archive Data</p>
+          </button>
           <button id="powerOff" class="stateButton">
             <p>Power Off</p>
           </button>
@@ -128,8 +132,11 @@
           <button id="stopped" class="stateButtonInactive">
             <p id="pstopped">Stopped</p>
           </button>
+          <button id="crawlPrecharge" class="stateButtonInactive">
+            <p id="pcrawl">Service Precharge</p>
+          </button>
           <button id="crawl" class="stateButtonInactive">
-            <p id="pcrawl">Crawl</p>
+            <p id="pcrawl">Service Propulsion</p>
           </button>
           <button id="postRun" class="stateButtonInactive">
               <p>Post Run</p>
@@ -146,23 +153,23 @@
           <button id="nonRunFault" class="stateButtonInactive">
             <p id="ppostFault">Non-Run Fault</p>
           </button>
-          <button id="archiveButton" class="stateButton">
-              <p>Archive Data</p>
-            </button>
+          <button id="brakingFault" class="stateButtonInactive">
+            <p id="pbrakeFault">Braking Fault</p>
+          </button>
           <button id="primBrakeOn" class="stateButton">
-            <p id="">Prim. Brake On</p>
+            <p id="primEnText">Prim. Brake On</p>
           </button>
           <button id="secBrakeVentOn" class="stateButton">
-            <p id="">Sec. Brake Vent On</p>
+            <p id="secEnText">Sec. Brake On</p>
           </button>
           <button id="hvEnable" class="stateButton">
-            <p id="">HV Enable</p>
+            <p id="hvText">HV Enable</p>
           </button>
           <button id="primBrakeOff" class="stateButton">
-            <p id="">Prim. Brake Off</p>
+            <p id="primDisText">Prim. Brake Off</p>
           </button>
           <button id="secBrakeVentOff" class="stateButton">
-            <p id="">Sec. Brake Vent Off</p>
+            <p id="secDisText">Sec. Brake Off</p>
           </button>
           <button id="hvDisable" class="stateButton">
             <p id="">HV Disable</p>
@@ -203,9 +210,9 @@
 
       <!-- Emergency Start and Stop Buttons -->
       <div id="extra" class="box">
-        <button id="start" class="confirmationTrigger">
+        <!-- <button id="start" class="confirmationTrigger">
           <h1>MASTER START</h1>
-        </button>
+        </button> -->
         <!-- <button id="motor-safety">
           <h3>MOTOR  SAFETY</h3>
           <h1 id="motor-safety-status" class="status-on">ON</h1>
@@ -368,7 +375,7 @@
       <div class="modal-content" id="confirmationModalContent">
         <span class="close-button2">x</span>
         <h1>Confirmation</h1>
-        <h3>Are you sure you want to engage propulsion systems?</h3>
+        <h3 id="confirmMsg">Are you sure you want to engage propulsion systems?</h3>
         <button class="confirmationButton" id="confirmStart">Yes</button>
       </div>
     </div>

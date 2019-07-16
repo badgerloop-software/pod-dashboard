@@ -51,6 +51,12 @@ function getPackPowerRemaining(input) {
   return fixedPacket;
 }
 
+function getNegatedSpeed(input) {
+  let fixedPacket = input;
+  fixedPacket.motor.motorSpeed = -input.motor.motorSpeed;
+  return fixedPacket;
+}
+
 function interpolateLVSOC(x) {
   // From LV Pack SOC spreadsheet
   // equation y= -2e^10x^6 + 6e^-8x^5 - 9e^-6x^4 + 0.0006x^3- 0.0195x^2 +0.3159x + 8.9316
@@ -66,6 +72,19 @@ function getLVSOC(input) {
   let x = Number(input.battery.batteryVoltage);
   let lvSOC = interpolateLVSOC(x);
   fixedPacket.battery.lvSOC = lvSOC;
+
+  return fixedPacket;
+}
+
+function ambientToGauge(input) {
+  let fixedPacket = input;
+
+  fixedPacket.braking.primaryTank = input.braking.primaryTank + 14.7;
+  fixedPacket.braking.primaryLine = input.braking.primaryLine + 14.7;
+  fixedPacket.braking.primaryActuation = input.braking.primaryActuation + 14.7;
+  fixedPacket.braking.secondaryTank = input.braking.secondaryTank + 14.7;
+  fixedPacket.braking.secondaryLine = input.braking.secondaryLine + 14.7;
+  fixedPacket.braking.secondaryActuation = input.braking.secondaryActuation + 14.7;
 
   return fixedPacket;
 }
@@ -98,6 +117,8 @@ function calculate(input) {
     fixedPacket = getPowerConsumed(fixedPacket);
     fixedPacket = getPackPowerRemaining(fixedPacket);
     fixedPacket = getLVSOC(fixedPacket);
+    fixedPacket = getNegatedSpeed(fixedPacket);
+    fixedPacket = ambientToGauge(fixedPacket);
   } catch (err) {
     console.error(`Calculation Error: ${err}`);
   }

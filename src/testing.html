@@ -25,11 +25,11 @@
         <div class="banner_dropdown-content">
           <a href="index.html">Main</a>
           <a href="testing.html">Analysis</a>
-          <!-- <a href="#">Custom</a> -->
+          <a href="terminal.html">Terminal</a>
         </div>
       </div>
     </a>
-    <a class="trigger"><img src="public/images/settings.png" height="35px"></a>
+    <!-- <a class="trigger"><img src="public/images/settings.png" height="35px"></a> -->
   </div>
 
   <!-- main grid layout-->
@@ -139,17 +139,11 @@
     <!-- State Machine Control Panel -->
     <div id="header3" class="box">
       <div class="gridStateMachine">
-        <button id="archiveButton" class="stateButton">
-          <p>Archive Data</p>
-        </button>
         <button id="powerOff" class="stateButton">
           <p>Power Off</p>
         </button>
         <button id="idle" class="stateButtonInactive">
           <p>Idle</p>
-        </button>
-        <button id="readyForPumpdown" class="stateButtonInactive">
-          <p>Ready for Pumpdown</p>
         </button>
         <button id="pumpdown" class="stateButtonInactive">
           <p>Pumpdown</p>
@@ -169,18 +163,21 @@
         <button id="crawl" class="stateButtonInactive">
           <p>Crawl</p>
         </button>
+        <button id="postRun" class="stateButtonInactive">
+            <p>Post Run</p>
+          </button>
         <button id="safeToApproach" class="stateButtonInactive">
           <p>Safe to Approach</p>
-        </button>
-        <button id="preFault" class="stateButtonInactive">
-          <p>Pre Run Fault</p>
         </button>
         <button id="runFault" class="stateButtonInactive">
           <p>During Run Fault</p>
         </button>
-        <button id="postFault" class="stateButtonInactive">
-          <p>Post Run Fault</p>
+        <button id="nonRunFault" class="stateButtonInactive">
+          <p>Non Run Fault</p>
         </button>
+        <button id="archiveButton" class="stateButton">
+            <p>Archive Data</p>
+          </button>
         <button id="primBrakeOn" class="stateButton">
           <p>Prim. Brake On</p>
         </button>
@@ -287,7 +284,7 @@
       </div>
     </div>
     <!-- Dashboard Settings Modal -->
-    <div class="modal">
+    <!-- <div class="modal">
       <div class="modal-content">
         <span class="close-button">×</span>
         <h1>Dashboard Settings</h1>
@@ -309,7 +306,7 @@
           </div>
         </form>
       </div>
-    </div>
+    </div> -->
   </div>
   </div>
   </div>
