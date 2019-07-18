@@ -26,7 +26,9 @@ yData2 = [];
 chartFirstCreation2 = 0;
 chartTitles2 = ['', ''];
 
-sampleRate = 1000; // sample rate in ms per sample
+let chartInterval1 = false;
+let chartInterval2 = false;
+sampleRate = 100; // sample rate in ms per sample
 xmax = 30; // x-axis range (seconds)
 
 // function to generate blank chart on startup and clear
@@ -102,7 +104,7 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
   // extends line chart one traces at each time step
   function getDataAtInterval() { // eslint-disable-line no-unused-vars
     chartDataPrev1 = -1000;
-    setInterval(() => {
+    chartInterval1 = setInterval(() => {
       xpos += sampleRate / 1000;
       getData();
       if (numTraces1 === 1 && !noData1) {
@@ -220,7 +222,7 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
   // extends line chart two traces at each time step
   function getDataAtInterval() { // eslint-disable-line no-unused-vars
     chartDataPrev2 = -1000;
-    setInterval(() => {
+    chartInterval2 = setInterval(() => {
       if (chartFirstCreation1 === 0) {
         xpos += sampleRate / 1000;
       }
@@ -306,4 +308,14 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
     addTrace();
     chartState2[1] = 1;
   }
+}
+
+function pauseCharts() { // eslint-disable-line
+  clearInterval(chartInterval1);
+  clearInterval(chartInterval2);
+}
+
+// eslint-disable-next-line no-unused-vars
+function playCharts() {
+  getDataAtInterval();
 }

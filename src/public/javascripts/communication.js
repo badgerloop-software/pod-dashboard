@@ -114,23 +114,37 @@ module.exports.enableHV = function enableHV() {
 };
 
 module.exports.disableHV = function disableHV() {
+  console.log('sending tcp');
   sendHVCommand('hvDisable');
 };
 
 module.exports.primBrakeOff = function primBrakeOff() {
-  sendHVCommand('primBrakeOff');
+  sendLVCommand('primBrakeOff');
 };
 
 module.exports.primBrakeOn = function primBrakeOn() {
-  sendHVCommand('primBrakeOn');
+  sendLVCommand('primBrakeOn');
 };
 
 module.exports.secBrakeOn = function secBrakeOn() {
-  sendHVCommand('secBrakeOff');
+  sendLVCommand('secBrakeOn');
 };
 
 module.exports.secBrakeOff = function secBrakeOn() {
-  sendHVCommand('secBrakeOn');
+  sendLVCommand('secBrakeOff');
+};
+
+module.exports.enPrecharge = function enPrecharge() {
+  sendHVCommand('enPrecharge');
+};
+
+module.exports.toggleLatch = function toggleLatch(state) {
+  if (state) sendHVCommand('mcuLatchOn');
+  else sendHVCommand('mcuLatchOff');
+};
+
+module.exports.commandTorque = function commandTorque() {
+  sendHVCommand('cmdTorque');
 };
 
 module.exports.toggleSafety = function toggleSafety(state) {

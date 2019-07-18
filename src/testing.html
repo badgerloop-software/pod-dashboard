@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html>
-
 <head>
   <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">
   <link rel="stylesheet" type="text/css" href="public/stylesheets/testingtool.grid.css">
@@ -63,61 +62,10 @@
           </button>
           <div id="myDropdown2" class="dropdown-content">
             <input type="text" placeholder="Search.." id="dropdownInput2" onkeyup="filterFunction('2')" autofocus>
-            <a href="" onclick="generateLineChartOne('secondaryTank', 'Secondary Tank (PSI)');return false;">Secondary
-              Tank (PSI)</a>
-            <a href="" onclick="generateLineChartOne('secondaryLine', 'Secondary Line (PSI)');return false;">Secondary
-              Line (PSI)</a>
-            <a href="" onclick="generateLineChartOne('secondaryActuation', 'Secondary Actuation (PSI)');return false;"
-              ;>Secondary Actuation (PSI)</a>
-            <a href="" onclick="generateLineChartOne('primaryTank', 'Primary Tank (PSI)');return false;" ;>Primary Tank
-              (PSI)</a>
-            <a href="" onclick="generateLineChartOne('primaryLine', 'Primary Line (PSI)');return false;" ;>Primary Line
-              (PSI)</a>
-            <a href="" onclick="generateLineChartOne('primaryActuation', 'Primary Actuation (PSI)');return false;"
-              ;>Primary Actuation (PSI)</a>
-            <a href=""
-              onclick="generateLineChartOne('pressureVesselPressure', 'Pressure Vessel Pressure (PSI)');return false;"
-              ;>Pressure Vessel Pressure (PSI)</a>
-            <a href="" onclick="generateLineChartOne('currentPressure', 'Current Pressure (PSI)');return false;"
-              ;>Current Pressure (PSI)</a>
-            <a href=""
-              onclick="generateLineChartOne('stoppingDistance', 'Stopping Distance (m)');return false;">Stopping
-              Distance (m)</a>
-            <a href="" onclick="generateLineChartOne('retro', 'Retro');return false;">Retro</a>
-            <a href="" onclick="generateLineChartOne('position', 'Position (m)');return false;">Position (m)</a>
-            <a href="" onclick="generateLineChartOne('velocity', 'Velocity (m/s)');return false;">Velocity (m/s)</a>
-            <a href=""
-              onclick="generateLineChartOne('acceleration', 'Acceleration (m/s<sup>2</sup>)');return false;">Acceleration
-              (m/s<sup>2</sup>)</a>
           </div>
           <div id="myDropdown3" class="dropdown-content">
             <input type="text" placeholder="Search.." id="dropdownInput3" onkeyup="filterFunction('3')">
-            <a href="" onclick="generateLineChartTwo('secondaryTank', 'Secondary Tank (PSI)');return false;">Secondary
-              Tank (PSI)</a>
-            <a href="" onclick="generateLineChartTwo('secondaryLine', 'Secondary Line (PSI)');return false;">Secondary
-              Line (PSI)</a>
-            <a href="" onclick="generateLineChartTwo('secondaryActuation', 'Secondary Actuation (PSI)');return false;"
-              ;>Secondary Actuation (PSI)</a>
-            <a href="" onclick="generateLineChartTwo('primaryTank', 'Primary Tank (PSI)');return false;" ;>Primary Tank
-              (PSI)</a>
-            <a href="" onclick="generateLineChartTwo('primaryLine', 'Primary Line (PSI)');return false;" ;>Primary Line
-              (PSI)</a>
-            <a href="" onclick="generateLineChartTwo('primaryActuation', 'Primary Actuation (PSI)');return false;"
-              ;>Primary Actuation (PSI)</a>
-            <a href=""
-              onclick="generateLineChartTwo('pressureVesselPressure', 'Pressure Vessel Pressure (PSI)');return false;"
-              ;>Pressure Vessel Pressure (PSI)</a>
-            <a href="" onclick="generateLineChartTwo('currentPressure', 'Current Pressure (PSI)');return false;"
-              ;>Current Pressure (PSI)</a>
-            <a href=""
-              onclick="generateLineChartTwo('stoppingDistance', 'Stopping Distance (m)');return false;">Stopping
-              Distance (m)</a>
-            <a href="" onclick="generateLineChartTwo('retro', 'Retro');return false;">Retro</a>
-            <a href="" onclick="generateLineChartTwo('position', 'Position (m)');return false;">Position (m)</a>
-            <a href="" onclick="generateLineChartTwo('velocity', 'Velocity (m/s)');return false;">Velocity (m/s)</a>
-            <a href=""
-              onclick="generateLineChartTwo('acceleration', 'Acceleration (m/s<sup>2</sup>)');return false;">Acceleration
-              (m/s<sup>2</sup>)</a>
+
           </div>
         </div>
         <div class="header_focus_chart" id="header_focus_chart1">
@@ -139,63 +87,51 @@
     <!-- State Machine Control Panel -->
     <div id="header3" class="box">
       <div class="gridStateMachine">
-        <button id="powerOff" class="stateButton">
-          <p>Power Off</p>
-        </button>
-        <button id="idle" class="stateButtonInactive">
-          <p>Idle</p>
-        </button>
-        <button id="pumpdown" class="stateButtonInactive">
-          <p>Pumpdown</p>
-        </button>
-        <button id="readyForPropulsion" class="stateButtonInactive">
-          <p>Ready for Propulsion</p>
-        </button>
-        <button id="propulsion" class="stateButtonInactive">
-          <p>Propulsion Start</p>
-        </button>
-        <button id="braking" class="stateButtonInactive">
-          <p>Braking</p>
-        </button>
-        <button id="stopped" class="stateButtonInactive">
-          <p>Stopped</p>
-        </button>
-        <button id="crawl" class="stateButtonInactive">
-          <p>Crawl</p>
-        </button>
-        <button id="postRun" class="stateButtonInactive">
-            <p>Post Run</p>
-          </button>
-        <button id="safeToApproach" class="stateButtonInactive">
-          <p>Safe to Approach</p>
-        </button>
-        <button id="runFault" class="stateButtonInactive">
-          <p>During Run Fault</p>
-        </button>
-        <button id="nonRunFault" class="stateButtonInactive">
-          <p>Non Run Fault</p>
-        </button>
-        <button id="archiveButton" class="stateButton">
-            <p>Archive Data</p>
-          </button>
-        <button id="primBrakeOn" class="stateButton">
-          <p>Prim. Brake On</p>
-        </button>
-        <button id="secBrakeVentOn" class="stateButton">
-          <p>Sec. Brake Vent On</p>
-        </button>
-        <button id="hvEnable" class="stateButton">
-          <p>HV Enable</p>
-        </button>
-        <button id="primBrakeOff" class="stateButton">
-          <p>Prim. Brake Off</p>
-        </button>
-        <button id="secBrakeVentOff" class="stateButton">
-          <p>Sec. Brake Vent Off</p>
-        </button>
-        <button id="hvDisable" class="stateButton">
-          <p>HV Disable</p>
-        </button>
+          <button id="archiveButton" class="stateButton">
+              <p>Archive Data</p>
+            </button>
+            <button id="powerOff" class="stateButton">
+              <p>Power Off</p>
+            </button>
+            <button id="idle" class="stateButtonInactive">
+              <p id="pidle">Idle</p>
+            </button>
+            <button id="pumpdown" class="stateButtonInactive">
+              <p id="ppumpdown">Precharge State</p>
+            </button>
+            <button id="propulsion" class="stateButtonInactive">
+              <p id="pproulsion">Propulsion Start</p>
+            </button>
+            <button id="braking" class="stateButtonInactive">
+              <p id="pbraking">Braking</p>
+            </button>
+            <button id="stopped" class="stateButtonInactive">
+              <p id="pstopped">Stopped</p>
+            </button>
+            <button id="crawlPrecharge" class="stateButtonInactive">
+              <p id="pcrawl">Service Precharge</p>
+            </button>
+            <button id="crawl" class="stateButtonInactive">
+              <p id="pcrawl">Service Propulsion</p>
+            </button>
+            <button id="postRun" class="stateButtonInactive">
+                <p>Post Run</p>
+              </button>
+            <button id="safeToApproach" class="stateButtonInactive">
+              <p id="psafeToApproach">Safe to Approach</p>
+            </button>
+            <button id="runFault" class="stateButtonInactive">
+              <p id="prunFault">Run Fault</p>
+            </button>
+            <button id="nonRunFault" class="stateButtonInactive">
+              <p id="ppostFault">Non-Run Fault</p>
+            </button>
+            <button id="brakingFault" class="stateButtonInactive">
+              <p id="pbrakeFault">Braking Fault</p>
+            </button>
+            <div class="JSON_slider" id="sliderContainer">
+              <input id="scrubber" oninput="updateScrubber()" class="slider" value="0" min="0" step="1" type="range" />
+            </div>
       </div>
     </div>
 
@@ -211,7 +147,7 @@
       <div class="item-content">
         <h1 style="display:inline;">Motion </h1>
         <h2 id="motion_status" class="disconnected">
-          <span2 style="display:inline;">Disconnected</span2>
+          <!-- <span2 style="display:inline;">Disconnected</span2> -->
         </h2><br><br>
         <input type="text" id="motioninput" onkeyup="searchTable('motion')" placeholder="Search for values.."
           title="Type in a value">
@@ -230,7 +166,7 @@
       <div class="item-content">
         <h1 style="display:inline;">Braking </h1>
         <h2 id="braking_status" class="disconnected">
-          <span2 style="display:inline;">Disconnected</span2>
+          <!-- <span2 style="display:inline;">Disconnected</span2> -->
         </h2><br><br>
         <input type="text" id="brakinginput" onkeyup="searchTable('braking')" placeholder="Search for values.."
           title="Type in a value">
@@ -250,7 +186,7 @@
       <div class="item-content">
         <h1 style="display:inline;">Battery </h1>
         <h2 id="battery_status" class="disconnected">
-          <span2 style="display:inline;">Disconnected</span2>
+          <!-- <span2 style="display:inline;">Disconnected</span2> -->
         </h2><br><br>
         <input type="text" id="batteryinput" onkeyup="searchTable('battery')" placeholder="Search for values.."
           title="Type in a value">
@@ -269,7 +205,7 @@
       <div class="item-content">
         <h1 style="display:inline;">Motor </h1>
         <h2 id="motor_status" class="disconnected">
-          <span2 style="display:inline;">Disconnected</span2>
+          <!-- <span2 style="display:inline;">Disconnected</span2> -->
         </h2><br><br>
         <input type="text" id="motorinput" onkeyup="searchTable('motor')" placeholder="Search for values.."
           title="Type in a value">

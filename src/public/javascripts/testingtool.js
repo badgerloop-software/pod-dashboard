@@ -10,6 +10,7 @@ const maxID = document.getElementById('maxTime');
 const play = document.getElementById('play');
 const pause = document.getElementById('pause');
 const reset = document.getElementById('reset');
+const scrubber = document.getElementById('scrubber');
 let runData = null;
 let runMax = 'No File Loaded';
 let maxReached = false;
@@ -24,12 +25,14 @@ function incrementTimer() {
 }
 
 function playTimer() {
-  if (runData && !isPlaying) timer = setInterval(incrementTimer, 100); isPlaying = true;
+  if (runData && !isPlaying) timer = setInterval(incrementTimer, 100); isPlaying = true; console.log(currentTime);
+  // if (chartInterval1 || chartInterval2) getDataAtInterval();
 }
 
 function pauseTimer() {
   clearInterval(timer);
   isPlaying = false;
+  pauseCharts();
 }
 
 function resetTimer() {
@@ -46,6 +49,17 @@ setInterval(() => {
   }
 }, 100);
 
+// Scrubber
+function updateScrubber() { // eslint-disable-line
+  let v = scrubber.value;
+  console.log(`Scrubber is updating to ${v}`);
+  currentTime = v;
+}
+
+function fillScrubber() {
+  scrubber.setAttribute('max', runMax - 1);
+}
+
 // File Handling
 function findMax() {
   let subsystemArray = Object.values(runData);
@@ -53,6 +67,7 @@ function findMax() {
   let sampleSensor = sensorArray[0];
   runMax = sampleSensor.length - 1;
   maxID.innerHTML = `${runMax}`;
+  fillScrubber();
 }
 function importJSON(file) {
   let rawData = fs.readFileSync(`${file.path}`);
@@ -116,6 +131,7 @@ fileSelector.addEventListener('click', () => { fileInput.click(); });
 // Init
 function init() {
   dl.fillAllTables();
+  dl.fillAllItems(true);
 }
 init();
 // End Init

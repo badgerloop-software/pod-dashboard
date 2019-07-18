@@ -114,14 +114,8 @@
           <button id="idle" class="stateButtonInactive">
             <p id="pidle">Idle</p>
           </button>
-          <!-- <button id="readyForPumpdown" class="stateButtonInactive">
-            <p id="preadyForPumpdown">Ready for Pumpdown</p>
-          </button> -->
           <button id="pumpdown" class="stateButtonInactive">
-            <p id="ppumpdown">Pumpdown</p>
-          </button>
-          <button id="readyForPropulsion" class="stateButtonInactive">
-            <p id="preadyForPropulsion">Ready for Propulsion</p>
+            <p id="ppumpdown">Precharge State</p>
           </button>
           <button id="propulsion" class="stateButtonInactive">
             <p id="pproulsion">Propulsion Start</p>
@@ -144,9 +138,6 @@
           <button id="safeToApproach" class="stateButtonInactive">
             <p id="psafeToApproach">Safe to Approach</p>
           </button>
-          <!-- <button id="preFault" class="stateButtonInactive">
-            <p id="ppreFault">Pre Run Fault</p>
-          </button> -->
           <button id="runFault" class="stateButtonInactive">
             <p id="prunFault">Run Fault</p>
           </button>
@@ -156,23 +147,36 @@
           <button id="brakingFault" class="stateButtonInactive">
             <p id="pbrakeFault">Braking Fault</p>
           </button>
-          <button id="primBrakeOn" class="stateButton">
-            <p id="primEnText">Prim. Brake On</p>
+          <button id="precharge" class="stateButton">
+            <p id="prechargeText">Start Precharge</p>
           </button>
-          <button id="secBrakeVentOn" class="stateButton">
-            <p id="secEnText">Sec. Brake On</p>
+         
+          <button id="primBrakeOn" class="stateButton">
+            <p id="primEnText">Prim. Brake Act</p>
+          </button>
+          <button id="primBrakeOff" class="stateButton">
+            <p id="primDisText">Prim. Brake Retr</p>
           </button>
           <button id="hvEnable" class="stateButton">
             <p id="hvText">HV Enable</p>
           </button>
-          <button id="primBrakeOff" class="stateButton">
-            <p id="primDisText">Prim. Brake Off</p>
+          <button id="secBrakeVentOn" class="stateButton">
+            <p id="secEnText">Sec. Brake Act</p>
           </button>
           <button id="secBrakeVentOff" class="stateButton">
-            <p id="secDisText">Sec. Brake Off</p>
+            <p id="secDisText">Sec. Brake Retr</p>
           </button>
           <button id="hvDisable" class="stateButton">
-            <p id="">HV Disable</p>
+            <p id="hvDisText">HV Disable</p>
+          </button>
+          <button id="latchOn" class="stateButton">
+            <p id="latchOnText">Latch On</p>
+          </button>
+          <button id="latchOff" class="stateButton">
+            <p id="latchOffText">Latch Off</p>
+          </button>
+          <button id="cmdTorque" class="stateButton">
+            <p id="cmdTorqueText">Command Torque</p>
           </button>
         </div>
       </div>
@@ -197,7 +201,7 @@
               <p id="link1" class="">---</p>
             </div>
             <div id="age">
-              <h5>Timer</h5>
+              <h5 id="ageLabel">Timer</h5>
               <h1 id="ageDisplay"></h1>
             </div>
             <div id="statusConnection2" class="">
@@ -262,7 +266,7 @@
               </svg> -->
             </span2>
           </h2><br><br>
-          <input type="text" id="brakinginput" onkeyup="searchTable('braking')" placeholder="Search for values.."
+          <input type="text" id="braking_tableinput" onkeyup="searchTable('braking_table')" placeholder="Search for values.."
             title="Type in a value">
           <table id="braking_table">
             <tr class="header">

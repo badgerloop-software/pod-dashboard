@@ -3,7 +3,7 @@
     "primaryTank": {
       "name": "PS1",
       "type": "unint_32",
-      "units": "PSI",
+      "units": "PSIG",
       "show": true,
       "limits": {
         "powerOff": {
@@ -31,29 +31,29 @@
           "max": 1300
         },
         "braking": {
-          "min": 1000,
+          "min": 900,
           "max": 1300
         },
         "stopped": {
-          "min": 1000,
+          "min": 900,
           "max": 1300
         },
         "crawl": {
-          "min": 0,
-          "max": 20
+          "min": 900,
+          "max": 1300
         },
         "postRun": {
-          "min": 0,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "safeToApproach": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         }
       }
     },
     "primaryLine": {
-      "units": "PSI",
+      "units": "PSIG",
       "show": true,
       "limits": {
         "powerOff": {
@@ -61,49 +61,49 @@
           "max": 0
         },
         "idle": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "readyForPumpdown": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "pumpdown": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "readyForPropulsion": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "propulsion": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "braking": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "stopped": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "crawl": {
-          "min": 0,
+          "min": -5,
           "max": 275
         },
         "postRun": {
-          "min": 0,
+          "min": -5,
           "max": 275
         },
         "safeToApproach": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         }
       }
     },
     "primaryActuation": {
-      "units": "PSI",
+      "units": "PSIG",
       "show": true,
       "limits": {
         "powerOff": {
@@ -111,49 +111,49 @@
           "max": 0
         },
         "idle": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "readyForPumpdown": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "pumpdown": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "readyForPropulsion": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "propulsion": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "braking": {
-          "min": 140,
+          "min": 130,
           "max": 150
         },
         "stopped": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "crawl": {
-          "min": 0,
+          "min": -5,
           "max": 275
         },
         "postRun": {
-          "min": 0,
+          "min": -5,
           "max": 275
         },
         "safeToApproach": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         }
       }
     },
     "secondaryTank": {
-      "units": "PSI",
+      "units": "PSIG",
       "show": true,
       "limits": {
         "powerOff": {
@@ -161,8 +161,8 @@
           "max": 0
         },
         "idle": {
-          "min": 1000,
-          "max": 1300
+          "min": 850,
+          "max": 1150
         },
         "readyForPumpdown": {
           "min": 1000,
@@ -193,17 +193,17 @@
           "max": 1300
         },
         "postRun": {
-          "min": 0,
+          "min": -5,
           "max": 1300
         },
         "safeToApproach": {
-          "min": -15,
-          "max": 20
+          "min": 10,
+          "max": 1150
         }
       }
     },
     "secondaryLine": {
-      "units": "PSI",
+      "units": "PSIG",
       "show": true,
       "limits": {
         "powerOff": {
@@ -211,39 +211,39 @@
           "max": 0
         },
         "idle": {
-          "min": 140,
+          "min":125,
           "max": 150
         },
         "readyForPumpdown": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "pumpdown": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "readyForPropulsion": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "propulsion": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "braking": {
-          "min": 150,
+          "min": 125,
           "max": 275
         },
         "stopped": {
-          "min": 140,
+          "min": 125,
           "max": 150
         },
         "crawl": {
-          "min": 0,
+          "min": -5,
           "max": 275
         },
         "postRun": {
-          "min": 0,
+          "min": -5,
           "max": 275
         },
         "safeToApproach": {
@@ -253,7 +253,7 @@
       }
     },
     "secondaryActuation": {
-      "units": "PSI",
+      "units": "PSIG",
       "show": true,
       "limits": {
         "powerOff": {
@@ -261,49 +261,49 @@
           "max": 0
         },
         "idle": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "readyForPumpdown": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "pumpdown": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "readyForPropulsion": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "propulsion": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "braking": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "stopped": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "crawl": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "postRun": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         },
         "safeToApproach": {
-          "min": -15,
-          "max": 20
+          "min": -5,
+          "max": 5
         }
       }
     },
     "pressureVesselPressure": {
-      "units": "PSI",
+      "units": "PSIA",
       "show": true,
       "limits": {
         "powerOff": {
@@ -353,8 +353,8 @@
       }
     },
     "ambientPressure": {
-      "units": "PSI",
-      "show": true,
+      "units": "PSIA",
+      "show": false,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -505,7 +505,7 @@
       }
     },
     "distanceSinceLastRetro": {
-      "units": "Ft",
+      "units": "M",
       "show": true,
       "limits": {
         "powerOff": {
@@ -513,44 +513,44 @@
           "max": 0
         },
         "idle": {
-          "min": 0,
-          "max": 150
+          "min": -10,
+          "max": 45.72
         },
         "readyForPumpdown": {
-          "min": 0,
-          "max": 150
+          "min": -10,
+          "max": 45.72
         },
         "pumpdown": {
-          "min": 0,
-          "max": 150
+          "min": -10,
+          "max": 45.72
         },
         "readyForPropulsion": {
-          "min": 0,
-          "max": 150
+          "min": -10,
+          "max": 45.72
         },
         "propulsion": {
-          "min": 0,
-          "max": 150
+          "min": -10,
+          "max": 45.72
         },
         "braking": {
-          "min": 0,
-          "max": 150
+          "min": -10,
+          "max": 45.72
         },
         "stopped": {
-          "min": 0,
-          "max": 150
+          "min": -10,
+          "max": 45.72
         },
         "crawl": {
-          "min": 0,
-          "max": 150
+          "min": -10,
+          "max": 45.72
         },
         "postRun": {
-          "min": 0,
-          "max": 150
+          "min": -10,
+          "max": 45.72
         },
         "safeToApproach": {
-          "min": 0,
-          "max": 150
+          "min": -10,
+          "max": 45.72
         }
       }
     },
@@ -609,27 +609,27 @@
       "show": true,
       "limits": {
         "powerOff": {
-          "min": 0,
-          "max": 0
+          "min": -1,
+          "max": 1
         },
         "idle": {
-          "min": 0,
-          "max": 0
+          "min": -1,
+          "max": 1
         },
         "readyForPumpdown": {
-          "min": 0,
-          "max": 0
+          "min": -1,
+          "max": 1
         },
         "pumpdown": {
-          "min": 0,
-          "max": 0
+          "min": -1,
+          "max": 1
         },
         "readyForPropulsion": {
-          "min": 0,
-          "max": 0
+          "min": -1,
+          "max": 1
         },
         "propulsion": {
-          "min": 0,
+          "min": -1,
           "max": 3.82
         },
         "braking": {
@@ -637,20 +637,20 @@
           "max": 3.82
         },
         "stopped": {
-          "min": 0,
-          "max": 0
+          "min": -1,
+          "max": 1
         },
         "crawl": {
-          "min": 0,
+          "min": -1,
           "max": 3.82
         },
         "postRun": {
-          "min": 0,
-          "max": 0
+          "min": -1,
+          "max": 1
         },
         "safeToApproach": {
-          "min": 0,
-          "max": 0
+          "min": -1,
+          "max": 1
         }
       }
     },
@@ -701,6 +701,56 @@
         "safeToApproach": {
           "min": 0,
           "max": 100
+        }
+      }
+    },
+    "missedRetros": {
+      "units": "Count",
+      "show": true,
+      "limits": {
+        "powerOff": {
+          "min": 0,
+          "max": 0
+        },
+        "idle": {
+          "min": 0,
+          "max": 0
+        },
+        "readyForPumpdown": {
+          "min": 0,
+          "max": 0
+        },
+        "pumpdown": {
+          "min": 0,
+          "max": 0
+        },
+        "readyForPropulsion": {
+          "min": 0,
+          "max": 0
+        },
+        "propulsion": {
+          "min": 0,
+          "max": 2
+        },
+        "braking": {
+          "min": 0,
+          "max": 2
+        },
+        "stopped": {
+          "min": 0,
+          "max": 2
+        },
+        "crawl": {
+          "min": 0,
+          "max": 2
+        },
+        "postRun": {
+          "min": 0,
+          "max": 2
+        },
+        "safeToApproach": {
+          "min": 0,
+          "max": 2
         }
       }
     }
@@ -815,43 +865,43 @@
           "max": 0
         },
         "idle": {
-          "min": 90,
+          "min": 75,
           "max": 100
         },
         "readyForPumpdown": {
-          "min": 90,
+          "min": 75,
           "max": 100
         },
         "pumpdown": {
-          "min": 90,
+          "min": 75,
           "max": 100
         },
         "readyForPropulsion": {
-          "min": 90,
+          "min": 75,
           "max": 100
         },
         "propulsion": {
-          "min": 75,
+          "min": 50,
           "max": 100
         },
         "braking": {
-          "min": 75,
+          "min": 50,
           "max": 92.5
         },
         "stopped": {
-          "min": 75,
+          "min": 50,
           "max": 92.5
         },
         "crawl": {
-          "min": 60,
+          "min": 40,
           "max": 90
         },
         "postRun": {
-          "min": 60,
+          "min": 40,
           "max": 90
         },
         "safeToApproach": {
-          "min": 60,
+          "min": 40,
           "max": 90
         }
       }
@@ -961,48 +1011,48 @@
       "show": true,
       "limits": {
         "powerOff": {
-          "max": 32.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         },
         "idle": {
-          "max": 32.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         },
         "readyForPumpdown": {
-          "max": 32.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         },
         "pumpdown": {
-          "max": 32.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         },
         "readyForPropulsion": {
-          "max": 32.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         },
         "propulsion": {
-          "max": 47.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         },
         "braking": {
-          "max": 47.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         },
         "stopped": {
-          "max": 47.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         },
         "crawl": {
-          "max": 47.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         },
         "postRun": {
-          "max": 47.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         },
         "safeToApproach": {
-          "max": 47.5,
-          "min": 0
+          "min": 0,
+          "max": 50
         }
       }
     },
@@ -1015,50 +1065,50 @@
           "max": 0
         },
         "idle": {
-          "min": 10,
+          "min": 9,
           "max": 14
         },
         "readyForPumpdown": {
-          "min": 10,
+          "min": 9,
           "max": 14
         },
         "pumpdown": {
-          "min": 10,
+          "min": 9,
           "max": 14
         },
         "readyForPropulsion": {
-          "min": 10,
+          "min": 9,
           "max": 14
         },
         "propulsion": {
-          "min": 10,
+          "min": 9,
           "max": 14
         },
         "braking": {
-          "min": 10,
+          "min": 9,
           "max": 14
         },
         "stopped": {
-          "min": 10,
+          "min": 9,
           "max": 14
         },
         "crawl": {
-          "min": 10,
+          "min": 9,
           "max": 14
         },
         "postRun": {
-          "min": 10,
+          "min": 9,
           "max": 14
         },
         "safeToApproach": {
-          "min": 10,
+          "min": 9,
           "max": 14
         }
       }
     },
-    "12vCurrent": {
+    "lvCurrent": {
       "units": "A",
-      "show": true,
+      "show": false,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -1066,39 +1116,39 @@
         },
         "idle": {
           "min": 0,
-          "max": 6
+          "max": 15
         },
         "readyForPumpdown": {
          "min": 0,
-          "max": 6
+          "max": 15
         },
         "pumpdown": {
          "min": 0,
-          "max": 6
+          "max": 15
         },
         "readyForPropulsion": {
          "min": 0,
-          "max": 6
+          "max": 15
         },
         "propulsion": {
          "min": 0,
-          "max": 6
+          "max": 15
         },
         "braking": {
          "min": 0,
-          "max": 6
+          "max": 15
         },
         "stopped": {
          "min": 0,
-          "max": 6
+          "max": 15
         },
         "crawl": {
          "min": 0,
-          "max": 6
+          "max": 15
         },
         "postRun": {
          "min": 0,
-          "max": 6
+          "max": 15
         },
         "safeToApproach": {
          "min": 0,
@@ -1209,7 +1259,7 @@
     },
     "lvSOC": {
       "units": "%",
-      "show": true,
+      "show": false,
       "limits": {
         "powerOff": {
           "min": 0,
@@ -1266,47 +1316,47 @@
       "limits": {
         "powerOff": {
           "min": 10,
-          "max": 50
+          "max": 80
         },
         "idle": {
           "min": 10,
-          "max": 50
+          "max": 80
         },
         "readyForPumpdown": {
           "min": 10,
-          "max": 50
+          "max": 80
         },
         "pumpdown": {
           "min": 10,
-          "max": 50
+          "max": 80
         },
         "readyForPropulsion": {
           "min": 10,
-          "max": 50
+          "max": 80
         },
         "propulsion": {
           "min": 10,
-          "max": 50
+          "max": 80
         },
         "braking": {
           "min": 10,
-          "max": 87.5
+          "max": 80
         },
         "stopped": {
           "min": 10,
-          "max": 87.5
+          "max": 80
         },
         "crawl": {
           "min": 10,
-          "max": 87.5
+          "max": 80
         },
         "postRun": {
           "min": 10,
-          "max": 87.5
+          "max": 80
         },
         "safeToApproach": {
           "min": 10,
-          "max": 87.5
+          "max": 80
         }
       }
     },
@@ -1460,56 +1510,6 @@
         }
       }
     },
-    "motorTemp": {
-      "units": "C",
-      "show": true,
-      "limits": {
-        "powerOff": {
-          "min": 10,
-          "max": 50
-        },
-        "idle": {
-          "min": 10,
-          "max": 50
-        },
-        "readyForPumpdown": {
-          "min": 10,
-          "max": 50
-        },
-        "pumpdown": {
-          "min": 10,
-          "max": 50
-        },
-        "readyForPropulsion": {
-          "min": 10,
-          "max": 50
-        },
-        "propulsion": {
-          "min": 10,
-          "max": 200
-        },
-        "braking": {
-          "min": 10,
-          "max": 200
-        },
-        "stopped": {
-          "min": 10,
-          "max": 200
-        },
-        "crawl": {
-          "min": 10,
-          "max": 200
-        },
-        "postRun": {
-          "min": 10,
-          "max": 200
-        },
-        "safeToApproach": {
-          "min": 10,
-          "max": 130
-        }
-      }
-    },
     "motorSpeed": {
       "units": "RPM",
       "show": true,
@@ -1569,44 +1569,44 @@
           "max": 0
         },
         "idle": {
-          "min": 0,
-          "max": 0
+          "min": -2,
+          "max": 2
         },
         "readyForPumpdown": {
-          "min": 0,
-          "max": 0
+          "min": -2,
+          "max": 2
         },
         "pumpdown": {
-          "min": 0,
-          "max": 0
+          "min": -2,
+          "max": 2
         },
         "readyForPropulsion": {
-          "min": 0,
-          "max": 0
+          "min": -2,
+          "max": 2
         },
         "propulsion": {
-          "min": 0,
+          "min": -480,
           "max": 480
         },
         "braking": {
-          "min": 0,
-          "max": 0
+          "min": -2,
+          "max": 2
         },
         "stopped": {
-          "min": 0,
-          "max": 0
+          "min":-2,
+          "max": 2
         },
         "crawl": {
-          "min": 0,
-          "max": 0
+          "min": -2,
+          "max": 2
         },
         "postRun": {
           "min": 10,
           "max": 0
         },
         "safeToApproach": {
-          "min": 0,
-          "max": 0
+          "min": -2,
+          "max": 2
         }
       }
     },
@@ -1705,8 +1705,8 @@
           "max": 360
         },
         "safeToApproach": {
-          "min": 0,
-          "max": 0
+          "min": -5,
+          "max": 5
         }
       }
     },
@@ -1769,19 +1769,19 @@
           "max": 20
         },
         "idle": {
-          "min": 0,
+          "min": -20,
           "max": 20
         },
         "readyForPumpdown": {
-          "min": 0,
+          "min": -20,
           "max": 20
         },
         "pumpdown": {
-          "min": 0,
+          "min": -20,
           "max": 20
         },
         "readyForPropulsion": {
-          "min": 0,
+          "min": -20,
           "max": 20
         },
         "propulsion": {

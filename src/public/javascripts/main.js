@@ -25,8 +25,8 @@ function toggleSettingsModal() {
   settingsModal.classList.toggle('show-modal');
   fillConstants(); // eslint-disable-line no-use-before-define
 }
-settingsTrigger.addEventListener('click', toggleSettingsModal);
-closeButton.addEventListener('click', toggleSettingsModal);
+if (settingsTrigger) settingsTrigger.addEventListener('click', toggleSettingsModal);
+if (closeButton) closeButton.addEventListener('click', toggleSettingsModal);
 
 // window.addEventListener('click', windowOnClick);
 
@@ -198,35 +198,36 @@ Purpose: Read and Write to Config File
 */
 
 // Submits Entries to File
-settingsSubmit.addEventListener('click', () => {
-  let constsCache = {
-    dataSendRate: null,
-    renderInterval: null,
-    serverAddr: {
-      ip: null,
-      port: null,
-    },
-    hvBone: {
-      ip: null,
-      port: null,
-    },
-    lvBone: {
-      ip: null,
-      port: null,
-    },
-  };
-  constsCache.serverAddr.ip = document.getElementById('podIP').value;
-  constsCache.serverAddr.port = Number(document.getElementById('podPort').value);
-  constsCache.dataSendRate = Number(document.getElementById('scanningRate').value);
-  constsCache.hvBone.ip = document.getElementById('hvBoneIP').value;
-  constsCache.hvBone.port = Number(document.getElementById('hvBonePort').value);
-  constsCache.lvBone.ip = document.getElementById('lvBoneIP').value;
-  constsCache.lvBone.port = Number(document.getElementById('lvBonePort').value);
-  constsCache.renderInterval = Number(document.getElementById('renderInterval').value);
-  document.getElementById('formFeedback').innerHTML = config.writeJSON(constsCache);
-  electronWindow.reload();
-});
-
+if (settingsSubmit) {
+  settingsSubmit.addEventListener('click', () => {
+    let constsCache = {
+      dataSendRate: null,
+      renderInterval: null,
+      serverAddr: {
+        ip: null,
+        port: null,
+      },
+      hvBone: {
+        ip: null,
+        port: null,
+      },
+      lvBone: {
+        ip: null,
+        port: null,
+      },
+    };
+    constsCache.serverAddr.ip = document.getElementById('podIP').value;
+    constsCache.serverAddr.port = Number(document.getElementById('podPort').value);
+    constsCache.dataSendRate = Number(document.getElementById('scanningRate').value);
+    constsCache.hvBone.ip = document.getElementById('hvBoneIP').value;
+    constsCache.hvBone.port = Number(document.getElementById('hvBonePort').value);
+    constsCache.lvBone.ip = document.getElementById('lvBoneIP').value;
+    constsCache.lvBone.port = Number(document.getElementById('lvBonePort').value);
+    constsCache.renderInterval = Number(document.getElementById('renderInterval').value);
+    document.getElementById('formFeedback').innerHTML = config.writeJSON(constsCache);
+    electronWindow.reload();
+  });
+}
 // Fills entries in text boxes
 function fillConstants() { // eslint-disable-line no-unused-vars
   config.updateConstants();

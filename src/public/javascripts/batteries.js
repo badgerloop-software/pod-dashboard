@@ -1,10 +1,33 @@
-const NUM_BATTERIES = 72;
-const Battery = require('./public/javascripts/Battery');
+const NUM_CELLS = 72;
 const client = require('./public/javascripts/communication').recievedEmitter;
 
 const TABLE = document.getElementById('batteryTable');
 
 let batteries = [];
+
+function Battery(name, row, col) {
+  this.name = name;
+  this.voltage = 0.0;
+  this.temperature = null;
+  this.row = row;
+  this.col = col;
+
+  this.setVoltage = function setVoltage(voltage) {
+    this.voltage = voltage;
+  };
+
+  this.setTemp = function setTemp(temp) {
+    this.temperature = temp;
+  };
+
+  this.getVoltage = function getVoltage() {
+    return this.voltage.toFixed(4);
+  };
+
+  this.getTemp = function getTemp() {
+    return this.temperature;
+  };
+}
 
 function createRow(rowNum, numCells) {
   let row = document.createElement('tr');
@@ -35,7 +58,7 @@ function fillCell(batteryIndex, row, col) {
 }
 function initBatteries() {
   createTable(9, 8);
-  for (let i = 0; i < NUM_BATTERIES; i++) {
+  for (let i = 0; i < NUM_CELLS; i++) {
     if (i >= 0 && i <= 7) {
       batteries[i] = new Battery(`Cell ${i}`, 0, i);
       fillCell(i, 0, (i));
@@ -57,19 +80,19 @@ function initBatteries() {
       fillCell(i, 4, (i - 32));
     }
     if (i >= 40 && i <= 47) {
-      batteries[i] = new Battery(`Cell ${i}`, 4, (i - 32));
+      batteries[i] = new Battery(`Cell ${i}`, 5, (i - 40));
       fillCell(i, 5, (i - 40));
     }
     if (i >= 48 && i <= 55) {
-      batteries[i] = new Battery(`Cell ${i}`, 5, (i - 48));
+      batteries[i] = new Battery(`Cell ${i}`, 6, (i - 48));
       fillCell(i, 6, (i - 48));
     }
     if (i >= 56 && i <= 63) {
-      batteries[i] = new Battery(`Cell ${i}`, 6, (i - 56));
+      batteries[i] = new Battery(`Cell ${i}`, 7, (i - 56));
       fillCell(i, 7, (i - 56));
     }
     if (i >= 64 && i <= 71) {
-      batteries[i] = new Battery(`Cell ${i}`, 7, (i - 64));
+      batteries[i] = new Battery(`Cell ${i}`, 8, (i - 64));
       fillCell(i, 8, (i - 64));
     }
   }
@@ -94,9 +117,40 @@ function updateBatteryAndRender(batteryIndex, voltage) {
 }
 
 function updateTemps(min, avg, max) {
-  document.getElementById('temps').innerHTML = `Min Cell Temp: ${min}   Avg Cell Temp: ${avg}   Max Cell Temp: ${max}`;
+  document.getElementById('temps').innerHTML = `Min Cell Temp: ${min} C   Avg Cell Temp: ${avg} C   Max Cell Temp: ${max} C`;
 }
 
+function checkMinMax() {
+  let cell;
+  let tableCell;
+  let voltNum;
+  for (let i = 0; i < NUM_CELLS; i++) {
+    cell = batteries[i];
+    // console.log(cell);
+    tableCell = document.getElementById(`${cell.row}${cell.col}volt`).innerHTML;
+    voltNum = Number(tableCell.substr(9));
+    // console.log(`${i} ${tableCell}`);
+    if (voltNum <= 3.1 || voltNum >= 4.2) {
+      document.getElementById(`${cell.row}${cell.col}cell`).style.backgroundColor = 'red';
+    } else {
+      document.getElementById(`${cell.row}${cell.col}cell`).style.backgroundColor = 'green';
+    }
+  }
+}
+
+setInterval(checkMinMax, 1000);
+
 client.on('dataIn', (input) => {
-  // TODO: Figure out how Ezra/ Shelby is sending me this shit
+  console.log(input);
+  if (input.battery.cells) {
+    let cells = [];
+    for (let i = 0; i < input.battery.cells.length; i++) {
+      cells[i] = input.battery.cells[i];
+    }
+    for (let i = 0; i < cells.length; i++) {
+      console.log(`index ${i} volts ${cells[i]}`);
+      updateBatteryAndRender(i, cells[i]);
+    }
+    updateTemps(input.battery.minCellTemp, input.battery.avgCellTemp, input.battery.maxCellTemp);
+  }
 });
