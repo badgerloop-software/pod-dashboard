@@ -1,8 +1,8 @@
 ---
 name: Feature request
 about: Suggest an idea for the dashboard
-title: "[Change]"
-labels: question
+title: ''
+labels: Feature Request
 assignees: ''
 
 ---
