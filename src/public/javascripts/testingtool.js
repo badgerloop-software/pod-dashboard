@@ -25,7 +25,11 @@ function incrementTimer() {
 }
 
 function playTimer() {
-  if (runData && !isPlaying) timer = setInterval(incrementTimer, 100); isPlaying = true; console.log(currentTime);
+  if (runData && !isPlaying) {
+    timer = setInterval(incrementTimer, 100);
+    isPlaying = true;
+    console.log(currentTime);
+  }
   // if (chartInterval1 || chartInterval2) getDataAtInterval();
 }
 
