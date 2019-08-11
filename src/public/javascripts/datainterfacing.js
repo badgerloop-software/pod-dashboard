@@ -51,21 +51,41 @@ function getPackPowerRemaining(input) {
   return fixedPacket;
 }
 
+function getAbsoluteSpeed(input) {
+  let fixedPacket = input;
+  fixedPacket.motor.motorSpeed = -input.motor.motorSpeed;
+  return fixedPacket;
+}
+
 function interpolateLVSOC(x) {
   // From LV Pack SOC spreadsheet
-  // equation y= -2e^10x^6 + 6e^-8x^5 - 9e^-6x^4 + 0.0006x^3- 0.0195x^2 +0.3159x + 8.9316
-
-  let y = -(0.0000000002) * (x ** 6) + 0.00000006 * (x ** 5) - 0.000009 * (x ** 4)
-  + 0.0006 * (x ** 3) - 0.0195 * (x ** 2) + 0.3159 * x + 8.9316;
-
+  let y = 1.1142 * (x ** 6) + 78.334 * (x ** 5) - 2280.5 * (x ** 4)
+    + 35181 * (x ** 3) - 404340 * (x ** 2) + 1000000 * x + 3000000;
   return Number(y);
 }
 
-function getLVSOC(input) {
+function getLVSOC(input) { // eslint-disable-line no-unused-vars
   let fixedPacket = input;
-  let x = Number(input.battery.batteryVoltage);
+  let x = Number(input.battery.lvVoltage);
   let lvSOC = interpolateLVSOC(x);
   fixedPacket.battery.lvSOC = lvSOC;
+
+  return fixedPacket;
+}
+
+function ambientToGauge(input) { // eslint-disable-line no-unused-vars
+  let fixedPacket = input;
+
+  console.log('ambient to gauge');
+
+  fixedPacket.braking.primaryTank = input.braking.primaryTank + 14.7;
+  fixedPacket.braking.primaryLine = input.braking.primaryLine + 14.7;
+  fixedPacket.braking.primaryActuation = input.braking.primaryActuation + 14.7;
+  fixedPacket.braking.secondaryTank = input.braking.secondaryTank + 14.7;
+  fixedPacket.braking.secondaryLine = input.braking.secondaryLine + 14.7;
+  fixedPacket.braking.secondaryActuation = input.braking.secondaryActuation + 14.7;
+
+  console.log('done');
 
   return fixedPacket;
 }
@@ -79,7 +99,14 @@ function updateData(dataIn) {
       try {
         const input = Number(dataIn[group][sensor]);
         const target = cache[group][sensor];
-        const temp = input.toFixed(3);
+        let temp;
+        if (group === 'braking') {
+          temp = input.toFixed(0);
+          console.log(' braking');
+        } else {
+          temp = input.toFixed(3);
+          console.log(' else');
+        }
         target.push(temp);
       } catch (error) {
         console.error(`Error: Sensor ${sensor} in ${group} not found in cache`);
@@ -94,10 +121,14 @@ function calculate(input) {
   let fixedPacket = input;
   // Take the Max of the three motor controller temp sensors and put the max in maxControllerTemp
   try {
-    fixedPacket = getMaxMotorControllerTemp(fixedPacket);
-    fixedPacket = getPowerConsumed(fixedPacket);
-    fixedPacket = getPackPowerRemaining(fixedPacket);
-    fixedPacket = getLVSOC(fixedPacket);
+    // if (input.braking) fixedPacket = ambientToGauge(fixedPacket);
+    if (input.battery) {
+      fixedPacket = getPowerConsumed(fixedPacket);
+      fixedPacket = getPackPowerRemaining(fixedPacket);
+      // fixedPacket = getLVSOC(fixedPacket);
+    }
+    if (input.motion) fixedPacket = getAbsoluteSpeed(fixedPacket);
+    if (input.motor) fixedPacket = getMaxMotorControllerTemp(fixedPacket);
   } catch (err) {
     console.error(`Calculation Error: ${err}`);
   }
@@ -118,6 +149,12 @@ module.exports.normalizePacket = function normalizePacket(input) {
       dl.switchState(state);
     } else dl.setFault(state);
     delete fixedPacket.state;
+  }
+
+  if (input.battery) {
+    delete fixedPacket.battery.cells;
+    delete fixedPacket.battery.minCellTemp;
+    delete fixedPacket.battery.avgCellTemp;
   }
   // Move packet to UpdateData
   calculate(fixedPacket);
@@ -149,6 +186,7 @@ function createJSON(name) {
   });
 }
 
-module.exports.archiveData = function archiveData() {
-  createJSON(createID());
+module.exports.archiveData = function archiveData(name) {
+  if (name) createJSON(name);
+  else createJSON(createID());
 };

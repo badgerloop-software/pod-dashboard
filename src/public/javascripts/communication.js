@@ -48,7 +48,6 @@ function sendPacket(ip, port, msg) {
   });
 
   tcpSender.setTimeout(2000);
-
   tcpSender.on('data', (e) => {
     console.log(`Recieved: ${e}`);
     recievedEmitter.emit('ok', ip);
@@ -108,6 +107,44 @@ module.exports.sendLVPing = function sendLVPing() {
 
 module.exports.sendHVPing = function sendHVPing() {
   sendHVCommand('ping');
+};
+
+module.exports.enableHV = function enableHV() {
+  sendHVCommand('hvEnable');
+};
+
+module.exports.disableHV = function disableHV() {
+  console.log('sending tcp');
+  sendHVCommand('hvDisable');
+};
+
+module.exports.primBrakeOff = function primBrakeOff() {
+  sendLVCommand('primBrakeOff');
+};
+
+module.exports.primBrakeOn = function primBrakeOn() {
+  sendLVCommand('primBrakeOn');
+};
+
+module.exports.secBrakeOn = function secBrakeOn() {
+  sendLVCommand('secBrakeOn');
+};
+
+module.exports.secBrakeOff = function secBrakeOn() {
+  sendLVCommand('secBrakeOff');
+};
+
+module.exports.enPrecharge = function enPrecharge() {
+  sendHVCommand('enPrecharge');
+};
+
+module.exports.toggleLatch = function toggleLatch(state) {
+  if (state) sendHVCommand('mcuLatchOn');
+  else sendHVCommand('mcuLatchOff');
+};
+
+module.exports.commandTorque = function commandTorque() {
+  sendHVCommand('cmdTorque');
 };
 
 module.exports.toggleSafety = function toggleSafety(state) {

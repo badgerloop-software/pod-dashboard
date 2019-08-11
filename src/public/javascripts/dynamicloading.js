@@ -137,29 +137,27 @@ function getStateName(stateNum) {
     case 1:
       return 'idle';
     case 2:
-      return 'readyForPumpdown';
-    case 3:
       return 'pumpdown';
-    case 4:
-      return 'readyForPropulsion';
-    case 5:
+    case 3:
       return 'propulsion';
-    case 6:
+    case 4:
       return 'braking';
-    case 7:
+    case 5:
       return 'stopped';
-    case 8:
+    case 6:
+      return 'crawlPrecharge';
+    case 7:
       return 'crawl';
-    case 9:
+    case 8:
       return 'postRun';
-    case 10:
+    case 9:
       return 'safeToApproach';
+    case 10:
+      return 'nonRunFault';
     case 11:
-      return 'preFault';
-    case 12:
       return 'runFault';
-    case 13:
-      return 'postFault';
+    case 12:
+      return 'brakingFault';
     default:
       return undefined;
   }
@@ -168,16 +166,16 @@ function getStateName(stateNum) {
 function resetAllButtons() {
   document.getElementById('powerOff').className = 'stateButtonInactive';
   document.getElementById('idle').className = 'stateButtonInactive';
-  document.getElementById('readyForPumpdown').className = 'stateButtonInactive';
+  document.getElementById('postRun').className = 'stateButtonInactive';
   document.getElementById('pumpdown').className = 'stateButtonInactive';
-  document.getElementById('readyForPropulsion').className = 'stateButtonInactive';
   document.getElementById('propulsion').className = 'stateButtonInactive';
   document.getElementById('braking').className = 'stateButtonInactive';
   document.getElementById('stopped').className = 'stateButtonInactive';
+  document.getElementById('crawlPrecharge').className = 'stateButtonInactive';
   document.getElementById('crawl').className = 'stateButtonInactive';
-  document.getElementById('postFault').className = 'stateButtonInactive';
+  document.getElementById('nonRunFault').className = 'stateButtonInactive';
   document.getElementById('runFault').className = 'stateButtonInactive';
-  document.getElementById('preFault').className = 'stateButtonInactive';
+  document.getElementById('brakingFault').className = 'stateButtonInactive';
   document.getElementById('safeToApproach').className = 'stateButtonInactive';
 }
 
@@ -244,14 +242,14 @@ function createItem(name, group, units) { // eslint-disable-line no-unused-vars
 }
 
 //
-module.exports.fillAllItems = function fillAllItems() { // eslint-disable-line
+module.exports.fillAllItems = function fillAllItems(testing) { // eslint-disable-line
   let subsystems = Object.keys(database); // Create array of each subsystem
   subsystems.forEach((subsystem) => {
     let currentSystem = database[subsystem];
     sensors = Object.keys(currentSystem); // Create an array with all sensors in the subsystem
 
     sensors.forEach((sensor) => {
-      createItem(`${sensor}`, 'myDropdown1', `${currentSystem[sensor].units}`); // For each sensor create an element
+      if (!testing) createItem(`${sensor}`, 'myDropdown1', `${currentSystem[sensor].units}`); // For each sensor create an element
       createItem(`${sensor}`, 'myDropdown2', `${currentSystem[sensor].units}`); // For each sensor create an element
       createItem(`${sensor}`, 'myDropdown3', `${currentSystem[sensor].units}`); // For each sensor create an element
     });
