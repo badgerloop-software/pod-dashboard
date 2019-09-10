@@ -379,7 +379,7 @@ text-align: center;
 .connected span2 {
   display: none;
 }
-#disconnected {
+.disconnected {
   height: 40px;
   position: absolute;
   fill: red;
@@ -639,6 +639,10 @@ span2{
 #readyForPumpdown, #pumpdown {
   background-color: #C66553;
   color: white;
+}
+
+#pumpdown {
+  border-color: red;
 }
 #propulsion{
   background-color: #C6A153;

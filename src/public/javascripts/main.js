@@ -50,8 +50,8 @@ function clone(id) { // eslint-disable-line no-unused-vars
     // clone for box 1
     focusOne = setInterval(() => {
       const value = Number(document.getElementById(id).innerHTML); // gets value from table
-      const fixedValue = value.toFixed(3);
-      document.getElementById('header_value_1').innerHTML = fixedValue; // sets the value tp the box
+      // const fixedValue = value.toFixed(3);
+      document.getElementById('header_value_1').innerHTML = value; // sets the value tp the box
       let name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
       name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalizes first letter
       document.getElementById('header_label_1').innerHTML = name; // sets that as the label for the box
@@ -61,8 +61,8 @@ function clone(id) { // eslint-disable-line no-unused-vars
     // clone for box 2
     focusTwo = setInterval(() => {
       const value = Number(document.getElementById(id).innerHTML);
-      const fixedValue = value.toFixed(3);
-      document.getElementById('header_value_2').innerHTML = fixedValue;
+      // const value = value.toFixed(3);
+      document.getElementById('header_value_2').innerHTML = value;
       let name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
       name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalizes first letter
       document.getElementById('header_label_2').innerHTML = name;
@@ -72,8 +72,8 @@ function clone(id) { // eslint-disable-line no-unused-vars
     // clone for box 3
     focusThree = setInterval(() => {
       const value = Number(document.getElementById(id).innerHTML);
-      const fixedValue = value.toFixed(3);
-      document.getElementById('header_value_3').innerHTML = fixedValue;
+      // const value = value.toFixed(3);
+      document.getElementById('header_value_3').innerHTML = value;
       let name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
       name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalizes first letter
       document.getElementById('header_label_3').innerHTML = name;
@@ -83,8 +83,8 @@ function clone(id) { // eslint-disable-line no-unused-vars
     // clone for box 4
     focusFour = setInterval(() => {
       const value = Number(document.getElementById(id).innerHTML);
-      const fixedValue = value.toFixed(3);
-      document.getElementById('header_value_4').innerHTML = fixedValue;
+      // const value = value.toFixed(3);
+      document.getElementById('header_value_4').innerHTML = value;
       let name = id.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2'); // changes the ID from camel case to regular
       name = name.charAt(0).toUpperCase() + name.slice(1); // Capitalizes first letter
       document.getElementById('header_label_4').innerHTML = name;
@@ -126,7 +126,7 @@ setInterval(() => {
       const min = parseFloat(table.rows[r].cells[1].innerHTML);
       const max = parseFloat(table.rows[r].cells[3].innerHTML);
       const y = parseFloat(table.rows[r].cells[2].innerHTML);
-      if (y < min || y > max) { // checks if too low
+      if (y < min || y > max || y === 'Off') { // checks if too low
         table.rows[r].cells[2].style.backgroundColor = '#FC6962';
         errorChecker += 1; // adds to w, signifying that there is an error present in the table
       } else {

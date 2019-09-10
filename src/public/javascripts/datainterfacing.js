@@ -76,16 +76,12 @@ function getLVSOC(input) { // eslint-disable-line no-unused-vars
 function ambientToGauge(input) { // eslint-disable-line no-unused-vars
   let fixedPacket = input;
 
-  console.log('ambient to gauge');
-
   fixedPacket.braking.primaryTank = input.braking.primaryTank + 14.7;
   fixedPacket.braking.primaryLine = input.braking.primaryLine + 14.7;
   fixedPacket.braking.primaryActuation = input.braking.primaryActuation + 14.7;
   fixedPacket.braking.secondaryTank = input.braking.secondaryTank + 14.7;
   fixedPacket.braking.secondaryLine = input.braking.secondaryLine + 14.7;
   fixedPacket.braking.secondaryActuation = input.braking.secondaryActuation + 14.7;
-
-  console.log('done');
 
   return fixedPacket;
 }
@@ -102,14 +98,16 @@ function updateData(dataIn) {
         let temp;
         if (group === 'braking') {
           temp = input.toFixed(0);
-          console.log(' braking');
+          // console.log(' braking');
         } else {
           temp = input.toFixed(3);
-          console.log(' else');
+          if (sensor === 'imdStatus' && input === 0) temp = 'Off';
+          if (sensor === 'imdStatus' && input === 1) temp = 'On';
+          // console.log(' else');
         }
         target.push(temp);
       } catch (error) {
-        console.error(`Error: Sensor ${sensor} in ${group} not found in cache`);
+        // console.error(`Error: Sensor ${sensor} in ${group} not found in cache`);
       }
     });
   });
@@ -127,10 +125,13 @@ function calculate(input) {
       fixedPacket = getPackPowerRemaining(fixedPacket);
       // fixedPacket = getLVSOC(fixedPacket);
     }
-    if (input.motion) fixedPacket = getAbsoluteSpeed(fixedPacket);
-    if (input.motor) fixedPacket = getMaxMotorControllerTemp(fixedPacket);
+    if (input.motion) {} // eslint-disable-line
+    if (input.motor) {
+      fixedPacket = getMaxMotorControllerTemp(fixedPacket);
+      fixedPacket = getAbsoluteSpeed(fixedPacket);
+    }
   } catch (err) {
-    console.error(`Calculation Error: ${err}`);
+    // console.error(`Calculation Error: ${err}`);
   }
   // Put the new data in the cache
   updateData(fixedPacket);

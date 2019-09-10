@@ -6,7 +6,8 @@
   "scripts": {
     "start": "electron .",
     "lint": "eslint src",
-    "pretest": "eslint src"
+    "pretest": "eslint src",
+    "dev": "$env:DEBUG='true' && electron ."
   },
   "repository": {
     "type": "git",
