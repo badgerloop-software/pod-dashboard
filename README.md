@@ -1,5 +1,5 @@
-# Pod 4 Operator's Dashboard &nbsp; ![GitHub Logo](https://raw.githubusercontent.com/badgerloop-software/pod-dashboard/master/src/public/images/icon.png)
-*Authors: Eric Udlis, Luke Houge, Alex Vesel*
+# Pod 5 Operator's Dashboard &nbsp; ![GitHub Logo](https://raw.githubusercontent.com/badgerloop-software/pod-dashboard/master/src/public/images/icon.png)
+*Authors: Eric Udlis, Luke Houge, Alex Vesel, Michael Handler*
 
 ## Platform/Technologies:
 - [Electron](https://electronjs.org) (our software framework)
@@ -86,6 +86,9 @@ pod-dashboard/coverage/lcov-report/index.html
     ├── database.JSON                               // Master file with all telemetry information
     ├── cache.js                                    // Temporary Cache to store telemetry information before being exported
     ├── index.html                                  // The main front end HTML file for our dashboard
+    ├── battery.html                                // The battery cell view page
+    ├── testingTool.html                            // The testing tool view page
+    ├── terminal.html                               // The terminal view page
     ├── public                                      
     │   ├── fonts                                   // Our fonts folder containing the montserrat source files for offline compatibility
     │   │   ├── montserrat-v12-latin-600.eot
@@ -115,6 +118,6 @@ pod-dashboard/coverage/lcov-report/index.html
     │       ├── main.grid.css                       // CSS for main view grid layout
     │       ├── main.css                            // Main CSS file
     │       └── testingtool.grid.css                // CSS for testing tool grid layout
-    └── testPodServer.js                            // Test File to Send UDP Packets to the dashboard containing random numbers as data
+    └── testPodServer.js                            // Test File to Send UDP Packets to the dashboard
 
 ```
