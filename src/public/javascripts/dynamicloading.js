@@ -4,6 +4,9 @@ Purpose: Dynamically fill the dashboard with content based off database.JSON
 */
 const database = require('../../database.json');
 const di = require('./datainterfacing');
+const Timer = require('./Timer');
+
+const stateTimer = new Timer();
 
 // Dynamic Tables
 
@@ -189,17 +192,24 @@ module.exports.setIndicator = setIndicator;
 module.exports.switchState = function switchState(state) {
   let type = typeof state;
   let targetState = state;
+  if (stateTimer.process !== false) {
+    stateTimer.stop();
+    stateTimer.reset();
+  } else {
+    stateTimer.start();
+  }
   if (type === 'number') targetState = getStateName(state);
   if (targetState === undefined) {
     console.error('Undefined State');
   } else {
     setIndicator(targetState);
+    if (targetState === 'crawlPrecharge') targetState = 'stopped'; // Super jank, fix later
     fillAllBounds(targetState);
   }
 };
 module.exports.setFault = function setFault(faultNum) {
   let faultStr = getStateName(faultNum);
-  console.error(`Entering a ${faultStr}`);
+  // console.error(`Entering a ${faultStr}`);
   setIndicator(faultStr);
 };
 
@@ -255,3 +265,5 @@ module.exports.fillAllItems = function fillAllItems(testing) { // eslint-disable
     });
   });
 };
+
+module.exports.stateTimer = stateTimer;

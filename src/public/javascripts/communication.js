@@ -18,12 +18,6 @@ const HV_BONE_PORT = constants.hvBone.port;
 const recievedEmitter = new events.EventEmitter();
 module.exports.recievedEmitter = recievedEmitter;
 
-function getLatency(timeIn) {
-  let now = new Date().getMilliseconds(); // Replace getMilliseconds() with whatever controls sends
-  return now - timeIn;
-}
-
-
 // UDP Data Recieving
 
 udpServer.on('listening', () => {
@@ -33,9 +27,7 @@ udpServer.on('listening', () => {
 
 udpServer.on('message', (message) => {
   const recieved = JSON.parse(message); // Turn String into JSON
-  const timeSent = recieved.time;
-  const latency = getLatency(timeSent);
-  recievedEmitter.emit('dataIn', recieved, latency); // Send it to handler.js
+  recievedEmitter.emit('dataIn', recieved); // Send it to handler.js
 });
 
 udpServer.bind(PORT, HOST);
@@ -43,7 +35,8 @@ udpServer.bind(PORT, HOST);
 function sendPacket(ip, port, msg) {
   const tcpSender = new net.Socket();
   tcpSender.connect(port, ip, () => {
-    console.log('Pod Connected');
+    // console.log('Connection opened');
+    console.log(`Sending ${msg} to ${ip}`);
     tcpSender.write(msg);
   });
 
@@ -59,7 +52,7 @@ function sendPacket(ip, port, msg) {
   });
 
   tcpSender.on('close', () => {
-    // console.log('Connection Closed'); //Commented out for dev without beaglebone connected
+    // console.log('Connection Closed'); // Commented out for dev without beaglebone connected
   });
 }
 

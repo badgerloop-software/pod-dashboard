@@ -9,9 +9,12 @@ const constants = require('./constants');
 const dl = require('./public/javascripts/dynamicloading');
 const Renderer = require('./public/javascripts/renderer');
 const Timer = require('./public/javascripts/Timer');
+const Countdown = require('./public/javascripts/Countdown');
 const cache = require('./cache');
 
 const d = document;
+const TIMEOUT = 5000;
+
 const smControlPanel = d.getElementById('header3');
 const smButtons = smControlPanel.getElementsByTagName('button');
 const lvIndicator = d.getElementById('connectionDot1');
@@ -26,25 +29,21 @@ const primBrakeOnText = d.getElementById('primEnText');
 const primBrakeOffText = d.getElementById('primDisText');
 const secBrakeOnText = d.getElementById('secEnText');
 const secBrakeOffText = d.getElementById('secDisText');
-const confirmationModal = document.querySelector('.confirmationModal');
-// const confirmationTrigger = document.querySelector('.confirmationTrigger');
-const closeButton2 = document.querySelector('.close-button2');
-// const motorSafteyToggle = d.getElementById('motor-safety-status');
-// const motorSafteyButton = d.getElementById('motor-safety');
+const confirmationModal = d.querySelector('.confirmationModal');
+const closeButton2 = d.querySelector('.close-button2');
 const estopButton = d.getElementById('estop');
-let confirmModalBtn = d.getElementById('confirmStart');
+const archiveButton = d.getElementById('archiveButton');
 const renderer = new Renderer();
 const globalTimer = new Timer();
-const stateTimer = new Timer();
+const { stateTimer } = dl;
+
+let confirmModalBtn = d.getElementById('confirmStart');
 let activeTimer = globalTimer;
-const TIMEOUT = 5000;
-
+let { DEBUG } = Boolean(process.env) || false;
 let boneStatus = [false, false]; // [LV, HV]
-
-// Sets the latency counter
-function setAgeLabel(staleness) {
-  if (staleness > 0) d.getElementById('ageDisplay').innerHTML = String(`${staleness}ms`);
-}
+let packetCounts = [0, 0]; // [LV, HV]
+// eslint-disable-next-line no-unused-vars
+let oldCounts = [0, 0];
 
 // Update the Database and Render the latest entry
 function renderData(group, sensor) {
@@ -60,7 +59,7 @@ function renderData(group, sensor) {
 }
 
 function overrideState(state) {
-  console.error(`OVERIDING STATE TO ${state} STATE`);
+  if (DEBUG) console.error(`OVERIDING STATE TO ${state} STATE`);
   client.sendOverride(state);
   dl.switchState(state);
   stateTimer.reset();
@@ -74,13 +73,6 @@ function makeListener(btn) {
     let temp = String(e.target.id);
     if (clicked === 'P') temp = e.target.parentElement.id;
     overrideState(temp);
-  });
-}
-
-function makeArchiveListener(btn) {
-  btn.addEventListener('click', () => {
-    di.archiveData();
-    console.log('archiving data');
   });
 }
 
@@ -104,13 +96,18 @@ function toggleConfirmationModal(msg, cb) {
 // iterate through list of buttons and call makeListener
 for (let i = 0; i < smButtons.length; i += 1) {
   // handle exceptions
+  if (smButtons[i].classList.contains('stateButton') && smButtons[i].id !== 'powerOff') {
+    // If it is a colored button
+    continue; // eslint-disable-line
+  }
+  if (smButtons[i] === d.getElementById('pumpdown') || smButtons[i] === d.getElementById('crawlPrecharge') || smButtons[i] === d.getElementById('crawl') || smButtons[i] === d.getElementById('propulsion')) {
+    continue; // eslint-disable-line
+  }
   if (smButtons[i] === d.getElementById('archiveButton')) {
     makeArchiveListener(smButtons[i]);
-  } if (smButtons[i] === d.getElementById('cmdTorque') || smButtons[i] === d.getElementById('latchOn') || smButtons[i] === d.getElementById('latchOff') || smButtons[i] === d.getElementById('precharge') || smButtons[i] === d.getElementById('crawlPrecharge') || smButtons[i] === d.getElementById('crawl') || smButtons[i] === d.getElementById('propulsion') || smButtons[i] === d.getElementById('hvEnable') || smButtons[i] === d.getElementById('hvDisable') || smButtons[i] === d.getElementById('primBrakeOn') || smButtons[i] === d.getElementById('primBrakeOff') || smButtons[i] === d.getElementById('secBrakeVentOn') || smButtons[i] === d.getElementById('secBrakeVentOff')) {
     continue; // eslint-disable-line
-  } else { // all other buttons
-    makeListener(smButtons[i]);
   }
+  makeListener(smButtons[i]);
 }
 
 function togglePrimBrake(state, call) {
@@ -183,6 +180,7 @@ function setLVIndicator(state) {
 function setHVIndicator(state) {
   if (state) hvIndicator.className = 'statusGood';
   if (!state) hvIndicator.className = 'statusBad';
+  if (!state && !DEBUG) overrideState('powerOff');
 }
 
 function checkRecieve() {
@@ -210,22 +208,55 @@ function checkTransmit() {
   setHVIndicator(boneStatus[1]);
 }
 
+
+function updateLabels() {
+  if (oldCounts[0] < packetCounts[0] + 5) {
+    // Still Recieving packets
+    d.getElementById('motionDisconnected').style.display = 'none';
+    d.getElementById('brakingDisconnected').style.display = 'none';
+  } else {
+    // Haven't recieved packets
+    d.getElementById('motionDisconnected').style.display = 'inline';
+    d.getElementById('brakingDisconnected').style.display = 'inline';
+  }
+  if (oldCounts[1] < packetCounts[1] + 5) {
+    // Still recieving packets
+    d.getElementById('motorDisconnected').style.display = 'none';
+    d.getElementById('batteryDisconnected').style.display = 'none';
+  } else {
+    // Haven't recieved packets
+    d.getElementById('motorDisconnected').style.display = 'inline';
+    d.getElementById('batteryDisconnected').style.display = 'inline';
+  }
+  oldCounts[0] = packetCounts[0];
+  oldCounts[1] = packetCounts[1];
+  /** ***************************
+  // return null;
+   ***************************** */
+}
+
 function podConnectionCheck() {
   checkRecieve();
   sendHeartbeats();
   checkTransmit();
+  updateLabels();
 }
+
+function checkPackets(input) {
+  if (input.braking && input.motion) packetCounts[0]++;
+  if (input.motor && input.battery) packetCounts[1]++;
+}
+
 
 // Event Listeners
 
 document.getElementById('ageDisplay').addEventListener('click', () => {
-  console.log(`Clicked ${activeTimer === globalTimer} ${activeTimer === stateTimer}`);
   if (activeTimer === globalTimer) {
     document.getElementById('ageLabel').innerHTML = 'State Timer';
     activeTimer = stateTimer;
     return;
   }
-  if (activeTimer === stateTimer) {
+  if (activeTimer === stateTimer || propTimer) {
     document.getElementById('ageLabel').innerHTML = 'Global Timer';
     activeTimer = globalTimer;
   }
@@ -238,13 +269,15 @@ estopButton.addEventListener('click', () => {
 document.getElementById('propulsion').addEventListener('click', () => {
   toggleConfirmationModal('propulsion systems?', () => {
     console.log('go');
+    propCountdown = new Countdown(30);
+    propCountdown.start();
+    // activeTimer = propCountdown;
     overrideState('propulsion');
   });
 });
 
 document.getElementById('crawl').addEventListener('click', () => {
   toggleConfirmationModal('service propulsion?', () => {
-    console.log('crawl');
     overrideState('crawl');
   });
 });
@@ -271,13 +304,18 @@ document.getElementById('hvEnable').addEventListener('click', () => {
     if (document.getElementById('hvDisText').classList.contains('active')) {
       document.getElementById('hvDisText').classList.remove('active');
     }
-    console.log('HV on');
     client.enableHV();
   });
 });
 
-d.getElementById('precharge').addEventListener('click', () => {
+d.getElementById('pumpdown').addEventListener('click', () => {
   toggleConfirmationModal('precharge?', () => {
+    overrideState('pumpdown');
+  });
+});
+
+d.getElementById('precharge').addEventListener('click', () => {
+  toggleConfirmationModal('the precharge action, not the state!', () => {
     client.enPrecharge();
   });
 });
@@ -290,12 +328,11 @@ d.getElementById('latchOn').addEventListener('click', () => {
   });
 });
 function disableHV() {
-  console.log('clickedButton');
   client.disableHV();
   if (document.getElementById('hvText').classList.contains('active')) {
     document.getElementById('hvText').classList.remove('active');
   }
-  document.getElementById('hvDisText ').classList.add('active');
+  document.getElementById('hvDisText').classList.add('active');
 }
 document.getElementById('hvDisable').addEventListener('click', disableHV);
 
@@ -305,19 +342,24 @@ d.getElementById('latchOff').addEventListener('click', () => {
   client.toggleLatch(false);
 });
 
+archiveButton.addEventListener('click', () => {
+  di.archiveData();
+  console.log('archiving data');
+});
+
 // Intervals
 
 setInterval(podConnectionCheck, 1000);
-setInterval(autosave, 10000);
+setInterval(autosave, 30000);
 
-// Inits
+// Init
 
 function init() {
   di.createCache();
   dl.fillAllItems();
   dl.fillAllTables();
-  stateTimer.start();
   displayTimer(globalTimer);
+  console.log(DEBUG);
   // toggleMotorSafety(true);
 }
 // Run at init
@@ -326,11 +368,11 @@ init();
 // Events
 
 // Data in recieved
-comms.on('dataIn', (input, time) => {
-  console.log(input);
+comms.on('dataIn', (input) => {
+  if (DEBUG) console.log(input);
+  checkPackets(input);
   let fixedPacket = checkBraking(input);
   di.normalizePacket(fixedPacket);
-  setAgeLabel(time);
   renderer.lastRecievedTime = new Date().getTime();
 });
 
