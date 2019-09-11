@@ -25,7 +25,7 @@ function Countdown(countdownSeconds) {
       this.minutesRemaining = t.min;
       console.log(`${this.minutesRemaining}:${this.secondsRemaining}`);
     }
-    updateClock();  
+    updateClock();
     this.timeInterval = setInterval(updateClock, 1000);
   };
 
