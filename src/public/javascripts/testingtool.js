@@ -22,7 +22,7 @@ let isPlaying = false;
 // Timer
 function incrementTimer() {
   console.log(currentTime);
-  currentTime = parseFloat(currentTime)+1;
+  currentTime = parseFloat(currentTime) + 1;
 }
 
 function playTimer() {
