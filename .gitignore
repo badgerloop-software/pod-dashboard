@@ -257,3 +257,6 @@ $RECYCLE.BIN/
 # except these
 !*/exports/Example.json
 !*/exports/README.MD
+
+# Mac icloud files
+*.icloud

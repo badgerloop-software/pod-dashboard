@@ -28,7 +28,7 @@ chartTitles2 = ['', ''];
 
 let chartInterval1 = false;
 let chartInterval2 = false;
-sampleRate = 100; // sample rate in ms per sample
+sampleRate = 10; // sample rate in ms per sample
 xmax = 30; // x-axis range (seconds)
 
 // function to generate blank chart on startup and clear
@@ -75,7 +75,7 @@ function removeTraces() { // eslint-disable-line no-unused-vars
 // contains all functions to add single and double traces to line chart one
 function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-vars
   let update;
-  const sampleRate = 300; // sample rate in ms per sample
+  const sampleRate = 10; // sample rate in ms per sample
   const layout = {
     xaxis: {
       rangemode: 'tozero',
@@ -103,9 +103,9 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
 
   // extends line chart one traces at each time step
   function getDataAtInterval() { // eslint-disable-line no-unused-vars
-    chartDataPrev1 = -1000;
+    chartDataPrev1 = -10;
     chartInterval1 = setInterval(() => {
-      xpos += sampleRate / 1000;
+      xpos += sampleRate / 100;
       getData();
       if (numTraces1 === 1 && !noData1) {
         update = {
@@ -143,7 +143,7 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
           y: [chartData1[0]],
           type: 'scatter',
           mode: 'lines',
-          line: { color: '#95A5A6' },
+          line: { shape: 'spline', smoothing: 1.3 },
         },
       ],
       layout,
@@ -163,7 +163,7 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
         y: [chartData1[1]],
         type: 'scatter',
         mode: 'lines',
-        line: { color: '#2D3131' },
+        ine: { shape: 'spline', smoothing: 1.3 },
       },
     ]);
   }
@@ -193,7 +193,7 @@ function generateLineChartOne(tdID, title) { // eslint-disable-line no-unused-va
 // contains all functions to add single and double traces to line chart two
 function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-vars
   let update;
-  const sampleRate = 300; // sample rate in ms per sample
+  const sampleRate = 100; // sample rate in ms per sample
   const layout = {
     xaxis: {
       rangemode: 'tozero',
@@ -221,10 +221,10 @@ function generateLineChartTwo(tdID, title) { // eslint-disable-line no-unused-va
 
   // extends line chart two traces at each time step
   function getDataAtInterval() { // eslint-disable-line no-unused-vars
-    chartDataPrev2 = -1000;
+    chartDataPrev2 = -100;
     chartInterval2 = setInterval(() => {
       if (chartFirstCreation1 === 0) {
-        xpos += sampleRate / 1000;
+        xpos += sampleRate / 100;
       }
       getData();
       if (numTraces2 === 1 && !noData2) {

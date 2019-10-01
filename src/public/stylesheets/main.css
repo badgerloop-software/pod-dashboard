@@ -74,8 +74,8 @@ button {
   float: right;
   overflow: hidden;
 }
-.banner_dropdown .banner_dropbtn {
-  font-size: 25px;    
+.banner_dropdown .dropbtn {
+  font-size: 20px;    
   border: none;
   outline: none;
   color: white;
