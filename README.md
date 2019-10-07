@@ -16,7 +16,7 @@ npm install
 npm start
 ```
 
-## Testing &nbsp; [![Actions Status](https://github.com/badgerloop-software/pod-dashboard/workflows/Node+CI/badge.svg)](https://github.com/badgerloop-software/pod-dashboard/actions)
+## Testing &nbsp; [![Actions Status](https://github.com/badgerloop-software/pod-dashboard/workflows/Node%20CI/badge.svg)](https://github.com/badgerloop-software/pod-dashboard/actions)
 https://github.com/badgerloop-software/pod-dashboard/actions
 - Configured with eslint for formatting tests
 - Configured with jest for unit testing and coverage
