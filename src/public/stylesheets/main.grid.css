@@ -47,8 +47,13 @@
     height: 370px;
   }
   #header3 {
-    grid-column: 1/45;
+    grid-column: 1/25;
     grid-row: 3/5;
+    height: 300px;
+  }
+  #header5 {
+    grid-column: 25/50;
+    grid-row: 4/5;
     height: 300px;
   }
   #header4 {
