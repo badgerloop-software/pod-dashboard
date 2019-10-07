@@ -21,7 +21,8 @@ let isPlaying = false;
 
 // Timer
 function incrementTimer() {
-  currentTime += 1;
+  console.log(currentTime);
+  currentTime = parseFloat(currentTime) + 1;
 }
 
 function playTimer() {
@@ -47,6 +48,7 @@ function resetTimer() {
 // Check Timer for hitting Max
 
 setInterval(() => {
+  console.log(currentTime);
   if (maxReached) {
     pauseTimer();
     maxReached = false;
@@ -58,6 +60,7 @@ function updateScrubber() { // eslint-disable-line
   let v = scrubber.value;
   console.log(`Scrubber is updating to ${v}`);
   currentTime = v;
+  console.log(currentTime);
 }
 
 function fillScrubber() {

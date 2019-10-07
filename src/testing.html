@@ -12,14 +12,16 @@
 <body>
   <!-- Top Bar -->
   <div class="banner">
-    <a href="index.html" class="left"><img src="public/images/logo.png" height="30px"></a>
-    <a href="index.html" id="title" class="left">Control Dashboard</a>
+    <a class="left"><img src="public/images/logo.png" height="30px"></a>
+    <a id="title" class="left">CONTROL DASHBOARD</a>
     <a id="close-window" class="right">&#10005;</a>
     <a id="max-window" class="right">&#128470; </a>
     <a id="min-window" class="right">&#8212;</a>
     <a id="banner-drop" class="right">
       <div class="banner_dropdown">
-        <button class="banner_dropbtn">Change View</button>
+        <button class="dropbtn">Change View
+          <i class="fa fa-caret-down"></i>
+        </button>
         <img src="public/images/dropdown.png" height="25px">
         <div class="banner_dropdown-content">
           <a href="index.html">Main</a>
@@ -29,7 +31,7 @@
         </div>
       </div>
     </a>
-    <!-- <a class="trigger"><img src="public/images/settings.png" height="35px"></a> -->
+    <a class="settingsTrigger" id="settingsTrigger"><img src="public/images/settings.png" height="35px"></a>
   </div>
 
   <!-- main grid layout-->

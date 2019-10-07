@@ -12,26 +12,30 @@
 
 <body>
     <!-- Top Bar -->
+    <!-- Top Bar -->
     <div class="banner">
-        <a class="left"><img src="public/images/logo.png" height="30px"></a>
-        <a id="title" class="left">CONTROL DASHBOARD</a>
-        <a id="close-window" class="right">&#10005;</a>
-        <a id="max-window" class="right">&#128470; </a>
-        <a id="min-window" class="right">&#8212;</a>
-        <a id="banner-drop" class="right">
-            <div class="banner_dropdown">
-                <button class="banner_dropbtn">Change View</button>
-                <img src="public/images/dropdown.png" height="25px">
-                <div class="banner_dropdown-content">
-                    <a href="index.html">Main</a>
-                    <a href="testing.html">Analysis</a>
-                    <a href="terminal.html">Terminal</a>
-                    <a href="battery.html">Batteries</a>
-                </div>
-            </div>
-        </a>
-        <a class="settingsTrigger"><img src="public/images/settings.png" height="35px"></a>
+      <a class="left"><img src="public/images/logo.png" height="30px"></a>
+      <a id="title" class="left">CONTROL DASHBOARD</a>
+      <a id="close-window" class="right">&#10005;</a>
+      <a id="max-window" class="right">&#128470; </a>
+      <a id="min-window" class="right">&#8212;</a>
+      <a id="banner-drop" class="right">
+        <div class="banner_dropdown">
+          <button class="dropbtn">Change View
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <img src="public/images/dropdown.png" height="25px">
+          <div class="banner_dropdown-content">
+            <a href="index.html">Main</a>
+            <a href="testing.html">Analysis</a>
+            <a href="terminal.html">Terminal</a>
+            <a href="battery.html">Batteries</a>
+          </div>
+        </div>
+      </a>
+      <a class="settingsTrigger" id="settingsTrigger"><img src="public/images/settings.png" height="35px"></a>
     </div>
+
     <div class="grid-container">
         <div class="Terminal" id="terminal">
             <div id="terminalOutput">
