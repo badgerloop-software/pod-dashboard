@@ -26,6 +26,7 @@
     "eslint": "5.13.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "^2.16.0",
+    "highcharts": "^7.2.0",
     "jest": "^24.1.0",
     "plotly.js-dist": "^1.42.5",
     "prettier": "^1.16.4"
