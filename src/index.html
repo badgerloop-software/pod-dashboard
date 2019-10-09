@@ -82,11 +82,11 @@
             <button id="focus_chart_add_button2" onclick="dropdown('3')" class="dropbtn">
               <h5>Add Values Chart 2</h5>
             </button>
-            <button id="focus_chart_clear_button"
+            <!-- <button id="focus_chart_clear_button"
               onclick="removeTraces(); generateBlankChart('lineChartOne', 'Chart 1', 'line'); generateBlankChart('lineChartTwo', 'Chart 2', 'line');"
               class="dropbtn">
               <h5>Clear Charts</h5>
-            </button>
+            </button> -->
             <div id="myDropdown2" class="dropdown-content">
               <input type="text" placeholder="Search.." id="dropdownInput2" onkeyup="filterFunction('2')" autofocus>
             </div>
@@ -94,7 +94,41 @@
               <input type="text" placeholder="Search.." id="dropdownInput3" onkeyup="filterFunction('3')">
             </div>
           </div>
-          <div class="header_focus_chart" id="header_focus_chart1">
+          <div id="container" style="width:100%; height:400px;"></div>
+          <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var myChart = Highcharts.chart('container', {
+                  chart: {
+                    type: 'bar'
+                  },
+                  title: {
+                    text: 'Fruit Consumption'
+                  },
+                  xAxis: {
+                    categories: ['Apples', 'Bananas', 'Oranges']
+                  },
+                  yAxis: {
+                    title: {
+                      text: 'Fruit eaten'
+                    }
+                  },
+                  exporting: {
+                    enabled: false
+                  },
+                  credits: {
+                    enabled: false
+                  },
+                  series: [{
+                    name: 'Jane',
+                    data: [1, 0, 4]
+                  }, {
+                    name: 'John',
+                    data: [5, 7, 3]
+                  }]
+                });
+              });
+          </script>
+          <!-- <div class="header_focus_chart" id="header_focus_chart1">
             <div style="height: 20px"></div>
             <div id="lineChartOne"></div>
             <script>document.onload = generateBlankChart('lineChartOne', 'Chart 1', 'line')</script>
@@ -103,7 +137,7 @@
             <div style="height: 20px"></div>
             <div id="lineChartTwo"></div>
             <script>document.onload = generateBlankChart('lineChartTwo', 'Chart 2', 'line')</script>
-          </div>
+          </div> -->
         </div>
       </div>
       <!-- State Machine Control Panel -->
