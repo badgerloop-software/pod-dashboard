@@ -2,20 +2,16 @@ let Highcharts = require('highcharts');
 
 require('highcharts/modules/exporting')(Highcharts);
 
-function newChart(id) {
-  Highcharts.chart(id, {
+let charts = [];
+
+function newChart(id, title) {
+  charts.push(Highcharts.chart(id, {
     chart: {
+      type: 'line',
+      panning: true,
     },
     title: {
-      text: 'Fruit Consumption',
-    },
-    xAxis: {
-      categories: ['Apples', 'Bananas', 'Oranges'],
-    },
-    yAxis: {
-      title: {
-        text: 'Fruit eaten',
-      },
+      text: title,
     },
     exporting: {
       enabled: false,
@@ -29,11 +25,19 @@ function newChart(id) {
       },
     },
     series: [{
-      name: 'Jane',
-      data: [1, 0, 4],
+      name: 'Temperature',
+      data: [1, 0, 4, 6, 7, 8],
     }, {
-      name: 'John',
-      data: [5, 7, 3],
+      name: 'Height',
+      data: [5, 7, 3, 1, 5, 2],
     }],
+  }));
+}
+
+function changeTitle(index) {
+  charts[index].update({
+    title: {
+      text: 'scroll',
+    },
   });
 }
