@@ -53,3 +53,27 @@ function addValues(index) {
     }],
   });
 }
+
+function randomValues() {
+  let data = [];
+  let time = new Date().getTime();
+  for (i = 0; i < 99; i++) {
+    data.push([
+      time + i * 1000,
+      Math.round(Math.random() * 100),
+    ]);
+  }
+  return data;
+}
+
+function addRandomValues(index) {
+  charts[index].update({
+    title: {
+      text: 'Add Random Values',
+    },
+    series: [{
+      name: 'Temperature',
+      data: randomValues(),
+    }],
+  });
+}
