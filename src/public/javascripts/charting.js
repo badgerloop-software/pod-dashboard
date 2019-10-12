@@ -7,7 +7,6 @@ let charts = []; // Array that stores charts
 function newChart(id, title) {
   charts.push(Highcharts.chart(id, {
     chart: {
-      type: 'line',
       panning: true,
     },
     title: {
@@ -49,7 +48,7 @@ function addValues(index) {
     },
     series: [{
       name: 'Temperature',
-      data: [1, 0, 4, 6, 7, 8],
+      data: [1, 0, 4, 6, 7, 8, 9, 1, 4, 6, 7, 8, 9, 3],
     }],
   });
 }
@@ -57,7 +56,7 @@ function addValues(index) {
 function randomValues() {
   let data = [];
   let time = new Date().getTime();
-  for (i = 0; i < 99; i++) {
+  for (i = 0; i < 35; i++) {
     data.push([
       time + i * 1000,
       Math.round(Math.random() * 100),
@@ -67,6 +66,7 @@ function randomValues() {
 }
 
 function addRandomValues(index) {
+  console.log('random');
   charts[index].update({
     title: {
       text: 'Add Random Values',
@@ -76,4 +76,18 @@ function addRandomValues(index) {
       data: randomValues(),
     }],
   });
+}
+
+function stream() {
+  let data = []
+  return data.push(Math.random());
+}
+
+function randomStream(index) {
+  addValues(index);
+  setInterval(() => {
+    y = Math.random() * 5;
+    charts[index].series[0].addPoint(y, true, true);
+  }, 1000);
+
 }
