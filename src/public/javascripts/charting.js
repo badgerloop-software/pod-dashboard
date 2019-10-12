@@ -2,7 +2,7 @@ let Highcharts = require('highcharts');
 
 require('highcharts/modules/exporting')(Highcharts);
 
-let charts = [];
+let charts = []; // Array that stores charts
 
 function newChart(id, title) {
   charts.push(Highcharts.chart(id, {
@@ -25,19 +25,31 @@ function newChart(id, title) {
       },
     },
     series: [{
-      name: 'Temperature',
-      data: [1, 0, 4, 6, 7, 8],
-    }, {
-      name: 'Height',
-      data: [5, 7, 3, 1, 5, 2],
+      name: 'Empty',
     }],
   }));
 }
 
-function changeTitle(index) {
+function clearChart(index) {
   charts[index].update({
     title: {
-      text: 'scroll',
+      text: 'Clear',
     },
+    series: [{
+      name: '',
+      data: [],
+    }],
+  });
+}
+
+function addValues(index) {
+  charts[index].update({
+    title: {
+      text: 'Add Values',
+    },
+    series: [{
+      name: 'Temperature',
+      data: [1, 0, 4, 6, 7, 8],
+    }],
   });
 }
