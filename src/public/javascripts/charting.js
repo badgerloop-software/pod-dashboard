@@ -83,11 +83,14 @@ function stream() {
   return data.push(Math.random());
 }
 
+let x = 10;
+
 function randomStream(index) {
   addValues(index);
   setInterval(() => {
     y = Math.random() * 5;
-    charts[index].series[0].addPoint(y, true, true);
+    x += 1;
+    charts[index].series[0].addPoint([x, y], true, true);
   }, 1000);
 
 }
