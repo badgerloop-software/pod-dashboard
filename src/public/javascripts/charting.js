@@ -3,10 +3,13 @@ let Highcharts = require('highcharts');
 require('highcharts/modules/exporting')(Highcharts);
 
 let charts = []; // Array that stores charts
+let x = 14;
+let interval = [];
 
 function newChart(id, title) {
   charts.push(Highcharts.chart(id, {
     chart: {
+      type: 'spline',
       panning: true,
     },
     title: {
@@ -19,6 +22,9 @@ function newChart(id, title) {
       enabled: false,
     },
     plotOptions: {
+      line: {
+        cropThreshold: 100,
+      },
       series: {
         connectorAllowed: false,
       },
@@ -30,6 +36,8 @@ function newChart(id, title) {
 }
 
 function clearChart(index) {
+  x = 0;
+  clearInterval(interval[index]);
   charts[index].update({
     title: {
       text: 'Clear',
@@ -78,19 +86,13 @@ function addRandomValues(index) {
   });
 }
 
-function stream() {
-  let data = []
-  return data.push(Math.random());
+function randomNumbers(index) {
+  y = Math.random() * 5;
+  x += 1;
+  charts[index].series[0].addPoint([x, y], true, true, { duration: 300 });
 }
-
-let x = 10;
 
 function randomStream(index) {
   addValues(index);
-  setInterval(() => {
-    y = Math.random() * 5;
-    x += 1;
-    charts[index].series[0].addPoint([x, y], true, true);
-  }, 1000);
-
+  interval[index] = setInterval(() => { randomNumbers(index); }, 1000);
 }
