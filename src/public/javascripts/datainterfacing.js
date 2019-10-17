@@ -6,20 +6,44 @@ const events = require('events');
 const fs = require('fs');
 const storedData = require('../../database.json');
 let cache = require('../../cache');
+let dataRecording = require('../../dataRecording');
 
 const packetHandler = new events.EventEmitter();
 module.exports.packetHandler = packetHandler;
 
+// Data recording variable
+module.exports.isDataRecording = false;
+// Changes the data recording variable from the handler
+const recordingEvent = new events.EventEmitter();
+module.exports.recordingEvent = recordingEvent;
+// Sets that data is recording
+recordingEvent.on(true, () => {
+    isDataRecording = true;
+    module.exports.isDataRecording = isDataRecording;
+});
+// Sets that data is not recording
+recordingEvent.on(false, () => {
+  isDataRecording = false;
+  module.exports.isDataRecording = isDataRecording;
+});
+
 // Creates cache based off of database.JSON
-module.exports.createCache = function createCache() { // eslint-disable-line no-unused-vars
-  console.log('Creating Cache');
-  let subsystemsArray = Object.keys(storedData);
-  for (let i = 0; i < subsystemsArray.length; i += 1) {
-    let sensorsArray = Object.keys(storedData[subsystemsArray[i]]);
-    cache[subsystemsArray[i]] = {};
-    for (let z = 0; z < sensorsArray.length; z += 1) {
-      cache[subsystemsArray[i]][sensorsArray[z]] = [];
+module.exports.createCache = function createCache(name) { // eslint-disable-line no-unused-vars
+  console.log('Creating cache');
+  try{
+    let subsystemsArray = Object.keys(storedData);
+    for (let i = 0; i < subsystemsArray.length; i += 1) {
+      let sensorsArray = Object.keys(storedData[subsystemsArray[i]]);
+      name[subsystemsArray[i]] = {};
+      for (let z = 0; z < sensorsArray.length; z += 1) {
+        name[subsystemsArray[i]][sensorsArray[z]] = [];
+      }
     }
+    if(name == dataRecording){ // re-exports dataRecording if it is being recreated
+      module.exports.dataRecording;
+    }
+  } catch (error){
+    console.error('cache name was not found');
   }
 };
 
@@ -85,7 +109,7 @@ function ambientToGauge(input) { // eslint-disable-line no-unused-vars
 
   return fixedPacket;
 }
-function updateData(dataIn) {
+function updateData(dataIn, name) {
   // Sort through the data and append the new values to their respective arrays in cache.js
   // NormalizePacket -> Calculations -> [UpdateData]
   const groups = Object.keys(dataIn);
@@ -94,7 +118,7 @@ function updateData(dataIn) {
     sensors.forEach((sensor) => {
       try {
         const input = Number(dataIn[group][sensor]);
-        const target = cache[group][sensor];
+        const target = name[group][sensor];
         let temp;
         if (group === 'braking') {
           temp = input.toFixed(0);
@@ -134,7 +158,11 @@ function calculate(input) {
     // console.error(`Calculation Error: ${err}`);
   }
   // Put the new data in the cache
-  updateData(fixedPacket);
+  updateData(fixedPacket, cache);
+  if(this.isDataRecording){
+    console.log("data is recording");
+    updateData(fixedPacket, dataRecording);
+  }
 }
 
 module.exports.normalizePacket = function normalizePacket(input) {
@@ -177,11 +205,11 @@ module.exports.findRenderable = function findRenderable() {
 // Exporting
 function createID() {
   let d = new Date();
-  return `${d.getDate()}${d.getHours()}${d.getMinutes()}`;
+  return `${d.getDate()}${d.getHours()}${d.getMinutes()}${d.getSeconds()}`;
 }
 
 function createJSON(name) {
-  fs.writeFileSync(`./Exports/${name}.json`, JSON.stringify(cache), (err) => {
+  fs.writeFileSync(`./Exports/${name}.json`, JSON.stringify(dataRecording), (err) => {
     if (err) throw err;
     console.log(`${name}.json Created!`);
   });
