@@ -160,7 +160,6 @@ function calculate(input) {
   // Put the new data in the cache
   updateData(fixedPacket, cache);
   if(this.isDataRecording){
-    console.log("data is recording");
     updateData(fixedPacket, dataRecording);
   }
 }
