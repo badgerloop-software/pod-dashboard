@@ -36,7 +36,7 @@ function newChart(id, title) {
 }
 
 function clearChart(index) {
-  x = 0;
+  x = 14;
   clearInterval(interval[index]);
   charts[index].update({
     title: {
