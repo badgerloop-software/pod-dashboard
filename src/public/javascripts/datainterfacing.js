@@ -18,8 +18,8 @@ const recordingEvent = new events.EventEmitter();
 module.exports.recordingEvent = recordingEvent;
 // Sets that data is recording
 recordingEvent.on(true, () => {
-    isDataRecording = true;
-    module.exports.isDataRecording = isDataRecording;
+  isDataRecording = true;
+  module.exports.isDataRecording = isDataRecording;
 });
 // Sets that data is not recording
 recordingEvent.on(false, () => {
@@ -30,20 +30,32 @@ recordingEvent.on(false, () => {
 // Creates cache based off of database.JSON
 module.exports.createCache = function createCache(name) { // eslint-disable-line no-unused-vars
   console.log('Creating cache');
-  try{
-    let subsystemsArray = Object.keys(storedData);
-    for (let i = 0; i < subsystemsArray.length; i += 1) {
-      let sensorsArray = Object.keys(storedData[subsystemsArray[i]]);
-      name[subsystemsArray[i]] = {};
-      for (let z = 0; z < sensorsArray.length; z += 1) {
-        name[subsystemsArray[i]][sensorsArray[z]] = [];
+  if (name === dataRecording) {
+    try {
+      let subsystemsArray = Object.keys(storedData);
+      for (let i = 0; i < subsystemsArray.length; i += 1) {
+        let sensorsArray = Object.keys(storedData[subsystemsArray[i]]);
+        dataRecording[subsystemsArray[i]] = {};
+        for (let z = 0; z < sensorsArray.length; z += 1) {
+          dataRecording[subsystemsArray[i]][sensorsArray[z]] = [];
+        }
       }
+    } catch (error) {
+      console.error('dataRecording was not found');
     }
-    if(name == dataRecording){ // re-exports dataRecording if it is being recreated
-      module.exports.dataRecording;
+  } else {
+    try {
+      let subsystemsArray = Object.keys(storedData);
+      for (let i = 0; i < subsystemsArray.length; i += 1) {
+        let sensorsArray = Object.keys(storedData[subsystemsArray[i]]);
+        cache[subsystemsArray[i]] = {};
+        for (let z = 0; z < sensorsArray.length; z += 1) {
+          cache[subsystemsArray[i]][sensorsArray[z]] = [];
+        }
+      }
+    } catch (error) {
+      console.error('cache was not found');
     }
-  } catch (error){
-    console.error('cache name was not found');
   }
 };
 
@@ -159,7 +171,7 @@ function calculate(input) {
   }
   // Put the new data in the cache
   updateData(fixedPacket, cache);
-  if(this.isDataRecording){
+  if (this.isDataRecording) {
     updateData(fixedPacket, dataRecording);
   }
 }
