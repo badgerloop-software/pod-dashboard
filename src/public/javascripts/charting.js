@@ -1,12 +1,12 @@
 let Highcharts = require('highcharts');
-//let cache = require('./cache');
+let chartCache = require('./cache');
 
 require('highcharts/modules/exporting')(Highcharts);
 
 let charts = []; // Array that stores charts
 let interval = []; // Array that stores intervals
 
-function newChart(id, title) {
+function newChart(id, title, data) {
   charts.push(Highcharts.chart(id, {
     chart: {
       type: 'line',
@@ -63,7 +63,6 @@ function addValues(index) {
     series: [{
       name: 'Temperature',
       data: [0, 0],
-      //data: [1, 0, 4, 6, 7, 8, 9, 1, 4, 6, 7, 8, 9, 3],
     }],
   });
 }
@@ -96,7 +95,7 @@ function addRandomValues(index) {
 function randomNumbers(index) {
   y = Math.random() * 5;
   charts[index].series[0].addPoint(y, true, false, { duration: 0 });
-  if (charts[index].series[0].data.length > 150) {
+  if (charts[index].series[0].data.length > 1000) {
     charts[index].series[0].data[0].remove(false, false);
   }
 }
