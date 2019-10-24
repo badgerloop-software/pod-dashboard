@@ -1,15 +1,15 @@
 let Highcharts = require('highcharts');
+//let cache = require('./cache');
 
 require('highcharts/modules/exporting')(Highcharts);
 
 let charts = []; // Array that stores charts
-let x = 14;
-let interval = [];
+let interval = []; // Array that stores intervals
 
 function newChart(id, title) {
   charts.push(Highcharts.chart(id, {
     chart: {
-      type: 'spline',
+      type: 'line',
       panning: true,
     },
     title: {
@@ -23,15 +23,21 @@ function newChart(id, title) {
     },
     plotOptions: {
       line: {
-        cropThreshold: 100,
       },
       series: {
         connectorAllowed: false,
+        enableMouseTracking: false,
+        pointInterval: 0.03,
       },
     },
     series: [{
       name: 'Empty',
+      cropThreshold: 10000,
+      clip: false,
     }],
+    xAxis: {
+      minRange: 5,
+    },
   }));
 }
 
@@ -56,7 +62,8 @@ function addValues(index) {
     },
     series: [{
       name: 'Temperature',
-      data: [1, 0, 4, 6, 7, 8, 9, 1, 4, 6, 7, 8, 9, 3],
+      data: [0, 0],
+      //data: [1, 0, 4, 6, 7, 8, 9, 1, 4, 6, 7, 8, 9, 3],
     }],
   });
 }
@@ -88,11 +95,13 @@ function addRandomValues(index) {
 
 function randomNumbers(index) {
   y = Math.random() * 5;
-  x += 1;
-  charts[index].series[0].addPoint([x, y], true, true, { duration: 300 });
+  charts[index].series[0].addPoint(y, true, false, { duration: 0 });
+  if (charts[index].series[0].data.length > 150) {
+    charts[index].series[0].data[0].remove(false, false);
+  }
 }
 
 function randomStream(index) {
   addValues(index);
-  interval[index] = setInterval(() => { randomNumbers(index); }, 1000);
+  interval[index] = setInterval(() => { randomNumbers(index); }, 30);
 }
