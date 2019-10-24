@@ -17,12 +17,12 @@ module.exports.isDataRecording = false;
 const recordingEvent = new events.EventEmitter();
 module.exports.recordingEvent = recordingEvent;
 // Sets that data is recording
-recordingEvent.on(true, () => {
+recordingEvent.on("on", () => {
   isDataRecording = true;
   module.exports.isDataRecording = isDataRecording;
 });
 // Sets that data is not recording
-recordingEvent.on(false, () => {
+recordingEvent.on("off", () => {
   isDataRecording = false;
   module.exports.isDataRecording = isDataRecording;
 });
@@ -30,7 +30,7 @@ recordingEvent.on(false, () => {
 // Creates cache based off of database.JSON
 module.exports.createCache = function createCache(name) { // eslint-disable-line no-unused-vars
   console.log('Creating cache');
-  if (name === dataRecording) {
+  if (name === dataRecording) { // creates dataRecording cache
     try {
       let subsystemsArray = Object.keys(storedData);
       for (let i = 0; i < subsystemsArray.length; i += 1) {
@@ -43,7 +43,7 @@ module.exports.createCache = function createCache(name) { // eslint-disable-line
     } catch (error) {
       console.error('dataRecording was not found');
     }
-  } else {
+  } else { // creates dashboard cache
     try {
       let subsystemsArray = Object.keys(storedData);
       for (let i = 0; i < subsystemsArray.length; i += 1) {

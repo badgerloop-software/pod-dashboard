@@ -178,7 +178,6 @@ function resetAllButtons() {
   document.getElementById('crawl').className = 'stateButtonInactive';
   document.getElementById('nonRunFault').className = 'stateButtonInactive';
   document.getElementById('runFault').className = 'stateButtonInactive';
-  document.getElementById('brakingFault').className = 'stateButtonInactive';
   document.getElementById('safeToApproach').className = 'stateButtonInactive';
 }
 
