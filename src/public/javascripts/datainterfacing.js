@@ -17,12 +17,12 @@ module.exports.isDataRecording = false;
 const recordingEvent = new events.EventEmitter();
 module.exports.recordingEvent = recordingEvent;
 // Sets that data is recording
-recordingEvent.on("on", () => {
+recordingEvent.on('on', () => {
   isDataRecording = true;
   module.exports.isDataRecording = isDataRecording;
 });
 // Sets that data is not recording
-recordingEvent.on("off", () => {
+recordingEvent.on('off', () => {
   isDataRecording = false;
   module.exports.isDataRecording = isDataRecording;
 });

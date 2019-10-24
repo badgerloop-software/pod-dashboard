@@ -347,7 +347,7 @@ d.getElementById('latchOff').addEventListener('click', () => {
 // Starts the recording of data to dataRecording.js
 dataRecordButton.addEventListener('click', () => {
   if (!di.isDataRecording) {
-    di.recordingEvent.emit("on"); // Tell DI to run start recording data
+    di.recordingEvent.emit('on'); // Tell DI to run start recording data
     console.log('recording data');
   } else {
     console.log('data is already being recorded');
@@ -357,7 +357,7 @@ dataRecordButton.addEventListener('click', () => {
 // Archives the data from dataRecording.js if data is being recorded
 archiveButton.addEventListener('click', () => {
   if (di.isDataRecording) {
-    di.recordingEvent.emit("off"); // Tells DI to stop recording data
+    di.recordingEvent.emit('off'); // Tells DI to stop recording data
     di.archiveData();
     console.log('archiving data');
     di.createCache(dataRecording);
