@@ -16,4 +16,4 @@ In the top right corner of the dashboard there is the option to change views. Sw
 
 ## Converting to Excel
 
-You can do this any way you wish, but [Json-csv.com](json-csv.com) works great.
+You can do this any way you wish, but [https://sqlify.io/convert/json/to/csv](https://sqlify.io/convert/json/to/csv) works great.
