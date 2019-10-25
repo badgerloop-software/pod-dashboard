@@ -100,6 +100,13 @@ function randomNumbers(index) {
   }
 }
 
+function testData(index) {
+  charts[index].series[0].addPoint(chartCache, true, false, { duratoin: 0 });
+  if (charts[index].series[0].data.length > 1000) {
+    charts[index].series[0].data[0].remove(false, false);
+  }
+}
+
 function randomStream(index) {
   addValues(index);
   interval[index] = setInterval(() => { randomNumbers(index); }, 30);
