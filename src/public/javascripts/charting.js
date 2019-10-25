@@ -102,7 +102,8 @@ function randomNumbers(index) {
 }
 
 function testData(index) {
-  charts[index].series[0].addPoint(chartCache[0][0], true, false, { duratoin: 0 });
+  console.log(chartCache[0]);
+  charts[index].series[0].addPoint(chartCache[0], true, false, { duratoin: 0 });
   if (charts[index].series[0].data.length > 1000) {
     charts[index].series[0].data[0].remove(false, false);
   }
@@ -111,6 +112,7 @@ function testData(index) {
 function randomStream(index) {
   if (interval[index] == null) {
     addValues(index);
-    interval[index] = setInterval(() => { randomNumbers(index); }, 30);
+    //interval[index] = setInterval(() => { randomNumbers(index); }, 30);
+    interval[index] = setInterval(() => { testData(index); }, 30);
   }
 }
