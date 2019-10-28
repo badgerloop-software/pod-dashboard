@@ -11,6 +11,7 @@ const Renderer = require('./public/javascripts/renderer');
 const Timer = require('./public/javascripts/Timer');
 const Countdown = require('./public/javascripts/Countdown');
 const cache = require('./cache');
+const dataRecording = require('./dataRecording');
 
 const d = document;
 const TIMEOUT = 5000;
@@ -32,6 +33,7 @@ const secBrakeOffText = d.getElementById('secDisText');
 const confirmationModal = d.querySelector('.confirmationModal');
 const closeButton2 = d.querySelector('.close-button2');
 const estopButton = d.getElementById('estop');
+const dataRecordButton = d.getElementById('dataRecordButton');
 const archiveButton = d.getElementById('archiveButton');
 const renderer = new Renderer();
 const globalTimer = new Timer();
@@ -103,10 +105,7 @@ for (let i = 0; i < smButtons.length; i += 1) {
   if (smButtons[i] === d.getElementById('pumpdown') || smButtons[i] === d.getElementById('crawlPrecharge') || smButtons[i] === d.getElementById('crawl') || smButtons[i] === d.getElementById('propulsion')) {
     continue; // eslint-disable-line
   }
-  if (smButtons[i] === d.getElementById('archiveButton')) {
-    makeArchiveListener(smButtons[i]);
-    continue; // eslint-disable-line
-  }
+  if (smButtons[i] === dataRecordButton || archiveButton) continue; // eslint-disable-line
   makeListener(smButtons[i]);
 }
 
@@ -342,9 +341,34 @@ d.getElementById('latchOff').addEventListener('click', () => {
   client.toggleLatch(false);
 });
 
+// Starts the recording of data to dataRecording.js
+dataRecordButton.addEventListener('click', () => {
+  if (!di.isDataRecording) {
+    di.recordingEvent.emit('on'); // Tell DI to run start recording data
+    console.log('recording data');
+    dataRecordButton.classList.remove('stateButton');
+    dataRecordButton.classList.add('stateButtonInactive');
+    archiveButton.classList.remove('stateButtonInactive');
+    archiveButton.classList.add('stateButton');
+  } else {
+    console.log('data is already being recorded');
+  }
+});
+
+// Archives the data from dataRecording.js if data is being recorded
 archiveButton.addEventListener('click', () => {
-  di.archiveData();
-  console.log('archiving data');
+  if (di.isDataRecording) {
+    di.recordingEvent.emit('off'); // Tells DI to stop recording data
+    di.archiveData();
+    console.log('archiving data');
+    di.createCache(dataRecording);
+    dataRecordButton.classList.add('stateButton');
+    dataRecordButton.classList.remove('stateButtonInactive');
+    archiveButton.classList.add('stateButtonInactive');
+    archiveButton.classList.remove('stateButton');
+  } else {
+    console.log('data was not being recorded');
+  }
 });
 
 // Intervals
@@ -355,7 +379,8 @@ setInterval(autosave, 30000);
 // Init
 
 function init() {
-  di.createCache();
+  di.createCache(cache);
+  di.createCache(dataRecording);
   dl.fillAllItems();
   dl.fillAllTables();
   displayTimer(globalTimer);

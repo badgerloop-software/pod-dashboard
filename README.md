@@ -71,6 +71,7 @@ pod-dashboard/coverage/lcov-report/index.html
 │  ├── app.js                       // Run the main Electron Process
 │  ├── battery.html                 // Battery page HTML file
 │  ├── cache.js                     // Temporary Cache to store telemetry information before being exported
+│  ├── dataRecording.js             // Temporary cache to hold data while recording
 │  ├── constants.json               // Store all constants in one place
 │  ├── database.json                // Master file with all telemetry information
 │  ├── index.html                   // Main page HTML file

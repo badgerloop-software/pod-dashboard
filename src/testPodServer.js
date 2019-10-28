@@ -141,10 +141,20 @@ function sendSinusodalData() { // eslint-disable-line no-unused-vars
   counter += increase;
 }
 
+function sendIncreasingData() { // eslint-disable-line no-unused-vars
+  let increase = 1;
+  let y = counter;
+  sendSpecificData(y);
+  counter += increase;
+}
+
 // The line where test data is sent. setInterval(function, ms)
 
 // Send random data
 // setInterval(sendTestData, DATA_SEND_RATE);
 
 // Send Sinusodial Data
-setInterval(sendSinusodalData, DATA_SEND_RATE);
+// setInterval(sendSinusodalData, DATA_SEND_RATE);
+
+// Send Increasing Data
+setInterval(sendIncreasingData, DATA_SEND_RATE);

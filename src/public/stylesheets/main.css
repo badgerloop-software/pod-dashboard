@@ -666,6 +666,11 @@ span2{
   border: 2px solid #684072;
   color: black;
 }
+#dataRecordButton {
+  background-color: #AEA8D3;
+  border: 2px solid #684072;
+  color: black;
+}
 #precharge {
   border-color: red;
   background-color: #C6A153;
