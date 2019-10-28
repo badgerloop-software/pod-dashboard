@@ -105,7 +105,7 @@ for (let i = 0; i < smButtons.length; i += 1) {
   if (smButtons[i] === d.getElementById('pumpdown') || smButtons[i] === d.getElementById('crawlPrecharge') || smButtons[i] === d.getElementById('crawl') || smButtons[i] === d.getElementById('propulsion')) {
     continue; // eslint-disable-line
   }
-  if (smButtons[i] === dataRecordButton || archiveButton) continue;
+  if (smButtons[i] === dataRecordButton || archiveButton) continue; // eslint-disable-line
   makeListener(smButtons[i]);
 }
 
