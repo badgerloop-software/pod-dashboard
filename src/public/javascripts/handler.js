@@ -105,10 +105,7 @@ for (let i = 0; i < smButtons.length; i += 1) {
   if (smButtons[i] === d.getElementById('pumpdown') || smButtons[i] === d.getElementById('crawlPrecharge') || smButtons[i] === d.getElementById('crawl') || smButtons[i] === d.getElementById('propulsion')) {
     continue; // eslint-disable-line
   }
-  if (smButtons[i] === d.getElementById('archiveButton')) {
-    makeArchiveListener(smButtons[i]);
-    continue; // eslint-disable-line
-  }
+  if (smButtons[i] === dataRecordButton || archiveButton) continue;
   makeListener(smButtons[i]);
 }
 
@@ -349,6 +346,10 @@ dataRecordButton.addEventListener('click', () => {
   if (!di.isDataRecording) {
     di.recordingEvent.emit('on'); // Tell DI to run start recording data
     console.log('recording data');
+    dataRecordButton.classList.remove('stateButton');
+    dataRecordButton.classList.add('stateButtonInactive');
+    archiveButton.classList.remove('stateButtonInactive');
+    archiveButton.classList.add('stateButton');
   } else {
     console.log('data is already being recorded');
   }
@@ -361,6 +362,10 @@ archiveButton.addEventListener('click', () => {
     di.archiveData();
     console.log('archiving data');
     di.createCache(dataRecording);
+    dataRecordButton.classList.add('stateButton');
+    dataRecordButton.classList.remove('stateButtonInactive');
+    archiveButton.classList.add('stateButtonInactive');
+    archiveButton.classList.remove('stateButton');
   } else {
     console.log('data was not being recorded');
   }
