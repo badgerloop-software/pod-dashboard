@@ -193,3 +193,16 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   document.getElementById('hvBonePort').value = consts.hvBone.port;
   document.getElementById('renderInterval').value = consts.renderInterval;
 }
+
+//Torque Value Submission
+
+let torqueValue = 100;
+document.getElementById('torqueInput').innerHTML = torqueValue;
+
+document.getElementById('torqueSendButton').addEventListener('click', comms.sendHVCommand);
+document.getElementById('torqueInput').innerHTML.addEventListener('change', updateTorqueValue);
+
+function updateTorqueValue {
+  torqueValue = document.getElementById('torqueInput').innerHTML;
+  return torqueValue;
+}
