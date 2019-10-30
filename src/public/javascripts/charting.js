@@ -6,6 +6,11 @@ require('highcharts/modules/exporting')(Highcharts);
 let charts = []; // Array that stores charts
 let interval = []; // Array that stores intervals
 
+const pointSpacing = 0.03;
+const minimumRange = 5;
+const rate = 30;
+
+
 function newChart(id, title, data) {
   charts.push(Highcharts.chart(id, {
     chart: {
@@ -27,7 +32,7 @@ function newChart(id, title, data) {
       series: {
         connectorAllowed: false,
         enableMouseTracking: false,
-        pointInterval: 0.03,
+        pointInterval: pointSpacing,
       },
     },
     series: [{
@@ -36,7 +41,7 @@ function newChart(id, title, data) {
       clip: false,
     }],
     xAxis: {
-      minRange: 5,
+      minRange: minimumRange,
     },
   }));
 }
@@ -63,7 +68,7 @@ function addValues(index) {
     },
     series: [{
       name: 'Temperature',
-      data: [0, 0],
+      data: [0, parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1])],
     }],
   });
 }
@@ -102,8 +107,9 @@ function randomNumbers(index) {
 }
 
 function testData(index) {
-  console.log(chartCache[0]);
-  charts[index].series[0].addPoint(chartCache[0], true, false, { duratoin: 0 });
+  //console.log(chartCache.motion.position[chartCache.motion.position.length - 1]);
+  y = parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1]);
+  charts[index].series[0].addPoint(y, true, false, { duration: 0 });
   if (charts[index].series[0].data.length > 1000) {
     charts[index].series[0].data[0].remove(false, false);
   }
@@ -112,7 +118,6 @@ function testData(index) {
 function randomStream(index) {
   if (interval[index] == null) {
     addValues(index);
-    //interval[index] = setInterval(() => { randomNumbers(index); }, 30);
-    interval[index] = setInterval(() => { testData(index); }, 30);
+    interval[index] = setInterval(() => { testData(index); }, rate);
   }
 }
