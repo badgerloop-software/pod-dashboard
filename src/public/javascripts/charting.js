@@ -9,6 +9,7 @@ let interval = []; // Array that stores intervals
 const pointSpacing = 0.03;
 const minimumRange = 5;
 const rate = 30;
+const shiftThreshold = rate / pointSpacing;
 
 
 function newChart(id, title, index) {
@@ -65,25 +66,22 @@ function addValues(index) {
     title: {
       text: 'Add Values',
     },
+    plotOptions: {
+      series: {
+        pointStart: 10,
+      },
+    },
     series: [{
       name: 'Temperature',
-      data: [0, parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1])],
+      //data: [parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1]), 10],
     }],
   });
 }
 
-function randomNumbers(index) {
-  y = Math.random() * 5;
-  charts[index].series[0].addPoint(y, true, false, { duration: 0 });
-  if (charts[index].series[0].data.length > 1000) {
-    charts[index].series[0].data[0].remove(false, false);
-  }
-}
-
 function testData(index) {
   y = parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1]);
-  charts[index].series[0].addPoint(y, true, false, { duration: 0 });
-  if (charts[index].series[0].data.length > 1000) {
+  charts[index].series[0].addPoint(y, true, false, { duration: 30 });
+  if (charts[index].series[0].data.length > shiftThreshold) {
     charts[index].series[0].data[0].remove(false, false);
   }
 }
