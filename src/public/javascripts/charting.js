@@ -11,8 +11,8 @@ const minimumRange = 5;
 const rate = 30;
 
 
-function newChart(id, title, data) {
-  charts.push(Highcharts.chart(id, {
+function newChart(id, title, index) {
+  charts[index] = Highcharts.chart(id, {
     chart: {
       type: 'line',
       panning: true,
@@ -43,11 +43,10 @@ function newChart(id, title, data) {
     xAxis: {
       minRange: minimumRange,
     },
-  }));
+  });
 }
 
 function clearChart(index) {
-  x = 14;
   clearInterval(interval[index]);
   interval[index] = null;
   charts[index].update({
@@ -73,31 +72,6 @@ function addValues(index) {
   });
 }
 
-function randomValues() {
-  let data = [];
-  let time = new Date().getTime();
-  for (i = 0; i < 35; i++) {
-    data.push([
-      time + i * 1000,
-      Math.round(Math.random() * 100),
-    ]);
-  }
-  return data;
-}
-
-function addRandomValues(index) {
-  console.log('random');
-  charts[index].update({
-    title: {
-      text: 'Add Random Values',
-    },
-    series: [{
-      name: 'Temperature',
-      data: randomValues(),
-    }],
-  });
-}
-
 function randomNumbers(index) {
   y = Math.random() * 5;
   charts[index].series[0].addPoint(y, true, false, { duration: 0 });
@@ -107,7 +81,6 @@ function randomNumbers(index) {
 }
 
 function testData(index) {
-  //console.log(chartCache.motion.position[chartCache.motion.position.length - 1]);
   y = parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1]);
   charts[index].series[0].addPoint(y, true, false, { duration: 0 });
   if (charts[index].series[0].data.length > 1000) {
@@ -115,7 +88,7 @@ function testData(index) {
   }
 }
 
-function randomStream(index) {
+function startChart(index) {
   if (interval[index] == null) {
     addValues(index);
     interval[index] = setInterval(() => { testData(index); }, rate);
