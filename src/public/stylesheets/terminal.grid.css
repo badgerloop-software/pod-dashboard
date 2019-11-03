@@ -41,23 +41,38 @@
   grid-row: 1;
   height: 100%;
   display: grid;
-  gap: 3px;
-  grid-template-columns: 400px 400px 250px;
-  grid-template-rows: 50px 50px 50px;
+  gap: 30px;
+  grid-template-columns: 300px 300px 250px;
+  grid-template-rows: 10px 50px 50px 50px;
 }
 #torqueInput {
   grid-column: 1/3;
-  grid-row: 1/2;
+  grid-row: 2/3;
+  height: 80px;
+  border: 2px solid gray;
+  border-radius: 5px;
+  font-size: 50px;
+  text-align: center;
 }
 #torqueUpButton {
   grid-column: 3;
-  grid-row: 1;
+  grid-row: 2;
+  color: black;
 }
 #torqueDownButton {
   grid-column: 3;
-  grid-row: 2;
+  grid-row: 3;
+  color: black;
 }
 #torqueSendButton {
   grid-column: 1/3;
-  grid-row: 3;
+  grid-row: 4;
+  width: 625px;
+  text-align: center;
+  color: black;
+}
+#torqueTitle {
+  grid-column: 1/3;
+  grid-row: 1;
+  text-align: center;
 }

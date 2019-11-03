@@ -196,13 +196,14 @@ function fillConstants() { // eslint-disable-line no-unused-vars
 
 //Torque Value Submission
 
-let torqueValue = 100;
-document.getElementById('torqueInput').innerHTML = torqueValue;
+document.getElementById('torqueSendButton').addEventListener('click', () => {comms.sendHVCommand('Updated torque value: ' + document.getElementById('torqueInput').innerHTML)});
+document.getElementById('torqueUpButton').addEventListener('click', incrementTorqueValue);
+document.getElementById('torqueDownButton').addEventListener('click', decrementTorqueValue);
 
-document.getElementById('torqueSendButton').addEventListener('click', comms.sendHVCommand);
-document.getElementById('torqueInput').innerHTML.addEventListener('change', updateTorqueValue);
+function incrementTorqueValue() {
+  document.getElementById('torqueInput').innerHTML ++;
+}
 
-function updateTorqueValue {
-  torqueValue = document.getElementById('torqueInput').innerHTML;
-  return torqueValue;
+function decrementTorqueValue() {
+  document.getElementById('torqueInput').innerHTML --;
 }
