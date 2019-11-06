@@ -2,12 +2,15 @@
   "name": "podvdashboard",
   "version": "1.1.0",
   "description": "The Dashboard for Badgerloop Pod 5",
-  "main": "src/app.js",
+  "main": "./src/app.js",
   "scripts": {
     "start": "electron .",
     "lint": "eslint src",
     "pretest": "eslint src",
-    "dev": "$env:DEBUG='true' && electron ."
+    "dev": "$env:DEBUG='true' && electron .",
+    "make windows": "electron-forge make --win32",
+    "make linux": "electron-forge make --linux",
+    "make mac": "electron-forge make --darwin"
   },
   "repository": {
     "type": "git",
@@ -19,15 +22,54 @@
     "url": "https://github.com/badgerloop-software/pod/issues"
   },
   "homepage": "https://github.com/badgerloop-software/pod#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^5.2.4",
+    "electron-prebuilt-compile": "4.0.0"
+  },
   "dependencies": {
     "babel-eslint": "^10.0.1",
-    "electron": "^4.0.1",
+    "electron-compile": "^6.4.4",
+    "electron-squirrel-startup": "^1.0.0",
     "eslint": "5.13.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "^2.16.0",
     "jest": "^24.1.0",
     "plotly.js-dist": "^1.42.5",
     "prettier": "^1.16.4"
+  },
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "npm"
+      },
+      "electronWinstallerConfig": {
+        "name": "podvdashboard"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "podvdashboard"
+      }
+    }
   }
 }
