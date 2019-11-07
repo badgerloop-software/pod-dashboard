@@ -12,7 +12,7 @@ const rate = 30;
 const shiftThreshold = rate / pointSpacing;
 
 
-function newChart(id, title, index) {
+function newChart(id, title, index) { //eslint-disable-line
   charts[index] = Highcharts.chart(id, {
     chart: {
       type: 'line',
@@ -47,7 +47,7 @@ function newChart(id, title, index) {
   });
 }
 
-function clearChart(index) {
+function clearChart(index) { //eslint-disable-line
   clearInterval(interval[index]);
   interval[index] = null;
   charts[index].update({
@@ -61,19 +61,18 @@ function clearChart(index) {
   });
 }
 
-function addValues(index) {
+function initialize(index, start, name) {
   charts[index].update({
     title: {
       text: 'Add Values',
     },
     plotOptions: {
       series: {
-        pointStart: 10,
       },
     },
     series: [{
       name: 'Temperature',
-      //data: [parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1]), 10],
+      data: [[start, parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1])]],
     }],
   });
 }
@@ -86,9 +85,11 @@ function testData(index) {
   }
 }
 
-function startChart(index) {
+function startChart(index) { //eslint-disable-line
   if (interval[index] == null) {
-    addValues(index);
+    setTimeout(() => {
+      initialize(index, 10);
+    }, 30);
     interval[index] = setInterval(() => { testData(index); }, rate);
   }
 }
