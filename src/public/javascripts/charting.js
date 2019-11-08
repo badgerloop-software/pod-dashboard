@@ -52,7 +52,7 @@ function clearChart(index) { //eslint-disable-line
   interval[index] = null;
   charts[index].update({
     title: {
-      text: 'Clear',
+      text: 'Cleared',
     },
     series: [{
       name: '',
@@ -61,35 +61,38 @@ function clearChart(index) { //eslint-disable-line
   });
 }
 
-function initialize(index, start, name) {
+function initialize(index, start, data, title, units) {
   charts[index].update({
     title: {
-      text: 'Add Values',
+      text: title,
     },
     plotOptions: {
       series: {
       },
     },
     series: [{
-      name: 'Temperature',
-      data: [[start, parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1])]],
+      name: data + units,
+      data: [[start,
+        parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1])]],
     }],
   });
 }
 
-function testData(index) {
-  y = parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1]);
+function testData(index, name, system) {
+  y = parseFloat(chartCache[system][name][chartCache[system][name].length - 1]);
   charts[index].series[0].addPoint(y, true, false, { duration: 30 });
   if (charts[index].series[0].data.length > shiftThreshold) {
     charts[index].series[0].data[0].remove(false, false);
   }
 }
 
-function startChart(index) { //eslint-disable-line
-  if (interval[index] == null) {
-    setTimeout(() => {
-      initialize(index, 10);
-    }, 30);
-    interval[index] = setInterval(() => { testData(index); }, rate);
+function startChart(index, name, title, system, units) { //eslint-disable-line
+  if (interval[index] != null) {
+    clearInterval(index);
   }
+  setTimeout(() => {
+    initialize(index, 10, name, title, units);
+  }, rate);
+  interval[index] = setInterval(() => { testData(index, name, system); }, rate);
+
 }
