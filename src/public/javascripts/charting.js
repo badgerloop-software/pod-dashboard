@@ -78,9 +78,9 @@ function initialize(index, start, data, title, system, units) {
   });
 }
 
-function testData(index, name, system) {
-  y = parseFloat(chartCache[system][name][chartCache[system][name].length - 1]);
-  charts[index].series[0].addPoint(y, true, false, { duration: 30 });
+function addData(index, name, system) {
+  value = parseFloat(chartCache[system][name][chartCache[system][name].length - 1]);
+  charts[index].series[0].addPoint(value, true, false, { duration: 30 });
   if (charts[index].series[0].data.length > shiftThreshold) {
     charts[index].series[0].data[0].remove(false, false);
   }
@@ -92,5 +92,5 @@ function startChart(index, name, title, system, units) { //eslint-disable-line
   setTimeout(() => {
     initialize(index, currentTime, name, title, system, units);
   }, rate);
-  interval[index] = setInterval(() => { testData(index, name, system); }, rate);
+  interval[index] = setInterval(() => { addData(index, name, system); }, rate);
 }
