@@ -61,7 +61,7 @@ function clearChart(index) { //eslint-disable-line
   });
 }
 
-function initialize(index, start, data, title, units) {
+function initialize(index, start, data, title, system, units) {
   charts[index].update({
     title: {
       text: title,
@@ -73,7 +73,7 @@ function initialize(index, start, data, title, units) {
     series: [{
       name: data + units,
       data: [[start,
-        parseFloat(chartCache.motion.position[chartCache.motion.position.length - 1])]],
+        parseFloat(chartCache[system][data][chartCache[system][data].length - 1])]],
     }],
   });
 }
@@ -87,12 +87,10 @@ function testData(index, name, system) {
 }
 
 function startChart(index, name, title, system, units) { //eslint-disable-line
-  if (interval[index] != null) {
-    clearInterval(index);
-  }
+  currentTime = 10;
+  clearChart(index);
   setTimeout(() => {
-    initialize(index, 10, name, title, units);
+    initialize(index, currentTime, name, title, system, units);
   }, rate);
   interval[index] = setInterval(() => { testData(index, name, system); }, rate);
-
 }

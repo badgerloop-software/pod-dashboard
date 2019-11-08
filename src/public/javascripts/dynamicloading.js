@@ -234,14 +234,12 @@ function createItem(name, dropdown, units, system) { // eslint-disable-line no-u
     case 'myDropdown2':
       header.onclick = function onclick() { // sets the onclick value
         startChart(0, name, fixedName, system, fixedUnits);
-        //generateLineChartOne(name, fixedName);
         return false;
       };
       break;
     case 'myDropdown3':
       header.onclick = function onclick() { // sets the onclick value
         startChart(1, name, fixedName, system, fixedUnits);
-        //generateLineChartTwo(name, fixedName);
         return false;
       };
       break;
