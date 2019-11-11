@@ -58,13 +58,13 @@
   grid-column: 3;
   grid-row: 2;
   color: black;
-  background-color: green;
+  background-color: #F4D76F;
 }
 #torqueDownButton {
   grid-column: 3;
   grid-row: 3;
   color: black;
-  background-color: red;
+  background-color: #F4D76F;
 }
 #torqueSendButton {
   grid-column: 1/3;
@@ -72,7 +72,7 @@
   width: 625px;
   text-align: center;
   color: black;
-  background-color: #1ba1e2;
+  background-color: green;
 }
 #torqueTitle {
   grid-column: 1/3;
