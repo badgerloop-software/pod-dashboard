@@ -201,6 +201,9 @@ document.getElementById('torqueSendButton').addEventListener('click', () => {
 });
 document.getElementById('torqueUpButton').addEventListener('click', incrementTorqueValue);
 document.getElementById('torqueDownButton').addEventListener('click', decrementTorqueValue);
+document.getElementById('terminalEstop').addEventListener('click', () => {
+  comms.sendEBrake();
+});
 
 function incrementTorqueValue() {
   document.getElementById('torqueInput').innerHTML++;
