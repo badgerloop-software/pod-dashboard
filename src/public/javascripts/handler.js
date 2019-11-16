@@ -1,57 +1,63 @@
-/*
-Author: Eric Udlis, Michael Handler
-Purpose: Handle all updaters and interfacing between the frontend and backend
-*/
-const client = require('./public/javascripts/communication');
-const di = require('./public/javascripts/datainterfacing');
-const comms = require('./public/javascripts/communication').recievedEmitter;
-const constants = require('./constants');
-const dl = require('./public/javascripts/dynamicloading');
-const Renderer = require('./public/javascripts/renderer');
-const Timer = require('./public/javascripts/Timer');
-const Countdown = require('./public/javascripts/Countdown');
-const cache = require('./cache');
-const dataRecording = require('./dataRecording');
+/**
+ * @module Handler
+ * @author Eric Udlis, Michael Handler
+ * @description HAndle all updates and interfacing between the front-end and back-end
+ */
+const CLIENT = require('./public/javascripts/communication');
+const DATA_INTERFACING = require('./public/javascripts/datainterfacing');
+const COMMUNICATIONS_EMITTER = require('./public/javascripts/communication').recievedEmitter;
+const CONSTANTS = require('./constants');
+const DYNAMIC_LOADING = require('./public/javascripts/dynamicloading');
+const RENDERER = require('./public/javascripts/renderer');
+const TIMER = require('./public/javascripts/Timer');
+const COUNTDOWN = require('./public/javascripts/Countdown');
+const CACHE = require('./cache');
 
-const d = document;
+const D = document;
 const TIMEOUT = 5000;
+const CONNECTION_CHECK_INTERVAL = 1000;
+const AUTOSAVE_INTERVAL = 30000;
 
-const smControlPanel = d.getElementById('header3');
-const smButtons = smControlPanel.getElementsByTagName('button');
-const lvIndicator = d.getElementById('connectionDot1');
-const hvIndicator = d.getElementById('connectionDot2');
-const recieveIndicator1 = d.getElementById('link1');
-const recieveIndicator2 = d.getElementById('link2');
-const primBrakeOn = d.getElementById('primBrakeOn');
-const primBrakeOff = d.getElementById('primBrakeOff');
-const secBrakeOn = d.getElementById('secBrakeVentOn');
-const secBrakeOff = d.getElementById('secBrakeVentOff');
-const primBrakeOnText = d.getElementById('primEnText');
-const primBrakeOffText = d.getElementById('primDisText');
-const secBrakeOnText = d.getElementById('secEnText');
-const secBrakeOffText = d.getElementById('secDisText');
-const confirmationModal = d.querySelector('.confirmationModal');
-const closeButton2 = d.querySelector('.close-button2');
-const estopButton = d.getElementById('estop');
-const dataRecordButton = d.getElementById('dataRecordButton');
-const archiveButton = d.getElementById('archiveButton');
-const renderer = new Renderer();
-const globalTimer = new Timer();
-const { stateTimer } = dl;
+const STATE_MACHINE_CONTROL_PANEL = D.getElementById('header3');
+const STATE_MACHINE_BUTTONS = STATE_MACHINE_CONTROL_PANEL.getElementsByTagName('button');
+const LV_INDICATOR = D.getElementById('connectionDot1');
+const HV_INDICATOR = D.getElementById('connectionDot2');
+const RECIEVE_INDICATOR_1 = D.getElementById('link1');
+const RECIEVE_INDICATOR_2 = D.getElementById('link2');
+const PRIMARY_BRAKE_ON = D.getElementById('primBrakeOn');
+const PRIMARY_BRAKE_OFF = D.getElementById('primBrakeOff');
+const SECONDARY_BRAKE_ON = D.getElementById('secBrakeVentOn');
+const SECONDARY_BRAKE_OFF = D.getElementById('secBrakeVentOff');
+const PRIMARY_BRAKE_ON_TEXT = D.getElementById('primEnText');
+const PRIMARY_BRAKE_OFF_TEXT = D.getElementById('primDisText');
+const SECONDAY_BRAKE_ON_TEXT = D.getElementById('secEnText');
+const SECONDAY_BRAKE_OFF_TEXT = D.getElementById('secDisText');
+const CONFIRMATION_MODAL = D.querySelector('.confirmationModal');
+const CLOSE_BUTTON_2 = D.querySelector('.close-button2');
+const EMERGENCY_STOP_BTN = D.getElementById('estop');
+const ARCHIVE_BUTTON = D.getElementById('archiveButton');
+const TABLES_RENDERER = new RENDERER();
+const GLOBAL_TIMER = new TIMER();
+const { stateTimer: STATE_TIMER } = DYNAMIC_LOADING;
 
-let confirmModalBtn = d.getElementById('confirmStart');
-let activeTimer = globalTimer;
+let confirmModalBtn = D.getElementById('confirmStart');
+let activeTimer = GLOBAL_TIMER;
 let { DEBUG } = Boolean(process.env) || false;
 let boneStatus = [false, false]; // [LV, HV]
 let packetCounts = [0, 0]; // [LV, HV]
 // eslint-disable-next-line no-unused-vars
 let oldCounts = [0, 0];
 
-// Update the Database and Render the latest entry
+
+/**
+ * @param  {String} group Group the sensor belongs to
+ * @param  {String} sensor Sensor to modify
+ */
+// Renders latest entry in cace to the tables
 function renderData(group, sensor) {
   // Get numbers
-  const t = d.getElementById(String(sensor));
-  const stored = cache[group][sensor];
+  const t = D.getElementById(String(sensor));
+  const stored = CACHE[group][sensor];
   // Set number
   if (stored[stored.length - 1] == null) {
     t.innerHTML = 'Not Available';
@@ -60,15 +66,22 @@ function renderData(group, sensor) {
   }
 }
 
+/**
+ * @param {String} state State to override to
+ * Manually transitions the dashboard to state given
+ */
 function overrideState(state) {
   if (DEBUG) console.error(`OVERIDING STATE TO ${state} STATE`);
-  client.sendOverride(state);
-  dl.switchState(state);
-  stateTimer.reset();
+  CLIENT.sendOverride(state);
+  DYNAMIC_LOADING.switchState(state);
+  STATE_TIMER.reset();
 }
 
 // State Machine Control Panel Event Listeners
-
+/**
+ * Creates a listener for a button to override to state that the button is labled with
+ * @param {HTMLElement} btn HTML element to create a listener for
+ */
 function makeListener(btn) {
   btn.addEventListener('click', (e) => {
     let clicked = String(e.target.tagName);
@@ -77,13 +90,19 @@ function makeListener(btn) {
     overrideState(temp);
   });
 }
-
+/**
+ * Creates a JSON save labled "Autosave"
+ */
 function autosave() {
-  di.archiveData('autosave');
+  DATA_INTERFACING.archiveData('autosave');
 }
-
+/**
+ * Prompts user with a confirmation window before running function
+ * @param {String} msg Message to display in prompt
+ * @param {Function} cb Function to run once confirmed
+ */
 function toggleConfirmationModal(msg, cb) {
-  confirmationModal.classList.toggle('show-modal');
+  CONFIRMATION_MODAL.classList.toggle('show-modal');
   if (msg && cb) {
     let el = confirmModalBtn;
     let elClone = el.cloneNode(true);
@@ -96,45 +115,68 @@ function toggleConfirmationModal(msg, cb) {
 }
 
 // iterate through list of buttons and call makeListener
-for (let i = 0; i < smButtons.length; i += 1) {
-  // handle exceptions
-  if (smButtons[i].classList.contains('stateButton') && smButtons[i].id !== 'powerOff') {
-    // If it is a colored button
-    continue; // eslint-disable-line
+/**
+ * Creates listeners for all the state machine buttons
+ */
+function makeStateMachineListeners() {
+  for (let i = 0; i < STATE_MACHINE_BUTTONS.length; i += 1) {
+    // handle exceptions
+    if (STATE_MACHINE_BUTTONS[i].classList.contains('stateButton') && STATE_MACHINE_BUTTONS[i].id !== 'powerOff') {
+      // If it is a colored button
+      continue; // eslint-disable-line
+    }
+    if (STATE_MACHINE_BUTTONS[i] === D.getElementById('pumpdown') || STATE_MACHINE_BUTTONS[i] === D.getElementById('crawlPrecharge') || STATE_MACHINE_BUTTONS[i] === D.getElementById('crawl') || STATE_MACHINE_BUTTONS[i] === D.getElementById('propulsion')) {
+      continue; // eslint-disable-line
+    }
+    if (STATE_MACHINE_BUTTONS[i] === D.getElementById('archiveButton')) {
+      makeArchiveListener(STATE_MACHINE_BUTTONS[i]);
+      continue; // eslint-disable-line
+    }
+    makeListener(STATE_MACHINE_BUTTONS[i]);
   }
-  if (smButtons[i] === d.getElementById('pumpdown') || smButtons[i] === d.getElementById('crawlPrecharge') || smButtons[i] === d.getElementById('crawl') || smButtons[i] === d.getElementById('propulsion')) {
-    continue; // eslint-disable-line
-  }
-  if (smButtons[i] === dataRecordButton || archiveButton) continue; // eslint-disable-line
-  makeListener(smButtons[i]);
 }
-
+/**
+ * Toggles the primary braking indicators and calls the
+ * communication call if noted by call
+ * @param {Boolean} state // True for on, false for off
+ * @param {Boolean} call
+ */
 function togglePrimBrake(state, call) {
   if (state) {
-    primBrakeOnText.style.color = 'lime';
-    primBrakeOffText.style.color = 'white';
-    if (call) client.primBrakeOn();
+    PRIMARY_BRAKE_ON_TEXT.style.color = 'lime';
+    PRIMARY_BRAKE_OFF_TEXT.style.color = 'white';
+    if (call) CLIENT.primBrakeOn();
   }
   if (!state) {
-    primBrakeOffText.style.color = 'lime';
-    primBrakeOnText.style.color = 'white';
-    if (call) client.primBrakeOff();
+    PRIMARY_BRAKE_OFF_TEXT.style.color = 'lime';
+    PRIMARY_BRAKE_ON_TEXT.style.color = 'white';
+    if (call) CLIENT.primBrakeOff();
   }
 }
-
+/**
+ * Toggles the secondary braking indicators and calls the
+ * communication call if noted by call
+ * @param {Boolean} state // True for on, false for off
+ * @param {Boolean} call
+ */
 function toggleSecBrake(state, call) {
   if (state) {
-    secBrakeOnText.style.color = 'lime';
-    secBrakeOffText.style.color = 'white';
-    if (call) client.secBrakeOn();
+    SECONDAY_BRAKE_ON_TEXT.style.color = 'lime';
+    SECONDAY_BRAKE_OFF_TEXT.style.color = 'white';
+    if (call) CLIENT.secBrakeOn();
   }
   if (!state) {
-    secBrakeOffText.style.color = 'lime';
-    secBrakeOnText.style.color = 'white';
-    if (call) client.secBrakeOff();
+    SECONDAY_BRAKE_OFF_TEXT.style.color = 'lime';
+    SECONDAY_BRAKE_ON_TEXT.style.color = 'white';
+    if (call) CLIENT.secBrakeOff();
   }
 }
-
+/**
+ * Checks packet for primary and seconday braking status
+ * changes indicators and deletes flags
+ * @param {Object} basePacket The original packet
+ * @returns {Object} fixedPacket The modified packet
+ */
 function checkBraking(basePacket) {
   let fixedPacket = basePacket;
   if (basePacket.braking !== undefined) {
@@ -147,85 +189,119 @@ function checkBraking(basePacket) {
   }
   return fixedPacket;
 }
+/**
+ * Disables the HV on the pod, sends communication and changes lablel accordingly
+ */
+function disableHV() {
+  CLIENT.disableHV();
+  if (document.getElementById('hvText').classList.contains('active')) {
+    document.getElementById('hvText').classList.remove('active');
+  }
+  document.getElementById('hvDisText').classList.add('active');
+}
+
 // Connection Indicators
+/**
+ * Sets recieve indicators and starts/stops timer based on status
+ * @param {Boolean} state true for ok false for bad
+ */
 function setRecieve(state) {
   if (state) {
-    recieveIndicator1.className = 'statusGood';
-    recieveIndicator2.className = 'statusGood';
-    d.getElementById('ageDisplay').className = 'statusGood';
-    if (!globalTimer.process) {
-      globalTimer.start();
+    RECIEVE_INDICATOR_1.className = 'statusGood';
+    RECIEVE_INDICATOR_2.className = 'statusGood';
+    D.getElementById('ageDisplay').className = 'statusGood';
+    if (!GLOBAL_TIMER.process) {
+      GLOBAL_TIMER.start();
     }
   }
   if (!state) {
-    recieveIndicator1.className = 'statusBad';
-    recieveIndicator2.className = 'statusBad';
-    d.getElementById('ageDisplay').innerHTML = 'N/A';
-    d.getElementById('ageDisplay').className = 'statusBad';
-    globalTimer.reset();
+    RECIEVE_INDICATOR_1.className = 'statusBad';
+    RECIEVE_INDICATOR_2.className = 'statusBad';
+    D.getElementById('ageDisplay').innerHTML = 'N/A';
+    D.getElementById('ageDisplay').className = 'statusBad';
+    GLOBAL_TIMER.reset();
   }
 }
-
+/**
+ * Displays the given timer in defined display location
+ * @param {Timer} timer Displays the timers current time
+ */
 function displayTimer(timer) {
-  if (`${timer.getSeconds()}`.length === 1) d.getElementById('ageDisplay').innerHTML = `${timer.getMinutes()}:0${timer.getSeconds()}`;
-  else d.getElementById('ageDisplay').innerHTML = `${timer.getMinutes()}:${timer.getSeconds()}`;
+  if (`${timer.getSeconds()}`.length === 1) D.getElementById('ageDisplay').innerHTML = `${timer.getMinutes()}:0${timer.getSeconds()}`;
+  else D.getElementById('ageDisplay').innerHTML = `${timer.getMinutes()}:${timer.getSeconds()}`;
 }
-
+/**
+ * Sets the LV indicator
+ * @param {Boolean} state true for ok false for bad
+ */
 function setLVIndicator(state) {
-  if (state) lvIndicator.className = 'statusGood';
-  if (!state) lvIndicator.className = 'statusBad';
+  if (state) LV_INDICATOR.className = 'statusGood';
+  if (!state) LV_INDICATOR.className = 'statusBad';
 }
-
+/**
+ *Sets the HV indicator
+ * @param {Boolean} state true for ok false for bad
+ */
 function setHVIndicator(state) {
-  if (state) hvIndicator.className = 'statusGood';
-  if (!state) hvIndicator.className = 'statusBad';
+  if (state) HV_INDICATOR.className = 'statusGood';
+  if (!state) HV_INDICATOR.className = 'statusBad';
   if (!state && !DEBUG) overrideState('powerOff');
 }
-
+/**
+ * Checks if dashboard has recieved packets within timeout period
+ * If so, sets recieve indicator good and renders to tables
+ * If bad,sets recieve indicator bad and stops rendering to tables
+ */
 function checkRecieve() {
   let now = new Date().getTime();
-  let difference = now - renderer.lastRecievedTime;
+  let difference = now - TABLES_RENDERER.lastRecievedTime;
   displayTimer(activeTimer);
   // console.log(`now: ${now} difference ${difference} timeout ${TIMEOUT}`);
-  if ((difference > TIMEOUT) || renderer.lastRecievedTime === 0) {
+  if ((difference > TIMEOUT) || TABLES_RENDERER.lastRecievedTime === 0) {
     setRecieve(false);
-    renderer.stopRenderer();
+    TABLES_RENDERER.stopRenderer();
   } else {
     setRecieve(true);
-    renderer.startRenderer();
+    TABLES_RENDERER.startRenderer();
   }
 }
-
+/**
+ * Sends TCP heartbeats to Pod
+ */
 function sendHeartbeats() {
-  client.sendLVPing();
-  client.sendHVPing();
+  CLIENT.sendLVPing();
+  CLIENT.sendHVPing();
 }
 
-
+/**
+ * Sets LV and HV indicators based on boneStatus
+ */
 function checkTransmit() {
   setLVIndicator(boneStatus[0]);
   setHVIndicator(boneStatus[1]);
 }
 
-
+/**
+ * Updates lables of tables based on recieving packets or not
+ */
 function updateLabels() {
   if (oldCounts[0] < packetCounts[0] + 5) {
     // Still Recieving packets
-    d.getElementById('motionDisconnected').style.display = 'none';
-    d.getElementById('brakingDisconnected').style.display = 'none';
+    D.getElementById('motionDisconnected').style.display = 'none';
+    D.getElementById('brakingDisconnected').style.display = 'none';
   } else {
     // Haven't recieved packets
-    d.getElementById('motionDisconnected').style.display = 'inline';
-    d.getElementById('brakingDisconnected').style.display = 'inline';
+    D.getElementById('motionDisconnected').style.display = 'inline';
+    D.getElementById('brakingDisconnected').style.display = 'inline';
   }
   if (oldCounts[1] < packetCounts[1] + 5) {
     // Still recieving packets
-    d.getElementById('motorDisconnected').style.display = 'none';
-    d.getElementById('batteryDisconnected').style.display = 'none';
+    D.getElementById('motorDisconnected').style.display = 'none';
+    D.getElementById('batteryDisconnected').style.display = 'none';
   } else {
     // Haven't recieved packets
-    d.getElementById('motorDisconnected').style.display = 'inline';
-    d.getElementById('batteryDisconnected').style.display = 'inline';
+    D.getElementById('motorDisconnected').style.display = 'inline';
+    D.getElementById('batteryDisconnected').style.display = 'inline';
   }
   oldCounts[0] = packetCounts[0];
   oldCounts[1] = packetCounts[1];
@@ -233,14 +309,20 @@ function updateLabels() {
   // return null;
    ***************************** */
 }
-
+/**
+ * Checks if recieving packets, sends heartbeats to pod, checks if we get call back from pod
+ * Updates Table Lables
+ */
 function podConnectionCheck() {
   checkRecieve();
   sendHeartbeats();
   checkTransmit();
   updateLabels();
 }
-
+/**
+ * Checks weather given packet is a HV or LV packet and increments counter accordingly
+ * @param {Object} input Packet to check
+ */
 function checkPackets(input) {
   if (input.braking && input.motion) packetCounts[0]++;
   if (input.motor && input.battery) packetCounts[1]++;
@@ -248,33 +330,36 @@ function checkPackets(input) {
 
 
 // Event Listeners
-
+// Changes timer based on user input
 document.getElementById('ageDisplay').addEventListener('click', () => {
-  if (activeTimer === globalTimer) {
+  if (activeTimer === GLOBAL_TIMER) {
     document.getElementById('ageLabel').innerHTML = 'State Timer';
-    activeTimer = stateTimer;
+    activeTimer = STATE_TIMER;
     return;
   }
-  if (activeTimer === stateTimer || propTimer) {
+  if (activeTimer === STATE_TIMER || propTimer) {
     document.getElementById('ageLabel').innerHTML = 'Global Timer';
-    activeTimer = globalTimer;
+    activeTimer = GLOBAL_TIMER;
   }
 });
 
-estopButton.addEventListener('click', () => {
-  client.sendEBrake();
+// Sends Estop on user click
+EMERGENCY_STOP_BTN.addEventListener('click', () => {
+  CLIENT.sendEBrake();
 });
 
+// Sends Propulse command on user click and confirmation
 document.getElementById('propulsion').addEventListener('click', () => {
   toggleConfirmationModal('propulsion systems?', () => {
     console.log('go');
-    propCountdown = new Countdown(30);
+    propCountdown = new COUNTDOWN(30);
     propCountdown.start();
     // activeTimer = propCountdown;
     overrideState('propulsion');
   });
 });
 
+// Sends crawl command on user click and confirmation
 document.getElementById('crawl').addEventListener('click', () => {
   toggleConfirmationModal('service propulsion?', () => {
     overrideState('crawl');
@@ -282,108 +367,88 @@ document.getElementById('crawl').addEventListener('click', () => {
 });
 
 confirmModalBtn.addEventListener('click', toggleConfirmationModal);
-closeButton2.addEventListener('click', toggleConfirmationModal);
-primBrakeOff.addEventListener('click', () => { togglePrimBrake(false, true); });
-primBrakeOn.addEventListener('click', () => { togglePrimBrake(true, true); });
-secBrakeOn.addEventListener('click', () => { toggleSecBrake(true, true); });
-secBrakeOff.addEventListener('click', () => { toggleSecBrake(false, true); });
-d.getElementById('crawlPrecharge').addEventListener('click', () => {
+CLOSE_BUTTON_2.addEventListener('click', toggleConfirmationModal);
+PRIMARY_BRAKE_OFF.addEventListener('click', () => { togglePrimBrake(false, true); });
+PRIMARY_BRAKE_ON.addEventListener('click', () => { togglePrimBrake(true, true); });
+SECONDARY_BRAKE_ON.addEventListener('click', () => { toggleSecBrake(true, true); });
+SECONDARY_BRAKE_OFF.addEventListener('click', () => { toggleSecBrake(false, true); });
+D.getElementById('crawlPrecharge').addEventListener('click', () => {
   toggleConfirmationModal('service precharge?', () => {
     overrideState('crawlPrecharge');
   });
 });
 
+// Sends command torque command on user click
 document.getElementById('cmdTorque').addEventListener('click', () => {
-  client.commandTorque();
+  CLIENT.commandTorque();
 });
 
+// Sends HV enable command on user click and changes indicators
 document.getElementById('hvEnable').addEventListener('click', () => {
   toggleConfirmationModal('high voltage systems?', () => {
     document.getElementById('hvText').classList.add('active');
     if (document.getElementById('hvDisText').classList.contains('active')) {
       document.getElementById('hvDisText').classList.remove('active');
     }
-    client.enableHV();
+    CLIENT.enableHV();
   });
 });
 
-d.getElementById('pumpdown').addEventListener('click', () => {
+// Sends pumpdown command on user click and confirmation
+D.getElementById('pumpdown').addEventListener('click', () => {
   toggleConfirmationModal('precharge?', () => {
     overrideState('pumpdown');
   });
 });
 
-d.getElementById('precharge').addEventListener('click', () => {
+// Sends precharge command on user click and confirmation
+D.getElementById('precharge').addEventListener('click', () => {
   toggleConfirmationModal('the precharge action, not the state!', () => {
-    client.enPrecharge();
+    CLIENT.enPrecharge();
   });
 });
 
-d.getElementById('latchOn').addEventListener('click', () => {
-  d.getElementById('latchOnText').style.color = 'red';
-  d.getElementById('latchOffText').style.color = 'white';
+// Sends Latch on command on user click and confirm and changes indicators
+D.getElementById('latchOn').addEventListener('click', () => {
+  D.getElementById('latchOnText').style.color = 'red';
+  D.getElementById('latchOffText').style.color = 'white';
   toggleConfirmationModal('turn on the MCU Latch?', () => {
-    client.toggleLatch(true);
+    CLIENT.toggleLatch(true);
   });
 });
-function disableHV() {
-  client.disableHV();
-  if (document.getElementById('hvText').classList.contains('active')) {
-    document.getElementById('hvText').classList.remove('active');
-  }
-  document.getElementById('hvDisText').classList.add('active');
-}
+
+// Runs disable HV function on user click
 document.getElementById('hvDisable').addEventListener('click', disableHV);
 
-d.getElementById('latchOff').addEventListener('click', () => {
-  d.getElementById('latchOnText').style.color = 'white';
-  d.getElementById('latchOffText').style.color = 'red';
-  client.toggleLatch(false);
+// Toggles latch off on user click
+D.getElementById('latchOff').addEventListener('click', () => {
+  D.getElementById('latchOnText').style.color = 'white';
+  D.getElementById('latchOffText').style.color = 'red';
+  CLIENT.toggleLatch(false);
 });
 
-// Starts the recording of data to dataRecording.js
-dataRecordButton.addEventListener('click', () => {
-  if (!di.isDataRecording) {
-    di.recordingEvent.emit('on'); // Tell DI to run start recording data
-    console.log('recording data');
-    dataRecordButton.classList.remove('stateButton');
-    dataRecordButton.classList.add('stateButtonInactive');
-    archiveButton.classList.remove('stateButtonInactive');
-    archiveButton.classList.add('stateButton');
-  } else {
-    console.log('data is already being recorded');
-  }
-});
-
-// Archives the data from dataRecording.js if data is being recorded
-archiveButton.addEventListener('click', () => {
-  if (di.isDataRecording) {
-    di.recordingEvent.emit('off'); // Tells DI to stop recording data
-    di.archiveData();
-    console.log('archiving data');
-    di.createCache(dataRecording);
-    dataRecordButton.classList.add('stateButton');
-    dataRecordButton.classList.remove('stateButtonInactive');
-    archiveButton.classList.add('stateButtonInactive');
-    archiveButton.classList.remove('stateButton');
-  } else {
-    console.log('data was not being recorded');
-  }
+// Archives data on user click
+ARCHIVE_BUTTON.addEventListener('click', () => {
+  DATA_INTERFACING.archiveData();
+  console.log('archiving data');
 });
 
 // Intervals
-
-setInterval(podConnectionCheck, 1000);
-setInterval(autosave, 30000);
+// Runs pod connection check on interval
+setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL);
+// Autosaves on interval
+setInterval(autosave, AUTOSAVE_INTERVAL);
 
 // Init
-
+/**
+ * Function to run at start of dashboard
+ */
 function init() {
-  di.createCache(cache);
-  di.createCache(dataRecording);
-  dl.fillAllItems();
-  dl.fillAllTables();
-  displayTimer(globalTimer);
+  DATA_INTERFACING.createCache();
+  DYNAMIC_LOADING.fillAllItems();
+  DYNAMIC_LOADING.fillAllTables();
+  makeStateMachineListeners();
+  displayTimer(GLOBAL_TIMER);
   console.log(DEBUG);
   // toggleMotorSafety(true);
 }
@@ -393,33 +458,32 @@ init();
 // Events
 
 // Data in recieved
-comms.on('dataIn', (input) => {
+COMMUNICATIONS_EMITTER.on('dataIn', (input) => {
   if (DEBUG) console.log(input);
   checkPackets(input);
   let fixedPacket = checkBraking(input);
-  di.normalizePacket(fixedPacket);
-  renderer.lastRecievedTime = new Date().getTime();
+  DATA_INTERFACING.normalizePacket(fixedPacket);
+  TABLES_RENDERER.lastRecievedTime = new Date().getTime();
 });
 
-comms.on('Lost', (ip) => {
-  if (ip === constants.lvBone.ip) {
+COMMUNICATIONS_EMITTER.on('Lost', (ip) => {
+  if (ip === CONSTANTS.lvBone.ip) {
     if (boneStatus[0]) console.error('lost LV bone');
     boneStatus[0] = false;
   }
-  if (ip === constants.hvBone.ip) {
+  if (ip === CONSTANTS.hvBone.ip) {
     if (boneStatus[1]) console.error('lost LV bone');
     boneStatus[1] = false;
   }
 });
 
-comms.on('ok', (ip) => {
-  if (ip === constants.lvBone.ip) { boneStatus[0] = true; }
-  if (ip === constants.hvBone.ip) { boneStatus[1] = true; }
+COMMUNICATIONS_EMITTER.on('ok', (ip) => {
+  if (ip === CONSTANTS.lvBone.ip) { boneStatus[0] = true; }
+  if (ip === CONSTANTS.hvBone.ip) { boneStatus[1] = true; }
 });
 
-di.packetHandler.on('renderData', () => {
-  const renderable = di.findRenderable();
-
+DATA_INTERFACING.packetHandler.on('renderData', () => {
+  const renderable = DATA_INTERFACING.findRenderable();
   const groups = Object.keys(renderable);
   groups.forEach((group) => {
     const sensors = Object.keys(renderable[group]);
