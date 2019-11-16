@@ -16,6 +16,15 @@ npm install
 npm start
 ```
 
+## Documentation
+A JSDoc website detailing every one of our files is available in ./docs
+
+### Generating Docs
+To generate docs after an edit run
+```
+npm run generate-docs
+```
+
 ## Testing &nbsp; [![Actions Status](https://github.com/badgerloop-software/pod-dashboard/workflows/Node%20CI/badge.svg)](https://github.com/badgerloop-software/pod-dashboard/actions)
 https://github.com/badgerloop-software/pod-dashboard/actions
 - Configured with eslint for formatting tests

@@ -1,7 +1,8 @@
-/*
-Author: Eric Udlis, Michael Handler
-Purpose: Handle all updaters and interfacing between the frontend and backend
-*/
+/**
+ * @module Handler
+ * @author Eric Udlis, Michael Handler
+ * @description HAndle all updates and interfacing between the front-end and back-end
+ */
 const CLIENT = require('./public/javascripts/communication');
 const DATA_INTERFACING = require('./public/javascripts/datainterfacing');
 const COMMUNICATIONS_EMITTER = require('./public/javascripts/communication').recievedEmitter;
@@ -15,7 +16,7 @@ const CACHE = require('./cache');
 const D = document;
 const TIMEOUT = 5000;
 const CONNECTION_CHECK_INTERVAL = 1000;
-const AUTOSAVE_INTERVAL = 10000;
+const AUTOSAVE_INTERVAL = 30000;
 
 const STATE_MACHINE_CONTROL_PANEL = D.getElementById('header3');
 const STATE_MACHINE_BUTTONS = STATE_MACHINE_CONTROL_PANEL.getElementsByTagName('button');

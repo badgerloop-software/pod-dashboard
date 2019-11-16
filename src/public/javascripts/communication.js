@@ -1,6 +1,7 @@
-/*
-Author: Eric Udlis
-Purpose: The hub of all incomming and outgoing connections
+/**
+* @module Communication
+* @author Eric Udlis
+* @description The hub of all incomming and outgoing connections
 */
 const EVENTS = require('events');
 const DGRAM = require('dgram');
