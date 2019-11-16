@@ -10,6 +10,7 @@ const pointSpacing = 0.03;
 const minimumRange = 5;
 const rate = 30;
 const shiftThreshold = rate / pointSpacing;
+let i = 10;
 
 
 function newChart(id, title, index) { //eslint-disable-line
@@ -59,6 +60,9 @@ function clearChart(index) { //eslint-disable-line
       data: [],
     }],
   });
+  while (charts[index].series[0].length > 0) {
+    charts[index].series[0].remove(true);
+  }
 }
 
 function initialize(index, start, data, title, system, units) {
@@ -87,10 +91,14 @@ function addData(index, name, system) {
 }
 
 function startChart(index, name, title, system, units) { //eslint-disable-line
-  currentTime = 10;
+  currentTime = chartCache[system][name].length / 33.333;
+  currentTime = parseFloat(currentTime);
+  currentTime = i;
+  console.log(currentTime);
   clearChart(index);
   setTimeout(() => {
     initialize(index, currentTime, name, title, system, units);
   }, rate);
   interval[index] = setInterval(() => { addData(index, name, system); }, rate);
+  i += 5;
 }
