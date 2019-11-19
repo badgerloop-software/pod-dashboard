@@ -5,13 +5,13 @@ require('highcharts/modules/exporting')(Highcharts);
 
 let charts = []; // Array that stores charts
 let interval = []; // Array that stores intervals
+let value = [];
+let time = [];
 
 const pointSpacing = 0.03;
 const minimumRange = 5;
-const rate = 30;
+const rate = 30; // in ms
 const shiftThreshold = rate / pointSpacing;
-let i = 10;
-
 
 function newChart(id, title, index) { //eslint-disable-line
   charts[index] = Highcharts.chart(id, {
@@ -29,8 +29,6 @@ function newChart(id, title, index) { //eslint-disable-line
       enabled: false,
     },
     plotOptions: {
-      line: {
-      },
       series: {
         connectorAllowed: false,
         enableMouseTracking: false,
@@ -53,52 +51,49 @@ function clearChart(index) { //eslint-disable-line
   interval[index] = null;
   charts[index].update({
     title: {
-      text: 'Cleared',
+      text: '',
     },
     series: [{
       name: '',
       data: [],
     }],
   });
-  while (charts[index].series[0].length > 0) {
-    charts[index].series[0].remove(true);
-  }
 }
 
 function initialize(index, start, data, title, system, units) {
+  console.log(start);
   charts[index].update({
     title: {
       text: title,
     },
-    plotOptions: {
-      series: {
-      },
-    },
     series: [{
+      pointStart: start,
       name: data + units,
-      data: [[start,
-        parseFloat(chartCache[system][data][chartCache[system][data].length - 1])]],
     }],
   });
 }
 
-function addData(index, name, system) {
-  value = parseFloat(chartCache[system][name][chartCache[system][name].length - 1]);
-  charts[index].series[0].addPoint(value, true, false, { duration: 30 });
+function addData(index, name, system) { //eslint-disable-line
+  value[index] = parseFloat(chartCache[system][name][chartCache[system][name].length - 1]);
+  charts[index].series[0].addPoint(value[index], true, false, { duration: 30 });
+  if (charts[index].series[0].data.length > shiftThreshold) {
+    charts[index].series[0].data[0].remove(false, false);
+  }
+}
+
+function addTimeAndData(index, name, system) { //eslint-disable-line
+  value[index] = parseFloat(chartCache[system][name][chartCache[system][name].length - 1]);
+  time[index] = chartCache[system][name].length * 0.03;
+  charts[index].series[0].addPoint([time[index], value[index]], true, false, { duration: 30 });
   if (charts[index].series[0].data.length > shiftThreshold) {
     charts[index].series[0].data[0].remove(false, false);
   }
 }
 
 function startChart(index, name, title, system, units) { //eslint-disable-line
-  currentTime = chartCache[system][name].length / 33.333;
+  currentTime = chartCache[system][name].length * 0.03;
   currentTime = parseFloat(currentTime);
-  currentTime = i;
-  console.log(currentTime);
   clearChart(index);
-  setTimeout(() => {
-    initialize(index, currentTime, name, title, system, units);
-  }, rate);
-  interval[index] = setInterval(() => { addData(index, name, system); }, rate);
-  i += 5;
+  initialize(index, currentTime, name, title, system, units);
+  interval[index] = setInterval(() => { addTimeAndData(index, name, system); }, rate);
 }
