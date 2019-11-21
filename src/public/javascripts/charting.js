@@ -13,6 +13,12 @@ const minimumRange = 5;
 const rate = 30; // in ms
 const shiftThreshold = rate / pointSpacing;
 
+/**
+ * Adds a new chart
+ * @param {String} id the id of the container for the chart
+ * @param {String} title the title for the chart
+ * @param {int} index the index in the charts array to store the chart
+ */
 function newChart(id, title, index) { //eslint-disable-line
   charts[index] = Highcharts.chart(id, {
     chart: {
@@ -46,6 +52,10 @@ function newChart(id, title, index) { //eslint-disable-line
   });
 }
 
+/**
+ * Clears a chart
+ * @param {int} index index of the chart to be cleared
+ */
 function clearChart(index) { //eslint-disable-line
   clearInterval(interval[index]);
   interval[index] = null;
@@ -60,7 +70,15 @@ function clearChart(index) { //eslint-disable-line
   });
 }
 
-function initialize(index, start, data, title, system, units) {
+/**
+ * Initializes a chart
+ * @param {int} index the index of the chart to initialize
+ * @param {float} start the start time 
+ * @param {String} data the name of the data that will be charted 
+ * @param {String} title the title 
+ * @param {String} units the units of the data that will be charted
+ */
+function initialize(index, start, data, title, units) {
   console.log(start);
   charts[index].update({
     title: {
@@ -81,6 +99,12 @@ function addData(index, name, system) { //eslint-disable-line
   }
 }
 
+/**
+ * Adds a time and data pair to the chart
+ * @param {int} index the index of the chart
+ * @param {String} name the data to be charted
+ * @param {String} system the system of the data
+ */
 function addTimeAndData(index, name, system) { //eslint-disable-line
   value[index] = parseFloat(chartCache[system][name][chartCache[system][name].length - 1]);
   time[index] = chartCache[system][name].length * 0.03;
@@ -90,10 +114,18 @@ function addTimeAndData(index, name, system) { //eslint-disable-line
   }
 }
 
+/**
+ * Initializes a chart and starts adding data
+ * @param {int} index the index of the chart
+ * @param {String} name the name of the data
+ * @param {String} title the title for the chart
+ * @param {String} system the system of the data
+ * @param {String} units the units of the chart
+ */
 function startChart(index, name, title, system, units) { //eslint-disable-line
   currentTime = chartCache[system][name].length * 0.03;
   currentTime = parseFloat(currentTime);
   clearChart(index);
-  initialize(index, currentTime, name, title, system, units);
+  initialize(index, currentTime, name, title, units);
   interval[index] = setInterval(() => { addTimeAndData(index, name, system); }, rate);
 }
