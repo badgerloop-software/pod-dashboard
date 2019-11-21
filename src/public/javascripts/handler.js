@@ -12,6 +12,7 @@ const RENDERER = require('./public/javascripts/renderer');
 const TIMER = require('./public/javascripts/Timer');
 const COUNTDOWN = require('./public/javascripts/Countdown');
 const CACHE = require('./cache');
+const DATA_RECORDING = require('./dataRecording');
 
 const D = document;
 const TIMEOUT = 5000;
@@ -36,6 +37,7 @@ const CONFIRMATION_MODAL = D.querySelector('.confirmationModal');
 const CLOSE_BUTTON_2 = D.querySelector('.close-button2');
 const EMERGENCY_STOP_BTN = D.getElementById('estop');
 const ARCHIVE_BUTTON = D.getElementById('archiveButton');
+const DATA_RECORD_BUTTON = D.getElementById('dataRecordButton');
 const TABLES_RENDERER = new RENDERER();
 const GLOBAL_TIMER = new TIMER();
 const { stateTimer: STATE_TIMER } = DYNAMIC_LOADING;
@@ -128,10 +130,7 @@ function makeStateMachineListeners() {
     if (STATE_MACHINE_BUTTONS[i] === D.getElementById('pumpdown') || STATE_MACHINE_BUTTONS[i] === D.getElementById('crawlPrecharge') || STATE_MACHINE_BUTTONS[i] === D.getElementById('crawl') || STATE_MACHINE_BUTTONS[i] === D.getElementById('propulsion')) {
       continue; // eslint-disable-line
     }
-    if (STATE_MACHINE_BUTTONS[i] === D.getElementById('archiveButton')) {
-      makeArchiveListener(STATE_MACHINE_BUTTONS[i]);
-      continue; // eslint-disable-line
-    }
+    if (STATE_MACHINE_BUTTONS[i] === DATA_RECORD_BUTTON || ARCHIVE_BUTTON) continue; // eslint-disable-line
     makeListener(STATE_MACHINE_BUTTONS[i]);
   }
 }
@@ -427,12 +426,35 @@ D.getElementById('latchOff').addEventListener('click', () => {
   CLIENT.toggleLatch(false);
 });
 
-// Archives data on user click
-ARCHIVE_BUTTON.addEventListener('click', () => {
-  DATA_INTERFACING.archiveData();
-  console.log('archiving data');
+// Starts the recording of data to dataRecording.js
+DATA_RECORD_BUTTON.addEventListener('click', () => {
+  if (!DATA_INTERFACING.isDataRecording) {
+    DATA_INTERFACING.recordingEvent.emit('on'); // Tell DI to run start recording data
+    console.log('recording data');
+    DATA_RECORD_BUTTON.classList.remove('stateButton');
+    DATA_RECORD_BUTTON.classList.add('stateButtonInactive');
+    ARCHIVE_BUTTON.classList.remove('stateButtonInactive');
+    ARCHIVE_BUTTON.classList.add('stateButton');
+  } else {
+    console.log('data is already being recorded');
+  }
 });
 
+// Archives the data from dataRecording.js if data is being recorded
+ARCHIVE_BUTTON.addEventListener('click', () => {
+  if (DATA_INTERFACING.isDataRecording) {
+    DATA_INTERFACING.recordingEvent.emit('off'); // Tells DI to stop recording data
+    DATA_INTERFACING.archiveData();
+    console.log('archiving data');
+    DATA_INTERFACING.createCache(DATA_RECORDING);
+    DATA_RECORD_BUTTON.classList.add('stateButton');
+    DATA_RECORD_BUTTON.classList.remove('stateButtonInactive');
+    ARCHIVE_BUTTON.classList.add('stateButtonInactive');
+    ARCHIVE_BUTTON.classList.remove('stateButton');
+  } else {
+    console.log('data was not being recorded');
+  }
+});
 // Intervals
 // Runs pod connection check on interval
 setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL);

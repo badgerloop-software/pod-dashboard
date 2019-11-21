@@ -8,9 +8,9 @@ const { remote: REMOTE } = require('electron');
 
 const ELECTRON_WINDOW = REMOTE.getCurrentWindow();
 const CONFIG = require('./public/javascripts/config');
-const CONSTANTS = require('./public/javascripts/config').constants;
+const CONFIG_CONSTANTS = require('./public/javascripts/config').constants;
 
-const RATE = CONSTANTS.DATA_SEND_RATE;
+const RATE = CONFIG_CONSTANTS.DATA_SEND_RATE;
 
 /*
 Modals
@@ -256,14 +256,14 @@ if (settingsSubmit) {
 function fillConstants() { // eslint-disable-line no-unused-vars
   CONFIG.updateConstants();
   document.getElementById('formFeedback').innerHTML = 'Will restart for changes to take place.';
-  document.getElementById('podIP').value = String(CONSTANTS.serverAddr.ip);
-  document.getElementById('podPort').value = CONSTANTS.serverAddr.port;
-  document.getElementById('scanningRate').value = CONSTANTS.dataSendRate;
-  document.getElementById('lvBoneIP').value = CONSTANTS.lvBone.ip;
-  document.getElementById('lvBonePort').value = CONSTANTS.lvBone.port;
-  document.getElementById('hvBoneIP').value = CONSTANTS.hvBone.ip;
-  document.getElementById('hvBonePort').value = CONSTANTS.hvBone.port;
-  document.getElementById('renderInterval').value = CONSTANTS.renderInterval;
+  document.getElementById('podIP').value = String(CONFIG_CONSTANTS.serverAddr.ip);
+  document.getElementById('podPort').value = CONFIG_CONSTANTS.serverAddr.port;
+  document.getElementById('scanningRate').value = CONFIG_CONSTANTS.dataSendRate;
+  document.getElementById('lvBoneIP').value = CONFIG_CONSTANTS.lvBone.ip;
+  document.getElementById('lvBonePort').value = CONFIG_CONSTANTS.lvBone.port;
+  document.getElementById('hvBoneIP').value = CONFIG_CONSTANTS.hvBone.ip;
+  document.getElementById('hvBonePort').value = CONFIG_CONSTANTS.hvBone.port;
+  document.getElementById('renderInterval').value = CONFIG_CONSTANTS.renderInterval;
 }
 
 // Window Handling
