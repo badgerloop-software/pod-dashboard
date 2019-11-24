@@ -242,8 +242,8 @@ module.exports.normalizePacket = function normalizePacket(input) {
   // console.info(input);
   if (state) {
     if (!(state >= 11 && state <= 13)) {
-      dl.switchState(state);
-    } else dl.setFault(state);
+      DYNAMIC_LOADING.switchState(state);
+    } else DYNAMIC_LOADING.setFault(state);
     delete fixedPacket.state;
   }
 

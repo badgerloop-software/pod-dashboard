@@ -20,7 +20,7 @@ module.exports = function Renderer() { // eslint-disable-line
   this.oldCache = {};
 
   this.runCommand = () => {
-    di.packetHandler.emit('renderData');
+    DATA_INTERFACING.packetHandler.emit('renderData');
   };
 
   this.startRenderer = () => {
