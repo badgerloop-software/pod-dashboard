@@ -43,7 +43,6 @@ function newChart(id, title, index) { //eslint-disable-line
     },
     series: [{
       name: 'Empty',
-      cropThreshold: 10000,
       clip: false,
     }],
     xAxis: {
@@ -79,7 +78,6 @@ function clearChart(index) { //eslint-disable-line
  * @param {String} units the units of the data that will be charted
  */
 function initialize(index, start, data, title, units) {
-  console.log(start);
   charts[index].update({
     title: {
       text: title,
@@ -111,8 +109,10 @@ function addTimeAndData(index, name, system) { //eslint-disable-line
   charts[index].series[0].addPoint([time[index], value[index]], true, false, { duration: 30 });
   if (charts[index].series[0].data.length > shiftThreshold) {
     charts[index].series[0].data[0].remove(false, false);
+    charts[index].xAxis[0].setExtremes(time[index] - 30, time[index], true, false);
   }
 }
+
 
 /**
  * Initializes a chart and starts adding data
