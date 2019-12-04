@@ -72,9 +72,9 @@ function clearChart(index) { //eslint-disable-line
 /**
  * Initializes a chart
  * @param {int} index the index of the chart to initialize
- * @param {float} start the start time 
- * @param {String} data the name of the data that will be charted 
- * @param {String} title the title 
+ * @param {float} start the start time
+ * @param {String} data the name of the data that will be charted
+ * @param {String} title the title
  * @param {String} units the units of the data that will be charted
  */
 function initialize(index, start, data, title, units) {
