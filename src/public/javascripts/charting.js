@@ -107,7 +107,8 @@ function addTimeAndData(index, name, system) { //eslint-disable-line
   value[index] = parseFloat(chartCache[system][name][chartCache[system][name].length - 1]);
   time[index] = chartCache[system][name].length * 0.03;
   charts[index].series[0].addPoint([time[index], value[index]], true, false, { duration: 30 });
-  if (charts[index].series[0].data.length > shiftThreshold) {
+  if (charts[index].xAxis[0].getExtremes().dataMax
+    - charts[index].xAxis[0].getExtremes().dataMin >= 30) {
     charts[index].series[0].data[0].remove(false, false);
     charts[index].xAxis[0].setExtremes(time[index] - 30, time[index], true, false);
   }
