@@ -8,9 +8,9 @@
     "lint": "eslint src",
     "pretest": "eslint src",
     "dev": "$env:DEBUG='true' && electron .",
-    "make windows": "electron-forge make --win32",
-    "make linux": "electron-forge make --linux",
-    "make mac": "electron-forge make --darwin"
+    "build windows": "electron-forge make --win32",
+    "build linux": "electron-forge make --linux",
+    "build mac": "electron-forge make --darwin"
   },
   "repository": {
     "type": "git",

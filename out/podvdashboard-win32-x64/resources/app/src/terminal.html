@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/terminal.grid.css">
+    <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
+    <!-- <script src="public/javascripts/charthandling.js"></script> -->
+    <!-- <script src="../node_modules/plotly.js-dist/plotly.js"></script> -->
+    <title>Badgerloop Pod IV Dashboard</title>
+</head>
+
+<body>
+    <!-- Top Bar -->
+    <!-- Top Bar -->
+    <div class="banner">
+      <a class="left"><img src="public/images/logo.png" height="30px"></a>
+      <a id="title" class="left">CONTROL DASHBOARD</a>
+      <a id="close-window" class="right">&#10005;</a>
+      <a id="max-window" class="right">&#128470; </a>
+      <a id="min-window" class="right">&#8212;</a>
+      <a id="banner-drop" class="right">
+        <div class="banner_dropdown">
+          <button class="dropbtn">Change View
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <img src="public/images/dropdown.png" height="25px">
+          <div class="banner_dropdown-content">
+            <a href="index.html">Main</a>
+            <a href="testing.html">Analysis</a>
+            <a href="terminal.html">Terminal</a>
+            <a href="battery.html">Batteries</a>
+          </div>
+        </div>
+      </a>
+      <a class="settingsTrigger" id="settingsTrigger"><img src="public/images/settings.png" height="35px"></a>
+    </div>
+
+    <div class="grid-container">
+        <div class="Terminal" id="terminal">
+            <div id="terminalOutput">
+                <p class="message">Badgerloop Utility Shell<br>
+                Type 'help' for a list of commands</p>
+                <ul id="terminalOutputList">
+                </ul>
+            </div>
+            <div id="terminalInput">
+                <p id="prompt">$</p>
+                <input id="terminalInputBox" class="inputNotSearchable" type="text" onkeydown="handleKeys()" autofocus>
+            </div>
+        </div>
+        <div class="Helper"><!--TODO: HELPER--></div>
+    </div>
+
+          <!-- Dashboard Settings Modal -->
+          <div class="settingsModal">
+            <div class="modal-content" id="settingsModalContent">
+              <span class="close-button">×</span>
+              <h1>Dashboard Settings</h1>
+              <form class="settingsForm">
+                <div id="formLeft">
+                  <h4 id="formTitle">Pod Settings</h4>
+                  <label for="podIP" id="pod-ip">Pod IP</label>
+                  <input id="podIP" class="formInput" type="text">
+    
+                  <label for="podPort" id="pod-port">Pod Port</label>
+                  <input id="podPort" class="formInput" type="number">
+                <div id="formRight">
+                  <h4 id="formTitle">BeagleBone Settings</h4>
+                  <label for="lvBoneIP" id="lv-bone-ip">LV Bone IP</label>
+                  <input id="lvBoneIP" class="formInput" type="text">
+    
+                  <label for="lvBonePort" id="lv-bone-port">LV Bone Port</label>
+                  <input id="lvBonePort" class="formInput" type="number">
+    
+                  <label for="hvBoneIP" id="hv-bone-ip">HV Bone IP</label>
+                  <input id="hvBoneIP" class="formInput" type="text">
+    
+                  <label for="hvBonePort" id="hv-bone-port">HV Bone Port</label>
+                  <input id="hvBonePort" class="formInput" type="number">
+                </div>
+                <div id="formFull">
+                  <h4 id="formTitle">Dashboard Settings</h4>
+                  <label for="scanningRate">Data Send/ Scanning Rate <span id="value"></span> </label>
+                  <input id="scanningRate" class="formInput" type="number" min="0" max="500" class="inputNotSearchable">
+                  <label for="renderInterval">Render Interval</label>
+                  <input id="renderInterval" class="formInput" type="number" min="100" class="inputNotSearchable">
+                  <button id="podSettingsSubmit" type="button">Submit</button>
+                  <p id="formFeedback">(Will restart for changes to take place):</p>
+                </div>
+              </form>
+            </div>
+          </div>
+    
+</body>
+<script src="public/javascripts/terminal.js"></script>
+</html>
