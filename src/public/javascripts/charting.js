@@ -23,27 +23,25 @@ function newChart(id, title, index) { //eslint-disable-line
   charts[index] = HIGHCHARTS.chart(id, {
     chart: {
       type: 'line',
-      panning: true,
     },
     title: {
       text: title,
     },
     exporting: {
-      enabled: false,
+      enabled: false, // removes exporting hamburger menu
     },
     credits: {
-      enabled: false,
+      enabled: false, // removes Highchart logo
     },
     plotOptions: {
       series: {
-        connectorAllowed: false,
-        enableMouseTracking: false,
-        pointInterval: pointSpacing,
+        enableMouseTracking: true, // shows point on hover
+        pointInterval: pointSpacing, // interval between points
       },
     },
     series: [{
       name: 'Empty',
-      clip: false,
+      clip: true, // doesn't render points off chart
     }],
     xAxis: {
       minRange: minimumRange,
@@ -56,8 +54,8 @@ function newChart(id, title, index) { //eslint-disable-line
  * @param {int} index index of the chart to be cleared
  */
 function clearChart(index) { //eslint-disable-line
-  charts[index].xAxis[0].setExtremes(null, null);
-  clearInterval(interval[index]);
+  charts[index].xAxis[0].setExtremes(null, null); // unsets extremes
+  clearInterval(interval[index]); // clears interval
   interval[index] = null;
   charts[index].update({
     title: {
@@ -84,17 +82,24 @@ function initialize(index, start, data, title, units) {
       text: title,
     },
     series: [{
-      pointStart: start,
+      pointStart: start, // start point for data
       name: data + units,
     }],
   });
 }
 
+/**
+ * Adds a data point to the chart
+ * @param {int} index index of the chart
+ * @param {String} name data to be charted
+ * @param {String} system system of the data
+ */
 function addData(index, name, system) { //eslint-disable-line
+  // stores last value
   value[index] = parseFloat(CHARTCACHE[system][name][CHARTCACHE[system][name].length - 1]);
-  charts[index].series[0].addPoint(value[index], true, false, { duration: 30 });
+  charts[index].series[0].addPoint(value[index], true, false, { duration: 30 }); // adds point
   if (charts[index].series[0].data.length > shiftThreshold) {
-    charts[index].series[0].data[0].remove(false, false);
+    charts[index].series[0].data[0].remove(false, false); // removes old point
   }
 }
 
@@ -105,9 +110,12 @@ function addData(index, name, system) { //eslint-disable-line
  * @param {String} system the system of the data
  */
 function addTimeAndData(index, name, system) { //eslint-disable-line
+  // stores last value and current time
   value[index] = parseFloat(CHARTCACHE[system][name][CHARTCACHE[system][name].length - 1]);
   time[index] = CHARTCACHE[system][name].length * 0.03;
+  // adds pair to the chart
   charts[index].series[0].addPoint([time[index], value[index]], true, false, { duration: 30 });
+  // removes and shifts if 30 seconds of data are present
   if (charts[index].xAxis[0].getExtremes().dataMax
     - charts[index].xAxis[0].getExtremes().dataMin >= 30) {
     charts[index].series[0].data[0].remove(false, false);
@@ -128,6 +136,7 @@ function startChart(index, name, title, system, units) { //eslint-disable-line
   currentTime = CHARTCACHE[system][name].length * 0.03;
   currentTime = parseFloat(currentTime);
   clearChart(index);
-  initialize(index, currentTime, name, title, units);
+  initialize(index, currentTime, name, title, units); // initialize new chart
+  // start interval to add points to the chart
   interval[index] = setInterval(() => { addTimeAndData(index, name, system); }, rate);
 }
