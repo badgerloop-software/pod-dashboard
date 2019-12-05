@@ -1,0 +1,2734 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>Handler - Pod 5 Operators Dashboard Docs</title>
+    
+    
+    
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Batteries.html">Batteries</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Batteries.html#~checkMinMax">checkMinMax</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~createRow">createRow</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~createTable">createTable</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~fillCell">fillCell</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~initBatteries">initBatteries</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateBattery">updateBattery</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateBatteryAndRender">updateBatteryAndRender</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateCell">updateCell</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateTemps">updateTemps</a></li></ul></li><li><a href="module-Cache.html">Cache</a></li><li><a href="module-Communication.html">Communication</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Communication.html#.commandTorque">commandTorque</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.disableHV">disableHV</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.enableHV">enableHV</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.enPrecharge">enPrecharge</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.primBrakeOff">primBrakeOff</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.primBrakeOn">primBrakeOn</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.secBrakeOff">secBrakeOff</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.secBrakeOn">secBrakeOn</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendEBrake">sendEBrake</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendHVPing">sendHVPing</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendLVPing">sendLVPing</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendOverride">sendOverride</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendPropulse">sendPropulse</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendPumpDown">sendPumpDown</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendReadyCommand">sendReadyCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendReadyPump">sendReadyPump</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.toggleLatch">toggleLatch</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.toggleSafety">toggleSafety</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendHVCommand">sendHVCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendLVCommand">sendLVCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendPacket">sendPacket</a></li></ul></li><li><a href="module-Config.html">Config</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Config.html#~getConstantsPath">getConstantsPath</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~getJSONFile">getJSONFile</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~readJSON">readJSON</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~updateConstants">updateConstants</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~writeJSON">writeJSON</a></li></ul></li><li><a href="module-Data-Interfacing.html">Data-Interfacing</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.archiveData">archiveData</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.createCache">createCache</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.findRenderable">findRenderable</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.normalizePacket">normalizePacket</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~ambientToGauge">ambientToGauge</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~calculate">calculate</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~createID">createID</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~createJSON">createJSON</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getAbsoluteSpeed">getAbsoluteSpeed</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getLVSOC">getLVSOC</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getMaxMotorControllerTemp">getMaxMotorControllerTemp</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getPackPowerRemaining">getPackPowerRemaining</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getPowerConsumed">getPowerConsumed</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~interpolateLVSOC">interpolateLVSOC</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~updateData">updateData</a></li></ul></li><li><a href="module-Data-Recording.html">Data-Recording</a></li><li><a href="module-Dynamic-Loading.html">Dynamic-Loading</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.fillAllItems">fillAllItems</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.fillAllTables">fillAllTables</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.setFault">setFault</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.setIndicator">setIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.switchState">switchState</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createActualCol">createActualCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createHeaderCol">createHeaderCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createItem">createItem</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createMaxCol">createMaxCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createMinCol">createMinCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createRow">createRow</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillAllBounds">fillAllBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillRowBounds">fillRowBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillTable">fillTable</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillTableBounds">fillTableBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getMaxCell">getMaxCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getMinCell">getMinCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getStateName">getStateName</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~resetAllButtons">resetAllButtons</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~setMaxCell">setMaxCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~setMinCell">setMinCell</a></li></ul></li><li><a href="module-Electron-app.html">Electron-app</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Electron-app.html#~createWindow">createWindow</a></li></ul></li><li><a href="module-Handler.html">Handler</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Handler.html#~autosave">autosave</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkBraking">checkBraking</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkPackets">checkPackets</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkRecieve">checkRecieve</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkTransmit">checkTransmit</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~disableHV">disableHV</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~displayTimer">displayTimer</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~init">init</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~makeListener">makeListener</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~makeStateMachineListeners">makeStateMachineListeners</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~overrideState">overrideState</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~podConnectionCheck">podConnectionCheck</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~renderData">renderData</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~sendHeartbeats">sendHeartbeats</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setHVIndicator">setHVIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setLVIndicator">setLVIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setRecieve">setRecieve</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~toggleConfirmationModal">toggleConfirmationModal</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~togglePrimBrake">togglePrimBrake</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~toggleSecBrake">toggleSecBrake</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~updateLabels">updateLabels</a></li></ul></li><li><a href="module-Main.html">Main</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Main.html#~clear">clear</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~clone">clone</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~dropdown">dropdown</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~fillConstants">fillConstants</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~filterFunction">filterFunction</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~searchTable">searchTable</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~toggleSettingsModal">toggleSettingsModal</a></li></ul></li><li><a href="module-Renderer.html">Renderer</a></li><li><a href="module-TestingTool.html">TestingTool</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillAllTables">fillAllTables</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillCell">fillCell</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillScrubber">fillScrubber</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillTable">fillTable</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~findMax">findMax</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~handleFiles">handleFiles</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~importJSON">importJSON</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~incrementTimer">incrementTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~init">init</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~pauseTimer">pauseTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~playTimer">playTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~resetTimer">resetTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~updateScrubber">updateScrubber</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~updateTables">updateTables</a></li></ul></li><li><a href="module-TestPodServer.html">TestPodServer</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~getRandomIntInclusive">getRandomIntInclusive</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~getRandomValue">getRandomValue</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~heartbeat">heartbeat</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendData">sendData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendIncreasingData">sendIncreasingData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendJSON">sendJSON</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendSinusodalData">sendSinusodalData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendSpecificData">sendSpecificData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendTestData">sendTestData</a></li></ul></li></ul><h3>Classes</h3><ul><li><a href="module-Batteries-Battery.html">Battery</a></li><li><a href="module-Renderer.html">Renderer</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">Handler</h1>
+    
+
+    
+
+
+
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    
+        <div class="container-overview">
+        
+            
+                <div class="description">HAndle all updates and interfacing between the front-end and back-end</div>
+            
+
+            
+                
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-author">Author:</dt>
+    <dd class="tag-author">
+        <ul>
+            <li>Eric Udlis, Michael Handler</li>
+        </ul>
+    </dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+            
+        
+        </div>
+    
+
+    
+
+    
+
+    
+    
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="~autosave"><span class="type-signature">(inner) </span>autosave<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line96">line 96</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Creates a JSON save labled "Autosave"
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~checkBraking"><span class="type-signature">(inner) </span>checkBraking<span class="signature">(basePacket)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line180">line 180</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Checks packet for primary and seconday braking status
+changes indicators and deletes flags
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>basePacket</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">The original packet</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    fixedPacket The modified packet
+</div>
+
+
+
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~checkPackets"><span class="type-signature">(inner) </span>checkPackets<span class="signature">(input)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line326">line 326</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Checks weather given packet is a HV or LV packet and increments counter accordingly
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>input</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Packet to check</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~checkRecieve"><span class="type-signature">(inner) </span>checkRecieve<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line255">line 255</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Checks if dashboard has recieved packets within timeout period
+If so, sets recieve indicator good and renders to tables
+If bad,sets recieve indicator bad and stops rendering to tables
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~checkTransmit"><span class="type-signature">(inner) </span>checkTransmit<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line279">line 279</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Sets LV and HV indicators based on boneStatus
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~disableHV"><span class="type-signature">(inner) </span>disableHV<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line195">line 195</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Disables the HV on the pod, sends communication and changes lablel accordingly
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~displayTimer"><span class="type-signature">(inner) </span>displayTimer<span class="signature">(timer)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line229">line 229</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Displays the given timer in defined display location
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timer</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Timer</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Displays the timers current time</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~init"><span class="type-signature">(inner) </span>init<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line446">line 446</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Function to run at start of dashboard
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~makeListener"><span class="type-signature">(inner) </span>makeListener<span class="signature">(btn)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line85">line 85</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Creates a listener for a button to override to state that the button is labled with
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>btn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">HTMLElement</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">HTML element to create a listener for</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~makeStateMachineListeners"><span class="type-signature">(inner) </span>makeStateMachineListeners<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line121">line 121</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Creates listeners for all the state machine buttons
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~overrideState"><span class="type-signature">(inner) </span>overrideState<span class="signature">(state)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line73">line 73</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">State to override to
+Manually transitions the dashboard to state given</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~podConnectionCheck"><span class="type-signature">(inner) </span>podConnectionCheck<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line316">line 316</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Checks if recieving packets, sends heartbeats to pod, checks if we get call back from pod
+Updates Table Lables
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~renderData"><span class="type-signature">(inner) </span>renderData<span class="signature">(group, sensor)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line57">line 57</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>group</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Group the sensor belongs to</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>sensor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Sensor to modify</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~sendHeartbeats"><span class="type-signature">(inner) </span>sendHeartbeats<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line271">line 271</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Sends TCP heartbeats to Pod
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~setHVIndicator"><span class="type-signature">(inner) </span>setHVIndicator<span class="signature">(state)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line245">line 245</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Sets the HV indicator
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">true for ok false for bad</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~setLVIndicator"><span class="type-signature">(inner) </span>setLVIndicator<span class="signature">(state)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line237">line 237</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Sets the LV indicator
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">true for ok false for bad</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~setRecieve"><span class="type-signature">(inner) </span>setRecieve<span class="signature">(state)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line208">line 208</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Sets recieve indicators and starts/stops timer based on status
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">true for ok false for bad</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~toggleConfirmationModal"><span class="type-signature">(inner) </span>toggleConfirmationModal<span class="signature">(msg, cb)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line104">line 104</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Prompts user with a confirmation window before running function
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>msg</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Message to display in prompt</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>cb</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Function to run once confirmed</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~togglePrimBrake"><span class="type-signature">(inner) </span>togglePrimBrake<span class="signature">(state, call)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line144">line 144</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Toggles the primary braking indicators and calls the
+communication call if noted by call
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">// True for on, false for off</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>call</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~toggleSecBrake"><span class="type-signature">(inner) </span>toggleSecBrake<span class="signature">(state, call)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line162">line 162</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Toggles the secondary braking indicators and calls the
+communication call if noted by call
+</div>
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">// True for on, false for off</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>call</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="~updateLabels"><span class="type-signature">(inner) </span>updateLabels<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_handler.js.html">public/javascripts/handler.js</a>, <a href="public_javascripts_handler.js.html#line287">line 287</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Updates lables of tables based on recieving packets or not
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Sat Nov 16 2019 12:01:20 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

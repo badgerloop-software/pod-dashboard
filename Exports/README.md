@@ -8,7 +8,7 @@ There is an "Archive Data" button in the control panel. Clicking that will dump 
 
 ## Naming
 
-(Date)(Hour)(Minute).JSON
+(Date)(Hour)(Minute)(Second).JSON
 
 ## Viewing Exported Data in Dashboard
 

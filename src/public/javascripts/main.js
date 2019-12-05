@@ -1,32 +1,36 @@
-/*
-Author: Eric Udlis, Luke Houge
-Purpose: Handles all responsive UI elements of the dashboard
-*/
+/**
+ * @module Main
+ * @author Eric Udlis, Luke Houge
+ * @description Handles all responsive UI elements of the dashboard
+ */
 
-const { remote } = require('electron');
+const { remote: REMOTE } = require('electron');
 
-const electronWindow = remote.getCurrentWindow();
-const config = require('./public/javascripts/config');
-const consts = require('./public/javascripts/config').constants;
+const ELECTRON_WINDOW = REMOTE.getCurrentWindow();
+const CONFIG = require('./public/javascripts/config');
+const CONFIG_CONSTANTS = require('./public/javascripts/config').constants;
 
-const RATE = consts.DATA_SEND_RATE;
+const RATE = CONFIG_CONSTANTS.DATA_SEND_RATE;
 
 /*
 Modals
 Purpose: code for opening a pop up modal box
 */
-let settingsModal = document.querySelector('.settingsModal');
-let settingsTrigger = document.getElementById('settingsTrigger');
+const SETTINGS_MODAL = document.querySelector('.settingsModal');
+const SETTINGS_TRIGGER = document.getElementById('settingsTrigger');
 
-let closeButton = document.querySelector('.close-button');
+const CLOSE_BUTTON = document.querySelector('.close-button');
 
-
+/**
+ * Toggles hide/show of the settings modal
+ */
 function toggleSettingsModal() {
-  settingsModal.classList.toggle('show-modal');
+  SETTINGS_MODAL.classList.toggle('show-modal');
   fillConstants(); // eslint-disable-line no-use-before-define
 }
-if (settingsTrigger) settingsTrigger.addEventListener('click', toggleSettingsModal);
-if (closeButton) closeButton.addEventListener('click', toggleSettingsModal);
+
+if (SETTINGS_TRIGGER) SETTINGS_TRIGGER.addEventListener('click', toggleSettingsModal);
+if (CLOSE_BUTTON) CLOSE_BUTTON.addEventListener('click', toggleSettingsModal);
 
 // window.addEventListener('click', windowOnClick);
 
@@ -45,6 +49,10 @@ const focusClear = document.getElementById('focus_clear_button');
 
 // filling for focus clone
 let x = 1; // counter for boxes filed so far
+/**
+ * Clones the value from a table to the focus header
+ * @param {String} id ID of sensor to focus
+ */
 function clone(id) { // eslint-disable-line no-unused-vars
   if (x === 1) {
     // clone for box 1
@@ -94,7 +102,9 @@ function clone(id) { // eslint-disable-line no-unused-vars
     alert('Max of 4 values reached, please remove one and try again');
   }
 }
-// clear for focus div
+/**
+ * Clears the focus div
+ */
 function clear() { // eslint-disable-line no-unused-vars
   for (let i = 1; i < 5; i += 1) {
     clearInterval(focusOne);
@@ -113,11 +123,12 @@ if (focusClear) focusClear.addEventListener('click', clear); // In if statement 
 
 /*
 Tables
-Purpose: Dynamically styles cells and table based on values in range or not
 */
 const tableIDs = ['motion', 'braking_table', 'battery', 'motor']; // arrays for loop to iterate through
 const divIDs = ['motion_div', 'braking_div', 'battery_pack_div', 'motor_div'];
-
+/**
+ * Dynamically styles cells and table based on if value is within nominal range
+ */
 setInterval(() => {
   let errorChecker = 0;
   for (let u = 0; u < 4; u += 1) {
@@ -149,11 +160,15 @@ setInterval(() => {
 
 
 // Table Search Boxes
-function searchTable(range) { // eslint-disable-line no-unused-vars
+/**
+ * Takes the value of the table search box and filters table
+ * @param {String} tableID The name of the table to search
+ */
+function searchTable(tableID) { // eslint-disable-line no-unused-vars
   let input; let filter; let table; let tr; let td;
-  input = document.getElementById(`${range}input`);
+  input = document.getElementById(`${tableID}input`);
   filter = input.value.toUpperCase();
-  table = document.getElementById(range);
+  table = document.getElementById(tableID);
   tr = table.getElementsByTagName('tr');
   for (let i = 0; i < tr.length; i += 1) {
     td = tr[i].getElementsByTagName('td')[0];
@@ -169,12 +184,18 @@ Dropdowns
 Purpose: Enable dynamic and searchable dropdowns
 */
 
-// determines which dropdown is being triggered
+/**
+ * Determines which dropdown is being triggered
+ * @param {Number} num The number of dropdown to trigger
+ */
 function dropdown(num) { // eslint-disable-line no-unused-vars
   document.getElementById(`myDropdown${String(num)}`).classList.toggle('show');
 }
 
-// search filter function for dropdowns
+/**
+ * The filters dropdown based on search
+ * @param {Number} id The number of dropdown to filter
+ */
 function filterFunction(id) { // eslint-disable-line no-unused-vars
   // determines which dropdown (1,2, or 3) is being called
   const inputnum = String(`dropdownInput${id}`);
@@ -224,35 +245,38 @@ if (settingsSubmit) {
     constsCache.lvBone.ip = document.getElementById('lvBoneIP').value;
     constsCache.lvBone.port = Number(document.getElementById('lvBonePort').value);
     constsCache.renderInterval = Number(document.getElementById('renderInterval').value);
-    document.getElementById('formFeedback').innerHTML = config.writeJSON(constsCache);
-    electronWindow.reload();
+    document.getElementById('formFeedback').innerHTML = CONFIG.writeJSON(constsCache);
+    ELECTRON_WINDOW.reload();
   });
 }
-// Fills entries in text boxes
+
+/**
+ * Fills constants in settings modal
+ */
 function fillConstants() { // eslint-disable-line no-unused-vars
-  config.updateConstants();
+  CONFIG.updateConstants();
   document.getElementById('formFeedback').innerHTML = 'Will restart for changes to take place.';
-  document.getElementById('podIP').value = String(consts.serverAddr.ip);
-  document.getElementById('podPort').value = consts.serverAddr.port;
-  document.getElementById('scanningRate').value = consts.dataSendRate;
-  document.getElementById('lvBoneIP').value = consts.lvBone.ip;
-  document.getElementById('lvBonePort').value = consts.lvBone.port;
-  document.getElementById('hvBoneIP').value = consts.hvBone.ip;
-  document.getElementById('hvBonePort').value = consts.hvBone.port;
-  document.getElementById('renderInterval').value = consts.renderInterval;
+  document.getElementById('podIP').value = String(CONFIG_CONSTANTS.serverAddr.ip);
+  document.getElementById('podPort').value = CONFIG_CONSTANTS.serverAddr.port;
+  document.getElementById('scanningRate').value = CONFIG_CONSTANTS.dataSendRate;
+  document.getElementById('lvBoneIP').value = CONFIG_CONSTANTS.lvBone.ip;
+  document.getElementById('lvBonePort').value = CONFIG_CONSTANTS.lvBone.port;
+  document.getElementById('hvBoneIP').value = CONFIG_CONSTANTS.hvBone.ip;
+  document.getElementById('hvBonePort').value = CONFIG_CONSTANTS.hvBone.port;
+  document.getElementById('renderInterval').value = CONFIG_CONSTANTS.renderInterval;
 }
 
 // Window Handling
 
 document.getElementById('min-window').addEventListener('click', () => {
-  electronWindow.minimize();
+  ELECTRON_WINDOW.minimize();
 });
 
 document.getElementById('max-window').addEventListener('click', () => {
-  if (!electronWindow.isMaximized()) electronWindow.maximize();
-  else electronWindow.unmaximize();
+  if (!ELECTRON_WINDOW.isMaximized()) ELECTRON_WINDOW.maximize();
+  else ELECTRON_WINDOW.unmaximize();
 });
 
 document.getElementById('close-window').addEventListener('click', () => {
-  electronWindow.close();
+  ELECTRON_WINDOW.close();
 });
