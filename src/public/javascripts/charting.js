@@ -1,7 +1,7 @@
-let Highcharts = require('highcharts');
-let chartCache = require('./cache');
+const HIGHCHARTS = require('highcharts');
+const CHARTCACHE = require('./cache');
 
-require('highcharts/modules/exporting')(Highcharts);
+require('highcharts/modules/exporting')(HIGHCHARTS);
 
 let charts = []; // Array that stores charts
 let interval = []; // Array that stores intervals
@@ -20,7 +20,7 @@ const shiftThreshold = rate / pointSpacing;
  * @param {int} index the index in the charts array to store the chart
  */
 function newChart(id, title, index) { //eslint-disable-line
-  charts[index] = Highcharts.chart(id, {
+  charts[index] = HIGHCHARTS.chart(id, {
     chart: {
       type: 'line',
       panning: true,
@@ -90,7 +90,7 @@ function initialize(index, start, data, title, units) {
 }
 
 function addData(index, name, system) { //eslint-disable-line
-  value[index] = parseFloat(chartCache[system][name][chartCache[system][name].length - 1]);
+  value[index] = parseFloat(CHARTCACHE[system][name][CHARTCACHE[system][name].length - 1]);
   charts[index].series[0].addPoint(value[index], true, false, { duration: 30 });
   if (charts[index].series[0].data.length > shiftThreshold) {
     charts[index].series[0].data[0].remove(false, false);
@@ -104,8 +104,8 @@ function addData(index, name, system) { //eslint-disable-line
  * @param {String} system the system of the data
  */
 function addTimeAndData(index, name, system) { //eslint-disable-line
-  value[index] = parseFloat(chartCache[system][name][chartCache[system][name].length - 1]);
-  time[index] = chartCache[system][name].length * 0.03;
+  value[index] = parseFloat(CHARTCACHE[system][name][CHARTCACHE[system][name].length - 1]);
+  time[index] = CHARTCACHE[system][name].length * 0.03;
   charts[index].series[0].addPoint([time[index], value[index]], true, false, { duration: 30 });
   if (charts[index].xAxis[0].getExtremes().dataMax
     - charts[index].xAxis[0].getExtremes().dataMin >= 30) {
@@ -124,7 +124,7 @@ function addTimeAndData(index, name, system) { //eslint-disable-line
  * @param {String} units the units of the chart
  */
 function startChart(index, name, title, system, units) { //eslint-disable-line
-  currentTime = chartCache[system][name].length * 0.03;
+  currentTime = CHARTCACHE[system][name].length * 0.03;
   currentTime = parseFloat(currentTime);
   clearChart(index);
   initialize(index, currentTime, name, title, units);

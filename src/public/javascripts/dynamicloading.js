@@ -311,6 +311,13 @@ module.exports.setFault = function setFault(faultNum) {
 
 
 // code that actually creates the element with the passed in information from fillAllItems
+/**
+ * Creates an element and appends it to the dropdown
+ * @param {String} name The name of the sensor
+ * @param {String} group The group it belongs to
+ * @param {String} units The unit the sensor reports in
+ * @param {String} system the system the sensor belongs to
+ */
 function createItem(name, dropdown, units, system) { // eslint-disable-line no-unused-vars
   let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
   let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
