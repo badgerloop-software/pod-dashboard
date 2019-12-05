@@ -2,6 +2,10 @@
 # Created by https://www.gitignore.io/api/c,c++,node,java,linux,macos,windows
 # Edit at https://www.gitignore.io/?templates=c,c++,node,java,linux,macos,windows
 
+### Electron Forge ###
+# out directory
+out/
+
 ### C ###
 # Prerequisites
 *.d
