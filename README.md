@@ -63,9 +63,11 @@ Windows:
 npm build windows
 ```
 Linux:
+```
 npm build linux
 ```
 Mac:
+```
 npm build mac
 ```
 See https://www.electronforge.io/cli for further documentation on app packaging.
