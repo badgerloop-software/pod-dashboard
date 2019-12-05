@@ -1,3 +1,9 @@
+/**
+ * @module highcharts
+ * @module cache
+ * @author Andrew Janssen
+ * @description Creates and handles charts
+ */
 const HIGHCHARTS = require('highcharts');
 const CHARTCACHE = require('./cache');
 
