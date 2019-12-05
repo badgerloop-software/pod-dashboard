@@ -56,6 +56,7 @@ function newChart(id, title, index) { //eslint-disable-line
  * @param {int} index index of the chart to be cleared
  */
 function clearChart(index) { //eslint-disable-line
+  charts[index].xAxis[0].setExtremes(null, null);
   clearInterval(interval[index]);
   interval[index] = null;
   charts[index].update({
