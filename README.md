@@ -1,5 +1,5 @@
 # Pod 5 Operator's Dashboard &nbsp; ![GitHub Logo](https://raw.githubusercontent.com/badgerloop-software/pod-dashboard/master/src/public/images/icon.png)
-*Authors: Eric Udlis, Luke Houge, Alex Vesel, Michael Handler*
+*Authors: Eric Udlis, Luke Houge, Andrew Janssen, Alex Vesel, Michael Handler*
 
 ## Platform/Technologies:
 - [Electron](https://electronjs.org) (our software framework)
