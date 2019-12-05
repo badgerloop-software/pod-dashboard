@@ -446,7 +446,6 @@ ARCHIVE_BUTTON.addEventListener('click', () => {
     DATA_INTERFACING.recordingEvent.emit('off'); // Tells DI to stop recording data
     DATA_INTERFACING.archiveData();
     console.log('archiving data');
-    DATA_INTERFACING.createCache(DATA_RECORDING);
     DATA_RECORD_BUTTON.classList.add('stateButton');
     DATA_RECORD_BUTTON.classList.remove('stateButtonInactive');
     ARCHIVE_BUTTON.classList.add('stateButtonInactive');
@@ -467,6 +466,7 @@ setInterval(autosave, AUTOSAVE_INTERVAL);
  */
 function init() {
   DATA_INTERFACING.createCache();
+  DATA_INTERFACING.createCache(DATA_RECORDING);
   DYNAMIC_LOADING.fillAllItems();
   DYNAMIC_LOADING.fillAllTables();
   makeStateMachineListeners();
