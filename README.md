@@ -16,6 +16,15 @@ npm install
 npm start
 ```
 
+## Documentation
+A JSDoc website detailing every one of our files is available in ./docs
+
+### Generating Docs
+To generate docs after an edit run
+```
+npm run generate-docs
+```
+
 ## Testing &nbsp; [![Actions Status](https://github.com/badgerloop-software/pod-dashboard/workflows/Node%20CI/badge.svg)](https://github.com/badgerloop-software/pod-dashboard/actions)
 https://github.com/badgerloop-software/pod-dashboard/actions
 - Configured with eslint for formatting tests
@@ -87,6 +96,7 @@ See https://www.electronforge.io/cli for further documentation on app packaging.
 │  ├── app.js                       // Run the main Electron Process
 │  ├── battery.html                 // Battery page HTML file
 │  ├── cache.js                     // Temporary Cache to store telemetry information before being exported
+│  ├── dataRecording.js             // Temporary cache to hold data while recording
 │  ├── constants.json               // Store all constants in one place
 │  ├── database.json                // Master file with all telemetry information
 │  ├── index.html                   // Main page HTML file

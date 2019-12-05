@@ -1,0 +1,27 @@
+{
+  "docdash": {
+    "static": false,
+    "sort": true,
+    "sectionOrder": [
+      "Modules",
+      "Classes",
+      "Externals",
+      "Events",
+      "Namespaces",
+      "Mixins",
+      "Tutorials",
+      "Interfaces"
+    ],
+    "meta": {
+      "title": "Pod 5 Operators Dashboard Docs",
+      "description": "",
+      "keyword": ""
+    },
+    "search": true,
+    "collapse": true,
+    "wrap": true,
+    "typedefs": true,
+    "private": false,
+    "scripts": []               
+  }
+}
