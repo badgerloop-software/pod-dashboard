@@ -58,12 +58,17 @@ pod-dashboard/coverage/lcov-report/index.html
 ```
 
 ### Build Packaged App
+Windows:
 ```
 npm build windows
+```
+Linux:
 npm build linux
+```
+Mac:
 npm build mac
 ```
-See https://www.electronforge.io/cli for further documentation.
+See https://www.electronforge.io/cli for further documentation on app packaging.
 
 ## File Structure
 ```├── .eslintrc.js                 // Config file for eslint, our styling tester
