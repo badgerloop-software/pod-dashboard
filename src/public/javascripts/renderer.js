@@ -1,10 +1,18 @@
-const { constants } = require('./config');
+/**
+ * @module Renderer
+ * @author Eric Udlis
+ */
+const { constants: CONSTANTS } = require('./config');
 
+/**
+ * @constructor
+ * @description Represents a single renderer of tables
+ */
 module.exports = function Renderer() { // eslint-disable-line
   let self = this;
   this.counter = false;
   this.subCounter = false;
-  this.interval = constants.renderInterval;
+  this.interval = CONSTANTS.renderInterval;
   this.run = false;
   this.lastRecievedTime = null;
 
@@ -12,7 +20,7 @@ module.exports = function Renderer() { // eslint-disable-line
   this.oldCache = {};
 
   this.runCommand = () => {
-    di.packetHandler.emit('renderData');
+    DATA_INTERFACING.packetHandler.emit('renderData');
   };
 
   this.startRenderer = () => {
