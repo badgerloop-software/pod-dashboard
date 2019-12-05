@@ -60,15 +60,15 @@ pod-dashboard/coverage/lcov-report/index.html
 ### Build Packaged App
 Windows:
 ```
-npm build windows
+npm package windows
 ```
 Linux:
 ```
-npm build linux
+npm package linux
 ```
 Mac:
 ```
-npm build mac
+npm package mac
 ```
 See https://www.electronforge.io/cli for further documentation on app packaging.
 
