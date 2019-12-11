@@ -310,20 +310,22 @@ module.exports.setFault = function setFault(faultNum) {
 // Dynamic Dropdowns
 
 
+// code that actually creates the element with the passed in information from fillAllItems
 /**
  * Creates an element and appends it to the dropdown
  * @param {String} name The name of the sensor
  * @param {String} group The group it belongs to
  * @param {String} units The unit the sensor reports in
+ * @param {String} system the system the sensor belongs to
  */
-function createItem(name, group, units) { // eslint-disable-line no-unused-vars
+function createItem(name, dropdown, units, system) { // eslint-disable-line no-unused-vars
   let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
   let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
   fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
 
   let header = document.createElement('a'); // Creates the actual DOM element
   header.href = ''; // Sets the class
-  switch (group) {
+  switch (dropdown) {
     case 'myDropdown1':
       header.onclick = function onclick() { // sets the onclick value
         clone(name);
@@ -332,13 +334,13 @@ function createItem(name, group, units) { // eslint-disable-line no-unused-vars
       break;
     case 'myDropdown2':
       header.onclick = function onclick() { // sets the onclick value
-        generateLineChartOne(name, fixedName);
+        startChart(0, name, fixedName, system, fixedUnits);
         return false;
       };
       break;
     case 'myDropdown3':
       header.onclick = function onclick() { // sets the onclick value
-        generateLineChartTwo(name, fixedName);
+        startChart(1, name, fixedName, system, fixedUnits);
         return false;
       };
       break;
@@ -346,7 +348,7 @@ function createItem(name, group, units) { // eslint-disable-line no-unused-vars
       break;
   }
   header.innerHTML = `${fixedName}`; // Sets value in the box
-  let list = document.getElementById(group);
+  let list = document.getElementById(dropdown);
   list.appendChild(header);
 }
 
@@ -362,8 +364,8 @@ module.exports.fillAllItems = function fillAllItems(testing) { // eslint-disable
 
     sensors.forEach((sensor) => {
       if (!testing) createItem(`${sensor}`, 'myDropdown1', `${currentSystem[sensor].units}`); // For each sensor create an element
-      createItem(`${sensor}`, 'myDropdown2', `${currentSystem[sensor].units}`); // For each sensor create an element
-      createItem(`${sensor}`, 'myDropdown3', `${currentSystem[sensor].units}`); // For each sensor create an element
+      createItem(`${sensor}`, 'myDropdown2', `${currentSystem[sensor].units}`, subsystem); // For each sensor create an element
+      createItem(`${sensor}`, 'myDropdown3', `${currentSystem[sensor].units}`, subsystem); // For each sensor create an element
     });
   });
 };

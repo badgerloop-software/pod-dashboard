@@ -1,5 +1,5 @@
 # Pod 5 Operator's Dashboard &nbsp; ![GitHub Logo](https://raw.githubusercontent.com/badgerloop-software/pod-dashboard/master/src/public/images/icon.png)
-*Authors: Eric Udlis, Luke Houge, Zander Huang, Michael Handler*
+*Authors: Eric Udlis, Luke Houge, Andrew Janssen, Michael Handler*
 
 ## Platform/Technologies:
 - [Electron](https://electronjs.org) (our software framework)
@@ -94,7 +94,7 @@ pod-dashboard/coverage/lcov-report/index.html
 │  │  │  ├── Countdown.js           //
 │  │  │  ├── Timer.js               //
 │  │  │  ├── batteries.js           //
-│  │  │  ├── charthandling.js       // Create, fill, and clear charts using Plotly.js
+│  │  │  ├── charting.js            // Create, fill, and clear charts using Highcharts
 │  │  │  ├── communication.js       // The hub of all incomming and outgoing connections
 │  │  │  ├── config.js              // Read and Write to the Constants File
 │  │  │  ├── datainterfacing.js     // Interface with the local tempory database and long term database
