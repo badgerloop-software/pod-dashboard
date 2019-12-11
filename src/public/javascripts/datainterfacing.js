@@ -280,7 +280,7 @@ module.exports.findRenderable = function findRenderable() {
  */
 function createID() {
   let d = new Date();
-  return `${d.getDate()}${d.getHours()}${d.getMinutes()}${d.getSeconds()}`;
+  return `${d.getMonth() + 1}-${d.getDate()}--${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 }
 
 /**
@@ -288,6 +288,7 @@ function createID() {
  * @param {String} name - The name of the export file
  */
 function createJSON(name) {
+  console.log(JSON.stringify(DATA_RECORDING));
   FS.writeFileSync(`./Exports/${name}.json`, JSON.stringify(DATA_RECORDING), (err) => {
     if (err) throw err;
     console.log(`${name}.json Created!`);
