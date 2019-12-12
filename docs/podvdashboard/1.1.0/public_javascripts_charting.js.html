@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>module:Renderer - Pod 5 Operators Dashboard Docs</title>
+    <title>public/javascripts/charting.js - Pod 5 Operators Dashboard Docs</title>
     
     
     
@@ -37,141 +37,167 @@
 
 <div id="main">
     
-    <h1 class="page-title">module:Renderer</h1>
+    <h1 class="page-title">public/javascripts/charting.js</h1>
     
 
     
 
 
 
-
-<section>
-
-<header>
     
-        <h2>
-        module:Renderer
-        </h2>
-        
-    
-</header>
-
-<article>
-    
-        <div class="container-overview">
-        
-            
-
-    
-
-    <h4 class="name" id="module:Renderer"><span class="type-signature"></span>new (require("Renderer"))<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_javascripts_renderer.js.html">public/javascripts/renderer.js</a>, <a href="public_javascripts_renderer.js.html#line11">line 11</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    Represents a single renderer of tables
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-        </div>
-    
-
-    
-
-    
-
-    
-    
-    
-
-     
-
-    
-
-    
-
-    
-
-    
-
-    
-</article>
-
-</section>
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module highcharts
+ * @module cache
+ * @author Andrew Janssen
+ * @description Creates and handles charts
+ */
+const HIGHCHARTS = require('highcharts');
+const CHARTCACHE = require('./cache');
+
+require('highcharts/modules/exporting')(HIGHCHARTS);
+
+let charts = []; // Array that stores charts
+let interval = []; // Array that stores intervals
+let value = [];
+let time = [];
+
+const pointSpacing = 0.03;
+const minimumRange = 5;
+const rate = 30; // in ms
+const shiftThreshold = rate / pointSpacing;
+
+/**
+ * Adds a new chart
+ * @param {String} id the id of the container for the chart
+ * @param {String} title the title for the chart
+ * @param {int} index the index in the charts array to store the chart
+ */
+function newChart(id, title, index) { //eslint-disable-line
+  charts[index] = HIGHCHARTS.chart(id, {
+    chart: {
+      type: 'line',
+    },
+    title: {
+      text: title,
+    },
+    exporting: {
+      enabled: false, // removes exporting hamburger menu
+    },
+    credits: {
+      enabled: false, // removes Highchart logo
+    },
+    plotOptions: {
+      series: {
+        enableMouseTracking: true, // shows point on hover
+        pointInterval: pointSpacing, // interval between points
+      },
+    },
+    series: [{
+      name: 'Empty',
+      clip: true, // doesn't render points off chart
+    }],
+    xAxis: {
+      minRange: minimumRange,
+    },
+  });
+}
+
+/**
+ * Clears a chart
+ * @param {int} index index of the chart to be cleared
+ */
+function clearChart(index) { //eslint-disable-line
+  charts[index].xAxis[0].setExtremes(null, null); // unsets extremes
+  clearInterval(interval[index]); // clears interval
+  interval[index] = null;
+  charts[index].update({
+    title: {
+      text: '',
+    },
+    series: [{
+      name: '',
+      data: [],
+    }],
+  });
+}
+
+/**
+ * Initializes a chart
+ * @param {int} index the index of the chart to initialize
+ * @param {float} start the start time
+ * @param {String} data the name of the data that will be charted
+ * @param {String} title the title
+ * @param {String} units the units of the data that will be charted
+ */
+function initialize(index, start, data, title, units) {
+  charts[index].update({
+    title: {
+      text: title,
+    },
+    series: [{
+      pointStart: start, // start point for data
+      name: data + units,
+    }],
+  });
+}
+
+/**
+ * Adds a data point to the chart
+ * @param {int} index index of the chart
+ * @param {String} name data to be charted
+ * @param {String} system system of the data
+ */
+function addData(index, name, system) { //eslint-disable-line
+  // stores last value
+  value[index] = parseFloat(CHARTCACHE[system][name][CHARTCACHE[system][name].length - 1]);
+  charts[index].series[0].addPoint(value[index], true, false, { duration: 30 }); // adds point
+  if (charts[index].series[0].data.length > shiftThreshold) {
+    charts[index].series[0].data[0].remove(false, false); // removes old point
+  }
+}
+
+/**
+ * Adds a time and data pair to the chart
+ * @param {int} index the index of the chart
+ * @param {String} name the data to be charted
+ * @param {String} system the system of the data
+ */
+function addTimeAndData(index, name, system) { //eslint-disable-line
+  // stores last value and current time
+  value[index] = parseFloat(CHARTCACHE[system][name][CHARTCACHE[system][name].length - 1]);
+  time[index] = CHARTCACHE[system][name].length * 0.03;
+  // adds pair to the chart
+  charts[index].series[0].addPoint([time[index], value[index]], true, false, { duration: 30 });
+  // removes and shifts if 30 seconds of data are present
+  if (charts[index].xAxis[0].getExtremes().dataMax
+    - charts[index].xAxis[0].getExtremes().dataMin >= 30) {
+    charts[index].series[0].data[0].remove(false, false);
+    charts[index].xAxis[0].setExtremes(time[index] - 30, time[index], true, false);
+  }
+}
+
+
+/**
+ * Initializes a chart and starts adding data
+ * @param {int} index the index of the chart
+ * @param {String} name the name of the data
+ * @param {String} title the title for the chart
+ * @param {String} system the system of the data
+ * @param {String} units the units of the chart
+ */
+function startChart(index, name, title, system, units) { //eslint-disable-line
+  currentTime = CHARTCACHE[system][name].length * 0.03;
+  currentTime = parseFloat(currentTime);
+  clearChart(index);
+  initialize(index, currentTime, name, title, units); // initialize new chart
+  // start interval to add points to the chart
+  interval[index] = setInterval(() => { addTimeAndData(index, name, system); }, rate);
+}
+</code></pre>
+        </article>
+    </section>
 
 
 
@@ -183,7 +209,7 @@
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 18:01:22 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 18:01:21 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
 </footer>
 
 <script>prettyPrint();</script>
