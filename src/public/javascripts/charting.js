@@ -1,6 +1,5 @@
 /**
- * @module highcharts
- * @module cache
+ * @module Highcharts
  * @author Andrew Janssen
  * @description Creates and handles charts
  */
