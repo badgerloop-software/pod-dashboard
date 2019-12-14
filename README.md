@@ -18,6 +18,7 @@ npm start
 
 ## Documentation
 A JSDoc website detailing every one of our files is available in ./docs
+A GitHub Pages Hosted site is avaiable [here](https://badgerloop-software.github.io/pod-dashboard/podvdashboard/1.1.0/index.html)
 
 ### Generating Docs
 To generate docs after an edit run
