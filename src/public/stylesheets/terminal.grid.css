@@ -1,8 +1,9 @@
 .grid-container {
     display: grid;
     padding-top: 80px;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: .8fr .8fr;
     grid-template-areas: "Terminal Helper";
+    margin-top: 20px;
   }
   
   .Terminal { grid-area: Terminal; }
