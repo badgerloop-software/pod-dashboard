@@ -1,28 +1,81 @@
-/*
-Author: Eric Udlis
-Purpose: Interface with the local tempory database and long term database
-*/
-const events = require('events');
-const fs = require('fs');
-const storedData = require('../../database.json');
-let cache = require('../../cache');
+/**
+ * @module Data-Interfacing
+ * @author Eric Udlis, Zander Huang
+ * @description Interface with the local tempory cache and long term recording
+ */
 
-const packetHandler = new events.EventEmitter();
-module.exports.packetHandler = packetHandler;
+const EVENTS = require('events');
+const FS = require('fs');
 
-// Creates cache based off of database.JSON
-module.exports.createCache = function createCache() { // eslint-disable-line no-unused-vars
-  console.log('Creating Cache');
-  let subsystemsArray = Object.keys(storedData);
-  for (let i = 0; i < subsystemsArray.length; i += 1) {
-    let sensorsArray = Object.keys(storedData[subsystemsArray[i]]);
-    cache[subsystemsArray[i]] = {};
-    for (let z = 0; z < sensorsArray.length; z += 1) {
-      cache[subsystemsArray[i]][sensorsArray[z]] = [];
+/** @requires module:jsons-database */
+const STORED_DATA = require('../../database.json');
+
+/** @requires module:cache */
+const CACHE = require('../../cache');
+
+/** @requires module:Recording */
+const DATA_RECORDING = require('../../dataRecording');
+
+const PACKET_HANDLER = new EVENTS.EventEmitter();
+module.exports.packetHandler = PACKET_HANDLER;
+
+module.exports.isDataRecording = false;
+
+/** @constant - Changes the data recording variable from the handler */
+const RECORDING_EVENT = new EVENTS.EventEmitter();
+module.exports.recordingEvent = RECORDING_EVENT;
+
+// Sets that data is recording
+RECORDING_EVENT.on('on', () => {
+  isDataRecording = true;
+  module.exports.isDataRecording = isDataRecording;
+});
+
+// Sets that data is not recording
+RECORDING_EVENT.on('off', () => {
+  isDataRecording = false;
+  module.exports.isDataRecording = isDataRecording;
+});
+
+/**
+ * Creates a cache based off of database.JSON
+ */
+module.exports.createCache = function createCache(name) { // eslint-disable-line no-unused-vars
+  console.log('Creating cache');
+  if (name === DATA_RECORDING) { // creates dataRecording cache
+    try {
+      let subsystemsArray = Object.keys(STORED_DATA);
+      for (let i = 0; i < subsystemsArray.length; i += 1) {
+        let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
+        DATA_RECORDING[subsystemsArray[i]] = {};
+        for (let z = 0; z < sensorsArray.length; z += 1) {
+          DATA_RECORDING[subsystemsArray[i]][sensorsArray[z]] = [];
+        }
+      }
+    } catch (error) {
+      console.error('dataRecording was not found');
+    }
+  } else { // creates dashboard cache
+    try {
+      let subsystemsArray = Object.keys(STORED_DATA);
+      for (let i = 0; i < subsystemsArray.length; i += 1) {
+        let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
+        CACHE[subsystemsArray[i]] = {};
+        for (let z = 0; z < sensorsArray.length; z += 1) {
+          CACHE[subsystemsArray[i]][sensorsArray[z]] = [];
+        }
+      }
+    } catch (error) {
+      console.error('cache was not found');
     }
   }
 };
 
+/**
+ * Modifies packet to fill maxControllerTemp flag
+ * @param {Object} input Input Packet
+ * @returns {Object} The modified packet
+ */
 function getMaxMotorControllerTemp(input) {
   let fixedPacket = input;
   // console.log(`${input.motor.controlBoardTemp} | ${input.motor.gateDriverBoardTemp}
@@ -34,6 +87,11 @@ function getMaxMotorControllerTemp(input) {
   return fixedPacket;
 }
 
+/**
+ * Modifies packet to fill packPowerConsumed flag
+ * @param {Object} input Input Packet
+ * @returns {Object} - The Modified packet
+ */
 function getPowerConsumed(input) {
   let fixedPacket = input;
 
@@ -42,6 +100,11 @@ function getPowerConsumed(input) {
   return fixedPacket;
 }
 
+/**
+ * Modifies packet to fill packPowerRemaining flag
+ * @param {Object} input Input packet
+ * @returns {Object} - The modified packet
+ */
 function getPackPowerRemaining(input) {
   let fixedPacket = input;
   let ampHours = 6; // Got this value from Shelby
@@ -50,13 +113,22 @@ function getPackPowerRemaining(input) {
 
   return fixedPacket;
 }
-
+/**
+ * Modifies packet to invert speed of motor
+ * @param {Object} input Input packet
+ * @returns {Object} - THe modified packet
+ */
 function getAbsoluteSpeed(input) {
   let fixedPacket = input;
   fixedPacket.motor.motorSpeed = -input.motor.motorSpeed;
   return fixedPacket;
 }
 
+/**
+ * Calculates the LV batteries State of Charge
+ * @param {Number} x - Voltage of LV Battery
+ * @returns {Number} - The pack's state of charge
+ */
 function interpolateLVSOC(x) {
   // From LV Pack SOC spreadsheet
   let y = 1.1142 * (x ** 6) + 78.334 * (x ** 5) - 2280.5 * (x ** 4)
@@ -64,6 +136,11 @@ function interpolateLVSOC(x) {
   return Number(y);
 }
 
+/**
+ * Modifies packet to fill LVSOC flag
+ * @param {Object} input The input packet
+ * @returns {Object} - The modified packet
+ */
 function getLVSOC(input) { // eslint-disable-line no-unused-vars
   let fixedPacket = input;
   let x = Number(input.battery.lvVoltage);
@@ -72,7 +149,11 @@ function getLVSOC(input) { // eslint-disable-line no-unused-vars
 
   return fixedPacket;
 }
-
+/**
+ * Converts ambient pressure reading to gauge pressure readings
+ * @param {Object} input The input packet
+ * @returns {Object} - The modified packet
+ */
 function ambientToGauge(input) { // eslint-disable-line no-unused-vars
   let fixedPacket = input;
 
@@ -85,16 +166,22 @@ function ambientToGauge(input) { // eslint-disable-line no-unused-vars
 
   return fixedPacket;
 }
-function updateData(dataIn) {
-  // Sort through the data and append the new values to their respective arrays in cache.js
-  // NormalizePacket -> Calculations -> [UpdateData]
+
+/**
+ * @description Sort through the data and append the new values to their respective
+ * arrays in cache.js
+ * NormalizePacket -> Calculations -> [UpdateData]
+ * @param {Object} dataIn The packet to process
+ * @param {String} location The location you're writing to
+ */
+function updateData(dataIn, location) {
   const groups = Object.keys(dataIn);
   groups.forEach((group) => {
     const sensors = Object.keys(dataIn[group]);
     sensors.forEach((sensor) => {
       try {
         const input = Number(dataIn[group][sensor]);
-        const target = cache[group][sensor];
+        const target = location[group][sensor];
         let temp;
         if (group === 'braking') {
           temp = input.toFixed(0);
@@ -112,10 +199,12 @@ function updateData(dataIn) {
     });
   });
 }
-
+/**
+ *  Any Calcuations that need to be done prior to RECORDING should be done here
+ *  NormalizePacket ->  [Calculations] -> UpdateData
+ * @param {Object} input Packet to process
+ */
 function calculate(input) {
-  // Any Calcuations that need to be done prior to RECORDING should be done here
-  // NormalizePacket ->  [Calculations] -> UpdateData
   let fixedPacket = input;
   // Take the Max of the three motor controller temp sensors and put the max in maxControllerTemp
   try {
@@ -134,21 +223,27 @@ function calculate(input) {
     // console.error(`Calculation Error: ${err}`);
   }
   // Put the new data in the cache
-  updateData(fixedPacket);
+  updateData(fixedPacket, CACHE);
+  if (this.isDataRecording) {
+    updateData(fixedPacket, DATA_RECORDING);
+  }
 }
 
+/**
+ * Read and remove anything from the packet that is not data
+ * Any calculations that need to be done before prior to RECORDING the data should be done here
+ * [NormalizePacket] -> Calcuations -> UpdateData
+ * @param {Object} input - The packet to process
+ */
 module.exports.normalizePacket = function normalizePacket(input) {
-  // Read and remove anything from the packet that is not data
-  // Any calculations that need to be done before prior to RECORDING the data should be done here
-  // [NormalizePacket] -> Calcuations -> UpdateData
   const { state } = input;
   let fixedPacket = input;
   // console.info('Incomming Packet:');
   // console.info(input);
   if (state) {
     if (!(state >= 11 && state <= 13)) {
-      dl.switchState(state);
-    } else dl.setFault(state);
+      DYNAMIC_LOADING.switchState(state);
+    } else DYNAMIC_LOADING.setFault(state);
     delete fixedPacket.state;
   }
 
@@ -161,8 +256,12 @@ module.exports.normalizePacket = function normalizePacket(input) {
   calculate(fixedPacket);
 };
 
+/**
+ * Finds subsystems in database that are renderable returns that list
+ * @returns {Object} - List of renderable sensors
+ */
 module.exports.findRenderable = function findRenderable() {
-  let renderable = storedData;
+  let renderable = STORED_DATA;
   let subsystems = Object.keys(renderable);
   subsystems.forEach((subsystem) => {
     sensors = Object.keys(renderable[subsystem]);
@@ -175,18 +274,30 @@ module.exports.findRenderable = function findRenderable() {
 };
 
 // Exporting
+
+/**
+ * Creates the ID for the file
+ */
 function createID() {
   let d = new Date();
-  return `${d.getDate()}${d.getHours()}${d.getMinutes()}`;
+  return `${d.getMonth() + 1}-${d.getDate()}--${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
 }
 
+/**
+ * Writes export to file
+ * @param {String} name - The name of the export file
+ */
 function createJSON(name) {
-  fs.writeFileSync(`./Exports/${name}.json`, JSON.stringify(cache), (err) => {
+  console.log(JSON.stringify(DATA_RECORDING));
+  FS.writeFileSync(`./Exports/${name}.json`, JSON.stringify(DATA_RECORDING), (err) => {
     if (err) throw err;
     console.log(`${name}.json Created!`);
   });
 }
-
+/**
+ * Creates archive file with name or id
+ * @param {String} name - The name of the file to export
+ */
 module.exports.archiveData = function archiveData(name) {
   if (name) createJSON(name);
   else createJSON(createID());

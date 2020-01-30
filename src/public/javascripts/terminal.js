@@ -193,3 +193,30 @@ function fillConstants() { // eslint-disable-line no-unused-vars
   document.getElementById('hvBonePort').value = consts.hvBone.port;
   document.getElementById('renderInterval').value = consts.renderInterval;
 }
+
+// Torque Value Submission
+
+/**
+ * @description Adds 1 to the torque value sent to the motor.
+ */
+
+function incrementTorqueValue() {
+  document.getElementById('torqueInput').innerHTML++;
+}
+
+/**
+ * @description Subtracts 1 from the torque value sent to the motor.
+ */
+
+function decrementTorqueValue() {
+  document.getElementById('torqueInput').innerHTML--;
+}
+
+document.getElementById('torqueSendButton').addEventListener('click', () => {
+  comms.sendHVCommand(`setTorque ${document.getElementById('torqueInput').innerHTML}`);
+});
+document.getElementById('torqueUpButton').addEventListener('click', incrementTorqueValue);
+document.getElementById('torqueDownButton').addEventListener('click', decrementTorqueValue);
+document.getElementById('terminalEstop').addEventListener('click', () => {
+  comms.sendEBrake();
+});

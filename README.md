@@ -1,5 +1,5 @@
 # Pod 5 Operator's Dashboard &nbsp; ![GitHub Logo](https://raw.githubusercontent.com/badgerloop-software/pod-dashboard/master/src/public/images/icon.png)
-*Authors: Eric Udlis, Luke Houge, Alex Vesel, Michael Handler*
+*Authors: Eric Udlis, Luke Houge, Andrew Janssen, Michael Handler*
 
 ## Platform/Technologies:
 - [Electron](https://electronjs.org) (our software framework)
@@ -14,6 +14,16 @@ git clone https://github.com/badgerloop-software/pod-dashboard.git
 cd pod-dashboard/src
 npm install
 npm start
+```
+
+## Documentation
+A JSDoc website detailing every one of our files is available in ./docs
+A GitHub Pages Hosted site is avaiable [here](https://badgerloop-software.github.io/pod-dashboard/podvdashboard/1.1.0/index.html)
+
+### Generating Docs
+To generate docs after an edit run
+```
+npm run generate-docs
 ```
 
 ## Testing &nbsp; [![Actions Status](https://github.com/badgerloop-software/pod-dashboard/workflows/Node%20CI/badge.svg)](https://github.com/badgerloop-software/pod-dashboard/actions)
@@ -71,6 +81,7 @@ pod-dashboard/coverage/lcov-report/index.html
 │  ├── app.js                       // Run the main Electron Process
 │  ├── battery.html                 // Battery page HTML file
 │  ├── cache.js                     // Temporary Cache to store telemetry information before being exported
+│  ├── dataRecording.js             // Temporary cache to hold data while recording
 │  ├── constants.json               // Store all constants in one place
 │  ├── database.json                // Master file with all telemetry information
 │  ├── index.html                   // Main page HTML file
@@ -84,7 +95,7 @@ pod-dashboard/coverage/lcov-report/index.html
 │  │  │  ├── Countdown.js           //
 │  │  │  ├── Timer.js               //
 │  │  │  ├── batteries.js           //
-│  │  │  ├── charthandling.js       // Create, fill, and clear charts using Plotly.js
+│  │  │  ├── charting.js            // Create, fill, and clear charts using Highcharts
 │  │  │  ├── communication.js       // The hub of all incomming and outgoing connections
 │  │  │  ├── config.js              // Read and Write to the Constants File
 │  │  │  ├── datainterfacing.js     // Interface with the local tempory database and long term database

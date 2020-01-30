@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>public/javascripts/dynamicloading.js - Pod 5 Operators Dashboard Docs</title>
+    
+    
+    
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Batteries.html">Batteries</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Batteries.html#~checkMinMax">checkMinMax</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~createRow">createRow</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~createTable">createTable</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~fillCell">fillCell</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~initBatteries">initBatteries</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateBattery">updateBattery</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateBatteryAndRender">updateBatteryAndRender</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateCell">updateCell</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateTemps">updateTemps</a></li></ul></li><li><a href="module-Cache.html">Cache</a></li><li><a href="module-Communication.html">Communication</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Communication.html#.commandTorque">commandTorque</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.disableHV">disableHV</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.enableHV">enableHV</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.enPrecharge">enPrecharge</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.primBrakeOff">primBrakeOff</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.primBrakeOn">primBrakeOn</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.secBrakeOff">secBrakeOff</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.secBrakeOn">secBrakeOn</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendEBrake">sendEBrake</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendHVPing">sendHVPing</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendLVPing">sendLVPing</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendOverride">sendOverride</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendPropulse">sendPropulse</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendPumpDown">sendPumpDown</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendReadyCommand">sendReadyCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendReadyPump">sendReadyPump</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.toggleLatch">toggleLatch</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.toggleSafety">toggleSafety</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendHVCommand">sendHVCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendLVCommand">sendLVCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendPacket">sendPacket</a></li></ul></li><li><a href="module-Config.html">Config</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Config.html#~getConstantsPath">getConstantsPath</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~getJSONFile">getJSONFile</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~readJSON">readJSON</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~updateConstants">updateConstants</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~writeJSON">writeJSON</a></li></ul></li><li><a href="module-Data-Interfacing.html">Data-Interfacing</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.archiveData">archiveData</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.createCache">createCache</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.findRenderable">findRenderable</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.normalizePacket">normalizePacket</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~ambientToGauge">ambientToGauge</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~calculate">calculate</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~createID">createID</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~createJSON">createJSON</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getAbsoluteSpeed">getAbsoluteSpeed</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getLVSOC">getLVSOC</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getMaxMotorControllerTemp">getMaxMotorControllerTemp</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getPackPowerRemaining">getPackPowerRemaining</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getPowerConsumed">getPowerConsumed</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~interpolateLVSOC">interpolateLVSOC</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~updateData">updateData</a></li></ul></li><li><a href="module-Data-Recording.html">Data-Recording</a></li><li><a href="module-Dynamic-Loading.html">Dynamic-Loading</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.fillAllItems">fillAllItems</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.fillAllTables">fillAllTables</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.setFault">setFault</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.setIndicator">setIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.switchState">switchState</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createActualCol">createActualCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createHeaderCol">createHeaderCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createItem">createItem</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createMaxCol">createMaxCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createMinCol">createMinCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createRow">createRow</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillAllBounds">fillAllBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillRowBounds">fillRowBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillTable">fillTable</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillTableBounds">fillTableBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getMaxCell">getMaxCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getMinCell">getMinCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getStateName">getStateName</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~resetAllButtons">resetAllButtons</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~setMaxCell">setMaxCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~setMinCell">setMinCell</a></li></ul></li><li><a href="module-Electron-app.html">Electron-app</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Electron-app.html#~createWindow">createWindow</a></li></ul></li><li><a href="module-Handler.html">Handler</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Handler.html#~autosave">autosave</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkBraking">checkBraking</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkPackets">checkPackets</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkRecieve">checkRecieve</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkTransmit">checkTransmit</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~disableHV">disableHV</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~displayTimer">displayTimer</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~init">init</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~makeListener">makeListener</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~makeStateMachineListeners">makeStateMachineListeners</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~overrideState">overrideState</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~podConnectionCheck">podConnectionCheck</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~renderData">renderData</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~sendHeartbeats">sendHeartbeats</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setHVIndicator">setHVIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setLVIndicator">setLVIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setRecieve">setRecieve</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~toggleConfirmationModal">toggleConfirmationModal</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~togglePrimBrake">togglePrimBrake</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~toggleSecBrake">toggleSecBrake</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~updateLabels">updateLabels</a></li></ul></li><li><a href="module-Highcharts.html">Highcharts</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~addData">addData</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~addTimeAndData">addTimeAndData</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~clearChart">clearChart</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~initialize">initialize</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~newChart">newChart</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~startChart">startChart</a></li></ul></li><li><a href="module-Main.html">Main</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Main.html#~clear">clear</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~clone">clone</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~dropdown">dropdown</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~fillConstants">fillConstants</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~filterFunction">filterFunction</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~searchTable">searchTable</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~toggleSettingsModal">toggleSettingsModal</a></li></ul></li><li><a href="module-Renderer.html">Renderer</a></li><li><a href="module-TestingTool.html">TestingTool</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillAllTables">fillAllTables</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillCell">fillCell</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillScrubber">fillScrubber</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillTable">fillTable</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~findMax">findMax</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~handleFiles">handleFiles</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~importJSON">importJSON</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~incrementTimer">incrementTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~init">init</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~pauseTimer">pauseTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~playTimer">playTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~resetTimer">resetTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~updateScrubber">updateScrubber</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~updateTables">updateTables</a></li></ul></li><li><a href="module-TestPodServer.html">TestPodServer</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~getRandomIntInclusive">getRandomIntInclusive</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~getRandomValue">getRandomValue</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~heartbeat">heartbeat</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendData">sendData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendIncreasingData">sendIncreasingData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendJSON">sendJSON</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendSinusodalData">sendSinusodalData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendSpecificData">sendSpecificData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendTestData">sendTestData</a></li></ul></li></ul><h3>Classes</h3><ul><li><a href="module-Batteries-Battery.html">Battery</a></li><li><a href="module-Renderer.html">Renderer</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">public/javascripts/dynamicloading.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @module Dynamic-Loading
+ * @author Eric Udlis, Luke Houge
+ * @description Dynamically fill the dashboard with content based off of database.JSON
+ */
+
+/** @requires module:jsons-database */
+const DATABASE = require('../../database.json');
+
+/** @requires module:DataInterfacing */
+const DATA_INTERFACING = require('./datainterfacing');
+
+/** @requires module:Timer @see module:Timer */
+const TIMER = require('./Timer');
+
+const STATE_TIMER = new TIMER();
+
+// Dynamic Tables
+/**
+ * Creates the name column for the sensor
+ * @param {String} name The name of the sensor
+ * @param {String} group The group it belongs to
+ * @param {String} units The units it's displayed to
+ * @returns {HTMLElement} The table column
+ */
+function createHeaderCol(name, group, units) {
+  let header = document.createElement('td'); // Creates the actual DOM element
+  header.className = `valueTable${group}`; // Sets the class
+  let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
+  let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
+  fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
+  header.innerHTML = `${fixedName}`; // Sets value in the box
+  return header;
+}
+
+/**
+ * Creates the minimum value column for a sensor
+ * @param {String} name The name of the sensor
+ * @param {String} group The group it belongs to
+ * @returns {HTMLElement} The table column
+ */
+function createMinCol(name, group) {
+  let renderable = DATA_INTERFACING.findRenderable();
+  let col = document.createElement('td'); // Creates Element
+  col.className = 'min'; // Assigns class
+  col.id = `${name}Min`; // Assigns ID
+  // Fills box with correct value
+  col.innerHTML = String(renderable[group][name].limits.powerOff.min);
+  return col;
+}
+
+/**
+ * Creates the actual value coluumn for a sensor
+ * @param {String} name The name of the sensor
+ * @returns {HTMLElement} The table column
+ */
+function createActualCol(name) {
+  let col = document.createElement('td');
+  col.className = 'actual';
+  col.id = `${name}`;
+  return col;
+}
+
+/**
+ * Creates the maximum value column for a sensor
+ * @param {String} name The name of the sensor
+ * @param {String} group The group the sensor belongs to
+ */
+function createMaxCol(name, group) {
+  let renderable = DATA_INTERFACING.findRenderable();
+  let col = document.createElement('td');
+  col.className = 'max';
+  col.id = `${name}Max`;
+  col.innerHTML = `${renderable[group][name].limits.powerOff.max}`;
+  return col;
+}
+
+/**
+ * Creates a table row with a name, min, actual, and max column and appends it to specified table
+ * @param {String} name The name of the sensor
+ * @param {String} group The group the sensor belogns to
+ * @param {String} units The units to display in
+ */
+function createRow(name, group, units) {
+  this.group = group;
+  let row = document.createElement('tr');
+
+  let header = createHeaderCol(name, group, units);
+  row.appendChild(header);
+
+  let min = createMinCol(name, group);
+  row.appendChild(min);
+
+  let actual = createActualCol(name);
+  row.appendChild(actual);
+
+  let max = createMaxCol(name, group);
+  row.appendChild(max);
+  if (group === 'braking') this.group = 'braking_table';
+  let table = document.getElementById(this.group);
+  table.appendChild(row);
+}
+
+/**
+ * Fills a table with rows
+ * @param {String} table The name of the group/table to fill
+ */
+function fillTable(table) { // eslint-disable-line
+  let renderable = DATA_INTERFACING.findRenderable();
+  let currentSystem = renderable[table];
+  sensors = Object.keys(currentSystem); // Create an array with all sensors in the subsystem
+
+  sensors.forEach((sensor) => {
+    createRow(`${sensor}`, table, `${currentSystem[sensor].units}`); // For each sensor create a row
+  });
+}
+
+/**
+ * Fills all tables on the dashboard
+ */
+module.exports.fillAllTables = function fillAllTables() { // eslint-disable-line
+  let renderable = DATA_INTERFACING.findRenderable();
+  let subsystems = Object.keys(renderable); // Create array of each subsystem
+  subsystems.forEach((subsystem) => {
+    fillTable(`${subsystem}`); // For each subsystem create a table
+  });
+  console.log('Sucessfully Initiated Tables');
+};
+
+// Dynamic Loading of Maxs and Mins
+/**
+ * Returns the div of the column that contains text
+ * @param {String} sensor Name of sensor
+ * @returns {HTMLElement} The div the contains value text
+ */
+function getMinCell(sensor) {
+  return document.getElementById(`${sensor}Min`);
+}
+
+/**
+ * Returns the div of the column that contains text
+ * @param {String} sensor Name of sensor
+ * @returns {HTMLElement} The div the contains value text
+ */
+function getMaxCell(sensor) {
+  return document.getElementById(`${sensor}Max`);
+}
+
+/**
+ * Sets the text of the minimum value column for a row
+ * @param {String} sensor Name of sensor
+ * @param {Number} value Value to set
+ */
+function setMinCell(sensor, value) {
+  getMinCell(sensor).innerHTML = Number(value);
+}
+
+/**
+ * Sets the text of the maximum value column for a row
+ * @param {String} sensor Name of sensor
+ * @param {Number} value Value to set
+ */
+function setMaxCell(sensor, value) {
+  getMaxCell(sensor).innerHTML = Number(value);
+}
+
+/**
+ * Fills a row's nomimal values
+ * @param {String} subsystem The group the sensor belongs to
+ * @param {String} sensor The name of the sensor
+ * @param {String} state The state which bounds are being filled
+ */
+function fillRowBounds(subsystem, sensor, state) {
+  let renderable = DATA_INTERFACING.findRenderable();
+  let stored = renderable[subsystem][sensor].limits[state];
+  setMinCell(sensor, stored.min);
+  setMaxCell(sensor, stored.max);
+}
+
+/**
+ * Fills a table's nominal values
+ * @param {String} subsystem The table to fill
+ * @param {String} state The state which bounds are being filled
+ */
+function fillTableBounds(subsystem, state) {
+  let renderable = DATA_INTERFACING.findRenderable();
+  sensors = Object.keys(renderable[subsystem]);
+  sensors.forEach((sensor) => {
+    // console.log(`Starting ${sensor}`);
+    fillRowBounds(subsystem, sensor, state);
+    // console.log(`Finised ${sensor}`);
+  });
+}
+
+/**
+ * Fills all tables nominal values
+ * @param {String} state
+ */
+function fillAllBounds(state) { // eslint-disable-line no-unused-vars
+  let renderable = DATA_INTERFACING.findRenderable();
+  subsystems = Object.keys(renderable);
+  subsystems.forEach((system) => {
+    // console.log(`Starting ${system}`);
+    fillTableBounds(system, state);
+    // console.log(`Finised ${system}`);
+  });
+}
+
+/**
+ * Turns a state number into a state string
+ * @param {Number} stateNum State number
+ */
+function getStateName(stateNum) {
+  switch (stateNum) {
+    case 0:
+      return 'powerOff';
+    case 1:
+      return 'idle';
+    case 2:
+      return 'pumpdown';
+    case 3:
+      return 'propulsion';
+    case 4:
+      return 'braking';
+    case 5:
+      return 'stopped';
+    case 6:
+      return 'crawlPrecharge';
+    case 7:
+      return 'crawl';
+    case 8:
+      return 'postRun';
+    case 9:
+      return 'safeToApproach';
+    case 10:
+      return 'nonRunFault';
+    case 11:
+      return 'runFault';
+    case 12:
+      return 'brakingFault';
+    default:
+      return undefined;
+  }
+}
+
+/**
+ * Sets all state buttons to inactive
+ */
+function resetAllButtons() {
+  document.getElementById('powerOff').className = 'stateButtonInactive';
+  document.getElementById('idle').className = 'stateButtonInactive';
+  document.getElementById('postRun').className = 'stateButtonInactive';
+  document.getElementById('pumpdown').className = 'stateButtonInactive';
+  document.getElementById('propulsion').className = 'stateButtonInactive';
+  document.getElementById('braking').className = 'stateButtonInactive';
+  document.getElementById('stopped').className = 'stateButtonInactive';
+  document.getElementById('crawlPrecharge').className = 'stateButtonInactive';
+  document.getElementById('crawl').className = 'stateButtonInactive';
+  document.getElementById('nonRunFault').className = 'stateButtonInactive';
+  document.getElementById('runFault').className = 'stateButtonInactive';
+  document.getElementById('safeToApproach').className = 'stateButtonInactive';
+}
+
+/**
+ * Sets a state button as active
+ * @param {String} state ID of state button to set
+ * @static
+ */
+function setIndicator(state) {
+  resetAllButtons();
+  document.getElementById(state).className = 'stateButton';
+}
+
+module.exports.setIndicator = setIndicator;
+
+/**
+ * Transitions the dashboard to a new state
+ * @param {String} state - String of state to transition to
+ * @param {Number} state - Number of state to transition to
+ */
+module.exports.switchState = function switchState(state) {
+  let type = typeof state;
+  let targetState = state;
+  if (STATE_TIMER.process !== false) {
+    STATE_TIMER.stop();
+    STATE_TIMER.reset();
+  } else {
+    STATE_TIMER.start();
+  }
+  if (type === 'number') targetState = getStateName(state);
+  if (targetState === undefined) {
+    console.error('Undefined State');
+  } else {
+    setIndicator(targetState);
+    if (targetState === 'crawlPrecharge') targetState = 'stopped'; // Super jank, fix later
+    fillAllBounds(targetState);
+  }
+};
+
+/**
+ * Transitions the dashboard to a fault state
+ * @param {Number} faultNum The number of the fault
+ */
+module.exports.setFault = function setFault(faultNum) {
+  let faultStr = getStateName(faultNum);
+  // console.error(`Entering a ${faultStr}`);
+  setIndicator(faultStr);
+};
+
+// Dynamic Dropdowns
+
+
+// code that actually creates the element with the passed in information from fillAllItems
+/**
+ * Creates an element and appends it to the dropdown
+ * @param {String} name The name of the sensor
+ * @param {String} group The group it belongs to
+ * @param {String} units The unit the sensor reports in
+ * @param {String} system the system the sensor belongs to
+ */
+function createItem(name, dropdown, units, system) { // eslint-disable-line no-unused-vars
+  let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
+  let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
+  fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
+
+  let header = document.createElement('a'); // Creates the actual DOM element
+  header.href = ''; // Sets the class
+  switch (dropdown) {
+    case 'myDropdown1':
+      header.onclick = function onclick() { // sets the onclick value
+        clone(name);
+        return false;
+      };
+      break;
+    case 'myDropdown2':
+      header.onclick = function onclick() { // sets the onclick value
+        startChart(0, name, fixedName, system, fixedUnits);
+        return false;
+      };
+      break;
+    case 'myDropdown3':
+      header.onclick = function onclick() { // sets the onclick value
+        startChart(1, name, fixedName, system, fixedUnits);
+        return false;
+      };
+      break;
+    default:
+      break;
+  }
+  header.innerHTML = `${fixedName}`; // Sets value in the box
+  let list = document.getElementById(dropdown);
+  list.appendChild(header);
+}
+
+/**
+ * Creates an element for each sensor and appends it to the dropdown
+ * @param {Boolean} testing true if testing false if not
+ */
+module.exports.fillAllItems = function fillAllItems(testing) { // eslint-disable-line
+  let subsystems = Object.keys(DATABASE); // Create array of each subsystem
+  subsystems.forEach((subsystem) => {
+    let currentSystem = DATABASE[subsystem];
+    sensors = Object.keys(currentSystem); // Create an array with all sensors in the subsystem
+
+    sensors.forEach((sensor) => {
+      if (!testing) createItem(`${sensor}`, 'myDropdown1', `${currentSystem[sensor].units}`); // For each sensor create an element
+      createItem(`${sensor}`, 'myDropdown2', `${currentSystem[sensor].units}`, subsystem); // For each sensor create an element
+      createItem(`${sensor}`, 'myDropdown3', `${currentSystem[sensor].units}`, subsystem); // For each sensor create an element
+    });
+  });
+};
+
+module.exports.stateTimer = STATE_TIMER;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 18:06:26 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

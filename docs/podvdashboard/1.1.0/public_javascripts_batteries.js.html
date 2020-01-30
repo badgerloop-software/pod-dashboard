@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>public/javascripts/batteries.js - Pod 5 Operators Dashboard Docs</title>
+    
+    
+    
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Batteries.html">Batteries</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Batteries.html#~checkMinMax">checkMinMax</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~createRow">createRow</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~createTable">createTable</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~fillCell">fillCell</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~initBatteries">initBatteries</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateBattery">updateBattery</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateBatteryAndRender">updateBatteryAndRender</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateCell">updateCell</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateTemps">updateTemps</a></li></ul></li><li><a href="module-Cache.html">Cache</a></li><li><a href="module-Communication.html">Communication</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Communication.html#.commandTorque">commandTorque</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.disableHV">disableHV</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.enableHV">enableHV</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.enPrecharge">enPrecharge</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.primBrakeOff">primBrakeOff</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.primBrakeOn">primBrakeOn</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.secBrakeOff">secBrakeOff</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.secBrakeOn">secBrakeOn</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendEBrake">sendEBrake</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendHVPing">sendHVPing</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendLVPing">sendLVPing</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendOverride">sendOverride</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendPropulse">sendPropulse</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendPumpDown">sendPumpDown</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendReadyCommand">sendReadyCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendReadyPump">sendReadyPump</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.toggleLatch">toggleLatch</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.toggleSafety">toggleSafety</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendHVCommand">sendHVCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendLVCommand">sendLVCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendPacket">sendPacket</a></li></ul></li><li><a href="module-Config.html">Config</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Config.html#~getConstantsPath">getConstantsPath</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~getJSONFile">getJSONFile</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~readJSON">readJSON</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~updateConstants">updateConstants</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~writeJSON">writeJSON</a></li></ul></li><li><a href="module-Data-Interfacing.html">Data-Interfacing</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.archiveData">archiveData</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.createCache">createCache</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.findRenderable">findRenderable</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.normalizePacket">normalizePacket</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~ambientToGauge">ambientToGauge</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~calculate">calculate</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~createID">createID</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~createJSON">createJSON</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getAbsoluteSpeed">getAbsoluteSpeed</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getLVSOC">getLVSOC</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getMaxMotorControllerTemp">getMaxMotorControllerTemp</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getPackPowerRemaining">getPackPowerRemaining</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getPowerConsumed">getPowerConsumed</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~interpolateLVSOC">interpolateLVSOC</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~updateData">updateData</a></li></ul></li><li><a href="module-Data-Recording.html">Data-Recording</a></li><li><a href="module-Dynamic-Loading.html">Dynamic-Loading</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.fillAllItems">fillAllItems</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.fillAllTables">fillAllTables</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.setFault">setFault</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.setIndicator">setIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.switchState">switchState</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createActualCol">createActualCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createHeaderCol">createHeaderCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createItem">createItem</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createMaxCol">createMaxCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createMinCol">createMinCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createRow">createRow</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillAllBounds">fillAllBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillRowBounds">fillRowBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillTable">fillTable</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillTableBounds">fillTableBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getMaxCell">getMaxCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getMinCell">getMinCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getStateName">getStateName</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~resetAllButtons">resetAllButtons</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~setMaxCell">setMaxCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~setMinCell">setMinCell</a></li></ul></li><li><a href="module-Electron-app.html">Electron-app</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Electron-app.html#~createWindow">createWindow</a></li></ul></li><li><a href="module-Handler.html">Handler</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Handler.html#~autosave">autosave</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkBraking">checkBraking</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkPackets">checkPackets</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkRecieve">checkRecieve</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkTransmit">checkTransmit</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~disableHV">disableHV</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~displayTimer">displayTimer</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~init">init</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~makeListener">makeListener</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~makeStateMachineListeners">makeStateMachineListeners</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~overrideState">overrideState</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~podConnectionCheck">podConnectionCheck</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~renderData">renderData</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~sendHeartbeats">sendHeartbeats</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setHVIndicator">setHVIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setLVIndicator">setLVIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setRecieve">setRecieve</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~toggleConfirmationModal">toggleConfirmationModal</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~togglePrimBrake">togglePrimBrake</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~toggleSecBrake">toggleSecBrake</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~updateLabels">updateLabels</a></li></ul></li><li><a href="module-Highcharts.html">Highcharts</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~addData">addData</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~addTimeAndData">addTimeAndData</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~clearChart">clearChart</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~initialize">initialize</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~newChart">newChart</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~startChart">startChart</a></li></ul></li><li><a href="module-Main.html">Main</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Main.html#~clear">clear</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~clone">clone</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~dropdown">dropdown</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~fillConstants">fillConstants</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~filterFunction">filterFunction</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~searchTable">searchTable</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~toggleSettingsModal">toggleSettingsModal</a></li></ul></li><li><a href="module-Renderer.html">Renderer</a></li><li><a href="module-TestingTool.html">TestingTool</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillAllTables">fillAllTables</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillCell">fillCell</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillScrubber">fillScrubber</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillTable">fillTable</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~findMax">findMax</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~handleFiles">handleFiles</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~importJSON">importJSON</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~incrementTimer">incrementTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~init">init</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~pauseTimer">pauseTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~playTimer">playTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~resetTimer">resetTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~updateScrubber">updateScrubber</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~updateTables">updateTables</a></li></ul></li><li><a href="module-TestPodServer.html">TestPodServer</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~getRandomIntInclusive">getRandomIntInclusive</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~getRandomValue">getRandomValue</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~heartbeat">heartbeat</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendData">sendData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendIncreasingData">sendIncreasingData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendJSON">sendJSON</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendSinusodalData">sendSinusodalData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendSpecificData">sendSpecificData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendTestData">sendTestData</a></li></ul></li></ul><h3>Classes</h3><ul><li><a href="module-Batteries-Battery.html">Battery</a></li><li><a href="module-Renderer.html">Renderer</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">public/javascripts/batteries.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * Batteries Modules
+ * @module Batteries
+ */
+const client = require('./public/javascripts/communication').recievedEmitter;
+
+/** @constant {Number} - Width of battery table */
+const TABLE_WIDTH = 8;
+
+/** @constant {Number} - Height of battery table */
+const TABLE_HEIGHT = 9;
+
+/** @constant {Number} - Number of Cells to be in Battery Index */
+const NUM_CELLS = TABLE_WIDTH * TABLE_HEIGHT;
+
+/** @constant {Number} - Maximum nominal voltage */
+const MAX_VOLTAGE = 4.2;
+
+/** @constant {Number} - Minimum nominal voltage */
+const MIN_VOLTAGE = 3.1;
+
+/** @constant {HTMLElement} - HTML Element of Table */
+const TABLE = document.getElementById('batteryTable');
+
+let batteries = [];
+/**
+ * Represents a single battery cell
+ * @constructor
+ * @param {String} name - name of battery cell
+ * @param {Number} row - row it belongs to
+ * @param {Number} col - column it belongs to
+ */
+function Battery(name, row, col) {
+  this.name = name;
+  this.voltage = 0.0;
+  this.temperature = null;
+  this.row = row;
+  this.col = col;
+
+  this.setVoltage = function setVoltage(voltage) {
+    this.voltage = voltage;
+  };
+
+  this.setTemp = function setTemp(temp) {
+    this.temperature = temp;
+  };
+
+  this.getVoltage = function getVoltage() {
+    return this.voltage.toFixed(4);
+  };
+
+  this.getTemp = function getTemp() {
+    return this.temperature;
+  };
+}
+/**
+ * Creates a row filled with battery cells
+ * @param {Number} rowNum - Row number to create
+ * @param {Number} numCells - Number of cells in row to create
+ */
+function createRow(rowNum, numCells) {
+  let row = document.createElement('tr');
+  for (let i = 0; i &lt; numCells; i++) {
+    let cell = document.createElement('td');
+    cell.id = `${rowNum}${i}cell`;
+    row.appendChild(cell);
+  }
+  TABLE.appendChild(row);
+}
+
+/**
+ * Creates battery table
+ * @param {Number} numRows - Number of rows in table
+ * @param {*} numCells - Number of cells per row
+ */
+function createTable(numRows, numCells) {
+  for (let i = 0; i &lt; numRows; i++) {
+    createRow(i, numCells);
+  }
+}
+
+/**
+ * Fills cell with battery cell data
+ * @param {Number} batteryIndex - Index of battery to fill
+ * @param {Number} row - Row of cell to fill
+ * @param {Number} col - Column of cell to fill
+ */
+function fillCell(batteryIndex, row, col) {
+  cell = document.getElementById(`${row}${col}cell`);
+  let list = document.createElement('ul');
+  let header = document.createElement('li');
+  header.innerHTML = `&lt;b>${batteries[batteryIndex].name}&lt;/b>`;
+  list.appendChild(header);
+  let voltage = document.createElement('li');
+  voltage.id = `${row}${col}volt`;
+  voltage.innerHTML = `Voltage: ${batteries[batteryIndex].getVoltage()}`;
+  list.appendChild(voltage);
+  cell.appendChild(list);
+}
+
+/**
+ * Creates table of batteries with given dimentions
+ */
+function initBatteries() {
+  createTable(TABLE_HEIGHT, TABLE_WIDTH);
+  for (let i = 0; i &lt; NUM_CELLS; i++) {
+    if (i >= 0 &amp;&amp; i &lt;= 7) {
+      batteries[i] = new Battery(`Cell ${i}`, 0, i);
+      fillCell(i, 0, (i));
+    }
+    if (i >= 8 &amp;&amp; i &lt;= 15) {
+      batteries[i] = new Battery(`Cell ${i}`, 1, (i - 8));
+      fillCell(i, 1, (i - 8));
+    }
+    if (i >= 16 &amp;&amp; i &lt;= 23) {
+      batteries[i] = new Battery(`Cell ${i}`, 2, (i - 16));
+      fillCell(i, 2, (i - 16));
+    }
+    if (i >= 24 &amp;&amp; i &lt;= 31) {
+      batteries[i] = new Battery(`Cell ${i}`, 3, (i - 24));
+      fillCell(i, 3, (i - 24));
+    }
+    if (i >= 32 &amp;&amp; i &lt;= 39) {
+      batteries[i] = new Battery(`Cell ${i}`, 4, (i - 32));
+      fillCell(i, 4, (i - 32));
+    }
+    if (i >= 40 &amp;&amp; i &lt;= 47) {
+      batteries[i] = new Battery(`Cell ${i}`, 5, (i - 40));
+      fillCell(i, 5, (i - 40));
+    }
+    if (i >= 48 &amp;&amp; i &lt;= 55) {
+      batteries[i] = new Battery(`Cell ${i}`, 6, (i - 48));
+      fillCell(i, 6, (i - 48));
+    }
+    if (i >= 56 &amp;&amp; i &lt;= 63) {
+      batteries[i] = new Battery(`Cell ${i}`, 7, (i - 56));
+      fillCell(i, 7, (i - 56));
+    }
+    if (i >= 64 &amp;&amp; i &lt;= 71) {
+      batteries[i] = new Battery(`Cell ${i}`, 8, (i - 64));
+      fillCell(i, 8, (i - 64));
+    }
+  }
+}
+
+// Run this function on window load
+window.onload = initBatteries;
+/**
+ * Update table cell with battery cell info
+ * @param {Number} batteryIndex index of battery
+ */
+function updateCell(batteryIndex) {
+  let cell = batteries[batteryIndex];
+  let voltage = document.getElementById(`${cell.row}${cell.col}volt`);
+  voltage.innerHTML = `Voltage: ${cell.getVoltage()}`;
+}
+
+/**
+ * Updates battery cell with voltage
+ * @param {Number} batteryIndex Index of battery to update
+ * @param {Number} voltage Voltage to put into battery
+ */
+function updateBattery(batteryIndex, voltage) {
+  let cell = batteries[batteryIndex];
+  cell.setVoltage(voltage);
+}
+
+/**
+ * Updates battery cell with voltage and renders it on the table
+ * @param {Number} batteryIndex Index of battery to update
+ * @param {Number} voltage Voltage to put into battery
+ */
+function updateBatteryAndRender(batteryIndex, voltage) {
+  updateBattery(batteryIndex, voltage);
+  updateCell(batteryIndex);
+}
+
+/**
+ * Updates the label at bottom of screen with temperatures
+ * @param {Number} min Minimum temperature of battery pack
+ * @param {Number} avg Average temperature of battery pack
+ * @param {Number} max Maximum termperature of battery pack
+ */
+function updateTemps(min, avg, max) {
+  document.getElementById('temps').innerHTML = `Min Cell Temp: ${min} C   Avg Cell Temp: ${avg} C   Max Cell Temp: ${max} C`;
+}
+
+/**
+ * Checks if a cell's voltage is within the nominal values
+ */
+function checkMinMax() {
+  let cell;
+  let tableCell;
+  let voltNum;
+  for (let i = 0; i &lt; NUM_CELLS; i++) {
+    cell = batteries[i];
+    // console.log(cell);
+    tableCell = document.getElementById(`${cell.row}${cell.col}volt`).innerHTML;
+    voltNum = Number(tableCell.substr(9));
+    // console.log(`${i} ${tableCell}`);
+    if (voltNum &lt;= MIN_VOLTAGE || voltNum >= MAX_VOLTAGE) {
+      document.getElementById(`${cell.row}${cell.col}cell`).style.backgroundColor = 'red';
+    } else {
+      document.getElementById(`${cell.row}${cell.col}cell`).style.backgroundColor = 'green';
+    }
+  }
+}
+// Check on given interval
+setInterval(checkMinMax, 1000);
+
+// On data in update and render voltages/ temps
+client.on('dataIn', (input) => {
+  console.log(input);
+  if (input.battery.cells) {
+    let cells = [];
+    for (let i = 0; i &lt; input.battery.cells.length; i++) {
+      cells[i] = input.battery.cells[i];
+    }
+    for (let i = 0; i &lt; cells.length; i++) {
+      console.log(`index ${i} volts ${cells[i]}`);
+      updateBatteryAndRender(i, cells[i]);
+    }
+    updateTemps(input.battery.minCellTemp, input.battery.avgCellTemp, input.battery.maxCellTemp);
+  }
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Dec 11 2019 18:06:26 GMT-0600 (Central Standard Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>
