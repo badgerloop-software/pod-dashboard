@@ -4,6 +4,7 @@
  * @description Creates and handles charts
  */
 const HIGHCHARTS = require('highcharts');
+require('highcharts/modules/annotations')(HIGHCHARTS);
 const CHARTCACHE = require('./cache');
 
 require('highcharts/modules/exporting')(HIGHCHARTS);
@@ -144,4 +145,10 @@ function startChart(index, name, title, system, units) { //eslint-disable-line
   initialize(index, currentTime, name, title, units); // initialize new chart
   // start interval to add points to the chart
   interval[index] = setInterval(() => { addTimeAndData(index, name, system); }, rate);
+}
+
+function addAnnotation(index) { //eslint-disable-line
+  charts[index].addAnnotation({
+
+  });
 }
