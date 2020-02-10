@@ -29,6 +29,11 @@ function newChart(id, title, index) { //eslint-disable-line
   charts[index] = HIGHCHARTS.chart(id, {
     chart: {
       type: 'line',
+      events: {
+        click: (event) => {
+          addAnnotate(index, event.xAxis[0].value, event.yAxis[0].value);
+        },
+      },
     },
     title: {
       text: title,
@@ -41,7 +46,7 @@ function newChart(id, title, index) { //eslint-disable-line
     },
     plotOptions: {
       series: {
-        enableMouseTracking: true, // shows point on hover
+        enableMouseTracking: false, // shows point on hover
         pointInterval: pointSpacing, // interval between points
       },
     },
@@ -121,6 +126,16 @@ function addTimeAndData(index, name, system) { //eslint-disable-line
   time[index] = CHARTCACHE[system][name].length * 0.03;
   // adds pair to the chart
   charts[index].series[0].addPoint([time[index], value[index]], true, false, { duration: 30 });
+  // charts[index].addAnnotation({
+  //   labels: [{
+  //     point: {
+  //       x: time[index],
+  //       y: value[index],
+  //       xAxis: 0,
+  //       yAxis: 0,
+  //     },
+  //   }],
+  // });
   // removes and shifts if 30 seconds of data are present
   if (charts[index].xAxis[0].getExtremes().dataMax
     - charts[index].xAxis[0].getExtremes().dataMin >= 30) {
@@ -147,8 +162,22 @@ function startChart(index, name, title, system, units) { //eslint-disable-line
   interval[index] = setInterval(() => { addTimeAndData(index, name, system); }, rate);
 }
 
-function addAnnotation(index) { //eslint-disable-line
-  charts[index].addAnnotation({
+function addAnnotate(index, time, value) { //eslint-disable-line
 
+  // charts[index].annotations[0].labels[0].graphic.animate({
+  //   x: time[index] * 10,
+  //   y: value[index] * 10,
+  //   xAxis: 0,
+  //   yAxis: 0,
+  // });
+  charts[index].addAnnotation({
+    labels: [{
+      point: {
+        x: time,
+        y: value,
+        xAxis: 0,
+        yAxis: 0,
+      },
+    }],
   });
 }
