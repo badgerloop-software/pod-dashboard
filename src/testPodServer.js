@@ -188,7 +188,7 @@ function sendIncreasingData() { // eslint-disable-line no-unused-vars
 // setInterval(sendTestData, DATA_SEND_RATE);
 
 // Send Sinusodial Data
-// setInterval(sendSinusodalData, DATA_SEND_RATE);
+setInterval(sendSinusodalData, DATA_SEND_RATE);
 
 // Send Increasing Data
-setInterval(sendIncreasingData, DATA_SEND_RATE);
+//setInterval(sendIncreasingData, DATA_SEND_RATE);

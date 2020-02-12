@@ -31,7 +31,7 @@ function newChart(id, title, index) { //eslint-disable-line
       type: 'line',
       events: {
         click: (event) => {
-          addAnnotate(index, event.xAxis[0].value, event.yAxis[0].value);
+          addAnnotate(index, event.xAxis[0].value, event.yAxis[0].value); //eslint-disable-line
         },
       },
     },
