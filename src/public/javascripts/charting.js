@@ -65,6 +65,7 @@ function newChart(id, title, index) { //eslint-disable-line
  * @param {int} index index of the chart to be cleared
  */
 function clearChart(index) { //eslint-disable-line
+  clearAnnotate(index); //eslint-disable-line
   charts[index].xAxis[0].setExtremes(null, null); // unsets extremes
   clearInterval(interval[index]); // clears interval
   interval[index] = null;
@@ -171,6 +172,7 @@ function addAnnotate(index, time, value) { //eslint-disable-line
   //   yAxis: 0,
   // });
   charts[index].addAnnotation({
+    id: 'time',
     labels: [{
       point: {
         x: time,
@@ -179,5 +181,13 @@ function addAnnotate(index, time, value) { //eslint-disable-line
         yAxis: 0,
       },
     }],
+    labelOptions: {
+      allowOverlap: true,
+    }
   });
+}
+
+function clearAnnotate(index) { //eslint-disable-line
+  charts[index].annotations.forEach(a => a.destroy());
+  charts[index].annotations.length = 0;
 }
