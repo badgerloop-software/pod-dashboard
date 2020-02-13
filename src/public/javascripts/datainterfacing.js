@@ -309,37 +309,43 @@ function createCSV(dataRecordingCSV, name) {
   });
 }
 
-function JSONToCSV(){
+function JSONToCSV() {
   let subsystemsArray = Object.keys(STORED_DATA);
-  let dataRecordingCSV = "";
-  // Adds the subsystems to the first row of the CSV
-    for (let i = 0; i < subsystemsArray.length; i += 1) {
-      let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
-      for (let z = 0; z < sensorsArray.length; z += 1) {
-        dataRecordingCSV += (subsystemsArray[i] + ",");
-      }
-    }
-    dataRecordingCSV += "\n";
-    // Adds the sensors to the second row of the CSV
-    for (let i = 0; i < subsystemsArray.length; i += 1) {
-      let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
-      for (let z = 0; z < sensorsArray.length; z += 1) {
-        dataRecordingCSV += (sensorsArray[z] + ",");
-      }
-    }
-    dataRecordingCSV += "\n";
-    // Adds the data to the columns
-    for(let element = 0; element < DATA_RECORDING[subsystemsArray[0]][Object.keys(STORED_DATA[subsystemsArray[0]])[0]].length; element++) {
-      for (let subsystem = 0; subsystem < subsystemsArray.length; subsystem += 1) {
-        let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[subsystem]]);
-        for (let z = 0; z < sensorsArray.length; z += 1) {
-          dataRecordingCSV += (DATA_RECORDING[subsystemsArray[subsystem]][sensorsArray[z]][element] + ",");
-        }
-      }
-      dataRecordingCSV += "\n";
-    }
+  let dataRecordingCSV = '';
 
-    return dataRecordingCSV;
+  // Adds the subsystems to the first row of the CSV
+  for (let i = 0; i < subsystemsArray.length; i += 1) {
+    let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
+    for (let z = 0; z < sensorsArray.length; z += 1) {
+      dataRecordingCSV += (`${subsystemsArray[i]},`);
+    }
+  }
+  dataRecordingCSV += '\n';
+
+  // Adds the sensors to the second row of the CSV
+  for (let i = 0; i < subsystemsArray.length; i += 1) {
+    let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
+    for (let z = 0; z < sensorsArray.length; z += 1) {
+      dataRecordingCSV += (`${sensorsArray[z]},`);
+    }
+  }
+  dataRecordingCSV += '\n';
+
+  let sensorZero = Object.keys(STORED_DATA[subsystemsArray[0]]);
+  let numItems = DATA_RECORDING[subsystemsArray[0]][sensorZero[0]].length;
+
+  // Adds the data to the columns
+  for (let element = 0; element < numItems; element++) {
+    for (let subsystem = 0; subsystem < subsystemsArray.length; subsystem += 1) {
+      let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[subsystem]]);
+      for (let z = 0; z < sensorsArray.length; z += 1) {
+        dataRecordingCSV += (`${DATA_RECORDING[subsystemsArray[subsystem]][sensorsArray[z]][element]},`);
+      }
+    }
+    dataRecordingCSV += '\n';
+  }
+
+  return dataRecordingCSV;
 }
 
 /**
@@ -347,12 +353,11 @@ function JSONToCSV(){
  * @param {String} name - The name of the file to export
  */
 module.exports.archiveData = function archiveData(name) {
-   if (name) createJSON(name);
-   else createJSON(createID());
+  if (name) createJSON(name);
+  else createJSON(createID());
 
   let dataRecordingCSV = JSONToCSV();
 
-   if(name) createCSV(dataRecordingCSV, name);
-   else createCSV(dataRecordingCSV, createID());
-
+  if (name) createCSV(dataRecordingCSV, name);
+  else createCSV(dataRecordingCSV, createID());
 };
