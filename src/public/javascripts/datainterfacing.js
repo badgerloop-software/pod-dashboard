@@ -320,7 +320,7 @@ function JSONToCSV() {
   let dataRecordingCSV = '';
 
   // Adds the subsystems to the first row of the CSV
-  dataRecordingCSV += 'time' + ",";
+  dataRecordingCSV += 'time,';
   for (let i = 0; i < subsystemsArray.length; i += 1) {
     let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
     for (let z = 0; z < sensorsArray.length; z += 1) {
@@ -330,7 +330,7 @@ function JSONToCSV() {
   dataRecordingCSV += '\n';
 
   // Adds the sensors to the second row of the CSV
-  dataRecordingCSV += 'time (s)' + ",";
+  dataRecordingCSV += 'time (s),';
   for (let i = 0; i < subsystemsArray.length; i += 1) {
     let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
     for (let z = 0; z < sensorsArray.length; z += 1) {
@@ -345,9 +345,9 @@ function JSONToCSV() {
   // gets initial time
   let initTime = DATA_RECORDING.time[0].split('.');
   while (initTime[3].length < 3) {
-    initTime[3] = "0" + time[3];
+    initTime[3] = `0${time[3]}`;
   }
-  initTime[3] = "." + initTime[3];
+  initTime[3] = `.${initTime[3]}`;
   offset = initTime[0] * 3600 + initTime[1] * 60 + initTime[2] + initTime[3];
 
   // Adds the data to the columns
@@ -357,11 +357,11 @@ function JSONToCSV() {
       if (subsystem === 0) {
         let time = DATA_RECORDING.time[element].split('.');
         while (time[3].length < 3) {
-          time[3] = "0" + time[3];
+          time[3] = `0${time[3]}`;
         }
-        time[3] = "." + time[3];
+        time[3] = `.${time[3]}`;
         let offsetTime = time[0] * 3600 + time[1] * 60 + time[2] + time[3] - offset;
-        dataRecordingCSV += offsetTime + ",";
+        dataRecordingCSV += `${offsetTime},`;
       }
       for (let z = 0; z < sensorsArray.length; z += 1) {
         dataRecordingCSV += (`${DATA_RECORDING[subsystemsArray[subsystem]][sensorsArray[z]][element]},`);
