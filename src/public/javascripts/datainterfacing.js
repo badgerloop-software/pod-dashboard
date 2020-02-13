@@ -48,6 +48,7 @@ module.exports.createCache = function createCache(name) { // eslint-disable-line
   if (name === DATA_RECORDING) { // creates dataRecording cache
     try {
       let subsystemsArray = Object.keys(STORED_DATA);
+      DATA_RECORDING.time = [];
       for (let i = 0; i < subsystemsArray.length; i += 1) {
         let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
         DATA_RECORDING[subsystemsArray[i]] = {};
@@ -179,6 +180,11 @@ function ambientToGauge(input) { // eslint-disable-line no-unused-vars
  */
 function updateData(dataIn, location) {
   const groups = Object.keys(dataIn);
+  let d = new Date();
+  if (location === DATA_RECORDING) {
+    let time = `${d.getHours()}.${d.getMinutes()}.${d.getSeconds()}.${d.getMilliseconds()}`;
+    location.time.push(time);
+  }
   groups.forEach((group) => {
     const sensors = Object.keys(dataIn[group]);
     sensors.forEach((sensor) => {
@@ -314,6 +320,7 @@ function JSONToCSV() {
   let dataRecordingCSV = '';
 
   // Adds the subsystems to the first row of the CSV
+  dataRecordingCSV += 'time' + ",";
   for (let i = 0; i < subsystemsArray.length; i += 1) {
     let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
     for (let z = 0; z < sensorsArray.length; z += 1) {
@@ -323,6 +330,7 @@ function JSONToCSV() {
   dataRecordingCSV += '\n';
 
   // Adds the sensors to the second row of the CSV
+  dataRecordingCSV += 'time (s)' + ",";
   for (let i = 0; i < subsystemsArray.length; i += 1) {
     let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[i]]);
     for (let z = 0; z < sensorsArray.length; z += 1) {
@@ -334,10 +342,27 @@ function JSONToCSV() {
   let sensorZero = Object.keys(STORED_DATA[subsystemsArray[0]]);
   let numItems = DATA_RECORDING[subsystemsArray[0]][sensorZero[0]].length;
 
+  // gets initial time
+  let initTime = DATA_RECORDING.time[0].split('.');
+  while (initTime[3].length < 3) {
+    initTime[3] = "0" + time[3];
+  }
+  initTime[3] = "." + initTime[3];
+  offset = initTime[0] * 3600 + initTime[1] * 60 + initTime[2] + initTime[3];
+
   // Adds the data to the columns
   for (let element = 0; element < numItems; element++) {
     for (let subsystem = 0; subsystem < subsystemsArray.length; subsystem += 1) {
       let sensorsArray = Object.keys(STORED_DATA[subsystemsArray[subsystem]]);
+      if (subsystem === 0) {
+        let time = DATA_RECORDING.time[element].split('.');
+        while (time[3].length < 3) {
+          time[3] = "0" + time[3];
+        }
+        time[3] = "." + time[3];
+        let offsetTime = time[0] * 3600 + time[1] * 60 + time[2] + time[3] - offset;
+        dataRecordingCSV += offsetTime + ",";
+      }
       for (let z = 0; z < sensorsArray.length; z += 1) {
         dataRecordingCSV += (`${DATA_RECORDING[subsystemsArray[subsystem]][sensorsArray[z]][element]},`);
       }
