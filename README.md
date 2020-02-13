@@ -41,7 +41,7 @@ npm run pretest
 ```
 or 
 ```
-npn run lint
+npm run lint
 ```
 To run lint on a certian file
 ```
