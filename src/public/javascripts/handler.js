@@ -1,7 +1,7 @@
 /**
  * @module Handler
  * @author Eric Udlis, Michael Handler
- * @description HAndle all updates and interfacing between the front-end and back-end
+ * @description Handle all updates and interfacing between the front-end and back-end
  */
 const CLIENT = require('./public/javascripts/communication');
 const DATA_INTERFACING = require('./public/javascripts/datainterfacing');
@@ -14,10 +14,19 @@ const COUNTDOWN = require('./public/javascripts/Countdown');
 const CACHE = require('./cache');
 const DATA_RECORDING = require('./dataRecording');
 
+// New OOP stuff
+const Button = require('./public/assets/button');
+const { State, STATES } = require('./public/javascripts/State');
+
 const D = document;
 const TIMEOUT = 5000;
 const CONNECTION_CHECK_INTERVAL = 1000;
 const AUTOSAVE_INTERVAL = 30000;
+const STATE_BUTTONS = [['Power Off', '#C10000'], ['Idle', '#3C9159'],
+  ['Pumpdown', '#C66553'], ['Propulsion', '#C6A153', true], ['Braking', '#34495E'],
+  ['Stopped', '#34495E'], ['Crawl Precharge', '#C6A153'], ['Crawl', '#A84671', true],
+  ['Post Run', '#34495E'], ['Safe to Approach', '#3C9159'],
+  ['Run Fault', 'red'], ['Non-Run Fault', 'red']];
 
 const STATE_MACHINE_CONTROL_PANEL = D.getElementById('header3');
 const STATE_MACHINE_BUTTONS = STATE_MACHINE_CONTROL_PANEL.getElementsByTagName('button');
@@ -69,12 +78,12 @@ function renderData(group, sensor) {
 }
 
 /**
- * @param {String} state State to override to
+ * @param {State} state State to override to
  * Manually transitions the dashboard to state given
  */
 function overrideState(state) {
-  if (DEBUG) console.error(`OVERIDING STATE TO ${state} STATE`);
-  CLIENT.sendOverride(state);
+  if (DEBUG) console.error(`OVERIDING STATE TO ${state.displayName} STATE`);
+  CLIENT.sendOverride(state.shortName);
   DYNAMIC_LOADING.switchState(state);
   STATE_TIMER.reset();
 }
@@ -133,6 +142,20 @@ function makeStateMachineListeners() {
     if (STATE_MACHINE_BUTTONS[i] === DATA_RECORD_BUTTON || ARCHIVE_BUTTON) continue; // eslint-disable-line
     makeListener(STATE_MACHINE_BUTTONS[i]);
   }
+}
+
+function createStateMachineButtons() {
+  let parent = document.getElementById('statemachineBox');
+  STATE_BUTTONS.forEach((state) => {
+    let formattedText = state[0].replace(/ /g, '').toLowerCase();
+    let newState = new State(formattedText, state[0], null, state[1], state[2]);
+    newState.btn.setParent(parent);
+    newState.btn.onClick(() => {
+      overrideState(newState);
+      newState.btn.activate();
+    });
+  });
+  STATES[0].setActive();
 }
 /**
  * Toggles the primary braking indicators and calls the
@@ -244,7 +267,7 @@ function setLVIndicator(state) {
 function setHVIndicator(state) {
   if (state) HV_INDICATOR.className = 'statusGood';
   if (!state) HV_INDICATOR.className = 'statusBad';
-  if (!state && !DEBUG) overrideState('powerOff');
+  if (!state && !DEBUG) overrideState(STATES[0]);
 }
 /**
  * Checks if dashboard has recieved packets within timeout period
@@ -347,23 +370,23 @@ EMERGENCY_STOP_BTN.addEventListener('click', () => {
   CLIENT.sendEBrake();
 });
 
-// Sends Propulse command on user click and confirmation
-document.getElementById('propulsion').addEventListener('click', () => {
-  toggleConfirmationModal('propulsion systems?', () => {
-    console.log('go');
-    propCountdown = new COUNTDOWN(30);
-    propCountdown.start();
-    // activeTimer = propCountdown;
-    overrideState('propulsion');
-  });
-});
+// // Sends Propulse command on user click and confirmation
+// document.getElementById('propulsion').addEventListener('click', () => {
+//   toggleConfirmationModal('propulsion systems?', () => {
+//     console.log('go');
+//     propCountdown = new COUNTDOWN(30);
+//     propCountdown.start();
+//     // activeTimer = propCountdown;
+//     overrideState('propulsion');
+//   });
+// });
 
-// Sends crawl command on user click and confirmation
-document.getElementById('crawl').addEventListener('click', () => {
-  toggleConfirmationModal('service propulsion?', () => {
-    overrideState('crawl');
-  });
-});
+// // Sends crawl command on user click and confirmation
+// document.getElementById('crawl').addEventListener('click', () => {
+//   toggleConfirmationModal('service propulsion?', () => {
+//     overrideState('crawl');
+//   });
+// });
 
 confirmModalBtn.addEventListener('click', toggleConfirmationModal);
 CLOSE_BUTTON_2.addEventListener('click', toggleConfirmationModal);
@@ -371,11 +394,11 @@ PRIMARY_BRAKE_OFF.addEventListener('click', () => { togglePrimBrake(false, true)
 PRIMARY_BRAKE_ON.addEventListener('click', () => { togglePrimBrake(true, true); });
 SECONDARY_BRAKE_ON.addEventListener('click', () => { toggleSecBrake(true, true); });
 SECONDARY_BRAKE_OFF.addEventListener('click', () => { toggleSecBrake(false, true); });
-D.getElementById('crawlPrecharge').addEventListener('click', () => {
-  toggleConfirmationModal('service precharge?', () => {
-    overrideState('crawlPrecharge');
-  });
-});
+// D.getElementById('crawlPrecharge').addEventListener('click', () => {
+//   toggleConfirmationModal('service precharge?', () => {
+//     overrideState('crawlPrecharge');
+//   });
+// });
 
 // Sends command torque command on user click
 document.getElementById('cmdTorque').addEventListener('click', () => {
@@ -394,18 +417,18 @@ document.getElementById('hvEnable').addEventListener('click', () => {
 });
 
 // Sends pumpdown command on user click and confirmation
-D.getElementById('pumpdown').addEventListener('click', () => {
-  toggleConfirmationModal('precharge?', () => {
-    overrideState('pumpdown');
-  });
-});
+// D.getElementById('pumpdown').addEventListener('click', () => {
+//   toggleConfirmationModal('precharge?', () => {
+//     overrideState('pumpdown');
+//   });
+// });
 
 // Sends precharge command on user click and confirmation
-D.getElementById('precharge').addEventListener('click', () => {
-  toggleConfirmationModal('the precharge action, not the state!', () => {
-    CLIENT.enPrecharge();
-  });
-});
+// D.getElementById('precharge').addEventListener('click', () => {
+//   toggleConfirmationModal('the precharge action, not the state!', () => {
+//     CLIENT.enPrecharge();
+//   });
+// });
 
 // Sends Latch on command on user click and confirm and changes indicators
 D.getElementById('latchOn').addEventListener('click', () => {
@@ -469,6 +492,7 @@ function init() {
   DATA_INTERFACING.createCache(DATA_RECORDING);
   DYNAMIC_LOADING.fillAllItems();
   DYNAMIC_LOADING.fillAllTables();
+  createStateMachineButtons();
   makeStateMachineListeners();
   displayTimer(GLOBAL_TIMER);
   console.log(DEBUG);

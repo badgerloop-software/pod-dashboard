@@ -172,6 +172,7 @@ function setMaxCell(sensor, value) {
  */
 function fillRowBounds(subsystem, sensor, state) {
   let renderable = DATA_INTERFACING.findRenderable();
+  console.log(state);
   let stored = renderable[subsystem][sensor].limits[state];
   setMinCell(sensor, stored.min);
   setMaxCell(sensor, stored.max);
@@ -247,18 +248,18 @@ function getStateName(stateNum) {
  * Sets all state buttons to inactive
  */
 function resetAllButtons() {
-  document.getElementById('powerOff').className = 'stateButtonInactive';
-  document.getElementById('idle').className = 'stateButtonInactive';
-  document.getElementById('postRun').className = 'stateButtonInactive';
-  document.getElementById('pumpdown').className = 'stateButtonInactive';
-  document.getElementById('propulsion').className = 'stateButtonInactive';
-  document.getElementById('braking').className = 'stateButtonInactive';
-  document.getElementById('stopped').className = 'stateButtonInactive';
-  document.getElementById('crawlPrecharge').className = 'stateButtonInactive';
-  document.getElementById('crawl').className = 'stateButtonInactive';
-  document.getElementById('nonRunFault').className = 'stateButtonInactive';
-  document.getElementById('runFault').className = 'stateButtonInactive';
-  document.getElementById('safeToApproach').className = 'stateButtonInactive';
+  // document.getElementById('powerOff').className = 'stateButtonInactive';
+  // document.getElementById('idle').className = 'stateButtonInactive';
+  // document.getElementById('postRun').className = 'stateButtonInactive';
+  // document.getElementById('pumpdown').className = 'stateButtonInactive';
+  // document.getElementById('propulsion').className = 'stateButtonInactive';
+  // document.getElementById('braking').className = 'stateButtonInactive';
+  // document.getElementById('stopped').className = 'stateButtonInactive';
+  // document.getElementById('crawlPrecharge').className = 'stateButtonInactive';
+  // document.getElementById('crawl').className = 'stateButtonInactive';
+  // document.getElementById('nonRunFault').className = 'stateButtonInactive';
+  // document.getElementById('runFault').className = 'stateButtonInactive';
+  // document.getElementById('safeToApproach').className = 'stateButtonInactive';
 }
 
 /**
@@ -268,32 +269,31 @@ function resetAllButtons() {
  */
 function setIndicator(state) {
   resetAllButtons();
-  document.getElementById(state).className = 'stateButton';
+  // document.getElementById(state).className = 'stateButton';
 }
 
 module.exports.setIndicator = setIndicator;
 
 /**
  * Transitions the dashboard to a new state
- * @param {String} state - String of state to transition to
+ * @param {State} state - String of state to transition to
  * @param {Number} state - Number of state to transition to
  */
 module.exports.switchState = function switchState(state) {
-  let type = typeof state;
-  let targetState = state;
+  console.log(state);
   if (STATE_TIMER.process !== false) {
     STATE_TIMER.stop();
     STATE_TIMER.reset();
   } else {
     STATE_TIMER.start();
   }
-  if (type === 'number') targetState = getStateName(state);
-  if (targetState === undefined) {
+  if (state === undefined) {
     console.error('Undefined State');
   } else {
-    setIndicator(targetState);
-    if (targetState === 'crawlPrecharge') targetState = 'stopped'; // Super jank, fix later
-    fillAllBounds(targetState);
+    // setIndicator(targetState);
+    if (state === 'crawlPrecharge') state = 'stopped'; // Super jank, fix later
+    console.log(state.shortname);
+    fillAllBounds(state.shortname);
   }
 };
 
