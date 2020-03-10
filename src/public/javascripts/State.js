@@ -3,7 +3,7 @@ let Button = require('../assets/button');
 let STATES = [];
 module.exports.STATES = STATES;
 class State {
-  constructor(shortName, displayName,btn,  btnColor, hazardus) {
+  constructor(shortName, displayName, btn, btnColor, hazardus) {
     this.shortname = shortName;
     this.displayName = displayName;
     this.hazardus = hazardus;
@@ -30,7 +30,6 @@ class State {
     this.active = false;
     this.btn.deactivate();
   }
-
 }
 
 module.exports.State = State;

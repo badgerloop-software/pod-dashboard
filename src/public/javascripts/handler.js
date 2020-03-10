@@ -82,6 +82,7 @@ function renderData(group, sensor) {
  * Manually transitions the dashboard to state given
  */
 function overrideState(state) {
+  if (!state) throw new Error('Undefined State');
   if (DEBUG) console.error(`OVERIDING STATE TO ${state.displayName} STATE`);
   CLIENT.sendOverride(state.shortName);
   DYNAMIC_LOADING.switchState(state);
@@ -144,8 +145,9 @@ function makeStateMachineListeners() {
   }
 }
 
-function createStateMachineButtons() {
+let createStateMachineButtons = new Promise((resolve, reject) => {
   let parent = document.getElementById('statemachineBox');
+  if(!parent) reject("Unrecognized Parent");
   STATE_BUTTONS.forEach((state) => {
     let formattedText = state[0].replace(/ /g, '').toLowerCase();
     let newState = new State(formattedText, state[0], null, state[1], state[2]);
@@ -156,7 +158,9 @@ function createStateMachineButtons() {
     });
   });
   STATES[0].setActive();
+  resolve(STATES[0]);
 }
+});
 /**
  * Toggles the primary braking indicators and calls the
  * communication call if noted by call
@@ -477,11 +481,7 @@ ARCHIVE_BUTTON.addEventListener('click', () => {
     console.log('data was not being recorded');
   }
 });
-// Intervals
-// Runs pod connection check on interval
-setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL);
-// Autosaves on interval
-setInterval(autosave, AUTOSAVE_INTERVAL);
+
 
 // Init
 /**
@@ -492,11 +492,19 @@ function init() {
   DATA_INTERFACING.createCache(DATA_RECORDING);
   DYNAMIC_LOADING.fillAllItems();
   DYNAMIC_LOADING.fillAllTables();
-  createStateMachineButtons();
-  makeStateMachineListeners();
+  createStateMachineButtons.then(() => {
+    makeStateMachineListeners();
+  }).catch((err) => {
+    throw new Error(err);
+  });
   displayTimer(GLOBAL_TIMER);
   console.log(DEBUG);
   // toggleMotorSafety(true);
+  // Intervals
+  // Runs pod connection check on interval
+  setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL);
+  // Autosaves on interval
+  setInterval(autosave, AUTOSAVE_INTERVAL);
 }
 // Run at init
 init();
