@@ -10,12 +10,10 @@ const CONSTANTS = require('./constants');
 const DYNAMIC_LOADING = require('./public/javascripts/dynamicloading');
 const RENDERER = require('./public/javascripts/renderer');
 const TIMER = require('./public/javascripts/Timer');
-const COUNTDOWN = require('./public/javascripts/Countdown');
 const CACHE = require('./cache');
 const DATA_RECORDING = require('./dataRecording');
 
 // New OOP stuff
-const Button = require('./public/assets/button');
 const { State, STATES } = require('./public/javascripts/State');
 
 const D = document;
@@ -23,13 +21,13 @@ const TIMEOUT = 5000;
 const CONNECTION_CHECK_INTERVAL = 1000;
 const AUTOSAVE_INTERVAL = 30000;
 const STATE_BUTTONS = [['Power Off', '#C10000'], ['Idle', '#3C9159'],
-  ['Pumpdown', '#C66553'], ['Propulsion', '#C6A153', true], ['Braking', '#34495E'],
+  ['Pumpdown', '#C66553', true], ['Propulsion', '#C6A153', true], ['Braking', '#34495E'],
   ['Stopped', '#34495E'], ['Crawl Precharge', '#C6A153'], ['Crawl', '#A84671', true],
   ['Post Run', '#34495E'], ['Safe to Approach', '#3C9159'],
-  ['Run Fault', 'red'], ['Non-Run Fault', 'red']];
+  ['Run Fault', 'red', false, true], ['Non-Run Fault', 'red', false, true]];
+  // [Display Name, btn color, isHazardus, isFault]
 
 const STATE_MACHINE_CONTROL_PANEL = D.getElementById('header3');
-const STATE_MACHINE_BUTTONS = STATE_MACHINE_CONTROL_PANEL.getElementsByTagName('button');
 const LV_INDICATOR = D.getElementById('connectionDot1');
 const HV_INDICATOR = D.getElementById('connectionDot2');
 const RECIEVE_INDICATOR_1 = D.getElementById('link1');
@@ -84,24 +82,12 @@ function renderData(group, sensor) {
 function overrideState(state) {
   if (!state) throw new Error('Undefined State');
   if (DEBUG) console.error(`OVERIDING STATE TO ${state.displayName} STATE`);
-  CLIENT.sendOverride(state.shortName);
-  DYNAMIC_LOADING.switchState(state);
+  if (state.isHazardus) state.confirmActive(CONFIRMATION_MODAL, confirmModalBtn);
+  else state.setActive();
   STATE_TIMER.reset();
 }
 
 // State Machine Control Panel Event Listeners
-/**
- * Creates a listener for a button to override to state that the button is labled with
- * @param {HTMLElement} btn HTML element to create a listener for
- */
-function makeListener(btn) {
-  btn.addEventListener('click', (e) => {
-    let clicked = String(e.target.tagName);
-    let temp = String(e.target.id);
-    if (clicked === 'P') temp = e.target.parentElement.id;
-    overrideState(temp);
-  });
-}
 /**
  * Creates a JSON save labled "Autosave"
  */
@@ -126,31 +112,12 @@ function toggleConfirmationModal(msg, cb) {
   }
 }
 
-// iterate through list of buttons and call makeListener
-/**
- * Creates listeners for all the state machine buttons
- */
-function makeStateMachineListeners() {
-  for (let i = 0; i < STATE_MACHINE_BUTTONS.length; i += 1) {
-    // handle exceptions
-    if (STATE_MACHINE_BUTTONS[i].classList.contains('stateButton') && STATE_MACHINE_BUTTONS[i].id !== 'powerOff') {
-      // If it is a colored button
-      continue; // eslint-disable-line
-    }
-    if (STATE_MACHINE_BUTTONS[i] === D.getElementById('pumpdown') || STATE_MACHINE_BUTTONS[i] === D.getElementById('crawlPrecharge') || STATE_MACHINE_BUTTONS[i] === D.getElementById('crawl') || STATE_MACHINE_BUTTONS[i] === D.getElementById('propulsion')) {
-      continue; // eslint-disable-line
-    }
-    if (STATE_MACHINE_BUTTONS[i] === DATA_RECORD_BUTTON || ARCHIVE_BUTTON) continue; // eslint-disable-line
-    makeListener(STATE_MACHINE_BUTTONS[i]);
-  }
-}
-
 let createStateMachineButtons = new Promise((resolve, reject) => {
   let parent = document.getElementById('statemachineBox');
-  if(!parent) reject("Unrecognized Parent");
+  if (!parent) reject(new Error('Parent not found'));
   STATE_BUTTONS.forEach((state) => {
     let formattedText = state[0].replace(/ /g, '').toLowerCase();
-    let newState = new State(formattedText, state[0], null, state[1], state[2]);
+    let newState = new State(formattedText, state[0], null, state[1], state[2], state[3]);
     newState.btn.setParent(parent);
     newState.btn.onClick(() => {
       overrideState(newState);
@@ -159,7 +126,6 @@ let createStateMachineButtons = new Promise((resolve, reject) => {
   });
   STATES[0].setActive();
   resolve(STATES[0]);
-}
 });
 /**
  * Toggles the primary braking indicators and calls the
@@ -374,23 +340,6 @@ EMERGENCY_STOP_BTN.addEventListener('click', () => {
   CLIENT.sendEBrake();
 });
 
-// // Sends Propulse command on user click and confirmation
-// document.getElementById('propulsion').addEventListener('click', () => {
-//   toggleConfirmationModal('propulsion systems?', () => {
-//     console.log('go');
-//     propCountdown = new COUNTDOWN(30);
-//     propCountdown.start();
-//     // activeTimer = propCountdown;
-//     overrideState('propulsion');
-//   });
-// });
-
-// // Sends crawl command on user click and confirmation
-// document.getElementById('crawl').addEventListener('click', () => {
-//   toggleConfirmationModal('service propulsion?', () => {
-//     overrideState('crawl');
-//   });
-// });
 
 confirmModalBtn.addEventListener('click', toggleConfirmationModal);
 CLOSE_BUTTON_2.addEventListener('click', toggleConfirmationModal);
@@ -398,11 +347,7 @@ PRIMARY_BRAKE_OFF.addEventListener('click', () => { togglePrimBrake(false, true)
 PRIMARY_BRAKE_ON.addEventListener('click', () => { togglePrimBrake(true, true); });
 SECONDARY_BRAKE_ON.addEventListener('click', () => { toggleSecBrake(true, true); });
 SECONDARY_BRAKE_OFF.addEventListener('click', () => { toggleSecBrake(false, true); });
-// D.getElementById('crawlPrecharge').addEventListener('click', () => {
-//   toggleConfirmationModal('service precharge?', () => {
-//     overrideState('crawlPrecharge');
-//   });
-// });
+
 
 // Sends command torque command on user click
 document.getElementById('cmdTorque').addEventListener('click', () => {
@@ -420,19 +365,6 @@ document.getElementById('hvEnable').addEventListener('click', () => {
   });
 });
 
-// Sends pumpdown command on user click and confirmation
-// D.getElementById('pumpdown').addEventListener('click', () => {
-//   toggleConfirmationModal('precharge?', () => {
-//     overrideState('pumpdown');
-//   });
-// });
-
-// Sends precharge command on user click and confirmation
-// D.getElementById('precharge').addEventListener('click', () => {
-//   toggleConfirmationModal('the precharge action, not the state!', () => {
-//     CLIENT.enPrecharge();
-//   });
-// });
 
 // Sends Latch on command on user click and confirm and changes indicators
 D.getElementById('latchOn').addEventListener('click', () => {
@@ -493,18 +425,18 @@ function init() {
   DYNAMIC_LOADING.fillAllItems();
   DYNAMIC_LOADING.fillAllTables();
   createStateMachineButtons.then(() => {
-    makeStateMachineListeners();
+    setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL);
+    // Autosaves on interval
+    setInterval(autosave, AUTOSAVE_INTERVAL);
   }).catch((err) => {
-    throw new Error(err);
+    throw err;
   });
   displayTimer(GLOBAL_TIMER);
   console.log(DEBUG);
   // toggleMotorSafety(true);
   // Intervals
   // Runs pod connection check on interval
-  setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL);
-  // Autosaves on interval
-  setInterval(autosave, AUTOSAVE_INTERVAL);
+
 }
 // Run at init
 init();

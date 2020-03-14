@@ -260,3 +260,6 @@ $RECYCLE.BIN/
 
 # Mac icloud files
 *.icloud
+
+# Dev Tools
+*.jshintrc

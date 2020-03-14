@@ -14,7 +14,7 @@ const DATA_INTERFACING = require('./datainterfacing');
 const TIMER = require('./Timer');
 
 const STATE_TIMER = new TIMER();
-
+const DEFAULT_STATE = 'poweroff';
 // Dynamic Tables
 /**
  * Creates the name column for the sensor
@@ -40,12 +40,14 @@ function createHeaderCol(name, group, units) {
  * @returns {HTMLElement} The table column
  */
 function createMinCol(name, group) {
+  if (typeof name !== 'string') throw new Error('Error: Name must be a string');
   let renderable = DATA_INTERFACING.findRenderable();
+  if (!renderable[group]) throw new Error('Error: Group is not found in renderable list');
   let col = document.createElement('td'); // Creates Element
   col.className = 'min'; // Assigns class
   col.id = `${name}Min`; // Assigns ID
   // Fills box with correct value
-  col.innerHTML = String(renderable[group][name].limits.powerOff.min);
+  col.innerHTML = String(renderable[group][name].limits[DEFAULT_STATE].min);
   return col;
 }
 
@@ -71,7 +73,7 @@ function createMaxCol(name, group) {
   let col = document.createElement('td');
   col.className = 'max';
   col.id = `${name}Max`;
-  col.innerHTML = `${renderable[group][name].limits.powerOff.max}`;
+  col.innerHTML = `${renderable[group][name].limits[DEFAULT_STATE].max}`;
   return col;
 }
 
@@ -134,7 +136,8 @@ module.exports.fillAllTables = function fillAllTables() { // eslint-disable-line
  * @returns {HTMLElement} The div the contains value text
  */
 function getMinCell(sensor) {
-  return document.getElementById(`${sensor}Min`);
+  let domEle = document.getElementById(`${sensor}Min`) || -1;
+  return domEle;
 }
 
 /**
@@ -143,7 +146,8 @@ function getMinCell(sensor) {
  * @returns {HTMLElement} The div the contains value text
  */
 function getMaxCell(sensor) {
-  return document.getElementById(`${sensor}Max`);
+  let domEle = document.getElementById(`${sensor}Max`) || -1;
+  return domEle;
 }
 
 /**
@@ -152,7 +156,8 @@ function getMaxCell(sensor) {
  * @param {Number} value Value to set
  */
 function setMinCell(sensor, value) {
-  getMinCell(sensor).innerHTML = Number(value);
+  if (getMinCell(sensor) === -1) console.warn(`Warning: Sensor ${sensor} does not have a place on table`);
+  else getMinCell(sensor).innerHTML = Number(value);
 }
 
 /**
@@ -161,7 +166,8 @@ function setMinCell(sensor, value) {
  * @param {Number} value Value to set
  */
 function setMaxCell(sensor, value) {
-  getMaxCell(sensor).innerHTML = Number(value);
+  if (getMaxCell(sensor) === -1) console.warn(`Warning: Sensor ${sensor} does not have a place on table`);
+  else getMaxCell(sensor).innerHTML = Number(value);
 }
 
 /**
@@ -172,8 +178,8 @@ function setMaxCell(sensor, value) {
  */
 function fillRowBounds(subsystem, sensor, state) {
   let renderable = DATA_INTERFACING.findRenderable();
-  console.log(state);
   let stored = renderable[subsystem][sensor].limits[state];
+  if (!stored) throw new Error(`Error: Can not find limits for ${sensor} at state ${state}`);
   setMinCell(sensor, stored.min);
   setMaxCell(sensor, stored.max);
 }
@@ -280,7 +286,6 @@ module.exports.setIndicator = setIndicator;
  * @param {Number} state - Number of state to transition to
  */
 module.exports.switchState = function switchState(state) {
-  console.log(state);
   if (STATE_TIMER.process !== false) {
     STATE_TIMER.stop();
     STATE_TIMER.reset();
@@ -290,9 +295,6 @@ module.exports.switchState = function switchState(state) {
   if (state === undefined) {
     console.error('Undefined State');
   } else {
-    // setIndicator(targetState);
-    if (state === 'crawlPrecharge') state = 'stopped'; // Super jank, fix later
-    console.log(state.shortname);
     fillAllBounds(state.shortname);
   }
 };
