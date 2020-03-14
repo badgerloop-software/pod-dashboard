@@ -82,7 +82,7 @@ function renderData(group, sensor) {
 function overrideState(state) {
   if (!state) throw new Error('Undefined State');
   if (DEBUG) console.error(`OVERIDING STATE TO ${state.displayName} STATE`);
-  if (state.isHazardus) state.confirmActive(CONFIRMATION_MODAL, confirmModalBtn);
+  if (state.isHazardus) state.confirmActive(CONFIRMATION_MODAL);
   else state.setActive();
   STATE_TIMER.reset();
 }
@@ -341,8 +341,8 @@ EMERGENCY_STOP_BTN.addEventListener('click', () => {
 });
 
 
-confirmModalBtn.addEventListener('click', toggleConfirmationModal);
-CLOSE_BUTTON_2.addEventListener('click', toggleConfirmationModal);
+// confirmModalBtn.addEventListener('click', toggleConfirmationModal);
+// CLOSE_BUTTON_2.addEventListener('click', toggleConfirmationModal);
 PRIMARY_BRAKE_OFF.addEventListener('click', () => { togglePrimBrake(false, true); });
 PRIMARY_BRAKE_ON.addEventListener('click', () => { togglePrimBrake(true, true); });
 SECONDARY_BRAKE_ON.addEventListener('click', () => { toggleSecBrake(true, true); });

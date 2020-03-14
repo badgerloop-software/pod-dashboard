@@ -35,8 +35,7 @@ class State {
   confirmActive(modalTemplate) {
     let modal = modalTemplate.cloneNode(true);
     document.body.appendChild(modal);
-    modal.classList.toggle('show-modal');
-    console.log(modal.childNodes);
+    State.toggleConfirmationModal(modal);
     let button = modal.childNodes[1].childNodes[7];
     let text = modal.childNodes[1].childNodes[5];
     let closeButton = modal.childNodes[1].childNodes[1];
@@ -45,7 +44,7 @@ class State {
       document.body.removeChild(modal);
     });
     console.log(button);
-    button.addEventListener('click', toggleConfirmationModal);
+    button.addEventListener('click', () => { State.toggleConfirmationModal(modal); });
     text.innerHTML = `Are you sure you want to transition to ${this.displayName}?`;
     button.addEventListener('click', () => {
       this.setActive();
@@ -57,6 +56,19 @@ class State {
   setInactive() {
     this.active = false;
     this.btn.deactivate();
+  }
+
+  static toggleConfirmationModal(modal) {
+    modal.classList.toggle('show-modal');
+  }
+
+  static getActiveState() {
+    for (let i = 0; i < STATES.length; i++) {
+      if (STATES[i].active) {
+        return { id: i, state: STATES[i] };
+      }
+    }
+    return -1;
   }
 }
 
