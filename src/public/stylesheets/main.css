@@ -586,11 +586,7 @@ span2{
 }
 
 /* individual button styles */
-#primBrakeOn, #primBrakeOff{
-  background-color: #34495E;
-  color: white !important;
-  border: 2px solid #23242A;
-}
+
 #hvEnable, #hvDisable {
   background-color: #F4D76F;
   color: #000000;

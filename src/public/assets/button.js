@@ -1,5 +1,5 @@
 class Button {
-  constructor(name, text, parent, bgColor, txtColor, hazard, state) {
+  constructor(name, text, parent, bgColor, txtColor, hazard) {
     if (!name || !text) {
       throw new Error('Button needs name and text defined!');
     }
@@ -7,9 +7,6 @@ class Button {
     this.text = text;
     this.domElement = this.createNewElement();
     this.parent = parent;
-    if (!state) {
-      throw new Error('State Buttons must be created with a state!');
-    }
 
     if (this.parent) {
       if (typeof this.parent !== 'object') {
@@ -37,9 +34,33 @@ class Button {
     }
   }
 
+  activate() {
+    this.setTextColor('lime');
+  }
+
+  deactivate() {
+    this.setTextColor('white');
+  }
+
+
+  greyOut() {
+    this.domElement.classList.add('stateButtonInactive');
+    this.domElement.classList.remove('stateButton');
+  }
+
+  colorize() {
+    this.domElement.classList.remove('stateButtonInactive');
+    this.domElement.classList.add('stateButton');
+  }
+
+  setTextColor(color) {
+    this.txtColor = color;
+    this.domElement.style.color = this.txtColor;
+  }
+
   createNewElement() {
     let button = document.createElement('button');
-    button.className = 'stateButtonInactive';
+    button.className = 'stateButton';
     button.id = String(this.name).toLowerCase();
     let buttonText = document.createElement('p');
     buttonText.innerHTML = this.text;
@@ -53,14 +74,6 @@ class Button {
     textElement.innerHTML = text;
   }
 
-  activate() {
-    this.domElement.className = 'stateButton';
-  }
-
-  deactivate() {
-    this.domElement.className = 'stateButtonInactive';
-  }
-
   onClick(fcn) {
     this.domElement.addEventListener('click', fcn);
   }
@@ -71,6 +84,31 @@ class Button {
     }
     this.parent = parent;
     this.parent.appendChild(this.domElement);
+  }
+
+  /**
+   * Displays a confirmation window before transitioning to state
+   * @param {HTMLElement} modalTemplate The template of the modal to display
+   */
+  confirmActive(modalTemplate, msg, cb) {
+    let modal = modalTemplate.cloneNode(true);
+    document.body.appendChild(modal);
+    State.toggleConfirmationModal(modal);
+    let button = modal.childNodes[1].childNodes[7];
+    let text = modal.childNodes[1].childNodes[5];
+    let closeButton = modal.childNodes[1].childNodes[1];
+    closeButton.addEventListener('click', () => {
+      modal.classList.toggle('show-modal');
+      document.body.removeChild(modal);
+    });
+    button.addEventListener('click', () => { State.toggleConfirmationModal(modal); });
+    text.innerHTML = `Are you sure you want to ${msg}?`;
+    button.addEventListener('click', () => {
+      this.activate();
+      cb();
+      modal.classList.toggle('show-modal');
+      document.body.removeChild(modal);
+    });
   }
 }
 

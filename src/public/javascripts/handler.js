@@ -15,6 +15,9 @@ const DATA_RECORDING = require('./dataRecording');
 
 // New OOP stuff
 const { State, STATES } = require('./public/javascripts/State');
+const ControlPanelButton = require('./public/assets/ControlPanelButton');
+
+ControlPanelButton.setParent(document.getElementById('controlpanelBox'));
 
 const D = document;
 const TIMEOUT = 5000;
@@ -27,24 +30,19 @@ const STATE_BUTTONS = [['Power Off', '#C10000'], ['Idle', '#3C9159'],
   ['Run Fault', 'red', false, true], ['Non-Run Fault', 'red', false, true]];
   // [Display Name, btn color, isHazardus, isFault]
 
-const STATE_MACHINE_CONTROL_PANEL = D.getElementById('header3');
 const LV_INDICATOR = D.getElementById('connectionDot1');
 const HV_INDICATOR = D.getElementById('connectionDot2');
 const RECIEVE_INDICATOR_1 = D.getElementById('link1');
 const RECIEVE_INDICATOR_2 = D.getElementById('link2');
-const PRIMARY_BRAKE_ON = D.getElementById('primBrakeOn');
-const PRIMARY_BRAKE_OFF = D.getElementById('primBrakeOff');
-const SECONDARY_BRAKE_ON = D.getElementById('secBrakeVentOn');
-const SECONDARY_BRAKE_OFF = D.getElementById('secBrakeVentOff');
-const PRIMARY_BRAKE_ON_TEXT = D.getElementById('primEnText');
-const PRIMARY_BRAKE_OFF_TEXT = D.getElementById('primDisText');
-const SECONDAY_BRAKE_ON_TEXT = D.getElementById('secEnText');
-const SECONDAY_BRAKE_OFF_TEXT = D.getElementById('secDisText');
+const DATA_RECORD_BUTTON = new ControlPanelButton('dataRecord', 'Start Data Recording', '#AEA8D3', false);
+const ARCHIVE_BUTTON = new ControlPanelButton('archiveData', 'Save Data Recording', '#AEA8D3', false);
+ARCHIVE_BUTTON.greyOut();
+const PRIMARY_BRAKE_ON = new ControlPanelButton('primBrakeOn', 'Prim. Brake Act', '#34495E', false);
+const PRIMARY_BRAKE_OFF = new ControlPanelButton('primBrakeOff', 'Prim. Brake Retr', '#34495E', false);
+const SECONDARY_BRAKE_ON = new ControlPanelButton('secBrakeOff', 'Sec. Brake Act', '#5C97BF', false);
+const SECONDARY_BRAKE_OFF = new ControlPanelButton('secBrakeOn', 'Sec. Brake Retr', '#5C97BF', false);
 const CONFIRMATION_MODAL = D.querySelector('.confirmationModal');
-const CLOSE_BUTTON_2 = D.querySelector('.close-button2');
 const EMERGENCY_STOP_BTN = D.getElementById('estop');
-const ARCHIVE_BUTTON = D.getElementById('archiveButton');
-const DATA_RECORD_BUTTON = D.getElementById('dataRecordButton');
 const TABLES_RENDERER = new RENDERER();
 const GLOBAL_TIMER = new TIMER();
 const { stateTimer: STATE_TIMER } = DYNAMIC_LOADING;
@@ -82,8 +80,7 @@ function renderData(group, sensor) {
 function overrideState(state) {
   if (!state) throw new Error('Undefined State');
   if (DEBUG) console.error(`OVERIDING STATE TO ${state.displayName} STATE`);
-  if (state.isHazardus) state.confirmActive(CONFIRMATION_MODAL);
-  else state.setActive();
+  state.activate(CONFIRMATION_MODAL);
   STATE_TIMER.reset();
 }
 
@@ -112,21 +109,6 @@ function toggleConfirmationModal(msg, cb) {
   }
 }
 
-let createStateMachineButtons = new Promise((resolve, reject) => {
-  let parent = document.getElementById('statemachineBox');
-  if (!parent) reject(new Error('Parent not found'));
-  STATE_BUTTONS.forEach((state) => {
-    let formattedText = state[0].replace(/ /g, '').toLowerCase();
-    let newState = new State(formattedText, state[0], null, state[1], state[2], state[3]);
-    newState.btn.setParent(parent);
-    newState.btn.onClick(() => {
-      overrideState(newState);
-      newState.btn.activate();
-    });
-  });
-  STATES[0].setActive();
-  resolve(STATES[0]);
-});
 /**
  * Toggles the primary braking indicators and calls the
  * communication call if noted by call
@@ -135,13 +117,13 @@ let createStateMachineButtons = new Promise((resolve, reject) => {
  */
 function togglePrimBrake(state, call) {
   if (state) {
-    PRIMARY_BRAKE_ON_TEXT.style.color = 'lime';
-    PRIMARY_BRAKE_OFF_TEXT.style.color = 'white';
+    PRIMARY_BRAKE_ON.activate();
+    PRIMARY_BRAKE_OFF.deactivate();
     if (call) CLIENT.primBrakeOn();
   }
   if (!state) {
-    PRIMARY_BRAKE_OFF_TEXT.style.color = 'lime';
-    PRIMARY_BRAKE_ON_TEXT.style.color = 'white';
+    PRIMARY_BRAKE_OFF.activate();
+    PRIMARY_BRAKE_ON.deactivate();
     if (call) CLIENT.primBrakeOff();
   }
 }
@@ -153,13 +135,13 @@ function togglePrimBrake(state, call) {
  */
 function toggleSecBrake(state, call) {
   if (state) {
-    SECONDAY_BRAKE_ON_TEXT.style.color = 'lime';
-    SECONDAY_BRAKE_OFF_TEXT.style.color = 'white';
+    SECONDARY_BRAKE_ON.activate();
+    SECONDARY_BRAKE_OFF.deactivate();
     if (call) CLIENT.secBrakeOn();
   }
   if (!state) {
-    SECONDAY_BRAKE_OFF_TEXT.style.color = 'lime';
-    SECONDAY_BRAKE_ON_TEXT.style.color = 'white';
+    SECONDARY_BRAKE_ON.deactivate();
+    SECONDARY_BRAKE_OFF.activate();
     if (call) CLIENT.secBrakeOff();
   }
 }
@@ -343,100 +325,139 @@ EMERGENCY_STOP_BTN.addEventListener('click', () => {
 
 // confirmModalBtn.addEventListener('click', toggleConfirmationModal);
 // CLOSE_BUTTON_2.addEventListener('click', toggleConfirmationModal);
-PRIMARY_BRAKE_OFF.addEventListener('click', () => { togglePrimBrake(false, true); });
-PRIMARY_BRAKE_ON.addEventListener('click', () => { togglePrimBrake(true, true); });
-SECONDARY_BRAKE_ON.addEventListener('click', () => { toggleSecBrake(true, true); });
-SECONDARY_BRAKE_OFF.addEventListener('click', () => { toggleSecBrake(false, true); });
 
-
-// Sends command torque command on user click
-document.getElementById('cmdTorque').addEventListener('click', () => {
-  CLIENT.commandTorque();
+PRIMARY_BRAKE_ON.onClick(() => {
+  togglePrimBrake(true, true);
 });
 
-// Sends HV enable command on user click and changes indicators
-document.getElementById('hvEnable').addEventListener('click', () => {
-  toggleConfirmationModal('high voltage systems?', () => {
-    document.getElementById('hvText').classList.add('active');
-    if (document.getElementById('hvDisText').classList.contains('active')) {
-      document.getElementById('hvDisText').classList.remove('active');
-    }
-    CLIENT.enableHV();
-  });
+PRIMARY_BRAKE_OFF.onClick(() => {
+  togglePrimBrake(false, true);
 });
 
-
-// Sends Latch on command on user click and confirm and changes indicators
-D.getElementById('latchOn').addEventListener('click', () => {
-  D.getElementById('latchOnText').style.color = 'red';
-  D.getElementById('latchOffText').style.color = 'white';
-  toggleConfirmationModal('turn on the MCU Latch?', () => {
-    CLIENT.toggleLatch(true);
-  });
+SECONDARY_BRAKE_ON.onClick(() => {
+  toggleSecBrake(true, true);
 });
 
-// Runs disable HV function on user click
-document.getElementById('hvDisable').addEventListener('click', disableHV);
-
-// Toggles latch off on user click
-D.getElementById('latchOff').addEventListener('click', () => {
-  D.getElementById('latchOnText').style.color = 'white';
-  D.getElementById('latchOffText').style.color = 'red';
-  CLIENT.toggleLatch(false);
+SECONDARY_BRAKE_OFF.onClick(() => {
+  toggleSecBrake(false, true);
 });
+
+// // Sends command torque command on user click
+// document.getElementById('cmdTorque').addEventListener('click', () => {
+//   CLIENT.commandTorque();
+// });
+
+// // Sends HV enable command on user click and changes indicators
+// document.getElementById('hvEnable').addEventListener('click', () => {
+//   toggleConfirmationModal('high voltage systems?', () => {
+//     document.getElementById('hvText').classList.add('active');
+//     if (document.getElementById('hvDisText').classList.contains('active')) {
+//       document.getElementById('hvDisText').classList.remove('active');
+//     }
+//     CLIENT.enableHV();
+//   });
+// });
+
+
+// // Sends Latch on command on user click and confirm and changes indicators
+// D.getElementById('latchOn').addEventListener('click', () => {
+//   D.getElementById('latchOnText').style.color = 'red';
+//   D.getElementById('latchOffText').style.color = 'white';
+//   toggleConfirmationModal('turn on the MCU Latch?', () => {
+//     CLIENT.toggleLatch(true);
+//   });
+// });
+
+// // Runs disable HV function on user click
+// document.getElementById('hvDisable').addEventListener('click', disableHV);
+
+// // Toggles latch off on user click
+// D.getElementById('latchOff').addEventListener('click', () => {
+//   D.getElementById('latchOnText').style.color = 'white';
+//   D.getElementById('latchOffText').style.color = 'red';
+//   CLIENT.toggleLatch(false);
+// });
 
 // Starts the recording of data to dataRecording.js
-DATA_RECORD_BUTTON.addEventListener('click', () => {
+DATA_RECORD_BUTTON.onClick(() => {
   if (!DATA_INTERFACING.isDataRecording) {
     DATA_INTERFACING.recordingEvent.emit('on'); // Tell DI to run start recording data
     console.log('recording data');
-    DATA_RECORD_BUTTON.classList.remove('stateButton');
-    DATA_RECORD_BUTTON.classList.add('stateButtonInactive');
-    ARCHIVE_BUTTON.classList.remove('stateButtonInactive');
-    ARCHIVE_BUTTON.classList.add('stateButton');
+    DATA_RECORD_BUTTON.greyOut();
+    ARCHIVE_BUTTON.colorize();
   } else {
     console.log('data is already being recorded');
   }
 });
 
 // Archives the data from dataRecording.js if data is being recorded
-ARCHIVE_BUTTON.addEventListener('click', () => {
+ARCHIVE_BUTTON.onClick(() => {
   if (DATA_INTERFACING.isDataRecording) {
     DATA_INTERFACING.recordingEvent.emit('off'); // Tells DI to stop recording data
     DATA_INTERFACING.archiveData();
     console.log('archiving data');
-    DATA_RECORD_BUTTON.classList.add('stateButton');
-    DATA_RECORD_BUTTON.classList.remove('stateButtonInactive');
-    ARCHIVE_BUTTON.classList.add('stateButtonInactive');
-    ARCHIVE_BUTTON.classList.remove('stateButton');
+    DATA_RECORD_BUTTON.colorize();
+    ARCHIVE_BUTTON.greyOut();
   } else {
     console.log('data was not being recorded');
   }
 });
 
 
-// Init
+// Initilization
+/**
+ * Creates the states and state machine buttons
+ */
+function createStateMachineButtons() {
+  return new Promise((resolve, reject) => {
+    let parent = document.getElementById('statemachineBox');
+    if (!parent) reject(new Error('Parent not found'));
+    STATE_BUTTONS.forEach((state) => {
+      let formattedText = state[0].replace(/ /g, '').toLowerCase();
+      let newState = new State(formattedText, state[0], null, state[1], state[2], state[3]);
+      newState.btn.setParent(parent);
+      newState.btn.onClick(() => {
+        overrideState(newState);
+        newState.btn.activate();
+      });
+    });
+    STATES[0].activate();
+    resolve(STATES[0]);
+  });
+}
+
+/**
+ * Function to create the caches and tables and dropdowns of the dash
+ */
+function createDashboard() {
+  return new Promise((resolve, reject) => {
+    try {
+      DATA_INTERFACING.createCache();
+      DATA_INTERFACING.createCache(DATA_RECORDING);
+      DYNAMIC_LOADING.fillAllItems();
+      DYNAMIC_LOADING.fillAllTables();
+    } catch (e) {
+      reject(new Error(e));
+    }
+    resolve();
+  });
+}
+
 /**
  * Function to run at start of dashboard
  */
 function init() {
-  DATA_INTERFACING.createCache();
-  DATA_INTERFACING.createCache(DATA_RECORDING);
-  DYNAMIC_LOADING.fillAllItems();
-  DYNAMIC_LOADING.fillAllTables();
-  createStateMachineButtons.then(() => {
-    setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL);
-    // Autosaves on interval
-    setInterval(autosave, AUTOSAVE_INTERVAL);
-  }).catch((err) => {
-    throw err;
+  createDashboard().then(() => { // First create the dashboard
+    createStateMachineButtons().then(() => { // Then create all the state objects
+      setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL); // Finally set intervals
+      // Autosaves on interval
+      setInterval(autosave, AUTOSAVE_INTERVAL);
+    }).catch((err) => {
+      throw err;
+    });
   });
   displayTimer(GLOBAL_TIMER);
   console.log(DEBUG);
-  // toggleMotorSafety(true);
-  // Intervals
-  // Runs pod connection check on interval
-
 }
 // Run at init
 init();
