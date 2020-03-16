@@ -36,8 +36,8 @@ class State {
    * Either prompts the user to confirm activation or sets active state
    * @param {HTMLElement} modalTemplate The template of the modal to display
    */
-  activate(modalTemplate) {
-    if (this.isHazardus) {
+  activate(modalTemplate, fromPod) {
+    if (this.isHazardus && !fromPod) {
       this.confirmActive(modalTemplate);
     } else {
       this.setActive();
@@ -55,8 +55,9 @@ class State {
     this.active = true;
     this.btn.activate();
     CLIENT.sendOverride(this.shortName);
-    if (!this.isFault) DYNAMIC_LOADING.switchState(this);
-    else DYNAMIC_LOADING.setFault(this);
+    if (!this.isFault) {
+      DYNAMIC_LOADING.fillAllBounds(this.shortname);
+    } else DYNAMIC_LOADING.setFault(this);
   }
 
   /**
@@ -114,14 +115,18 @@ class State {
     return -1;
   }
 
-  static setActiveState(state, modal) {
+  static setActiveState(state, modal, fromPod) {
     if (typeof state === 'object') {
-      state.activate(modal);
+      state.activate(modal, fromPod);
     }
 
     if (typeof state === 'number') {
-      STATES[state].activate(modal);
+      STATES[state].activate(modal, fromPod);
     }
+  }
+
+  static getStateById(id) {
+    return STATES.find(state => state.idNum === id);
   }
 }
 

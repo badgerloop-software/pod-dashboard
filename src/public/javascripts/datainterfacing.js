@@ -132,7 +132,7 @@ function getAbsoluteSpeed(input) {
 function interpolateLVSOC(x) {
   // From LV Pack SOC spreadsheet
   let y = 1.1142 * (x ** 6) + 78.334 * (x ** 5) - 2280.5 * (x ** 4)
-    + 35181 * (x ** 3) - 404340 * (x ** 2) + 1000000 * x + 3000000;
+   + 35181 * (x ** 3) - 404340 * (x ** 2) + 1000000 * x + 3000000;
   return Number(y);
 }
 

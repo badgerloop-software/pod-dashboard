@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /**
  * @module Dynamic-Loading
  * @author Eric Udlis, Luke Houge
@@ -15,6 +16,7 @@ const TIMER = require('./Timer');
 
 const STATE_TIMER = new TIMER();
 const DEFAULT_STATE = 'poweroff';
+const State = require('./State');
 // Dynamic Tables
 /**
  * Creates the name column for the sensor
@@ -213,6 +215,8 @@ function fillAllBounds(state) { // eslint-disable-line no-unused-vars
   });
 }
 
+module.exports.fillAllBounds = fillAllBounds;
+
 /**
  * Turns a state number into a state string
  * @param {Number} stateNum State number
@@ -251,51 +255,18 @@ function getStateName(stateNum) {
 }
 
 /**
- * Sets all state buttons to inactive
- */
-function resetAllButtons() {
-  // document.getElementById('powerOff').className = 'stateButtonInactive';
-  // document.getElementById('idle').className = 'stateButtonInactive';
-  // document.getElementById('postRun').className = 'stateButtonInactive';
-  // document.getElementById('pumpdown').className = 'stateButtonInactive';
-  // document.getElementById('propulsion').className = 'stateButtonInactive';
-  // document.getElementById('braking').className = 'stateButtonInactive';
-  // document.getElementById('stopped').className = 'stateButtonInactive';
-  // document.getElementById('crawlPrecharge').className = 'stateButtonInactive';
-  // document.getElementById('crawl').className = 'stateButtonInactive';
-  // document.getElementById('nonRunFault').className = 'stateButtonInactive';
-  // document.getElementById('runFault').className = 'stateButtonInactive';
-  // document.getElementById('safeToApproach').className = 'stateButtonInactive';
-}
-
-/**
- * Sets a state button as active
- * @param {String} state ID of state button to set
- * @static
- */
-function setIndicator(state) {
-  resetAllButtons();
-  // document.getElementById(state).className = 'stateButton';
-}
-
-module.exports.setIndicator = setIndicator;
-
-/**
  * Transitions the dashboard to a new state
  * @param {State} state - String of state to transition to
  * @param {Number} state - Number of state to transition to
  */
 module.exports.switchState = function switchState(state) {
-  if (STATE_TIMER.process !== false) {
-    STATE_TIMER.stop();
-    STATE_TIMER.reset();
-  } else {
-    STATE_TIMER.start();
+  if (typeof state === 'number') {
+    state = State.getStateById(state);
   }
-  if (state === undefined) {
-    console.error('Undefined State');
+  if (state === null || state === undefined) {
+    console.error(`Undefined State: ${state}`);
   } else {
-    fillAllBounds(state.shortname);
+    State.setActiveState(state, null, true);
   }
 };
 
