@@ -25,7 +25,7 @@ class ControlPanelButton extends Button {
   static setParent(parent) { // Note the parent must be set before creating any buttons
     ControlPanelButton.parent = parent;
   }
-  
+
   /**
    * Gets the parent for the control panel buttons
    * @returns {HTMLElement} The control panel HTMLElement

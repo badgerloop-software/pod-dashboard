@@ -5,7 +5,7 @@ const Button = require('./button');
  */
 class StateButton extends Button {
   /**
-   * 
+   * Creates a state button
    * @param {String} name Button shortname
    * @param {String} text Button text
    * @param {HTMLElement} parent Button HTML Parent
