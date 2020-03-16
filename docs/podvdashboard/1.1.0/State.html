@@ -3,7 +3,7 @@
 <head>
     
     <meta charset="utf-8">
-    <title>Main - Pod 5 Operators Dashboard Docs</title>
+    <title>State - Pod 5 Operators Dashboard Docs</title>
     
     
     
@@ -37,7 +37,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Main</h1>
+    <h1 class="page-title">State</h1>
     
 
     
@@ -49,8 +49,11 @@
 
 <header>
     
+        <h2>
+        State
+        </h2>
         
-            
+            <div class="class-description">Class reperesenting a state on the state machine</div>
         
     
 </header>
@@ -60,11 +63,14 @@
         <div class="container-overview">
         
             
-                <div class="description">Handles all responsive UI elements of the dashboard</div>
-            
 
-            
-                
+    
+    <h2>Constructor</h2>
+    
+
+    <h4 class="name" id="State"><span class="type-signature"></span>new State<span class="signature">(shortName, displayName, btn, btnColor, isHazardus, isFault)</span><span class="type-signature"></span></h4>
+
+    
 
 
 
@@ -74,7 +80,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_javascripts_main.js.html">public/javascripts/main.js</a>, <a href="public_javascripts_main.js.html#line1">line 1</a>
+        <a href="public_javascripts_State.js.html">public/javascripts/State.js</a>, <a href="public_javascripts_State.js.html#line20">line 20</a>
     </li></ul></dd>
     
 
@@ -95,13 +101,6 @@
     
 
     
-    <dt class="tag-author">Author:</dt>
-    <dd class="tag-author">
-        <ul>
-            <li>Eric Udlis, Luke Houge</li>
-        </ul>
-    </dd>
-    
 
     
 
@@ -120,6 +119,9 @@
 
 
 
+<div class="description">
+    Creates a state
+</div>
 
 
 
@@ -131,23 +133,187 @@
 
 
 
+    <h5>Parameters:</h5>
+    
 
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
 
+        <th>Type</th>
 
+        
 
+        
 
+        <th class="last">Description</th>
+    </tr>
+    </thead>
 
+    <tbody>
+    
 
+        <tr>
+            
+                <td class="name"><code>shortName</code></td>
+            
 
-
-
-
-
-
-
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
 
 
             
+            </td>
+
+            
+
+            
+
+            <td class="description last">code name for the state, no spaces</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>displayName</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Display name for the buttons and console logs, any format</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>btn</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="Button.html">Button</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">(Optional) Button to assign to state if button is already made,if creating a button assign null</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>btnColor</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">Color to create state button</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isHazardus</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">If the state requires confirmation to transition to</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>isFault</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Boolean</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">If the state is a fault state</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         
         </div>
     
@@ -174,7 +340,7 @@
 
     
 
-    <h4 class="name" id="~clear"><span class="type-signature">(inner) </span>clear<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".getActiveState"><span class="type-signature">(static) </span>getActiveState<span class="signature">()</span><span class="type-signature"> &rarr; {<a href="State.html">State</a>}</span></h4>
 
     
 
@@ -186,7 +352,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_javascripts_main.js.html">public/javascripts/main.js</a>, <a href="public_javascripts_main.js.html#line108">line 108</a>
+        <a href="public_javascripts_State.js.html">public/javascripts/State.js</a>, <a href="public_javascripts_State.js.html#line108">line 108</a>
     </li></ul></dd>
     
 
@@ -226,7 +392,7 @@
 
 
 <div class="description">
-    Clears the focus div
+    Returns the active state
 </div>
 
 
@@ -253,142 +419,28 @@
 
 
 
-
-
+<h5>Returns:</h5>
 
         
-            
-
-    
-
-    <h4 class="name" id="~clone"><span class="type-signature">(inner) </span>clone<span class="signature">(id)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_javascripts_main.js.html">public/javascripts/main.js</a>, <a href="public_javascripts_main.js.html#line56">line 56</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    Clones the value from a table to the focus header
+<div class="param-desc">
+    The active state
 </div>
 
 
 
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
+<dl class="param-type">
+    <dt>
+        Type
+    </dt>
+    <dd>
         
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
+<span class="param-type"><a href="State.html">State</a></span>
 
 
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">ID of sensor to focus</td>
-        </tr>
+    </dd>
+</dl>
 
     
-    </tbody>
-</table>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -397,7 +449,7 @@
 
     
 
-    <h4 class="name" id="~dropdown"><span class="type-signature">(inner) </span>dropdown<span class="signature">(num)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id=".toggleConfirmationModal"><span class="type-signature">(static) </span>toggleConfirmationModal<span class="signature">(modal)</span><span class="type-signature"></span></h4>
 
     
 
@@ -409,7 +461,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_javascripts_main.js.html">public/javascripts/main.js</a>, <a href="public_javascripts_main.js.html#line191">line 191</a>
+        <a href="public_javascripts_State.js.html">public/javascripts/State.js</a>, <a href="public_javascripts_State.js.html#line100">line 100</a>
     </li></ul></dd>
     
 
@@ -449,7 +501,7 @@
 
 
 <div class="description">
-    Determines which dropdown is being triggered
+    Toggles showing/hiding a modal
 </div>
 
 
@@ -487,13 +539,13 @@
 
         <tr>
             
-                <td class="name"><code>num</code></td>
+                <td class="name"><code>modal</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">HTMLElement</span>
 
 
             
@@ -503,7 +555,7 @@
 
             
 
-            <td class="description last">The number of dropdown to trigger</td>
+            <td class="description last">The modal to toggle</td>
         </tr>
 
     
@@ -533,7 +585,7 @@
 
     
 
-    <h4 class="name" id="~fillConstants"><span class="type-signature">(inner) </span>fillConstants<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="activate"><span class="type-signature"></span>activate<span class="signature">(modalTemplate)</span><span class="type-signature"></span></h4>
 
     
 
@@ -545,7 +597,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_javascripts_main.js.html">public/javascripts/main.js</a>, <a href="public_javascripts_main.js.html#line256">line 256</a>
+        <a href="public_javascripts_State.js.html">public/javascripts/State.js</a>, <a href="public_javascripts_State.js.html#line39">line 39</a>
     </li></ul></dd>
     
 
@@ -585,94 +637,7 @@
 
 
 <div class="description">
-    Fills constants in settings modal
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="~filterFunction"><span class="type-signature">(inner) </span>filterFunction<span class="signature">(id)</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-<dl class="details">
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_javascripts_main.js.html">public/javascripts/main.js</a>, <a href="public_javascripts_main.js.html#line199">line 199</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-<div class="description">
-    The filters dropdown based on search
+    Either prompts the user to confirm activation or sets active state
 </div>
 
 
@@ -710,13 +675,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>modalTemplate</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">HTMLElement</span>
 
 
             
@@ -726,7 +691,7 @@
 
             
 
-            <td class="description last">The number of dropdown to filter</td>
+            <td class="description last">The template of the modal to display</td>
         </tr>
 
     
@@ -756,7 +721,7 @@
 
     
 
-    <h4 class="name" id="~searchTable"><span class="type-signature">(inner) </span>searchTable<span class="signature">(tableID)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="confirmActive"><span class="type-signature"></span>confirmActive<span class="signature">(modalTemplate)</span><span class="type-signature"></span></h4>
 
     
 
@@ -768,7 +733,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_javascripts_main.js.html">public/javascripts/main.js</a>, <a href="public_javascripts_main.js.html#line167">line 167</a>
+        <a href="public_javascripts_State.js.html">public/javascripts/State.js</a>, <a href="public_javascripts_State.js.html#line75">line 75</a>
     </li></ul></dd>
     
 
@@ -808,7 +773,7 @@
 
 
 <div class="description">
-    Takes the value of the table search box and filters table
+    Displays a confirmation window before transitioning to state
 </div>
 
 
@@ -846,13 +811,13 @@
 
         <tr>
             
-                <td class="name"><code>tableID</code></td>
+                <td class="name"><code>modalTemplate</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">HTMLElement</span>
 
 
             
@@ -862,7 +827,7 @@
 
             
 
-            <td class="description last">The name of the table to search</td>
+            <td class="description last">The template of the modal to display</td>
         </tr>
 
     
@@ -892,7 +857,7 @@
 
     
 
-    <h4 class="name" id="~toggleSettingsModal"><span class="type-signature">(inner) </span>toggleSettingsModal<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="setActive"><span class="type-signature"></span>setActive<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -904,7 +869,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="public_javascripts_main.js.html">public/javascripts/main.js</a>, <a href="public_javascripts_main.js.html#line27">line 27</a>
+        <a href="public_javascripts_State.js.html">public/javascripts/State.js</a>, <a href="public_javascripts_State.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
@@ -944,7 +909,94 @@
 
 
 <div class="description">
-    Toggles hide/show of the settings modal
+    Sets the state as the active state
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="setInactive"><span class="type-signature"></span>setInactive<span class="signature">()</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+
+<dl class="details">
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="public_javascripts_State.js.html">public/javascripts/State.js</a>, <a href="public_javascripts_State.js.html#line65">line 65</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+<div class="description">
+    Sets the state as an inactive state
 </div>
 
 
