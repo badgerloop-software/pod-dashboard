@@ -104,7 +104,7 @@ class State {
 
   /**
    * Returns the active state
-   * @returns {State} The active state
+   * @returns {State} The active state or -1 if there is no active state
    */
   static getActiveState() {
     for (let i = 0; i < STATES.length; i++) {
@@ -115,6 +115,12 @@ class State {
     return -1;
   }
 
+  /**
+   * Sets the active state, there should always be one active state
+   * @param {State, Number} state State to set active, either State or idNumber
+   * @param {HTMLElement} modal The confirmation Modal
+   * @param {Boolean} fromPod If the command is from a pod packet (no confirmation needed)
+   */
   static setActiveState(state, modal, fromPod) {
     if (typeof state === 'object') {
       state.activate(modal, fromPod);
@@ -125,6 +131,11 @@ class State {
     }
   }
 
+  /**
+   * Finds the state given the IDNumber
+   * @param {Number} id ID of state
+   * @returns {State} the state with specified id
+   */
   static getStateById(id) {
     return STATES.find(state => state.idNum === id);
   }

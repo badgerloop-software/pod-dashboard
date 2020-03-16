@@ -1,6 +1,18 @@
 const Button = require('./button');
-
+/**
+ * Class representing a state control button
+ * @extends Button
+ */
 class StateButton extends Button {
+  /**
+   * 
+   * @param {String} name Button shortname
+   * @param {String} text Button text
+   * @param {HTMLElement} parent Button HTML Parent
+   * @param {String} bgColor Button background color
+   * @param {Boolean} hazard if the state it represents is hazardus
+   * @param {State} state State this button represents
+   */
   constructor(name, text, parent, bgColor, hazard, state) {
     super(name, text, parent, bgColor, 'white', hazard);
     this.state = state;
