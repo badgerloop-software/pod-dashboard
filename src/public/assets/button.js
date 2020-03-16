@@ -29,6 +29,7 @@ class Button {
       }
       this.domElement.style.color = this.color.txtColor;
     }
+    this.isHazardus = hazard;
     if (hazard) {
       this.domElement.style.borderColor = 'red';
     }
@@ -75,7 +76,12 @@ class Button {
   }
 
   onClick(fcn) {
-    this.domElement.addEventListener('click', fcn);
+    if (this.isHazardus) {
+      this.action = fcn; // If the action requires confirmation save it for later
+      this.domElement.addEventListener('click', () => {
+        this.confirmActive();
+      });
+    } else this.domElement.addEventListener('click', fcn); // If it doesn't just assign a click listener
   }
 
   setParent(parent) {
@@ -88,12 +94,11 @@ class Button {
 
   /**
    * Displays a confirmation window before transitioning to state
-   * @param {HTMLElement} modalTemplate The template of the modal to display
    */
-  confirmActive(modalTemplate, msg, cb) {
-    let modal = modalTemplate.cloneNode(true);
+  confirmActive() {
+    let modal = Button.modal.cloneNode(true);
     document.body.appendChild(modal);
-    State.toggleConfirmationModal(modal);
+    Button.toggleConfirmationModal(modal);
     let button = modal.childNodes[1].childNodes[7];
     let text = modal.childNodes[1].childNodes[5];
     let closeButton = modal.childNodes[1].childNodes[1];
@@ -101,14 +106,25 @@ class Button {
       modal.classList.toggle('show-modal');
       document.body.removeChild(modal);
     });
-    button.addEventListener('click', () => { State.toggleConfirmationModal(modal); });
-    text.innerHTML = `Are you sure you want to ${msg}?`;
+    button.addEventListener('click', () => { Button.toggleConfirmationModal(modal); });
+    text.innerHTML = `Are you sure you want to trigger ${this.text}?`;
     button.addEventListener('click', () => {
-      this.activate();
-      cb();
+      this.action();
       modal.classList.toggle('show-modal');
       document.body.removeChild(modal);
     });
+  }
+
+  /**
+   * Toggles showing/hiding a modal
+   * @param {HTMLElement} modal The modal to toggle
+   */
+  static toggleConfirmationModal(modal) {
+    modal.classList.toggle('show-modal');
+  }
+
+  static setModalTemplate(template) {
+    Button.modal = template;
   }
 }
 

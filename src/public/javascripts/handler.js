@@ -14,10 +14,8 @@ const CACHE = require('./cache');
 const DATA_RECORDING = require('./dataRecording');
 
 // New OOP stuff
-const { State, STATES } = require('./public/javascripts/State');
+const State = require('./public/javascripts/State');
 const ControlPanelButton = require('./public/assets/ControlPanelButton');
-
-ControlPanelButton.setParent(document.getElementById('controlpanelBox'));
 
 const D = document;
 const TIMEOUT = 5000;
@@ -29,6 +27,9 @@ const STATE_BUTTONS = [['Power Off', '#C10000'], ['Idle', '#3C9159'],
   ['Post Run', '#34495E'], ['Safe to Approach', '#3C9159'],
   ['Run Fault', 'red', false, true], ['Non-Run Fault', 'red', false, true]];
   // [Display Name, btn color, isHazardus, isFault]
+ControlPanelButton.setParent(document.getElementById('controlpanelBox'));
+const CONFIRMATION_MODAL = D.querySelector('.confirmationModal');
+ControlPanelButton.setModalTemplate(CONFIRMATION_MODAL);
 
 const LV_INDICATOR = D.getElementById('connectionDot1');
 const HV_INDICATOR = D.getElementById('connectionDot2');
@@ -37,17 +38,22 @@ const RECIEVE_INDICATOR_2 = D.getElementById('link2');
 const DATA_RECORD_BUTTON = new ControlPanelButton('dataRecord', 'Start Data Recording', '#AEA8D3', false);
 const ARCHIVE_BUTTON = new ControlPanelButton('archiveData', 'Save Data Recording', '#AEA8D3', false);
 ARCHIVE_BUTTON.greyOut();
+const COMMAND_TORQUE = new ControlPanelButton('cmdTorque', 'Cmd Torque', '#F4D76F', true);
 const PRIMARY_BRAKE_ON = new ControlPanelButton('primBrakeOn', 'Prim. Brake Act', '#34495E', false);
 const PRIMARY_BRAKE_OFF = new ControlPanelButton('primBrakeOff', 'Prim. Brake Retr', '#34495E', false);
+const PRECHARGE_ENABLE = new ControlPanelButton('precharge', 'Precharge', '#C6A153', true);
 const SECONDARY_BRAKE_ON = new ControlPanelButton('secBrakeOff', 'Sec. Brake Act', '#5C97BF', false);
 const SECONDARY_BRAKE_OFF = new ControlPanelButton('secBrakeOn', 'Sec. Brake Retr', '#5C97BF', false);
-const CONFIRMATION_MODAL = D.querySelector('.confirmationModal');
+const LATCH_ON = new ControlPanelButton('latchOn', 'Latch On', '#554188', true);
+const HV_ENABLE = new ControlPanelButton('hvEnable', 'HV Enable', '#F4D76F', true);
+const HV_DISABLE = new ControlPanelButton('hvDisable', 'HV Disable', '#F4D76F', false);
+const LATCH_OFF = new ControlPanelButton('latchOff', 'Latch off', '#554188', true);
+
 const EMERGENCY_STOP_BTN = D.getElementById('estop');
 const TABLES_RENDERER = new RENDERER();
 const GLOBAL_TIMER = new TIMER();
 const { stateTimer: STATE_TIMER } = DYNAMIC_LOADING;
 
-let confirmModalBtn = D.getElementById('confirmStart');
 let activeTimer = GLOBAL_TIMER;
 let { DEBUG } = Boolean(process.env) || false;
 let boneStatus = [false, false]; // [LV, HV]
@@ -73,40 +79,12 @@ function renderData(group, sensor) {
   }
 }
 
-/**
- * @param {State} state State to override to
- * Manually transitions the dashboard to state given
- */
-function overrideState(state) {
-  if (!state) throw new Error('Undefined State');
-  if (DEBUG) console.error(`OVERIDING STATE TO ${state.displayName} STATE`);
-  state.activate(CONFIRMATION_MODAL);
-  STATE_TIMER.reset();
-}
-
 // State Machine Control Panel Event Listeners
 /**
  * Creates a JSON save labled "Autosave"
  */
 function autosave() {
   DATA_INTERFACING.archiveData('autosave');
-}
-/**
- * Prompts user with a confirmation window before running function
- * @param {String} msg Message to display in prompt
- * @param {Function} cb Function to run once confirmed
- */
-function toggleConfirmationModal(msg, cb) {
-  CONFIRMATION_MODAL.classList.toggle('show-modal');
-  if (msg && cb) {
-    let el = confirmModalBtn;
-    let elClone = el.cloneNode(true);
-    confirmModalBtn = elClone;
-    el.parentNode.replaceChild(elClone, el);
-    confirmModalBtn.addEventListener('click', toggleConfirmationModal);
-    document.getElementById('confirmMsg').innerHTML = `Are you sure you want to engage ${msg}`;
-    confirmModalBtn.addEventListener('click', cb);
-  }
 }
 
 /**
@@ -163,16 +141,6 @@ function checkBraking(basePacket) {
   }
   return fixedPacket;
 }
-/**
- * Disables the HV on the pod, sends communication and changes lablel accordingly
- */
-function disableHV() {
-  CLIENT.disableHV();
-  if (document.getElementById('hvText').classList.contains('active')) {
-    document.getElementById('hvText').classList.remove('active');
-  }
-  document.getElementById('hvDisText').classList.add('active');
-}
 
 // Connection Indicators
 /**
@@ -219,7 +187,7 @@ function setLVIndicator(state) {
 function setHVIndicator(state) {
   if (state) HV_INDICATOR.className = 'statusGood';
   if (!state) HV_INDICATOR.className = 'statusBad';
-  if (!state && !DEBUG) overrideState(STATES[0]);
+  if (!state && !DEBUG) State.setActiveState(0, CONFIRMATION_MODAL);
 }
 /**
  * Checks if dashboard has recieved packets within timeout period
@@ -323,91 +291,85 @@ EMERGENCY_STOP_BTN.addEventListener('click', () => {
 });
 
 
-// confirmModalBtn.addEventListener('click', toggleConfirmationModal);
-// CLOSE_BUTTON_2.addEventListener('click', toggleConfirmationModal);
-
-PRIMARY_BRAKE_ON.onClick(() => {
-  togglePrimBrake(true, true);
-});
-
-PRIMARY_BRAKE_OFF.onClick(() => {
-  togglePrimBrake(false, true);
-});
-
-SECONDARY_BRAKE_ON.onClick(() => {
-  toggleSecBrake(true, true);
-});
-
-SECONDARY_BRAKE_OFF.onClick(() => {
-  toggleSecBrake(false, true);
-});
-
-// // Sends command torque command on user click
-// document.getElementById('cmdTorque').addEventListener('click', () => {
-//   CLIENT.commandTorque();
-// });
-
-// // Sends HV enable command on user click and changes indicators
-// document.getElementById('hvEnable').addEventListener('click', () => {
-//   toggleConfirmationModal('high voltage systems?', () => {
-//     document.getElementById('hvText').classList.add('active');
-//     if (document.getElementById('hvDisText').classList.contains('active')) {
-//       document.getElementById('hvDisText').classList.remove('active');
-//     }
-//     CLIENT.enableHV();
-//   });
-// });
-
-
-// // Sends Latch on command on user click and confirm and changes indicators
-// D.getElementById('latchOn').addEventListener('click', () => {
-//   D.getElementById('latchOnText').style.color = 'red';
-//   D.getElementById('latchOffText').style.color = 'white';
-//   toggleConfirmationModal('turn on the MCU Latch?', () => {
-//     CLIENT.toggleLatch(true);
-//   });
-// });
-
-// // Runs disable HV function on user click
-// document.getElementById('hvDisable').addEventListener('click', disableHV);
-
-// // Toggles latch off on user click
-// D.getElementById('latchOff').addEventListener('click', () => {
-//   D.getElementById('latchOnText').style.color = 'white';
-//   D.getElementById('latchOffText').style.color = 'red';
-//   CLIENT.toggleLatch(false);
-// });
-
-// Starts the recording of data to dataRecording.js
-DATA_RECORD_BUTTON.onClick(() => {
-  if (!DATA_INTERFACING.isDataRecording) {
-    DATA_INTERFACING.recordingEvent.emit('on'); // Tell DI to run start recording data
-    console.log('recording data');
-    DATA_RECORD_BUTTON.greyOut();
-    ARCHIVE_BUTTON.colorize();
-  } else {
-    console.log('data is already being recorded');
-  }
-});
-
-// Archives the data from dataRecording.js if data is being recorded
-ARCHIVE_BUTTON.onClick(() => {
-  if (DATA_INTERFACING.isDataRecording) {
-    DATA_INTERFACING.recordingEvent.emit('off'); // Tells DI to stop recording data
-    DATA_INTERFACING.archiveData();
-    console.log('archiving data');
-    DATA_RECORD_BUTTON.colorize();
-    ARCHIVE_BUTTON.greyOut();
-  } else {
-    console.log('data was not being recorded');
-  }
-});
-
-
 // Initilization
 /**
  * Creates the states and state machine buttons
  */
+
+function setControlPanelListeners() {
+  PRIMARY_BRAKE_ON.onClick(() => {
+    togglePrimBrake(true, true);
+  });
+
+  PRIMARY_BRAKE_OFF.onClick(() => {
+    togglePrimBrake(false, true);
+  });
+
+  SECONDARY_BRAKE_ON.onClick(() => {
+    toggleSecBrake(true, true);
+  });
+
+  SECONDARY_BRAKE_OFF.onClick(() => {
+    toggleSecBrake(false, true);
+  });
+
+  HV_ENABLE.onClick(() => {
+    CLIENT.enableHV();
+    HV_DISABLE.deactivate();
+    HV_ENABLE.activate();
+  });
+
+  HV_DISABLE.onClick(() => {
+    CLIENT.disableHV();
+    HV_DISABLE.activate();
+    HV_ENABLE.deactivate();
+  });
+
+  COMMAND_TORQUE.onClick(() => {
+    CLIENT.commandTorque();
+  });
+
+  LATCH_ON.onClick(() => {
+    LATCH_ON.activate();
+    LATCH_OFF.deactivate();
+    CLIENT.toggleLatch(true);
+  });
+
+  LATCH_OFF.onClick(() => {
+    LATCH_OFF.activate();
+    LATCH_ON.deactivate();
+    CLIENT.toggleLatch(false);
+  });
+
+  PRECHARGE_ENABLE.onClick(() => {
+    CLIENT.enPrecharge();
+  });
+
+  // Starts the recording of data to dataRecording.js
+  DATA_RECORD_BUTTON.onClick(() => {
+    if (!DATA_INTERFACING.isDataRecording) {
+      DATA_INTERFACING.recordingEvent.emit('on'); // Tell DI to run start recording data
+      console.log('recording data');
+      DATA_RECORD_BUTTON.greyOut();
+      ARCHIVE_BUTTON.colorize();
+    } else {
+      console.log('data is already being recorded');
+    }
+  });
+
+  // Archives the data from dataRecording.js if data is being recorded
+  ARCHIVE_BUTTON.onClick(() => {
+    if (DATA_INTERFACING.isDataRecording) {
+      DATA_INTERFACING.recordingEvent.emit('off'); // Tells DI to stop recording data
+      DATA_INTERFACING.archiveData();
+      console.log('archiving data');
+      DATA_RECORD_BUTTON.colorize();
+      ARCHIVE_BUTTON.greyOut();
+    } else {
+      console.log('data was not being recorded');
+    }
+  });
+}
 function createStateMachineButtons() {
   return new Promise((resolve, reject) => {
     let parent = document.getElementById('statemachineBox');
@@ -417,12 +379,11 @@ function createStateMachineButtons() {
       let newState = new State(formattedText, state[0], null, state[1], state[2], state[3]);
       newState.btn.setParent(parent);
       newState.btn.onClick(() => {
-        overrideState(newState);
-        newState.btn.activate();
+        State.setActiveState(newState, CONFIRMATION_MODAL);
       });
     });
-    STATES[0].activate();
-    resolve(STATES[0]);
+    State.setActiveState(0);
+    resolve(State.getActiveState());
   });
 }
 
@@ -448,6 +409,7 @@ function createDashboard() {
  */
 function init() {
   createDashboard().then(() => { // First create the dashboard
+    setControlPanelListeners();
     createStateMachineButtons().then(() => { // Then create all the state objects
       setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL); // Finally set intervals
       // Autosaves on interval

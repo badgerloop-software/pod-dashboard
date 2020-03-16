@@ -1,10 +1,8 @@
-let Button = require('../assets/button');
 let StateButton = require('../assets/StateButton');
 const CLIENT = require('../javascripts/communication');
 const DYNAMIC_LOADING = require('../javascripts/dynamicloading');
 
 let STATES = [];
-module.exports.STATES = STATES;
 /**
  * Class reperesenting a state on the state machine
  */
@@ -70,6 +68,32 @@ class State {
   }
 
   /**
+   * Displays a confirmation window before transitioning to state
+   * @param {HTMLElement} modalTemplate The template of the modal to display
+   * @override
+   */
+  confirmActive(modalTemplate) {
+    let modal = modalTemplate.cloneNode(true);
+    document.body.appendChild(modal);
+    State.toggleConfirmationModal(modal);
+    let button = modal.childNodes[1].childNodes[7];
+    let text = modal.childNodes[1].childNodes[5];
+    let closeButton = modal.childNodes[1].childNodes[1];
+    closeButton.addEventListener('click', () => {
+      modal.classList.toggle('show-modal');
+      document.body.removeChild(modal);
+    });
+    button.addEventListener('click', () => { State.toggleConfirmationModal(modal); });
+    text.innerHTML = `Are you sure you want to transition to ${this.displayName}?`;
+    let state = this;
+    button.addEventListener('click', () => {
+      state.setActive();
+      modal.classList.toggle('show-modal');
+      document.body.removeChild(modal);
+    });
+  }
+
+  /**
    * Toggles showing/hiding a modal
    * @param {HTMLElement} modal The modal to toggle
    */
@@ -89,6 +113,16 @@ class State {
     }
     return -1;
   }
+
+  static setActiveState(state, modal) {
+    if (typeof state === 'object') {
+      state.activate(modal);
+    }
+
+    if (typeof state === 'number') {
+      STATES[state].activate(modal);
+    }
+  }
 }
 
-module.exports.State = State;
+module.exports = State;
