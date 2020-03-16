@@ -57,7 +57,7 @@ class State {
     CLIENT.sendOverride(this.shortName);
     if (!this.isFault) {
       DYNAMIC_LOADING.fillAllBounds(this.shortname);
-    } else DYNAMIC_LOADING.setFault(this);
+    }
   }
 
   /**

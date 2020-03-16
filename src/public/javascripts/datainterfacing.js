@@ -16,6 +16,8 @@ const CACHE = require('../../cache');
 /** @requires module:Recording */
 const DATA_RECORDING = require('../../dataRecording');
 
+const State = require('./State');
+
 const PACKET_HANDLER = new EVENTS.EventEmitter();
 module.exports.packetHandler = PACKET_HANDLER;
 
@@ -241,9 +243,7 @@ module.exports.normalizePacket = function normalizePacket(input) {
   // console.info('Incomming Packet:');
   // console.info(input);
   if (state) {
-    if (!(state >= 11 && state <= 13)) {
-      DYNAMIC_LOADING.switchState(state);
-    } else DYNAMIC_LOADING.setFault(state);
+    State.setActiveState(state, null, true);
     delete fixedPacket.state;
   }
 

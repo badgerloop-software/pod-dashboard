@@ -16,7 +16,6 @@ const TIMER = require('./Timer');
 
 const STATE_TIMER = new TIMER();
 const DEFAULT_STATE = 'poweroff';
-const State = require('./State');
 // Dynamic Tables
 /**
  * Creates the name column for the sensor
@@ -216,70 +215,6 @@ function fillAllBounds(state) { // eslint-disable-line no-unused-vars
 }
 
 module.exports.fillAllBounds = fillAllBounds;
-
-/**
- * Turns a state number into a state string
- * @param {Number} stateNum State number
- */
-function getStateName(stateNum) {
-  switch (stateNum) {
-    case 0:
-      return 'powerOff';
-    case 1:
-      return 'idle';
-    case 2:
-      return 'pumpdown';
-    case 3:
-      return 'propulsion';
-    case 4:
-      return 'braking';
-    case 5:
-      return 'stopped';
-    case 6:
-      return 'crawlPrecharge';
-    case 7:
-      return 'crawl';
-    case 8:
-      return 'postRun';
-    case 9:
-      return 'safeToApproach';
-    case 10:
-      return 'nonRunFault';
-    case 11:
-      return 'runFault';
-    case 12:
-      return 'brakingFault';
-    default:
-      return undefined;
-  }
-}
-
-/**
- * Transitions the dashboard to a new state
- * @param {State} state - String of state to transition to
- * @param {Number} state - Number of state to transition to
- */
-module.exports.switchState = function switchState(state) {
-  if (typeof state === 'number') {
-    state = State.getStateById(state);
-  }
-  if (state === null || state === undefined) {
-    console.error(`Undefined State: ${state}`);
-  } else {
-    State.setActiveState(state, null, true);
-  }
-};
-
-/**
- * Transitions the dashboard to a fault state
- * @param {Number} faultNum The number of the fault
- */
-module.exports.setFault = function setFault(faultNum) {
-  let faultStr = getStateName(faultNum);
-  // console.error(`Entering a ${faultStr}`);
-  setIndicator(faultStr);
-};
-
 // Dynamic Dropdowns
 
 
