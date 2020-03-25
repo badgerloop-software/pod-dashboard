@@ -200,6 +200,8 @@ function updateData(dataIn, location) {
       }
     });
   });
+  // eslint-disable-next-line
+  dataIn = null;
 }
 /**
  *  Any Calcuations that need to be done prior to RECORDING should be done here

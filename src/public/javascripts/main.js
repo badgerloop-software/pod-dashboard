@@ -9,6 +9,9 @@ const { remote: REMOTE } = require('electron');
 const ELECTRON_WINDOW = REMOTE.getCurrentWindow();
 const CONFIG = require('./public/javascripts/config');
 const CONFIG_CONSTANTS = require('./public/javascripts/config').constants;
+const Dropdown = require('./public/assets/Dropdown');
+
+const FOCUS_DROPDOWN = new Dropdown('focusAddButton', 'Add Values', document.getElementById('focusBox'), true);
 
 const RATE = CONFIG_CONSTANTS.DATA_SEND_RATE;
 
@@ -45,7 +48,7 @@ let focusThree;
 let focusFour;
 
 const settingsSubmit = document.getElementById('podSettingsSubmit');
-const focusClear = document.getElementById('focus_clear_button');
+const focusClear = new Dropdown('focusClear', 'Clear', document.getElementById('focusBox'));
 
 // filling for focus clone
 let x = 1; // counter for boxes filed so far
@@ -119,7 +122,7 @@ function clear() { // eslint-disable-line no-unused-vars
   x = 1;
 }
 
-if (focusClear) focusClear.addEventListener('click', clear); // In if statement for testing tool fix
+if (focusClear) focusClear.onClick(clear);
 
 /*
 Tables
@@ -175,40 +178,6 @@ function searchTable(tableID) { // eslint-disable-line no-unused-vars
     if (td) {
       if (td.innerHTML.toUpperCase().indexOf(filter) > -1) tr[i].style.display = '';
       else tr[i].style.display = 'none';
-    }
-  }
-}
-
-/*
-Dropdowns
-Purpose: Enable dynamic and searchable dropdowns
-*/
-
-/**
- * Determines which dropdown is being triggered
- * @param {Number} num The number of dropdown to trigger
- */
-function dropdown(num) { // eslint-disable-line no-unused-vars
-  document.getElementById(`myDropdown${String(num)}`).classList.toggle('show');
-}
-
-/**
- * The filters dropdown based on search
- * @param {Number} id The number of dropdown to filter
- */
-function filterFunction(id) { // eslint-disable-line no-unused-vars
-  // determines which dropdown (1,2, or 3) is being called
-  const inputnum = String(`dropdownInput${id}`);
-  let i;
-  const input = document.getElementById(inputnum);
-  const filter = input.value.toUpperCase();
-  const div = document.getElementById(`myDropdown${String(id)}`);
-  const a = div.getElementsByTagName('a');
-  for (i = 0; i < a.length; i += 1) {
-    if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
-      a[i].style.display = '';
-    } else {
-      a[i].style.display = 'none';
     }
   }
 }
