@@ -5,6 +5,7 @@
  */
 const HIGHCHARTS = require('highcharts');
 const CHARTCACHE = require('./cache');
+const Dropdown = require('./public/assets/Dropdown');
 
 require('highcharts/modules/exporting')(HIGHCHARTS);
 
@@ -137,7 +138,8 @@ function addTimeAndData(index, name, system) { //eslint-disable-line
  * @param {String} system the system of the data
  * @param {String} units the units of the chart
  */
-function startChart(index, name, title, system, units) { //eslint-disable-line
+function startChart(name, title, units, system, fixedUnits, index) { //eslint-disable-line
+  console.log(`CHARTCAHCE : ${CHARTCACHE} SYSTEM: ${system} NAME: ${name} TITLE: ${title} INDEX: ${index}`);
   currentTime = CHARTCACHE[system][name].length * 0.03;
   currentTime = parseFloat(currentTime);
   clearChart(index);
@@ -145,3 +147,11 @@ function startChart(index, name, title, system, units) { //eslint-disable-line
   // start interval to add points to the chart
   interval[index] = setInterval(() => { addTimeAndData(index, name, system); }, rate);
 }
+
+const CHART_ONE_BUTTON = new Dropdown('chartOneAdd', 'Add Values Chart 1', document.getElementById('chartBox'), true, startChart, 0);
+const CHART_TWO_BUTTON = new Dropdown('chartTwoAdd', 'Add Values Chart 2', document.getElementById('chartBox'), true, startChart, 1);
+const CLEAR_CHART_BUTTON = new Dropdown('clearCharts', 'Clear Charts', document.getElementById('chartBox'), false);
+CLEAR_CHART_BUTTON.onClick(() => {
+  clearChart(0);
+  clearChart(1);
+})

@@ -7,7 +7,6 @@
     <link rel="stylesheet" type="text/css" href="public/stylesheets/fonts.css">
     <script src="../node_modules/highcharts/highcharts.js"></script>
     <script src="../node_modules/highcharts/modules/exporting.js"></script>
-    <script src="../src/public/javascripts/charting.js"></script>
     <title>Badgerloop Pod IV Dashboard</title>
   </head>
 
@@ -42,12 +41,6 @@
       <div id="header1" class="box">
         <div class="grid_focus">
           <div class="dropdown" id="focusBox">
-            <!-- <button id="focus_add_button" onclick="dropdown('1')" class="dropbtn">
-              <h5>Add Values</h5>
-            </button> -->
-            <!-- <button id="focus_clear_button" class="dropbtn">
-              <h5>Clear</h5>
-            </button> -->
           </div>
           <div class="header_focus" id="header_focus_1">
             <p id="header_label_1">Value 1</p>
@@ -70,36 +63,21 @@
       <!-- Charts -->
       <div id="header2" class="box">
         <div class="grid_focus2">
-          <div class="dropdown">
-            <button id="focus_chart_add_button" onclick="dropdown('2')" class="dropbtn">
-              <h5>Add Values Chart 1</h5>
-            </button>
-            <button id="focus_chart_add_button2" onclick="dropdown('3')" class="dropbtn">
-              <h5>Add Values Chart 2</h5>
-            </button>
-            <button id="focus_chart_clear_button"
-              onclick="clearChart(0); clearChart(1);"
-              class="dropbtn">
-              <h5>Clear Charts</h5>
-            </button>
-            <div id="myDropdown2" class="dropdown-content">
+          <div class="dropdown" id="chartBox">
+            <!-- <div id="myDropdown2" class="dropdown-content">
               <input type="text" placeholder="Search.." id="dropdownInput2" onkeyup="filterFunction('2')" autofocus>
             </div>
             <div id="myDropdown3" class="dropdown-content">
               <input type="text" placeholder="Search.." id="dropdownInput3" onkeyup="filterFunction('3')">
-            </div>
+            </div> -->
           </div>
           <div class="header_focus_chart" id="header_focus_chart1">
             <div id="container" style="width:100%; height:100%;"></div>
-            <script>
-              document.onload= (newChart('container', 'Chart 1', 0));
-            </script>
+
           </div>
           <div class="header_focus_chart" id="header_focus_chart2">
               <div id="container2" style="width:100%; height:100%;"></div>
-              <script>
-                document.onload = (newChart('container2', 'Chart 2', 1));
-              </script>
+
           </div>
         </div>
       </div>
@@ -109,43 +87,6 @@
       </div>
       <div id="header3" class="box">
         <div class="gridStateMachine" id="controlpanelBox">
-          <!-- <button id="dataRecordButton" class="stateButton">
-            <p>Start Data Recording</p>
-          </button>
-          <button id="archiveButton" class="stateButtonInactive">
-            <p>Save Data Recording</p>
-          </button>
-          <button id="precharge" class="stateButton">
-            <p id="prechargeText">Start Precharge</p>
-          </button>
-    
-          <button id="primBrakeOn" class="stateButton">
-            <p id="primEnText">Prim. Brake Act</p>
-          </button>
-          <button id="primBrakeOff" class="stateButton">
-            <p id="primDisText">Prim. Brake Retr</p>
-          </button>
-          <button id="hvEnable" class="stateButton">
-            <p id="hvText">HV Enable</p>
-          </button>
-          <button id="secBrakeVentOn" class="stateButton">
-            <p id="secEnText">Sec. Brake Act</p>
-          </button>
-          <button id="secBrakeVentOff" class="stateButton">
-            <p id="secDisText">Sec. Brake Retr</p>
-          </button>
-          <button id="hvDisable" class="stateButton">
-            <p id="hvDisText">HV Disable</p>
-          </button>
-          <button id="latchOn" class="stateButton">
-            <p id="latchOnText">Latch On</p>
-          </button>
-          <button id="latchOff" class="stateButton">
-            <p id="latchOffText">Latch Off</p>
-          </button>
-          <button id="cmdTorque" class="stateButton">
-            <p id="cmdTorqueText">Command Torque</p>
-          </button> -->
         </div>
       </div>
 
@@ -351,8 +292,15 @@
         <button class="confirmationButton" id="confirmStart">Yes</button>
       </div>
     </div>
-    <script src="public/javascripts/main.js"></script>
+    <script src="public/javascripts/charting.js"></script>
     <script src="public/javascripts/handler.js"></script>
+    <script src="public/javascripts/main.js"></script>
+    <script>
+      document.onload= (newChart('container', 'Chart 1', 0));
+    </script>
+    <script>
+      document.onload = (newChart('container2', 'Chart 2', 1));
+    </script>
   </body>
 
 </html>

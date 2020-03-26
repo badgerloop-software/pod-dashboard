@@ -9,9 +9,6 @@ const { remote: REMOTE } = require('electron');
 const ELECTRON_WINDOW = REMOTE.getCurrentWindow();
 const CONFIG = require('./public/javascripts/config');
 const CONFIG_CONSTANTS = require('./public/javascripts/config').constants;
-const Dropdown = require('./public/assets/Dropdown');
-
-const FOCUS_DROPDOWN = new Dropdown('focusAddButton', 'Add Values', document.getElementById('focusBox'), true);
 
 const RATE = CONFIG_CONSTANTS.DATA_SEND_RATE;
 
@@ -21,7 +18,6 @@ Purpose: code for opening a pop up modal box
 */
 const SETTINGS_MODAL = document.querySelector('.settingsModal');
 const SETTINGS_TRIGGER = document.getElementById('settingsTrigger');
-
 const CLOSE_BUTTON = document.querySelector('.close-button');
 
 /**
@@ -48,7 +44,7 @@ let focusThree;
 let focusFour;
 
 const settingsSubmit = document.getElementById('podSettingsSubmit');
-const focusClear = new Dropdown('focusClear', 'Clear', document.getElementById('focusBox'));
+
 
 // filling for focus clone
 let x = 1; // counter for boxes filed so far
@@ -121,8 +117,6 @@ function clear() { // eslint-disable-line no-unused-vars
   }
   x = 1;
 }
-
-if (focusClear) focusClear.onClick(clear);
 
 /*
 Tables
@@ -248,4 +242,27 @@ document.getElementById('max-window').addEventListener('click', () => {
 
 document.getElementById('close-window').addEventListener('click', () => {
   ELECTRON_WINDOW.close();
+});
+
+const FOCUS_DROPDOWN = new Dropdown('focusAddButton', 'Add Values', document.getElementById('focusBox'), true, clone);
+const FOCUS_CLEAR = new Dropdown('focusClear', 'Clear', document.getElementById('focusBox'), false);
+FOCUS_CLEAR.onClick(clear);
+
+
+/**
+ * Since Luke said this was impossible and could not be done, I had to do this myself
+ * As you can see, it is possible, not fun, not quick, but possible.
+ * This allows dropdowns to dissapear whenever you click out of them
+ * Never let anything hold you back, set your mind to whatever you want and you will achieve it
+ * ~ Eric Udlis 03/25/2020
+ */
+document.body.addEventListener('click', (e) => {
+  let isADropdown = false;
+  if (e.target.classList.contains('dropdown-content') || e.target.parentNode.classList.contains('dropdown-content')) isADropdown = true;
+  if (e.target.classList.contains('dropbtn') || e.target.parentNode.classList.contains('dropbtn')) isADropdown = true;
+  if (!isADropdown) {
+    Dropdown.getListOfDropdowns().forEach((dropdown) => {
+      if (dropdown.list) dropdown.list.classList.remove('show');
+    });
+  }
 });

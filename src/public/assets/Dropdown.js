@@ -1,16 +1,27 @@
 const DATABASE = require('../../database.json');
 
 let nextID = 0;
+const DROPDOWNS = [];
 module.exports = class Dropdown {
-  constructor(name, text, parent, containsList) {
+  /**
+   * Creates a dropdown button
+   * @param {String} name The shortname of the button
+   * @param {String} text The button text
+   * @param {HTMLElement} parent The html parent of the button
+   * @param {Boolean} containsList If this dropdown has a list of sensors
+   * @param {Function} listOnClick The function the list element will execute on click
+   */
+  constructor(name, text, parent, containsList, listOnClick, chartIndex) {
     this.name = name;
     this.text = text;
     this.parent = parent;
     this.id = nextID++;
     this.containsList = containsList;
+    this.chartIndex = chartIndex;
     this.btn = this.createDropdownBtn();
     this.parent.appendChild(this.btn);
     if (this.containsList) {
+      this.listOnClick = listOnClick;
       this.list = Dropdown.createDropdown(this.id);
       parent.appendChild(this.list);
       this.fillList();
@@ -18,6 +29,7 @@ module.exports = class Dropdown {
         this.toggle();
       });
     }
+    DROPDOWNS.push(this);
   }
 
   createDropdownBtn() {
@@ -46,7 +58,7 @@ module.exports = class Dropdown {
       let currentSystem = DATABASE[subsystem];
       let sensors = Object.keys(currentSystem); // Create an array with all sensors in the subsystem
       sensors.forEach((sensor) => {
-        this.createItem(`${sensor}`, `myDropdown${this.id}`, `${currentSystem[sensor].units}`); // For each sensor create an element
+        this.createItem(`${sensor}`, `${currentSystem[sensor].units}`, subsystem); // For each sensor create an element
       });
     });
   }
@@ -58,35 +70,15 @@ module.exports = class Dropdown {
   * @param {String} units The unit the sensor reports in
   * @param {String} system the system the sensor belongs to
   */
-  createItem(name, dropdown, units, system) { // eslint-disable-line no-unused-vars
+  createItem(name, units, system) { // eslint-disable-line no-unused-vars
     let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
     let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
     fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
 
     let header = document.createElement('a'); // Creates the actual DOM element
-    header.href = ''; // Sets the class
-    switch (dropdown) {
-      case 'myDropdown1':
-        header.onclick = function onclick() { // sets the onclick value
-          clone(name);
-          return false;
-        };
-        break;
-      case 'myDropdown2':
-        header.onclick = function onclick() { // sets the onclick value
-          startChart(0, name, fixedName, system, fixedUnits);
-          return false;
-        };
-        break;
-      case 'myDropdown3':
-        header.onclick = function onclick() { // sets the onclick value
-          startChart(1, name, fixedName, system, fixedUnits);
-          return false;
-        };
-        break;
-      default:
-        break;
-    }
+    header.onclick = () => {
+      this.listOnClick(name, fixedName, units, system, fixedUnits, this.chartIndex);
+    };
     header.innerHTML = `${fixedName}`; // Sets value in the box
     this.list.appendChild(header);
   }
@@ -118,5 +110,9 @@ module.exports = class Dropdown {
     search.setAttribute('onkeyup', `Dropdown.filterSearch(${id})`);
     div.appendChild(search);
     return div;
+  }
+
+  static getListOfDropdowns() {
+    return DROPDOWNS;
   }
 };
