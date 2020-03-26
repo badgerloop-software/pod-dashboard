@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /**
  * @module Highcharts
  * @author Andrew Janssen
@@ -148,10 +149,11 @@ function startChart(name, title, units, system, fixedUnits, index) { //eslint-di
   interval[index] = setInterval(() => { addTimeAndData(index, name, system); }, rate);
 }
 
+
 const CHART_ONE_BUTTON = new Dropdown('chartOneAdd', 'Add Values Chart 1', document.getElementById('chartBox'), true, startChart, 0);
 const CHART_TWO_BUTTON = new Dropdown('chartTwoAdd', 'Add Values Chart 2', document.getElementById('chartBox'), true, startChart, 1);
 const CLEAR_CHART_BUTTON = new Dropdown('clearCharts', 'Clear Charts', document.getElementById('chartBox'), false);
 CLEAR_CHART_BUTTON.onClick(() => {
   clearChart(0);
   clearChart(1);
-})
+});

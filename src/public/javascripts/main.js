@@ -244,7 +244,7 @@ document.getElementById('close-window').addEventListener('click', () => {
   ELECTRON_WINDOW.close();
 });
 
-const FOCUS_DROPDOWN = new Dropdown('focusAddButton', 'Add Values', document.getElementById('focusBox'), true, clone);
+const FOCUS_DROPDOWN = new Dropdown('focusAddButton', 'Add Values', document.getElementById('focusBox'), true, clone); // eslint-disable-line
 const FOCUS_CLEAR = new Dropdown('focusClear', 'Clear', document.getElementById('focusBox'), false);
 FOCUS_CLEAR.onClick(clear);
 
