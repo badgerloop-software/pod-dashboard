@@ -5,9 +5,6 @@
  * @description Dynamically fill the dashboard with content based off of database.JSON
  */
 
-/** @requires module:jsons-database */
-const DATABASE = require('../../database.json');
-
 /** @requires module:DataInterfacing */
 const DATA_INTERFACING = require('./datainterfacing');
 

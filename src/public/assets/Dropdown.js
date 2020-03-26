@@ -32,6 +32,9 @@ module.exports = class Dropdown {
     DROPDOWNS.push(this);
   }
 
+  /**
+   * Creates the DOM button for the dropdown
+   */
   createDropdownBtn() {
     let btn = document.createElement('button');
     btn.className = 'dropbtn';
@@ -42,16 +45,26 @@ module.exports = class Dropdown {
     return btn;
   }
 
+  /**
+   * For dropdowns without a list this is the function that will execute on click
+   * @param {Function} fcn The function to execute on click
+   */
   onClick(fcn) {
     this.btn.addEventListener('click', () => {
       fcn();
     });
   }
 
+  /**
+   * Toggles the dropdown list from showing/hiding
+   */
   toggle() {
     this.list.classList.toggle('show');
   }
 
+  /**
+   * Fills the dropdown list with items for each sensor
+   */
   fillList() {
     let subsystems = Object.keys(DATABASE); // Create array of each subsystem
     subsystems.forEach((subsystem) => {
@@ -63,13 +76,12 @@ module.exports = class Dropdown {
     });
   }
 
-  /*
-  * Creates an element and appends it to the dropdown
-  * @param {String} name The name of the sensor
-  * @param {String} group The group it belongs to
-  * @param {String} units The unit the sensor reports in
-  * @param {String} system the system the sensor belongs to
-  */
+  /**
+   * Creates a sensor item and appends it to the dropdown
+   * @param {String} name Name of the sensor
+   * @param {String} units Units the sensor is displayed in
+   * @param {String} system The subsystem the sensor is in
+   */
   createItem(name, units, system) { // eslint-disable-line no-unused-vars
     let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
     let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
@@ -83,6 +95,10 @@ module.exports = class Dropdown {
     this.list.appendChild(header);
   }
 
+  /**
+   * Filters the results of a dropdown based on user input
+   * @param {Number} num The dropdown number to filter
+   */
   static filterSearch(num) {
     const inputnum = String(`dropdownInput${num}`);
     let i;
@@ -99,6 +115,11 @@ module.exports = class Dropdown {
     }
   }
 
+  /**
+   * Creates the dropdown list
+   * @param {Number} id The dropdown number to create
+   * @returns {HTMLElement} The dropdown list
+   */
   static createDropdown(id) {
     let div = document.createElement('div');
     div.id = `myDropdown${id}`;
@@ -112,6 +133,10 @@ module.exports = class Dropdown {
     return div;
   }
 
+  /**
+   * Returns a list of all current dropdowns
+   * @returns {Dropdown[]} List of all dropdowns
+   */
   static getListOfDropdowns() {
     return DROPDOWNS;
   }
