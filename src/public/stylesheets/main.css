@@ -284,17 +284,6 @@ td.last {
 .hide{
   display: none;
 }
-#myDropdown1 {
-  top: 68px;
-}
-#myDropdown2 {
-  right: 45px;
-  top: 80px;
-}
-#myDropdown3 {
-  right: 45px;
-  top: 170px;
-}
 
 /* styling for pop-up modal */
 .settingsModal {

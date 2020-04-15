@@ -1,4 +1,4 @@
-const Button = require('./button');
+const Button = require('./Button');
 /**
  * Class representing a control panel button
  * @extends Button
