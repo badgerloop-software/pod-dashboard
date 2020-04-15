@@ -2,7 +2,7 @@ const DATABASE = require('../../database.json');
 
 let nextID = 0;
 const DROPDOWNS = [];
-module.exports = class Dropdown {
+class Dropdown {
   /**
    * Creates a dropdown button
    * @param {String} name The shortname of the button
@@ -143,3 +143,5 @@ module.exports = class Dropdown {
     return DROPDOWNS;
   }
 };
+
+module.exports = Dropdown;
