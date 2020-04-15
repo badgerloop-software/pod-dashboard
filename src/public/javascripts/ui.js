@@ -1,5 +1,5 @@
 /**
- * @module Main
+ * @module UI
  * @author Eric Udlis, Luke Houge
  * @description Handles all responsive UI elements of the dashboard
  */
