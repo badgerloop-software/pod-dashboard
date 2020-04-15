@@ -116,8 +116,8 @@ class State {
   }
 
   /**
-   * Sets the active state, there should always be one active state
-   * @param {State, Number} state State to set active, either State or idNumber
+   * Sets the active state there should always be one active state
+   * @param {State} state State to set active, either State or idNumber
    * @param {HTMLElement} modal The confirmation Modal
    * @param {Boolean} fromPod If the command is from a pod packet (no confirmation needed)
    */
