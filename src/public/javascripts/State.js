@@ -14,19 +14,19 @@ class State {
    * @param {Button} btn (Optional) Button to assign to state if button is already made,
    * if creating a button assign null
    * @param {String} btnColor Color to create state button
-   * @param {Boolean} isHazardus If the state requires confirmation to transition to
+   * @param {Boolean} ishazardous If the state requires confirmation to transition to
    * @param {Boolean} isFault If the state is a fault state
    */
-  constructor(shortName, displayName, btn, btnColor, isHazardus, isFault) {
+  constructor(shortName, displayName, btn, btnColor, ishazardous, isFault) {
     this.shortname = shortName;
     this.displayName = displayName;
-    this.isHazardus = isHazardus;
+    this.ishazardous = ishazardous;
     this.idNum = STATES.length;
     this.isFault = isFault;
     if (btn) {
       this.btn = btn;
     } else {
-      this.btn = new StateButton(shortName, displayName, null, btnColor, isHazardus, this);
+      this.btn = new StateButton(shortName, displayName, null, btnColor, ishazardous, this);
     }
     this.active = false;
     STATES.push(this);
@@ -37,7 +37,7 @@ class State {
    * @param {HTMLElement} modalTemplate The template of the modal to display
    */
   activate(modalTemplate, fromPod) {
-    if (this.isHazardus && !fromPod) {
+    if (this.ishazardous && !fromPod) {
       this.confirmActive(modalTemplate);
     } else {
       this.setActive();

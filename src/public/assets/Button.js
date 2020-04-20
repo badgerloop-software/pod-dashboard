@@ -10,7 +10,7 @@ class Button {
    * @param {HTMLElement} parent HTML Parent of Button
    * @param {String} bgColor Background Color
    * @param {String} txtColor Text Color
-   * @param {Boolean} hazard Is the action the Button triggers hazardus?
+   * @param {Boolean} hazard Is the action the Button triggers hazardous?
    */
   constructor(name, text, parent, bgColor, txtColor, hazard) {
     if (!name || !text) {
@@ -42,7 +42,7 @@ class Button {
       }
       this.domElement.style.color = this.color.txtColor;
     }
-    this.isHazardus = hazard;
+    this.ishazardous = hazard;
     if (hazard) {
       this.domElement.style.borderColor = 'red';
     }
@@ -83,7 +83,7 @@ class Button {
    * @param {String} color Text Color
    */
   setTextColor(color) {
-    this.txtColor = color;
+    this.color.txtColor = color;
     this.domElement.style.color = this.txtColor;
   }
 
@@ -112,11 +112,11 @@ class Button {
 
   /**
    * Sets the action that this button will trigger on click,
-   *  if it is hazardus it will trigger confirmation
+   *  if it is hazardous it will trigger confirmation
    * @param {Function} fcn The action that this button will trigger on click
    */
   onClick(fcn) {
-    if (this.isHazardus) {
+    if (this.ishazardous) {
       this.action = fcn; // If the action requires confirmation save it for later
       this.domElement.addEventListener('click', () => {
         this.confirmActive();

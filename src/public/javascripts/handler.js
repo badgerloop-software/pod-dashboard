@@ -26,7 +26,7 @@ const STATE_BUTTONS = [['Power Off', '#C10000'], ['Idle', '#3C9159'],
   ['Stopped', '#34495E'], ['Crawl Precharge', '#C6A153'], ['Crawl', '#A84671', true],
   ['Post Run', '#34495E'], ['Safe to Approach', '#3C9159'],
   ['Run Fault', 'red', false, true], ['Non-Run Fault', 'red', false, true]];
-  // [Display Name, btn color, isHazardus, isFault]
+  // [Display Name, btn color, ishazardous, isFault]
 ControlPanelButton.setParent(document.getElementById('controlpanelBox'));
 const CONFIRMATION_MODAL = D.querySelector('.confirmationModal');
 ControlPanelButton.setModalTemplate(CONFIRMATION_MODAL);
