@@ -27,7 +27,7 @@ const STATE_BUTTONS = [['Power Off', '#C10000'], ['Idle', '#3C9159'],
   ['Post Run', '#34495E'], ['Safe to Approach', '#3C9159'],
   ['Run Fault', 'red', false, true], ['Non-Run Fault', 'red', false, true]];
   // [Display Name, btn color, ishazardous, isFault]
-ControlPanelButton.setParent(document.getElementById('controlpanelBox'));
+const CONTROL_PANEL = document.getElementById('controlpanelBox');
 const CONFIRMATION_MODAL = D.querySelector('.confirmationModal');
 ControlPanelButton.setModalTemplate(CONFIRMATION_MODAL);
 
@@ -35,19 +35,19 @@ const LV_INDICATOR = D.getElementById('connectionDot1');
 const HV_INDICATOR = D.getElementById('connectionDot2');
 const RECIEVE_INDICATOR_1 = D.getElementById('link1');
 const RECIEVE_INDICATOR_2 = D.getElementById('link2');
-const DATA_RECORD_BUTTON = new ControlPanelButton('dataRecord', 'Start Data Recording', '#AEA8D3', false);
-const ARCHIVE_BUTTON = new ControlPanelButton('archiveData', 'Save Data Recording', '#AEA8D3', false);
+const DATA_RECORD_BUTTON = new ControlPanelButton('dataRecord', 'Start Data Recording', CONTROL_PANEL, '#AEA8D3', false);
+const ARCHIVE_BUTTON = new ControlPanelButton('archiveData', 'Save Data Recording', CONTROL_PANEL, '#AEA8D3', false);
 ARCHIVE_BUTTON.greyOut();
-const COMMAND_TORQUE = new ControlPanelButton('cmdTorque', 'Cmd Torque', '#F4D76F', true);
-const PRIMARY_BRAKE_ON = new ControlPanelButton('primBrakeOn', 'Prim. Brake Act', '#34495E', false);
-const PRIMARY_BRAKE_OFF = new ControlPanelButton('primBrakeOff', 'Prim. Brake Retr', '#34495E', false);
-const PRECHARGE_ENABLE = new ControlPanelButton('precharge', 'Precharge', '#C6A153', true);
-const SECONDARY_BRAKE_ON = new ControlPanelButton('secBrakeOff', 'Sec. Brake Act', '#5C97BF', false);
-const SECONDARY_BRAKE_OFF = new ControlPanelButton('secBrakeOn', 'Sec. Brake Retr', '#5C97BF', false);
-const LATCH_ON = new ControlPanelButton('latchOn', 'Latch On', '#554188', true);
-const HV_ENABLE = new ControlPanelButton('hvEnable', 'HV Enable', '#F4D76F', true);
-const HV_DISABLE = new ControlPanelButton('hvDisable', 'HV Disable', '#F4D76F', false);
-const LATCH_OFF = new ControlPanelButton('latchOff', 'Latch off', '#554188', true);
+const COMMAND_TORQUE = new ControlPanelButton('cmdTorque', 'Cmd Torque', CONTROL_PANEL, '#F4D76F', true);
+const PRIMARY_BRAKE_ON = new ControlPanelButton('primBrakeOn', 'Prim. Brake Act', CONTROL_PANEL, '#34495E', false);
+const PRIMARY_BRAKE_OFF = new ControlPanelButton('primBrakeOff', 'Prim. Brake Retr', CONTROL_PANEL, '#34495E', false);
+const PRECHARGE_ENABLE = new ControlPanelButton('precharge', 'Precharge', CONTROL_PANEL, '#C6A153', true);
+const SECONDARY_BRAKE_ON = new ControlPanelButton('secBrakeOff', 'Sec. Brake Act', CONTROL_PANEL, '#5C97BF', false);
+const SECONDARY_BRAKE_OFF = new ControlPanelButton('secBrakeOn', 'Sec. Brake Retr', CONTROL_PANEL, '#5C97BF', false);
+const LATCH_ON = new ControlPanelButton('latchOn', 'Latch On', CONTROL_PANEL, '#554188', true);
+const HV_ENABLE = new ControlPanelButton('hvEnable', 'HV Enable', CONTROL_PANEL, '#F4D76F', true);
+const HV_DISABLE = new ControlPanelButton('hvDisable', 'HV Disable', CONTROL_PANEL, '#F4D76F', false);
+const LATCH_OFF = new ControlPanelButton('latchOff', 'Latch off', CONTROL_PANEL, '#554188', true);
 
 const EMERGENCY_STOP_BTN = D.getElementById('estop');
 const TABLES_RENDERER = new RENDERER();

@@ -30,28 +30,30 @@ let batteries = [];
  * @param {Number} row - row it belongs to
  * @param {Number} col - column it belongs to
  */
-function Battery(name, row, col) {
-  this.name = name;
-  this.voltage = 0.0;
-  this.temperature = null;
-  this.row = row;
-  this.col = col;
+class Battery {
+  constructor(name, row, col) {
+    this.name = name;
+    this.voltage = 0.0;
+    this.temperature = null;
+    this.row = row;
+    this.col = col;
+  }
 
-  this.setVoltage = function setVoltage(voltage) {
+  setVoltage(voltage) {
     this.voltage = voltage;
-  };
+  }
 
-  this.setTemp = function setTemp(temp) {
+  setTemp(temp) {
     this.temperature = temp;
-  };
+  }
 
-  this.getVoltage = function getVoltage() {
+  getVoltage() {
     return this.voltage.toFixed(4);
-  };
+  }
 
-  this.getTemp = function getTemp() {
+  getTemp() {
     return this.temperature;
-  };
+  }
 }
 /**
  * Creates a row filled with battery cells
@@ -103,42 +105,13 @@ function fillCell(batteryIndex, row, col) {
  */
 function initBatteries() {
   createTable(TABLE_HEIGHT, TABLE_WIDTH);
-  for (let i = 0; i < NUM_CELLS; i++) {
-    if (i >= 0 && i <= 7) {
-      batteries[i] = new Battery(`Cell ${i}`, 0, i);
-      fillCell(i, 0, (i));
-    }
-    if (i >= 8 && i <= 15) {
-      batteries[i] = new Battery(`Cell ${i}`, 1, (i - 8));
-      fillCell(i, 1, (i - 8));
-    }
-    if (i >= 16 && i <= 23) {
-      batteries[i] = new Battery(`Cell ${i}`, 2, (i - 16));
-      fillCell(i, 2, (i - 16));
-    }
-    if (i >= 24 && i <= 31) {
-      batteries[i] = new Battery(`Cell ${i}`, 3, (i - 24));
-      fillCell(i, 3, (i - 24));
-    }
-    if (i >= 32 && i <= 39) {
-      batteries[i] = new Battery(`Cell ${i}`, 4, (i - 32));
-      fillCell(i, 4, (i - 32));
-    }
-    if (i >= 40 && i <= 47) {
-      batteries[i] = new Battery(`Cell ${i}`, 5, (i - 40));
-      fillCell(i, 5, (i - 40));
-    }
-    if (i >= 48 && i <= 55) {
-      batteries[i] = new Battery(`Cell ${i}`, 6, (i - 48));
-      fillCell(i, 6, (i - 48));
-    }
-    if (i >= 56 && i <= 63) {
-      batteries[i] = new Battery(`Cell ${i}`, 7, (i - 56));
-      fillCell(i, 7, (i - 56));
-    }
-    if (i >= 64 && i <= 71) {
-      batteries[i] = new Battery(`Cell ${i}`, 8, (i - 64));
-      fillCell(i, 8, (i - 64));
+  for (let i = 0; i < TABLE_HEIGHT; i++) {
+    for (let j = 0; j < TABLE_WIDTH; j++) {
+      let index = i * TABLE_WIDTH + j; // Calculates what your flattened index is
+      console.log(`(${i}, ${j})`);
+      batteries[index] = new Battery(`Cell ${index}`, i, j); // Adds cell in your 1d table
+      fillCell(index, i, j); // Fills in the cell, and column math looks a lot
+      // nicer because access is already in 2d
     }
   }
 }

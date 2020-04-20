@@ -20,13 +20,6 @@ class StateButton extends Button {
   }
 
   /**
-   * @override
-   */
-  onClick(fcn) {
-    this.domElement.addEventListener('click', fcn);
-  }
-
-  /**
    * Sets the state button to active
    * @override
    */

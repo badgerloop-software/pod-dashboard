@@ -2,6 +2,13 @@
  * @author Eric Udlis
  * @description A generic Button object
  */
+
+const MODAL_TOGGLE_CLASS = 'show-modal';
+const BUTTON_INACTIVE_CLASS = 'stateButtonInactive';
+const BUTTON_ACTIVE_CLASS = 'stateButton';
+const HAZARDOUS_BORDER_COLOR = 'red';
+const ACTIVE_BUTTON_TEXT_COLOR = 'lime';
+const INACTIVE_BUTTON_TEXT_COLOR = 'white';
 class Button {
   /**
    * Constructs a new Button
@@ -44,7 +51,7 @@ class Button {
     }
     this.ishazardous = hazard;
     if (hazard) {
-      this.domElement.style.borderColor = 'red';
+      this.domElement.style.borderColor = HAZARDOUS_BORDER_COLOR;
     }
   }
 
@@ -52,30 +59,30 @@ class Button {
    * Sets the button to the active state
    */
   activate() {
-    this.setTextColor('lime');
+    this.setTextColor(ACTIVE_BUTTON_TEXT_COLOR);
   }
 
   /**
    * Sets the button to the inactive state
    */
   deactivate() {
-    this.setTextColor('white');
+    this.setTextColor(INACTIVE_BUTTON_TEXT_COLOR);
   }
 
   /**
    * Greys out the background of the button to signal no human input
    */
   greyOut() {
-    this.domElement.classList.add('stateButtonInactive');
-    this.domElement.classList.remove('stateButton');
+    this.domElement.classList.add(BUTTON_INACTIVE_CLASS);
+    this.domElement.classList.remove(BUTTON_ACTIVE_CLASS);
   }
 
   /**
    * Recolors the button to signal human input required
    */
   colorize() {
-    this.domElement.classList.remove('stateButtonInactive');
-    this.domElement.classList.add('stateButton');
+    this.domElement.classList.remove(BUTTON_INACTIVE_CLASS);
+    this.domElement.classList.add(BUTTON_ACTIVE_CLASS);
   }
 
   /**
@@ -84,7 +91,7 @@ class Button {
    */
   setTextColor(color) {
     this.color.txtColor = color;
-    this.domElement.style.color = this.txtColor;
+    this.domElement.style.color = this.color.txtColor;
   }
 
   /**
@@ -92,7 +99,7 @@ class Button {
    */
   createNewElement() {
     let button = document.createElement('button');
-    button.className = 'stateButton';
+    button.className = BUTTON_ACTIVE_CLASS;
     button.id = String(this.name).toLowerCase();
     let buttonText = document.createElement('p');
     buttonText.innerHTML = this.text;
@@ -137,6 +144,14 @@ class Button {
   }
 
   /**
+   * Gets the parent of the button
+   * @returns {HTMLElement} The control panel HTMLElement
+   */
+  getParent() {
+    return this.parent;
+  }
+
+  /**
    * Displays a confirmation window before transitioning to state
    */
   confirmActive() {
@@ -147,14 +162,14 @@ class Button {
     let text = modal.childNodes[1].childNodes[5];
     let closeButton = modal.childNodes[1].childNodes[1];
     closeButton.addEventListener('click', () => {
-      modal.classList.toggle('show-modal');
+      Button.toggleConfirmationModal(modal);
       document.body.removeChild(modal);
     });
     button.addEventListener('click', () => { Button.toggleConfirmationModal(modal); });
     text.innerHTML = `Are you sure you want to trigger ${this.text}?`;
     button.addEventListener('click', () => {
       this.action();
-      modal.classList.toggle('show-modal');
+      Button.toggleConfirmationModal(modal);
       document.body.removeChild(modal);
     });
   }
@@ -164,7 +179,7 @@ class Button {
    * @param {HTMLElement} modal The modal to toggle
    */
   static toggleConfirmationModal(modal) {
-    modal.classList.toggle('show-modal');
+    modal.classList.toggle(MODAL_TOGGLE_CLASS);
   }
 
   /**
