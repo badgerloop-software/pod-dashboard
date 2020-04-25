@@ -263,3 +263,6 @@ $RECYCLE.BIN/
 
 # Dev Tools
 *.jshintrc
+
+#specific local config files
+.nova/*
