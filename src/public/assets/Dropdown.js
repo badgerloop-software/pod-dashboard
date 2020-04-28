@@ -23,14 +23,14 @@ class Dropdown {
     if (this.containsList) {
       this.listOnClick = listOnClick;
       this.list = Dropdown.createDropdown(this.id);
-     this.parent.appendChild(this.btn);
-     this.parent.appendChild(this.list);
+      this.parent.appendChild(this.btn);
+      this.parent.appendChild(this.list);
       this.fillList();
       this.onClick(() => {
         this.toggle();
       });
     }
-    
+
     DROPDOWNS.push(this);
   }
 
@@ -142,6 +142,6 @@ class Dropdown {
   static getListOfDropdowns() {
     return DROPDOWNS;
   }
-};
+}
 
 module.exports = Dropdown;
