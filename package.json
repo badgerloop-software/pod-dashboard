@@ -2,12 +2,15 @@
   "name": "podvdashboard",
   "version": "1.1.0",
   "description": "The Dashboard for Badgerloop Pod 5",
-  "main": "src/app.js",
+  "main": "./src/app.js",
   "scripts": {
     "start": "electron .",
     "lint": "eslint src",
     "pretest": "eslint src",
     "dev": "$env:DEBUG='true' && electron .",
+    "package windows": "electron-forge make --win32",
+    "package linux": "electron-forge make --linux",
+    "package mac": "electron-forge make --darwin",
     "generate-docs": "./node_modules/.bin/jsdoc ./src/ -R ./README.md -r -P ./package.json -t ./node_modules/docdash/ -c ./jsdoc.json -d ./docs/"
   },
   "repository": {
@@ -20,9 +23,17 @@
     "url": "https://github.com/badgerloop-software/pod/issues"
   },
   "homepage": "https://github.com/badgerloop-software/pod#readme",
-  "devDependencies": {},
+  "devDependencies": {
+    "babel-plugin-transform-async-to-generator": "^6.24.1",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "electron-forge": "^5.2.4",
+    "electron-prebuilt-compile": "4.0.0"
+  },
   "dependencies": {
     "babel-eslint": "^10.0.1",
+    "electron-compile": "^6.4.4",
+    "electron-squirrel-startup": "^1.0.0",
     "docdash": "^1.1.1",
     "electron": "^4.0.1",
     "eslint": "5.13.0",
@@ -32,5 +43,37 @@
     "jest": "^24.1.0",
     "jsdoc": "^3.6.3",
     "prettier": "^1.16.4"
+  },
+  "config": {
+    "forge": {
+      "make_targets": {
+        "win32": [
+          "squirrel"
+        ],
+        "darwin": [
+          "zip"
+        ],
+        "linux": [
+          "deb",
+          "rpm"
+        ]
+      },
+      "electronPackagerConfig": {
+        "packageManager": "npm"
+      },
+      "electronWinstallerConfig": {
+        "name": "podvdashboard"
+      },
+      "electronInstallerDebian": {},
+      "electronInstallerRedhat": {},
+      "github_repository": {
+        "owner": "",
+        "name": ""
+      },
+      "windowsStoreConfig": {
+        "packageName": "",
+        "name": "podvdashboard"
+      }
+    }
   }
 }

@@ -66,6 +66,22 @@ To view coverage report  open the following HTML file:
 ```
 pod-dashboard/coverage/lcov-report/index.html
 ```
+
+### Build Packaged App
+Windows:
+```
+npm package windows
+```
+Linux:
+```
+npm package linux
+```
+Mac:
+```
+npm package mac
+```
+See https://www.electronforge.io/cli for further documentation on app packaging.
+
 ## File Structure
 ```├── .eslintrc.js                 // Config file for eslint, our styling tester
 ├── .eslintrc.json                  // Config file for eslint, our styling tester
