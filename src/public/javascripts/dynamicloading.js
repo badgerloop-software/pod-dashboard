@@ -1,11 +1,9 @@
+/* eslint-disable no-param-reassign */
 /**
  * @module Dynamic-Loading
  * @author Eric Udlis, Luke Houge
  * @description Dynamically fill the dashboard with content based off of database.JSON
  */
-
-/** @requires module:jsons-database */
-const DATABASE = require('../../database.json');
 
 /** @requires module:DataInterfacing */
 const DATA_INTERFACING = require('./datainterfacing');
@@ -14,7 +12,7 @@ const DATA_INTERFACING = require('./datainterfacing');
 const TIMER = require('./Timer');
 
 const STATE_TIMER = new TIMER();
-
+const DEFAULT_STATE = 'poweroff';
 // Dynamic Tables
 /**
  * Creates the name column for the sensor
@@ -40,12 +38,14 @@ function createHeaderCol(name, group, units) {
  * @returns {HTMLElement} The table column
  */
 function createMinCol(name, group) {
+  if (typeof name !== 'string') throw new Error('Error: Name must be a string');
   let renderable = DATA_INTERFACING.findRenderable();
+  if (!renderable[group]) throw new Error('Error: Group is not found in renderable list');
   let col = document.createElement('td'); // Creates Element
   col.className = 'min'; // Assigns class
   col.id = `${name}Min`; // Assigns ID
   // Fills box with correct value
-  col.innerHTML = String(renderable[group][name].limits.powerOff.min);
+  col.innerHTML = String(renderable[group][name].limits[DEFAULT_STATE].min);
   return col;
 }
 
@@ -71,7 +71,7 @@ function createMaxCol(name, group) {
   let col = document.createElement('td');
   col.className = 'max';
   col.id = `${name}Max`;
-  col.innerHTML = `${renderable[group][name].limits.powerOff.max}`;
+  col.innerHTML = `${renderable[group][name].limits[DEFAULT_STATE].max}`;
   return col;
 }
 
@@ -134,7 +134,8 @@ module.exports.fillAllTables = function fillAllTables() { // eslint-disable-line
  * @returns {HTMLElement} The div the contains value text
  */
 function getMinCell(sensor) {
-  return document.getElementById(`${sensor}Min`);
+  let domEle = document.getElementById(`${sensor}Min`) || -1;
+  return domEle;
 }
 
 /**
@@ -143,7 +144,8 @@ function getMinCell(sensor) {
  * @returns {HTMLElement} The div the contains value text
  */
 function getMaxCell(sensor) {
-  return document.getElementById(`${sensor}Max`);
+  let domEle = document.getElementById(`${sensor}Max`) || -1;
+  return domEle;
 }
 
 /**
@@ -152,7 +154,8 @@ function getMaxCell(sensor) {
  * @param {Number} value Value to set
  */
 function setMinCell(sensor, value) {
-  getMinCell(sensor).innerHTML = Number(value);
+  if (getMinCell(sensor) === -1) console.warn(`Warning: Sensor ${sensor} does not have a place on table`);
+  else getMinCell(sensor).innerHTML = Number(value);
 }
 
 /**
@@ -161,7 +164,8 @@ function setMinCell(sensor, value) {
  * @param {Number} value Value to set
  */
 function setMaxCell(sensor, value) {
-  getMaxCell(sensor).innerHTML = Number(value);
+  if (getMaxCell(sensor) === -1) console.warn(`Warning: Sensor ${sensor} does not have a place on table`);
+  else getMaxCell(sensor).innerHTML = Number(value);
 }
 
 /**
@@ -173,6 +177,7 @@ function setMaxCell(sensor, value) {
 function fillRowBounds(subsystem, sensor, state) {
   let renderable = DATA_INTERFACING.findRenderable();
   let stored = renderable[subsystem][sensor].limits[state];
+  if (!stored) throw new Error(`Error: Can not find limits for ${sensor} at state ${state}`);
   setMinCell(sensor, stored.min);
   setMaxCell(sensor, stored.max);
 }
@@ -206,168 +211,20 @@ function fillAllBounds(state) { // eslint-disable-line no-unused-vars
   });
 }
 
-/**
- * Turns a state number into a state string
- * @param {Number} stateNum State number
- */
-function getStateName(stateNum) {
-  switch (stateNum) {
-    case 0:
-      return 'powerOff';
-    case 1:
-      return 'idle';
-    case 2:
-      return 'pumpdown';
-    case 3:
-      return 'propulsion';
-    case 4:
-      return 'braking';
-    case 5:
-      return 'stopped';
-    case 6:
-      return 'crawlPrecharge';
-    case 7:
-      return 'crawl';
-    case 8:
-      return 'postRun';
-    case 9:
-      return 'safeToApproach';
-    case 10:
-      return 'nonRunFault';
-    case 11:
-      return 'runFault';
-    case 12:
-      return 'brakingFault';
-    default:
-      return undefined;
-  }
-}
-
-/**
- * Sets all state buttons to inactive
- */
-function resetAllButtons() {
-  document.getElementById('powerOff').className = 'stateButtonInactive';
-  document.getElementById('idle').className = 'stateButtonInactive';
-  document.getElementById('postRun').className = 'stateButtonInactive';
-  document.getElementById('pumpdown').className = 'stateButtonInactive';
-  document.getElementById('propulsion').className = 'stateButtonInactive';
-  document.getElementById('braking').className = 'stateButtonInactive';
-  document.getElementById('stopped').className = 'stateButtonInactive';
-  document.getElementById('crawlPrecharge').className = 'stateButtonInactive';
-  document.getElementById('crawl').className = 'stateButtonInactive';
-  document.getElementById('nonRunFault').className = 'stateButtonInactive';
-  document.getElementById('runFault').className = 'stateButtonInactive';
-  document.getElementById('safeToApproach').className = 'stateButtonInactive';
-}
-
-/**
- * Sets a state button as active
- * @param {String} state ID of state button to set
- * @static
- */
-function setIndicator(state) {
-  resetAllButtons();
-  document.getElementById(state).className = 'stateButton';
-}
-
-module.exports.setIndicator = setIndicator;
-
-/**
- * Transitions the dashboard to a new state
- * @param {String} state - String of state to transition to
- * @param {Number} state - Number of state to transition to
- */
-module.exports.switchState = function switchState(state) {
-  let type = typeof state;
-  let targetState = state;
-  if (STATE_TIMER.process !== false) {
-    STATE_TIMER.stop();
-    STATE_TIMER.reset();
-  } else {
-    STATE_TIMER.start();
-  }
-  if (type === 'number') targetState = getStateName(state);
-  if (targetState === undefined) {
-    console.error('Undefined State');
-  } else {
-    setIndicator(targetState);
-    if (targetState === 'crawlPrecharge') targetState = 'stopped'; // Super jank, fix later
-    fillAllBounds(targetState);
-  }
-};
-
-/**
- * Transitions the dashboard to a fault state
- * @param {Number} faultNum The number of the fault
- */
-module.exports.setFault = function setFault(faultNum) {
-  let faultStr = getStateName(faultNum);
-  // console.error(`Entering a ${faultStr}`);
-  setIndicator(faultStr);
-};
-
+module.exports.fillAllBounds = fillAllBounds;
 // Dynamic Dropdowns
 
 
 // code that actually creates the element with the passed in information from fillAllItems
 /**
- * Creates an element and appends it to the dropdown
- * @param {String} name The name of the sensor
- * @param {String} group The group it belongs to
- * @param {String} units The unit the sensor reports in
- * @param {String} system the system the sensor belongs to
- */
-function createItem(name, dropdown, units, system) { // eslint-disable-line no-unused-vars
-  let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
-  let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
-  fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
 
-  let header = document.createElement('a'); // Creates the actual DOM element
-  header.href = ''; // Sets the class
-  switch (dropdown) {
-    case 'myDropdown1':
-      header.onclick = function onclick() { // sets the onclick value
-        clone(name);
-        return false;
-      };
-      break;
-    case 'myDropdown2':
-      header.onclick = function onclick() { // sets the onclick value
-        startChart(0, name, fixedName, system, fixedUnits);
-        return false;
-      };
-      break;
-    case 'myDropdown3':
-      header.onclick = function onclick() { // sets the onclick value
-        startChart(1, name, fixedName, system, fixedUnits);
-        return false;
-      };
-      break;
-    default:
-      break;
-  }
-  header.innerHTML = `${fixedName}`; // Sets value in the box
-  let list = document.getElementById(dropdown);
-  list.appendChild(header);
-}
 
 /**
  * Creates an element for each sensor and appends it to the dropdown
  * @param {Boolean} testing true if testing false if not
  */
 module.exports.fillAllItems = function fillAllItems(testing) { // eslint-disable-line
-  let subsystems = Object.keys(DATABASE); // Create array of each subsystem
-  subsystems.forEach((subsystem) => {
-    let currentSystem = DATABASE[subsystem];
-    sensors = Object.keys(currentSystem); // Create an array with all sensors in the subsystem
 
-    sensors.forEach((sensor) => {
-      if (!testing) createItem(`${sensor}`, 'myDropdown1', `${currentSystem[sensor].units}`); // For each sensor create an element
-      createItem(`${sensor}`, 'myDropdown2', `${currentSystem[sensor].units}`, subsystem); // For each sensor create an element
-      createItem(`${sensor}`, 'myDropdown3', `${currentSystem[sensor].units}`, subsystem); // For each sensor create an element
-    });
-  });
 };
 
 module.exports.stateTimer = STATE_TIMER;

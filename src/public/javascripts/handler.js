@@ -1,7 +1,7 @@
 /**
  * @module Handler
  * @author Eric Udlis, Michael Handler
- * @description HAndle all updates and interfacing between the front-end and back-end
+ * @description Handle all updates and interfacing between the front-end and back-end
  */
 const CLIENT = require('./public/javascripts/communication');
 const DATA_INTERFACING = require('./public/javascripts/datainterfacing');
@@ -10,46 +10,65 @@ const CONSTANTS = require('./constants');
 const DYNAMIC_LOADING = require('./public/javascripts/dynamicloading');
 const RENDERER = require('./public/javascripts/renderer');
 const TIMER = require('./public/javascripts/Timer');
-const COUNTDOWN = require('./public/javascripts/Countdown');
 const CACHE = require('./cache');
 const DATA_RECORDING = require('./dataRecording');
+
+// New OOP stuff
+const State = require('./public/javascripts/State');
+const ControlPanelButton = require('./public/assets/ControlPanelButton');
 
 const D = document;
 const TIMEOUT = 5000;
 const CONNECTION_CHECK_INTERVAL = 1000;
 const AUTOSAVE_INTERVAL = 30000;
+const STATE_BUTTONS = [
+  ['Power Off', '#C10000'],
+  ['Idle', '#3C9159'],
+  ['Pumpdown', '#C66553', true],
+  ['Propulsion', '#C6A153', true],
+  ['Braking', '#34495E'],
+  ['Stopped', '#34495E'],
+  ['Crawl Precharge', '#C6A153'],
+  ['Crawl', '#A84671', true],
+  ['Post Run', '#34495E'],
+  ['Safe to Approach', '#3C9159'],
+  ['Run Fault', 'red', false, true],
+  ['Non-Run Fault', 'red', false, true],
+];
+// [Display Name, btn color, ishazardous, isFault]
+const CONTROL_PANEL = document.getElementById('controlpanelBox');
+const CONFIRMATION_MODAL = D.querySelector('.confirmationModal');
+ControlPanelButton.setModalTemplate(CONFIRMATION_MODAL);
 
-const STATE_MACHINE_CONTROL_PANEL = D.getElementById('header3');
-const STATE_MACHINE_BUTTONS = STATE_MACHINE_CONTROL_PANEL.getElementsByTagName('button');
 const LV_INDICATOR = D.getElementById('connectionDot1');
 const HV_INDICATOR = D.getElementById('connectionDot2');
 const RECIEVE_INDICATOR_1 = D.getElementById('link1');
 const RECIEVE_INDICATOR_2 = D.getElementById('link2');
-const PRIMARY_BRAKE_ON = D.getElementById('primBrakeOn');
-const PRIMARY_BRAKE_OFF = D.getElementById('primBrakeOff');
-const SECONDARY_BRAKE_ON = D.getElementById('secBrakeVentOn');
-const SECONDARY_BRAKE_OFF = D.getElementById('secBrakeVentOff');
-const PRIMARY_BRAKE_ON_TEXT = D.getElementById('primEnText');
-const PRIMARY_BRAKE_OFF_TEXT = D.getElementById('primDisText');
-const SECONDAY_BRAKE_ON_TEXT = D.getElementById('secEnText');
-const SECONDAY_BRAKE_OFF_TEXT = D.getElementById('secDisText');
-const CONFIRMATION_MODAL = D.querySelector('.confirmationModal');
-const CLOSE_BUTTON_2 = D.querySelector('.close-button2');
+const DATA_RECORD_BUTTON = new ControlPanelButton('dataRecord', 'Start Data Recording', CONTROL_PANEL, '#AEA8D3', false);
+const ARCHIVE_BUTTON = new ControlPanelButton('archiveData', 'Save Data Recording', CONTROL_PANEL, '#AEA8D3', false);
+ARCHIVE_BUTTON.greyOut();
+const COMMAND_TORQUE = new ControlPanelButton('cmdTorque', 'Cmd Torque', CONTROL_PANEL, '#F4D76F', true);
+const PRIMARY_BRAKE_ON = new ControlPanelButton('primBrakeOn', 'Prim. Brake Act', CONTROL_PANEL, '#34495E', false);
+const PRIMARY_BRAKE_OFF = new ControlPanelButton('primBrakeOff', 'Prim. Brake Retr', CONTROL_PANEL, '#34495E', false);
+const PRECHARGE_ENABLE = new ControlPanelButton('precharge', 'Precharge', CONTROL_PANEL, '#C6A153', true);
+const SECONDARY_BRAKE_ON = new ControlPanelButton('secBrakeOff', 'Sec. Brake Act', CONTROL_PANEL, '#5C97BF', false);
+const SECONDARY_BRAKE_OFF = new ControlPanelButton('secBrakeOn', 'Sec. Brake Retr', CONTROL_PANEL, '#5C97BF', false);
+const LATCH_ON = new ControlPanelButton('latchOn', 'Latch On', CONTROL_PANEL, '#554188', true);
+const HV_ENABLE = new ControlPanelButton('hvEnable', 'HV Enable', CONTROL_PANEL, '#F4D76F', true);
+const HV_DISABLE = new ControlPanelButton('hvDisable', 'HV Disable', CONTROL_PANEL, '#F4D76F', false);
+const LATCH_OFF = new ControlPanelButton('latchOff', 'Latch off', CONTROL_PANEL, '#554188', true);
+
 const EMERGENCY_STOP_BTN = D.getElementById('estop');
-const ARCHIVE_BUTTON = D.getElementById('archiveButton');
-const DATA_RECORD_BUTTON = D.getElementById('dataRecordButton');
 const TABLES_RENDERER = new RENDERER();
 const GLOBAL_TIMER = new TIMER();
 const { stateTimer: STATE_TIMER } = DYNAMIC_LOADING;
 
-let confirmModalBtn = D.getElementById('confirmStart');
 let activeTimer = GLOBAL_TIMER;
 let { DEBUG } = Boolean(process.env) || false;
 let boneStatus = [false, false]; // [LV, HV]
 let packetCounts = [0, 0]; // [LV, HV]
 // eslint-disable-next-line no-unused-vars
 let oldCounts = [0, 0];
-
 
 /**
  * @param  {String} group Group the sensor belongs to
@@ -68,72 +87,14 @@ function renderData(group, sensor) {
   }
 }
 
-/**
- * @param {String} state State to override to
- * Manually transitions the dashboard to state given
- */
-function overrideState(state) {
-  if (DEBUG) console.error(`OVERIDING STATE TO ${state} STATE`);
-  CLIENT.sendOverride(state);
-  DYNAMIC_LOADING.switchState(state);
-  STATE_TIMER.reset();
-}
-
 // State Machine Control Panel Event Listeners
-/**
- * Creates a listener for a button to override to state that the button is labled with
- * @param {HTMLElement} btn HTML element to create a listener for
- */
-function makeListener(btn) {
-  btn.addEventListener('click', (e) => {
-    let clicked = String(e.target.tagName);
-    let temp = String(e.target.id);
-    if (clicked === 'P') temp = e.target.parentElement.id;
-    overrideState(temp);
-  });
-}
 /**
  * Creates a JSON save labled "Autosave"
  */
 function autosave() {
   DATA_INTERFACING.archiveData('autosave');
 }
-/**
- * Prompts user with a confirmation window before running function
- * @param {String} msg Message to display in prompt
- * @param {Function} cb Function to run once confirmed
- */
-function toggleConfirmationModal(msg, cb) {
-  CONFIRMATION_MODAL.classList.toggle('show-modal');
-  if (msg && cb) {
-    let el = confirmModalBtn;
-    let elClone = el.cloneNode(true);
-    confirmModalBtn = elClone;
-    el.parentNode.replaceChild(elClone, el);
-    confirmModalBtn.addEventListener('click', toggleConfirmationModal);
-    document.getElementById('confirmMsg').innerHTML = `Are you sure you want to engage ${msg}`;
-    confirmModalBtn.addEventListener('click', cb);
-  }
-}
 
-// iterate through list of buttons and call makeListener
-/**
- * Creates listeners for all the state machine buttons
- */
-function makeStateMachineListeners() {
-  for (let i = 0; i < STATE_MACHINE_BUTTONS.length; i += 1) {
-    // handle exceptions
-    if (STATE_MACHINE_BUTTONS[i].classList.contains('stateButton') && STATE_MACHINE_BUTTONS[i].id !== 'powerOff') {
-      // If it is a colored button
-      continue; // eslint-disable-line
-    }
-    if (STATE_MACHINE_BUTTONS[i] === D.getElementById('pumpdown') || STATE_MACHINE_BUTTONS[i] === D.getElementById('crawlPrecharge') || STATE_MACHINE_BUTTONS[i] === D.getElementById('crawl') || STATE_MACHINE_BUTTONS[i] === D.getElementById('propulsion')) {
-      continue; // eslint-disable-line
-    }
-    if (STATE_MACHINE_BUTTONS[i] === DATA_RECORD_BUTTON || ARCHIVE_BUTTON) continue; // eslint-disable-line
-    makeListener(STATE_MACHINE_BUTTONS[i]);
-  }
-}
 /**
  * Toggles the primary braking indicators and calls the
  * communication call if noted by call
@@ -142,13 +103,12 @@ function makeStateMachineListeners() {
  */
 function togglePrimBrake(state, call) {
   if (state) {
-    PRIMARY_BRAKE_ON_TEXT.style.color = 'lime';
-    PRIMARY_BRAKE_OFF_TEXT.style.color = 'white';
+    PRIMARY_BRAKE_ON.activate();
+    PRIMARY_BRAKE_OFF.deactivate();
     if (call) CLIENT.primBrakeOn();
-  }
-  if (!state) {
-    PRIMARY_BRAKE_OFF_TEXT.style.color = 'lime';
-    PRIMARY_BRAKE_ON_TEXT.style.color = 'white';
+  } else {
+    PRIMARY_BRAKE_OFF.activate();
+    PRIMARY_BRAKE_ON.deactivate();
     if (call) CLIENT.primBrakeOff();
   }
 }
@@ -160,13 +120,12 @@ function togglePrimBrake(state, call) {
  */
 function toggleSecBrake(state, call) {
   if (state) {
-    SECONDAY_BRAKE_ON_TEXT.style.color = 'lime';
-    SECONDAY_BRAKE_OFF_TEXT.style.color = 'white';
+    SECONDARY_BRAKE_ON.activate();
+    SECONDARY_BRAKE_OFF.deactivate();
     if (call) CLIENT.secBrakeOn();
-  }
-  if (!state) {
-    SECONDAY_BRAKE_OFF_TEXT.style.color = 'lime';
-    SECONDAY_BRAKE_ON_TEXT.style.color = 'white';
+  } else {
+    SECONDARY_BRAKE_ON.deactivate();
+    SECONDARY_BRAKE_OFF.activate();
     if (call) CLIENT.secBrakeOff();
   }
 }
@@ -188,16 +147,6 @@ function checkBraking(basePacket) {
   }
   return fixedPacket;
 }
-/**
- * Disables the HV on the pod, sends communication and changes lablel accordingly
- */
-function disableHV() {
-  CLIENT.disableHV();
-  if (document.getElementById('hvText').classList.contains('active')) {
-    document.getElementById('hvText').classList.remove('active');
-  }
-  document.getElementById('hvDisText').classList.add('active');
-}
 
 // Connection Indicators
 /**
@@ -212,8 +161,7 @@ function setRecieve(state) {
     if (!GLOBAL_TIMER.process) {
       GLOBAL_TIMER.start();
     }
-  }
-  if (!state) {
+  } else {
     RECIEVE_INDICATOR_1.className = 'statusBad';
     RECIEVE_INDICATOR_2.className = 'statusBad';
     D.getElementById('ageDisplay').innerHTML = 'N/A';
@@ -235,7 +183,7 @@ function displayTimer(timer) {
  */
 function setLVIndicator(state) {
   if (state) LV_INDICATOR.className = 'statusGood';
-  if (!state) LV_INDICATOR.className = 'statusBad';
+  else LV_INDICATOR.className = 'statusBad';
 }
 /**
  *Sets the HV indicator
@@ -244,7 +192,7 @@ function setLVIndicator(state) {
 function setHVIndicator(state) {
   if (state) HV_INDICATOR.className = 'statusGood';
   if (!state) HV_INDICATOR.className = 'statusBad';
-  if (!state && !DEBUG) overrideState('powerOff');
+  if (!state && !DEBUG) State.setActiveState(0, CONFIRMATION_MODAL);
 }
 /**
  * Checks if dashboard has recieved packets within timeout period
@@ -256,7 +204,7 @@ function checkRecieve() {
   let difference = now - TABLES_RENDERER.lastRecievedTime;
   displayTimer(activeTimer);
   // console.log(`now: ${now} difference ${difference} timeout ${TIMEOUT}`);
-  if ((difference > TIMEOUT) || TABLES_RENDERER.lastRecievedTime === 0) {
+  if (difference > TIMEOUT || TABLES_RENDERER.lastRecievedTime === 0) {
     setRecieve(false);
     TABLES_RENDERER.stopRenderer();
   } else {
@@ -327,7 +275,6 @@ function checkPackets(input) {
   if (input.motor && input.battery) packetCounts[1]++;
 }
 
-
 // Event Listeners
 // Changes timer based on user input
 document.getElementById('ageDisplay').addEventListener('click', () => {
@@ -347,132 +294,139 @@ EMERGENCY_STOP_BTN.addEventListener('click', () => {
   CLIENT.sendEBrake();
 });
 
-// Sends Propulse command on user click and confirmation
-document.getElementById('propulsion').addEventListener('click', () => {
-  toggleConfirmationModal('propulsion systems?', () => {
-    console.log('go');
-    propCountdown = new COUNTDOWN(30);
-    propCountdown.start();
-    // activeTimer = propCountdown;
-    overrideState('propulsion');
+// Initilization
+/**
+ * Creates the states and state machine buttons
+ */
+
+function setControlPanelListeners() {
+  PRIMARY_BRAKE_ON.onClick(() => {
+    togglePrimBrake(true, true);
   });
-});
 
-// Sends crawl command on user click and confirmation
-document.getElementById('crawl').addEventListener('click', () => {
-  toggleConfirmationModal('service propulsion?', () => {
-    overrideState('crawl');
+  PRIMARY_BRAKE_OFF.onClick(() => {
+    togglePrimBrake(false, true);
   });
-});
 
-confirmModalBtn.addEventListener('click', toggleConfirmationModal);
-CLOSE_BUTTON_2.addEventListener('click', toggleConfirmationModal);
-PRIMARY_BRAKE_OFF.addEventListener('click', () => { togglePrimBrake(false, true); });
-PRIMARY_BRAKE_ON.addEventListener('click', () => { togglePrimBrake(true, true); });
-SECONDARY_BRAKE_ON.addEventListener('click', () => { toggleSecBrake(true, true); });
-SECONDARY_BRAKE_OFF.addEventListener('click', () => { toggleSecBrake(false, true); });
-D.getElementById('crawlPrecharge').addEventListener('click', () => {
-  toggleConfirmationModal('service precharge?', () => {
-    overrideState('crawlPrecharge');
+  SECONDARY_BRAKE_ON.onClick(() => {
+    toggleSecBrake(true, true);
   });
-});
 
-// Sends command torque command on user click
-document.getElementById('cmdTorque').addEventListener('click', () => {
-  CLIENT.commandTorque();
-});
+  SECONDARY_BRAKE_OFF.onClick(() => {
+    toggleSecBrake(false, true);
+  });
 
-// Sends HV enable command on user click and changes indicators
-document.getElementById('hvEnable').addEventListener('click', () => {
-  toggleConfirmationModal('high voltage systems?', () => {
-    document.getElementById('hvText').classList.add('active');
-    if (document.getElementById('hvDisText').classList.contains('active')) {
-      document.getElementById('hvDisText').classList.remove('active');
-    }
+  HV_ENABLE.onClick(() => {
     CLIENT.enableHV();
+    HV_DISABLE.deactivate();
+    HV_ENABLE.activate();
   });
-});
 
-// Sends pumpdown command on user click and confirmation
-D.getElementById('pumpdown').addEventListener('click', () => {
-  toggleConfirmationModal('precharge?', () => {
-    overrideState('pumpdown');
+  HV_DISABLE.onClick(() => {
+    CLIENT.disableHV();
+    HV_DISABLE.activate();
+    HV_ENABLE.deactivate();
   });
-});
 
-// Sends precharge command on user click and confirmation
-D.getElementById('precharge').addEventListener('click', () => {
-  toggleConfirmationModal('the precharge action, not the state!', () => {
-    CLIENT.enPrecharge();
+  COMMAND_TORQUE.onClick(() => {
+    CLIENT.commandTorque();
   });
-});
 
-// Sends Latch on command on user click and confirm and changes indicators
-D.getElementById('latchOn').addEventListener('click', () => {
-  D.getElementById('latchOnText').style.color = 'red';
-  D.getElementById('latchOffText').style.color = 'white';
-  toggleConfirmationModal('turn on the MCU Latch?', () => {
+  LATCH_ON.onClick(() => {
+    LATCH_ON.activate();
+    LATCH_OFF.deactivate();
     CLIENT.toggleLatch(true);
   });
-});
 
-// Runs disable HV function on user click
-document.getElementById('hvDisable').addEventListener('click', disableHV);
+  LATCH_OFF.onClick(() => {
+    LATCH_OFF.activate();
+    LATCH_ON.deactivate();
+    CLIENT.toggleLatch(false);
+  });
 
-// Toggles latch off on user click
-D.getElementById('latchOff').addEventListener('click', () => {
-  D.getElementById('latchOnText').style.color = 'white';
-  D.getElementById('latchOffText').style.color = 'red';
-  CLIENT.toggleLatch(false);
-});
+  PRECHARGE_ENABLE.onClick(() => {
+    CLIENT.enPrecharge();
+  });
 
-// Starts the recording of data to dataRecording.js
-DATA_RECORD_BUTTON.addEventListener('click', () => {
-  if (!DATA_INTERFACING.isDataRecording) {
-    DATA_INTERFACING.recordingEvent.emit('on'); // Tell DI to run start recording data
-    console.log('recording data');
-    DATA_RECORD_BUTTON.classList.remove('stateButton');
-    DATA_RECORD_BUTTON.classList.add('stateButtonInactive');
-    ARCHIVE_BUTTON.classList.remove('stateButtonInactive');
-    ARCHIVE_BUTTON.classList.add('stateButton');
-  } else {
-    console.log('data is already being recorded');
-  }
-});
+  // Starts the recording of data to dataRecording.js
+  DATA_RECORD_BUTTON.onClick(() => {
+    if (!DATA_INTERFACING.isDataRecording) {
+      DATA_INTERFACING.recordingEvent.emit('on'); // Tell DI to run start recording data
+      console.log('recording data');
+      DATA_RECORD_BUTTON.greyOut();
+      ARCHIVE_BUTTON.colorize();
+    } else {
+      console.log('data is already being recorded');
+    }
+  });
 
-// Archives the data from dataRecording.js if data is being recorded
-ARCHIVE_BUTTON.addEventListener('click', () => {
-  if (DATA_INTERFACING.isDataRecording) {
-    DATA_INTERFACING.recordingEvent.emit('off'); // Tells DI to stop recording data
-    DATA_INTERFACING.archiveData();
-    console.log('archiving data');
-    DATA_RECORD_BUTTON.classList.add('stateButton');
-    DATA_RECORD_BUTTON.classList.remove('stateButtonInactive');
-    ARCHIVE_BUTTON.classList.add('stateButtonInactive');
-    ARCHIVE_BUTTON.classList.remove('stateButton');
-  } else {
-    console.log('data was not being recorded');
-  }
-});
-// Intervals
-// Runs pod connection check on interval
-setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL);
-// Autosaves on interval
-setInterval(autosave, AUTOSAVE_INTERVAL);
+  // Archives the data from dataRecording.js if data is being recorded
+  ARCHIVE_BUTTON.onClick(() => {
+    if (DATA_INTERFACING.isDataRecording) {
+      DATA_INTERFACING.recordingEvent.emit('off'); // Tells DI to stop recording data
+      DATA_INTERFACING.archiveData();
+      console.log('archiving data');
+      DATA_RECORD_BUTTON.colorize();
+      ARCHIVE_BUTTON.greyOut();
+    } else {
+      console.log('data was not being recorded');
+    }
+  });
+}
+function createStateMachineButtons() {
+  return new Promise((resolve, reject) => {
+    let parent = document.getElementById('statemachineBox');
+    if (!parent) reject(new Error('Parent not found'));
+    STATE_BUTTONS.forEach((state) => {
+      let formattedText = state[0].replace(/ /g, '').toLowerCase();
+      let newState = new State(formattedText, state[0], null, state[1], state[2], state[3]);
+      newState.btn.setParent(parent);
+      newState.btn.onClick(() => {
+        State.setActiveState(newState, CONFIRMATION_MODAL);
+      });
+    });
+    State.setActiveState(0);
+    resolve(State.getActiveState());
+  });
+}
 
-// Init
+/**
+ * Function to create the caches and tables and dropdowns of the dash
+ */
+function createDashboard() {
+  return new Promise((resolve, reject) => {
+    try {
+      DATA_INTERFACING.createCache();
+      DATA_INTERFACING.createCache(DATA_RECORDING);
+      DYNAMIC_LOADING.fillAllItems();
+      DYNAMIC_LOADING.fillAllTables();
+    } catch (e) {
+      reject(new Error(e));
+    }
+    resolve();
+  });
+}
+
 /**
  * Function to run at start of dashboard
  */
 function init() {
-  DATA_INTERFACING.createCache();
-  DATA_INTERFACING.createCache(DATA_RECORDING);
-  DYNAMIC_LOADING.fillAllItems();
-  DYNAMIC_LOADING.fillAllTables();
-  makeStateMachineListeners();
+  createDashboard().then(() => {
+    // First create the dashboard
+    setControlPanelListeners();
+    createStateMachineButtons()
+      .then(() => {
+        // Then create all the state objects
+        setInterval(podConnectionCheck, CONNECTION_CHECK_INTERVAL); // Finally set intervals
+        // Autosaves on interval
+        setInterval(autosave, AUTOSAVE_INTERVAL);
+      })
+      .catch((err) => {
+        throw err;
+      });
+  });
   displayTimer(GLOBAL_TIMER);
   console.log(DEBUG);
-  // toggleMotorSafety(true);
 }
 // Run at init
 init();
@@ -500,8 +454,12 @@ COMMUNICATIONS_EMITTER.on('Lost', (ip) => {
 });
 
 COMMUNICATIONS_EMITTER.on('ok', (ip) => {
-  if (ip === CONSTANTS.lvBone.ip) { boneStatus[0] = true; }
-  if (ip === CONSTANTS.hvBone.ip) { boneStatus[1] = true; }
+  if (ip === CONSTANTS.lvBone.ip) {
+    boneStatus[0] = true;
+  }
+  if (ip === CONSTANTS.hvBone.ip) {
+    boneStatus[1] = true;
+  }
 });
 
 DATA_INTERFACING.packetHandler.on('renderData', () => {

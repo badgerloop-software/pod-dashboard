@@ -260,3 +260,9 @@ $RECYCLE.BIN/
 
 # Mac icloud files
 *.icloud
+
+# Dev Tools
+*.jshintrc
+
+#specific local config files
+.nova/*

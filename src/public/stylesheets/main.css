@@ -284,17 +284,6 @@ td.last {
 .hide{
   display: none;
 }
-#myDropdown1 {
-  top: 68px;
-}
-#myDropdown2 {
-  right: 45px;
-  top: 80px;
-}
-#myDropdown3 {
-  right: 45px;
-  top: 170px;
-}
 
 /* styling for pop-up modal */
 .settingsModal {
@@ -583,111 +572,6 @@ span2{
   font-weight: 800;
   color: #ADADAD;
   background-color: grey !important;
-}
-
-/* individual button styles */
-#primBrakeOn, #primBrakeOff{
-  background-color: #34495E;
-  color: white !important;
-  border: 2px solid #23242A;
-}
-#hvEnable, #hvDisable {
-  background-color: #F4D76F;
-  color: #000000;
-  border: 2px solid #D35500;
-  border-color: red;
-}
-
-#hvEnable .active {
-  color: #3C9159;
-}
-#hvDisable .active {
-  color: #3C9159;
-}
-#secBrakeVentOn, #secBrakeVentOff {
-  background-color: #5C97BF;
-  color: white !important;
-  border: 2px solid #23242A;
-}
-#powerOff {
-  background-color: #C10000; 
-  color: white;
-  /* height: 168px; */
-}
-#idle {
-  background-color: #3C9159;
-  color: white;
-}
-#postRun {
-  background-color: #34495E;
-  color: white;
-}
- #crawl {
-  background-color: #A84671;
-  color: white;
-  border-color: red;
-}
-#crawlPrecharge {
-  background-color: #A84671;
-  color: white;
-  border-color: red;
-}
-#runFault, #nonRunFault, #brakingFault {
-  background-color: red;
-  color: white;
-}
-#readyForPumpdown, #pumpdown {
-  background-color: #C66553;
-  color: white;
-}
-
-#pumpdown {
-  border-color: red;
-}
-#propulsion{
-  background-color: #C6A153;
-  color: white;
-  border-color: red;
-}
-#readyForPropulsion{
-  background-color: #C6A153;
-  color: white;
-}
-#braking, #stopped{
-  background-color: #34495E;
-  color: white;
-}
-#safeToApproach {
-  background-color: #3C9159;
-  color: white;
-}
-#archiveButton {
-  background-color: #AEA8D3;
-  border: 2px solid #684072;
-  color: black;
-}
-#dataRecordButton {
-  background-color: #AEA8D3;
-  border: 2px solid #684072;
-  color: black;
-}
-#precharge {
-  border-color: red;
-  background-color: #C6A153;
-  color: white;
-}
-
-#latchOn, #latchOff {
-  background-color: #554188;
-  color: white;
-  border: 2px solid black;
-}
-
-#cmdTorque {
-  background-color: #F4D76F;
-  color: #000000;
-  border: 2px solid #D35500;
-  border-color: red;
 }
 
 /* status styling */

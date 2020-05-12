@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>public/javascripts/terminal.js - Pod 5 Operators Dashboard Docs</title>
+    
+    
+    
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Batteries.html">Batteries</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Batteries.html#~checkMinMax">checkMinMax</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~createRow">createRow</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~createTable">createTable</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~fillCell">fillCell</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~initBatteries">initBatteries</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateBattery">updateBattery</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateBatteryAndRender">updateBatteryAndRender</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateCell">updateCell</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateTemps">updateTemps</a></li></ul></li><li><a href="module-Button.html">Button</a></li><li><a href="module-Cache.html">Cache</a></li><li><a href="module-Communication.html">Communication</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Communication.html#.commandTorque">commandTorque</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.disableHV">disableHV</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.enableHV">enableHV</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.enPrecharge">enPrecharge</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.primBrakeOff">primBrakeOff</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.primBrakeOn">primBrakeOn</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.secBrakeOff">secBrakeOff</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.secBrakeOn">secBrakeOn</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendEBrake">sendEBrake</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendHVPing">sendHVPing</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendLVPing">sendLVPing</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendOverride">sendOverride</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendPropulse">sendPropulse</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendPumpDown">sendPumpDown</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendReadyCommand">sendReadyCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendReadyPump">sendReadyPump</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.toggleLatch">toggleLatch</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.toggleSafety">toggleSafety</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendHVCommand">sendHVCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendLVCommand">sendLVCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendPacket">sendPacket</a></li></ul></li><li><a href="module-Config.html">Config</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Config.html#~getConstantsPath">getConstantsPath</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~getJSONFile">getJSONFile</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~readJSON">readJSON</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~updateConstants">updateConstants</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~writeJSON">writeJSON</a></li></ul></li><li><a href="module-Data-Interfacing.html">Data-Interfacing</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.archiveData">archiveData</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.createCache">createCache</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.findRenderable">findRenderable</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.normalizePacket">normalizePacket</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~ambientToGauge">ambientToGauge</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~calculate">calculate</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~createID">createID</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~createJSON">createJSON</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getAbsoluteSpeed">getAbsoluteSpeed</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getLVSOC">getLVSOC</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getMaxMotorControllerTemp">getMaxMotorControllerTemp</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getPackPowerRemaining">getPackPowerRemaining</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getPowerConsumed">getPowerConsumed</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~interpolateLVSOC">interpolateLVSOC</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~updateData">updateData</a></li></ul></li><li><a href="module-Data-Recording.html">Data-Recording</a></li><li><a href="module-Dynamic-Loading.html">Dynamic-Loading</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.fillAllItems">fillAllItems</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.fillAllTables">fillAllTables</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createActualCol">createActualCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createHeaderCol">createHeaderCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createMaxCol">createMaxCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createMinCol">createMinCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createRow">createRow</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillAllBounds">fillAllBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillRowBounds">fillRowBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillTable">fillTable</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillTableBounds">fillTableBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getMaxCell">getMaxCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getMinCell">getMinCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~setMaxCell">setMaxCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~setMinCell">setMinCell</a></li></ul></li><li><a href="module-Electron-app.html">Electron-app</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Electron-app.html#~createWindow">createWindow</a></li></ul></li><li><a href="module-Handler.html">Handler</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Handler.html#~autosave">autosave</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkBraking">checkBraking</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkPackets">checkPackets</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkRecieve">checkRecieve</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkTransmit">checkTransmit</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~createDashboard">createDashboard</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~displayTimer">displayTimer</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~init">init</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~podConnectionCheck">podConnectionCheck</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~renderData">renderData</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~sendHeartbeats">sendHeartbeats</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setControlPanelListeners">setControlPanelListeners</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setHVIndicator">setHVIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setLVIndicator">setLVIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setRecieve">setRecieve</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~togglePrimBrake">togglePrimBrake</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~toggleSecBrake">toggleSecBrake</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~updateLabels">updateLabels</a></li></ul></li><li><a href="module-Highcharts.html">Highcharts</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~addData">addData</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~addTimeAndData">addTimeAndData</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~clearChart">clearChart</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~initialize">initialize</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~newChart">newChart</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~startChart">startChart</a></li></ul></li><li><a href="module-Main.html">Main</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Main.html#~clear">clear</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~clone">clone</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~fillConstants">fillConstants</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~searchTable">searchTable</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~toggleSettingsModal">toggleSettingsModal</a></li></ul></li><li><a href="module-Renderer.html">Renderer</a></li><li><a href="module-TestingTool.html">TestingTool</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillAllTables">fillAllTables</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillCell">fillCell</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillScrubber">fillScrubber</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillTable">fillTable</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~findMax">findMax</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~handleFiles">handleFiles</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~importJSON">importJSON</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~incrementTimer">incrementTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~init">init</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~pauseTimer">pauseTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~playTimer">playTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~resetTimer">resetTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~updateScrubber">updateScrubber</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~updateTables">updateTables</a></li></ul></li><li><a href="module-TestPodServer.html">TestPodServer</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~getRandomIntInclusive">getRandomIntInclusive</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~getRandomValue">getRandomValue</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~heartbeat">heartbeat</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendData">sendData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendIncreasingData">sendIncreasingData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendJSON">sendJSON</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendSinusodalData">sendSinusodalData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendSpecificData">sendSpecificData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendTestData">sendTestData</a></li></ul></li></ul><h3>Classes</h3><ul><li><a href="ControlPanelButton.html">ControlPanelButton</a><ul class='methods'><li data-type='method' style='display: none;'><a href="ControlPanelButton.html#.getParent">getParent</a></li><li data-type='method' style='display: none;'><a href="ControlPanelButton.html#.setParent">setParent</a></li></ul></li><li><a href="Dropdown.html">Dropdown</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Dropdown.html#.createDropdown">createDropdown</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#.filterSearch">filterSearch</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#.getListOfDropdowns">getListOfDropdowns</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#createDropdownBtn">createDropdownBtn</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#createItem">createItem</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#fillList">fillList</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#onClick">onClick</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#toggle">toggle</a></li></ul></li><li><a href="module-Batteries-Battery.html">Battery</a></li><li><a href="module-Button-Button.html">Button</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Button-Button.html#.setModalTemplate">setModalTemplate</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#.toggleConfirmationModal">toggleConfirmationModal</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#activate">activate</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#colorize">colorize</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#confirmActive">confirmActive</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#createNewElement">createNewElement</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#deactivate">deactivate</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#greyOut">greyOut</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#onClick">onClick</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#setParent">setParent</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#setText">setText</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#setTextColor">setTextColor</a></li></ul></li><li><a href="module-Renderer.html">Renderer</a></li><li><a href="State.html">State</a><ul class='methods'><li data-type='method' style='display: none;'><a href="State.html#.getActiveState">getActiveState</a></li><li data-type='method' style='display: none;'><a href="State.html#.getStateById">getStateById</a></li><li data-type='method' style='display: none;'><a href="State.html#.setActiveState">setActiveState</a></li><li data-type='method' style='display: none;'><a href="State.html#.toggleConfirmationModal">toggleConfirmationModal</a></li><li data-type='method' style='display: none;'><a href="State.html#activate">activate</a></li><li data-type='method' style='display: none;'><a href="State.html#confirmActive">confirmActive</a></li><li data-type='method' style='display: none;'><a href="State.html#setActive">setActive</a></li><li data-type='method' style='display: none;'><a href="State.html#setInactive">setInactive</a></li></ul></li><li><a href="StateButton.html">StateButton</a><ul class='methods'><li data-type='method' style='display: none;'><a href="StateButton.html#activate">activate</a></li><li data-type='method' style='display: none;'><a href="StateButton.html#deactivate">deactivate</a></li><li data-type='method' style='display: none;'><a href="StateButton.html#onClick">onClick</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#decrementTorqueValue">decrementTorqueValue</a></li><li><a href="global.html#incrementTorqueValue">incrementTorqueValue</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">public/javascripts/terminal.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const { remote } = require('electron');
+
+const comms = require('./public/javascripts/communication');
+const config = require('./public/javascripts/config');
+const consts = require('./public/javascripts/config').constants;
+
+const terminalInput = document.getElementById('terminalInputBox');
+const terminalOutput = document.getElementById('terminalOutputList');
+
+const settingsModal = document.querySelector('.settingsModal');
+const settingsTrigger = document.querySelector('.settingsTrigger');
+const settingsSubmit = document.getElementById('podSettingsSubmit');
+const closeButton = document.querySelector('.close-button');
+
+const electronWindow = remote.getCurrentWindow();
+const terminalCommands = ['help', 'clear', 'runTest'];
+let lastCommand = [];
+let timesPressedUp = 0;
+
+function recallLastCommand(index) {
+  terminalInput.value = `${lastCommand[lastCommand.length - (1 + index)]}`;
+}
+
+function handleKeys() { // eslint-disable-line
+  if (window.event.keyCode === 9) {
+    return false;
+  }
+  if (window.event.keyCode === 38) {
+    if (timesPressedUp &lt; lastCommand.length) {
+      recallLastCommand(timesPressedUp);
+      timesPressedUp++;
+    }
+  }
+  if (window.event.keyCode === 40) {
+    if (timesPressedUp > 0) {
+      timesPressedUp--;
+      recallLastCommand(timesPressedUp);
+    }
+    if (timesPressedUp === -1) {
+      terminalInput.value = null;
+    }
+  }
+}
+
+function createOutputLine(stg, echo) { // eslint-disable-line no-unused-vars
+  let output = document.createElement('li');
+  output.innerHTML = `$ ${stg}`;
+  terminalOutput.appendChild(output);
+}
+
+function createOutputLineMessage(stg) { // eslint-disable-line no-unused-vars
+  let output = document.createElement('li');
+  output.innerHTML = stg;
+  output.className = 'message';
+  terminalOutput.appendChild(output);
+}
+
+function clearTerminal() {
+  while (terminalOutput.hasChildNodes()) {
+    terminalOutput.removeChild(terminalOutput.firstChild);
+  }
+}
+
+function runHelp() {
+  let outputString = 'Current commands are ';
+  outputString = outputString.concat(terminalCommands);
+  createOutputLineMessage(outputString);
+  createOutputLineMessage(`Test Numbers are: \n
+  1 Print Test &lt;for testing> \n
+  2 Nav Test \n
+  3 State Test \n
+  4 Braking Test \n
+  5 BMS Display \n
+  6 Solenoid Test `);
+}
+
+function sendTest(input) {
+  console.log('Sending Test Command');
+  let num = input.substring(7);
+  let command = `test ${num}`;
+  comms.sendHVCommand(command);
+}
+
+function unknownCommand() {
+  createOutputLineMessage('Unrecognized Command');
+}
+
+function runTerminalCommand(command) {
+  if (command === 'help') {
+    runHelp();
+  }
+  if (command === 'clear') {
+    clearTerminal();
+  }
+  if (command.startsWith('runTest')) {
+    sendTest(command);
+  }
+}
+
+
+function handleInput() {
+  let inputText = terminalInput.value;
+  let isTerminalCommand = false;
+  timesPressedUp = 0;
+  lastCommand.push(inputText);
+  createOutputLine(inputText, true);
+  terminalCommands.forEach((command) => {
+    if (inputText.startsWith(command)) isTerminalCommand = true;
+  });
+  if (isTerminalCommand) {
+    runTerminalCommand(inputText);
+  } else {
+    unknownCommand();
+  }
+  terminalInput.value = '';
+  let lineBreak = document.createElement('br');
+  terminalOutput.appendChild(lineBreak);
+}
+
+
+terminalInput.addEventListener('keyup', (event) => {
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    handleInput();
+  }
+});
+
+// Window Handling
+
+document.getElementById('min-window').addEventListener('click', () => {
+  electronWindow.minimize();
+});
+
+document.getElementById('max-window').addEventListener('click', () => {
+  if (!electronWindow.isMaximized()) electronWindow.maximize();
+  else electronWindow.unmaximize();
+});
+
+document.getElementById('close-window').addEventListener('click', () => {
+  electronWindow.close();
+});
+
+
+// UI Stuff
+
+function toggleSettingsModal() {
+  settingsModal.classList.toggle('show-modal');
+  fillConstants(); // eslint-disable-line no-use-before-define
+}
+settingsTrigger.addEventListener('click', toggleSettingsModal);
+closeButton.addEventListener('click', toggleSettingsModal);
+
+// Submits Entries to File
+settingsSubmit.addEventListener('click', () => {
+  let constsCache = {
+    dataSendRate: null,
+    renderInterval: null,
+    serverAddr: {
+      ip: null,
+      port: null,
+    },
+    hvBone: {
+      ip: null,
+      port: null,
+    },
+    lvBone: {
+      ip: null,
+      port: null,
+    },
+  };
+  constsCache.serverAddr.ip = document.getElementById('podIP').value;
+  constsCache.serverAddr.port = Number(document.getElementById('podPort').value);
+  constsCache.dataSendRate = Number(document.getElementById('scanningRate').value);
+  constsCache.hvBone.ip = document.getElementById('hvBoneIP').value;
+  constsCache.hvBone.port = Number(document.getElementById('hvBonePort').value);
+  constsCache.lvBone.ip = document.getElementById('lvBoneIP').value;
+  constsCache.lvBone.port = Number(document.getElementById('lvBonePort').value);
+  constsCache.renderInterval = Number(document.getElementById('renderInterval').value);
+  document.getElementById('formFeedback').innerHTML = config.writeJSON(constsCache);
+  electronWindow.reload();
+});
+
+// Fills entries in text boxes
+function fillConstants() { // eslint-disable-line no-unused-vars
+  config.updateConstants();
+  document.getElementById('formFeedback').innerHTML = 'Will restart for changes to take place.';
+  document.getElementById('podIP').value = String(consts.serverAddr.ip);
+  document.getElementById('podPort').value = consts.serverAddr.port;
+  document.getElementById('scanningRate').value = consts.dataSendRate;
+  document.getElementById('lvBoneIP').value = consts.lvBone.ip;
+  document.getElementById('lvBonePort').value = consts.lvBone.port;
+  document.getElementById('hvBoneIP').value = consts.hvBone.ip;
+  document.getElementById('hvBonePort').value = consts.hvBone.port;
+  document.getElementById('renderInterval').value = consts.renderInterval;
+}
+
+// Torque Value Submission
+
+/**
+ * @description Adds 1 to the torque value sent to the motor.
+ */
+
+function incrementTorqueValue() {
+  document.getElementById('torqueInput').innerHTML++;
+}
+
+/**
+ * @description Subtracts 1 from the torque value sent to the motor.
+ */
+
+function decrementTorqueValue() {
+  document.getElementById('torqueInput').innerHTML--;
+}
+
+document.getElementById('torqueSendButton').addEventListener('click', () => {
+  comms.sendHVCommand(`setTorque ${document.getElementById('torqueInput').innerHTML}`);
+});
+document.getElementById('torqueUpButton').addEventListener('click', incrementTorqueValue);
+document.getElementById('torqueDownButton').addEventListener('click', decrementTorqueValue);
+document.getElementById('terminalEstop').addEventListener('click', () => {
+  comms.sendEBrake();
+});
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Apr 15 2020 16:15:54 GMT-0500 (Central Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>

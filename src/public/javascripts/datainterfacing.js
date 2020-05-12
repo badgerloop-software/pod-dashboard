@@ -16,6 +16,8 @@ const CACHE = require('../../cache');
 /** @requires module:Recording */
 const DATA_RECORDING = require('../../dataRecording');
 
+const State = require('./State');
+
 const PACKET_HANDLER = new EVENTS.EventEmitter();
 module.exports.packetHandler = PACKET_HANDLER;
 
@@ -132,7 +134,7 @@ function getAbsoluteSpeed(input) {
 function interpolateLVSOC(x) {
   // From LV Pack SOC spreadsheet
   let y = 1.1142 * (x ** 6) + 78.334 * (x ** 5) - 2280.5 * (x ** 4)
-    + 35181 * (x ** 3) - 404340 * (x ** 2) + 1000000 * x + 3000000;
+   + 35181 * (x ** 3) - 404340 * (x ** 2) + 1000000 * x + 3000000;
   return Number(y);
 }
 
@@ -198,6 +200,8 @@ function updateData(dataIn, location) {
       }
     });
   });
+  // eslint-disable-next-line
+  dataIn = null;
 }
 /**
  *  Any Calcuations that need to be done prior to RECORDING should be done here
@@ -241,9 +245,7 @@ module.exports.normalizePacket = function normalizePacket(input) {
   // console.info('Incomming Packet:');
   // console.info(input);
   if (state) {
-    if (!(state >= 11 && state <= 13)) {
-      DYNAMIC_LOADING.switchState(state);
-    } else DYNAMIC_LOADING.setFault(state);
+    State.setActiveState(state, null, true);
     delete fixedPacket.state;
   }
 
@@ -288,7 +290,6 @@ function createID() {
  * @param {String} name - The name of the export file
  */
 function createJSON(name) {
-  console.log(JSON.stringify(DATA_RECORDING));
   FS.writeFileSync(`./Exports/${name}.json`, JSON.stringify(DATA_RECORDING), (err) => {
     if (err) throw err;
     console.log(`${name}.json Created!`);

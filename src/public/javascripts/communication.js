@@ -54,7 +54,6 @@ function sendPacket(ip, port, msg) {
   });
 
   tcpSender.on('error', (e) => { // eslint-disable-line no-unused-vars
-    // console.error(e); // Commented out for dev without beaglebone connected
     RECIEVING_EMITTER.emit('Lost', ip);
   });
 

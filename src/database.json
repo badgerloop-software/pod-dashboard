@@ -6,7 +6,7 @@
       "units": "PSIG",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -38,15 +38,19 @@
           "min": 300,
           "max": 1040
         },
+        "crawlprecharge": {
+          "min": 300,
+          "max": 1040
+        },
         "crawl": {
           "min": 300,
           "max": 1040
         },
-        "postRun": {
+        "postrun": {
           "min": -15,
           "max": 15
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -15,
           "max": 15
         }
@@ -56,7 +60,7 @@
       "units": "PSIG",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -88,15 +92,19 @@
           "min": 125,
           "max": 150
         },
+        "crawlprecharge": {
+          "min": 125,
+          "max": 150
+        },
         "crawl": {
           "min": -5,
           "max": 275
         },
-        "postRun": {
+        "postrun": {
           "min": -5,
           "max": 275
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -5,
           "max": 5
         }
@@ -106,7 +114,7 @@
       "units": "PSIG",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -138,15 +146,19 @@
           "min": -5,
           "max": 5
         },
+        "crawlprecharge": {
+          "min": -5,
+          "max": 5
+        },
         "crawl": {
           "min": -5,
           "max": 275
         },
-        "postRun": {
+        "postrun": {
           "min": -5,
           "max": 275
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -5,
           "max": 5
         }
@@ -156,7 +168,7 @@
       "units": "PSIG",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -188,15 +200,19 @@
           "min": 300,
           "max": 1040
         },
+        "crawlprecharge": {
+          "min": 300,
+          "max": 1040
+        },
         "crawl": {
           "min": 300,
           "max": 1040
         },
-        "postRun": {
+        "postrun": {
           "min": -15,
           "max": 15
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -15,
           "max": 15
         }
@@ -206,7 +222,7 @@
       "units": "PSIG",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -238,15 +254,19 @@
           "min": 125,
           "max": 150
         },
+        "crawlprecharge": {
+          "min": 125,
+          "max": 150
+        },
         "crawl": {
           "min": -5,
           "max": 275
         },
-        "postRun": {
+        "postrun": {
           "min": -5,
           "max": 275
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -15,
           "max": 20
         }
@@ -256,7 +276,7 @@
       "units": "PSIG",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -288,15 +308,19 @@
           "min": -5,
           "max": 5
         },
+        "crawlprecharge": {
+          "min": -5,
+          "max": 5
+        },
         "crawl": {
           "min": -5,
           "max": 5
         },
-        "postRun": {
+        "postrun": {
           "min": -5,
           "max": 5
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -5,
           "max": 5
         }
@@ -306,7 +330,7 @@
       "units": "PSIA",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 10,
           "max": 16
         },
@@ -338,15 +362,19 @@
           "min": 10,
           "max": 16
         },
+        "crawlprecharge": {
+          "min": 10,
+          "max": 16
+        },
         "crawl": {
           "min": 10,
           "max": 16
         },
-        "postRun": {
+        "postrun": {
           "min": 10,
           "max": 16
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 10,
           "max": 16
         }
@@ -356,7 +384,7 @@
       "units": "PSIA",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 16
         },
@@ -388,15 +416,19 @@
           "min": 0,
           "max": 16
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 16
+        },
         "crawl": {
           "min": 0,
           "max": 16
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 16
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 16
         }
@@ -408,7 +440,7 @@
       "units": "M",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 1300
         },
@@ -440,15 +472,19 @@
           "min": 0,
           "max": 1300
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 1300
+        },
         "crawl": {
           "min": 0,
           "max": 1300
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 1300
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 1300
         }
@@ -458,7 +494,7 @@
       "units": "M",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 1250
         },
@@ -490,15 +526,19 @@
           "min": 0,
           "max": 1250
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 1250
+        },
         "crawl": {
           "min": 0,
           "max": 1250
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 1250
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 1250
         }
@@ -508,7 +548,7 @@
       "units": "M",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -540,15 +580,19 @@
           "min": -10,
           "max": 45.72
         },
+        "crawlprecharge": {
+          "min": -10,
+          "max": 45.72
+        },
         "crawl": {
           "min": -10,
           "max": 45.72
         },
-        "postRun": {
+        "postrun": {
           "min": -10,
           "max": 45.72
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -10,
           "max": 45.72
         }
@@ -558,7 +602,7 @@
       "units": "M/S",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 57.668
         },
@@ -590,15 +634,19 @@
           "min": 0,
           "max": 0
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 0
+        },
         "crawl": {
           "min": 0,
           "max": 0.4
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 0
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 0
         }
@@ -608,7 +656,7 @@
       "units": "M/S^2",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": -1,
           "max": 1
         },
@@ -640,15 +688,19 @@
           "min": -1,
           "max": 1
         },
+        "crawlprecharge": {
+          "min": -1,
+          "max": 1
+        },
         "crawl": {
           "min": -1,
           "max": 10
         },
-        "postRun": {
+        "postrun": {
           "min": -1,
           "max": 1
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -1,
           "max": 1
         }
@@ -658,7 +710,7 @@
       "units": "Count",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 410
         },
@@ -690,15 +742,19 @@
           "min": 0,
           "max": 410
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 410
+        },
         "crawl": {
           "min": 0,
           "max": 410
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 410
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 410
         }
@@ -708,7 +764,7 @@
       "units": "Count",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -740,15 +796,19 @@
           "min": 0,
           "max": 2
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 2
+        },
         "crawl": {
           "min": 0,
           "max": 2
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 2
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 2
         }
@@ -760,7 +820,7 @@
       "units": "V",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "max": 302.5,
           "min": 266.4
         },
@@ -784,15 +844,19 @@
           "min": 223,
           "max": 302.5
         },
+        "crawlprecharge": {
+          "min": 223,
+          "max": 302.5
+        },
         "crawl": {
           "min": 223,
           "max": 302.5
         },
-        "postRun": {
+        "postrun": {
           "min": 223,
           "max": 302.5
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 223,
           "max": 302.5
         }
@@ -802,7 +866,7 @@
       "units": "A",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "max": 0,
           "min": 0
         },
@@ -826,15 +890,19 @@
           "min": 0,
           "max": 0
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 0
+        },
         "crawl": {
           "min": 0,
           "max": 265
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 0
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 0
         }
@@ -844,7 +912,7 @@
       "units": "%",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -868,15 +936,19 @@
           "min": 30,
           "max": 92.5
         },
+        "crawlprecharge": {
+          "min": 30,
+          "max": 92.5
+        },
         "crawl": {
           "min": 20,
           "max": 90
         },
-        "postRun": {
+        "postrun": {
           "min": 20,
           "max": 90
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 20,
           "max": 90
         }
@@ -886,7 +958,7 @@
       "units": "V",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "max": 4.2,
           "min": 3.1
         },
@@ -918,15 +990,19 @@
           "max": 4.2,
           "min": 3.1
         },
+        "crawlprecharge": {
+          "max": 4.2,
+          "min": 3.1
+        },
         "crawl": {
           "max": 4.2,
           "min": 3.1
         },
-        "postRun": {
+        "postrun": {
           "max": 4.2,
           "min": 3.1
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "max": 4.2,
           "min": 3.1
         }
@@ -936,7 +1012,7 @@
       "units": "V",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "max": 4.2,
           "min": 3.1
         },
@@ -968,15 +1044,19 @@
           "max": 4.2,
           "min": 3.1
         },
+        "crawlprecharge": {
+          "max": 4.2,
+          "min": 3.1
+        },
         "crawl": {
           "max": 4.2,
           "min": 3.1
         },
-        "postRun": {
+        "postrun": {
           "max": 4.2,
           "min": 3.1
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "max": 4.2,
           "min": 3.1
         }
@@ -986,7 +1066,7 @@
       "units": "C",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 10,
           "max": 50
         },
@@ -1010,15 +1090,19 @@
           "min": 10,
           "max": 50
         },
+        "crawlprecharge": {
+          "min": 10,
+          "max": 50
+        },
         "crawl": {
           "min": 10,
           "max": 50
         },
-        "postRun": {
+        "postrun": {
           "min": 10,
           "max": 50
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 10,
           "max": 50
         }
@@ -1028,7 +1112,7 @@
       "units": "V",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -1060,15 +1144,19 @@
           "min": 9,
           "max": 14
         },
+        "crawlprecharge": {
+          "min": 9,
+          "max": 14
+        },
         "crawl": {
           "min": 9,
           "max": 14
         },
-        "postRun": {
+        "postrun": {
           "min": 9,
           "max": 14
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 9,
           "max": 14
         }
@@ -1078,7 +1166,7 @@
       "units": "A",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -1110,15 +1198,19 @@
           "min": 0,
           "max": 15
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 15
+        },
         "crawl": {
           "min": 0,
           "max": 15
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 15
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 0
         }
@@ -1128,7 +1220,7 @@
       "units": "W",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -1160,15 +1252,19 @@
           "min": 0,
           "max": 0
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 0
+        },
         "crawl": {
           "min": 0,
           "max": 0
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 0
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 0
         }
@@ -1178,7 +1274,7 @@
       "units": "WH",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 1260,
           "max": 1800
         },
@@ -1210,15 +1306,19 @@
           "min": 1260,
           "max": 1800
         },
+        "crawlprecharge": {
+          "min": 1260,
+          "max": 1800
+        },
         "crawl": {
           "min": 1260,
           "max": 1800
         },
-        "postRun": {
+        "postrun": {
           "min": 1260,
           "max": 1800
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 1260,
           "max": 1800
         }
@@ -1228,7 +1328,7 @@
       "units": "%",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 100
         },
@@ -1260,15 +1360,19 @@
           "min": 0,
           "max": 100
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 100
+        },
         "crawl": {
           "min": 0,
           "max": 100
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 100
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 100
         }
@@ -1278,7 +1382,7 @@
       "units": "On/Off",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 1,
           "max": 1
         },
@@ -1310,15 +1414,19 @@
           "min": 1,
           "max": 1
         },
+        "crawlprecharge": {
+          "min": 1,
+          "max": 1
+        },
         "crawl": {
           "min": 1,
           "max": 1
         },
-        "postRun": {
+        "postrun": {
           "min": 1,
           "max": 1
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 1,
           "max": 1
         }
@@ -1330,7 +1438,7 @@
       "units": "C",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 10,
           "max": 80
         },
@@ -1362,15 +1470,19 @@
           "min": 10,
           "max": 80
         },
+        "crawlprecharge": {
+          "min": 10,
+          "max": 80
+        },
         "crawl": {
           "min": 10,
           "max": 80
         },
-        "postRun": {
+        "postrun": {
           "min": 10,
           "max": 80
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 10,
           "max": 80
         }
@@ -1380,7 +1492,7 @@
       "units": "C",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 10,
           "max": 50
         },
@@ -1412,15 +1524,19 @@
           "min": 10,
           "max": 100
         },
+        "crawlprecharge": {
+          "min": 10,
+          "max": 100
+        },
         "crawl": {
           "min": 10,
           "max": 100
         },
-        "postRun": {
+        "postrun": {
           "min": 10,
           "max": 100
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 10,
           "max": 100
         }
@@ -1430,7 +1546,7 @@
       "units": "C",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 10,
           "max": 50
         },
@@ -1462,15 +1578,19 @@
           "min": 10,
           "max": 100
         },
+        "crawlprecharge": {
+          "min": 10,
+          "max": 100
+        },
         "crawl": {
           "min": 10,
           "max": 100
         },
-        "postRun": {
+        "postrun": {
           "min": 10,
           "max": 100
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 10,
           "max": 100
         }
@@ -1480,7 +1600,7 @@
       "units": "C",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 10,
           "max": 50
         },
@@ -1512,15 +1632,19 @@
           "min": 10,
           "max": 87.5
         },
+        "crawlprecharge": {
+          "min": 10,
+          "max": 87.5
+        },
         "crawl": {
           "min": 10,
           "max": 87.5
         },
-        "postRun": {
+        "postrun": {
           "min": 10,
           "max": 87.5
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 10,
           "max": 87.5
         }
@@ -1530,7 +1654,7 @@
       "units": "RPM",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": -300,
           "max": 300
         },
@@ -1554,15 +1678,19 @@
           "min": -10,
           "max": 10
         },
+        "crawlprecharge": {
+          "min": -10,
+          "max": 10
+        },
         "crawl": {
           "min": -10,
           "max": 941.6
         },
-        "postRun": {
+        "postrun": {
           "min": -10,
           "max": 10
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -5,
           "max": 5
         }
@@ -1572,7 +1700,7 @@
       "units": "A",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -1604,15 +1732,19 @@
           "min": -10,
           "max": 10
         },
+        "crawlprecharge": {
+          "min": -10,
+          "max": 10
+        },
         "crawl": {
           "min": -10,
           "max": 10
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 10
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -10,
           "max": 10
         }
@@ -1622,7 +1754,7 @@
       "units": "A",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -1654,15 +1786,19 @@
           "min": 0,
           "max": 2
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 2
+        },
         "crawl": {
           "min": 0,
           "max": 100
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 2
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 0.5
         }
@@ -1672,7 +1808,7 @@
       "units": "V",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -1704,15 +1840,19 @@
           "min": 0,
           "max": 360
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 360
+        },
         "crawl": {
           "min": 0,
           "max": 360
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 360
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -5,
           "max": 5
         }
@@ -1722,7 +1862,7 @@
       "units": "Nm",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -1754,15 +1894,19 @@
           "min": 0,
           "max": 0
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 0
+        },
         "crawl": {
           "min": 0,
           "max": 0
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 0
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 0,
           "max": 0
         }
@@ -1772,7 +1916,7 @@
       "units": "Nm",
       "show": true,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 20
         },
@@ -1804,15 +1948,19 @@
           "min": 0,
           "max": 1
         },
+        "crawlprecharge": {
+          "min": 0,
+          "max": 1
+        },
         "crawl": {
           "min": 0,
           "max": 40
         },
-        "postRun": {
+        "postrun": {
           "min": 0,
           "max": 20
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": -15,
           "max": 20
         }
@@ -1822,7 +1970,7 @@
       "units": "V",
       "show": false,
       "limits": {
-        "powerOff": {
+        "poweroff": {
           "min": 0,
           "max": 0
         },
@@ -1854,15 +2002,19 @@
           "min": 10,
           "max": 14
         },
+        "crawlprecharge": {
+          "min": 10,
+          "max": 14
+        },
         "crawl": {
           "min": 10,
           "max": 14
         },
-        "postRun": {
+        "postrun": {
           "min": 10,
           "max": 14
         },
-        "safeToApproach": {
+        "safetoapproach": {
           "min": 10,
           "max": 14
         }

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    
+    <meta charset="utf-8">
+    <title>public/assets/Dropdown.js - Pod 5 Operators Dashboard Docs</title>
+    
+    
+    
+    
+    
+    <script src="scripts/prettify/prettify.js"></script>
+    <script src="scripts/prettify/lang-css.js"></script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc.css">
+    <script src="scripts/nav.js" defer></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<input type="checkbox" id="nav-trigger" class="nav-trigger" />
+<label for="nav-trigger" class="navicon-button x">
+  <div class="navicon"></div>
+</label>
+
+<label for="nav-trigger" class="overlay"></label>
+
+<nav class="wrap">
+    
+    <input type="text" id="nav-search" placeholder="Search" />
+    
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Batteries.html">Batteries</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Batteries.html#~checkMinMax">checkMinMax</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~createRow">createRow</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~createTable">createTable</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~fillCell">fillCell</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~initBatteries">initBatteries</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateBattery">updateBattery</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateBatteryAndRender">updateBatteryAndRender</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateCell">updateCell</a></li><li data-type='method' style='display: none;'><a href="module-Batteries.html#~updateTemps">updateTemps</a></li></ul></li><li><a href="module-Button.html">Button</a></li><li><a href="module-Cache.html">Cache</a></li><li><a href="module-Communication.html">Communication</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Communication.html#.commandTorque">commandTorque</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.disableHV">disableHV</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.enableHV">enableHV</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.enPrecharge">enPrecharge</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.primBrakeOff">primBrakeOff</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.primBrakeOn">primBrakeOn</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.secBrakeOff">secBrakeOff</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.secBrakeOn">secBrakeOn</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendEBrake">sendEBrake</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendHVPing">sendHVPing</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendLVPing">sendLVPing</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendOverride">sendOverride</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendPropulse">sendPropulse</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendPumpDown">sendPumpDown</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendReadyCommand">sendReadyCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.sendReadyPump">sendReadyPump</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.toggleLatch">toggleLatch</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#.toggleSafety">toggleSafety</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendHVCommand">sendHVCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendLVCommand">sendLVCommand</a></li><li data-type='method' style='display: none;'><a href="module-Communication.html#~sendPacket">sendPacket</a></li></ul></li><li><a href="module-Config.html">Config</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Config.html#~getConstantsPath">getConstantsPath</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~getJSONFile">getJSONFile</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~readJSON">readJSON</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~updateConstants">updateConstants</a></li><li data-type='method' style='display: none;'><a href="module-Config.html#~writeJSON">writeJSON</a></li></ul></li><li><a href="module-Data-Interfacing.html">Data-Interfacing</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.archiveData">archiveData</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.createCache">createCache</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.findRenderable">findRenderable</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#.normalizePacket">normalizePacket</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~ambientToGauge">ambientToGauge</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~calculate">calculate</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~createID">createID</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~createJSON">createJSON</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getAbsoluteSpeed">getAbsoluteSpeed</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getLVSOC">getLVSOC</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getMaxMotorControllerTemp">getMaxMotorControllerTemp</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getPackPowerRemaining">getPackPowerRemaining</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~getPowerConsumed">getPowerConsumed</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~interpolateLVSOC">interpolateLVSOC</a></li><li data-type='method' style='display: none;'><a href="module-Data-Interfacing.html#~updateData">updateData</a></li></ul></li><li><a href="module-Data-Recording.html">Data-Recording</a></li><li><a href="module-Dynamic-Loading.html">Dynamic-Loading</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.fillAllItems">fillAllItems</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#.fillAllTables">fillAllTables</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createActualCol">createActualCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createHeaderCol">createHeaderCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createMaxCol">createMaxCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createMinCol">createMinCol</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~createRow">createRow</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillAllBounds">fillAllBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillRowBounds">fillRowBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillTable">fillTable</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~fillTableBounds">fillTableBounds</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getMaxCell">getMaxCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~getMinCell">getMinCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~setMaxCell">setMaxCell</a></li><li data-type='method' style='display: none;'><a href="module-Dynamic-Loading.html#~setMinCell">setMinCell</a></li></ul></li><li><a href="module-Electron-app.html">Electron-app</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Electron-app.html#~createWindow">createWindow</a></li></ul></li><li><a href="module-Handler.html">Handler</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Handler.html#~autosave">autosave</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkBraking">checkBraking</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkPackets">checkPackets</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkRecieve">checkRecieve</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~checkTransmit">checkTransmit</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~createDashboard">createDashboard</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~displayTimer">displayTimer</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~init">init</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~podConnectionCheck">podConnectionCheck</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~renderData">renderData</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~sendHeartbeats">sendHeartbeats</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setControlPanelListeners">setControlPanelListeners</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setHVIndicator">setHVIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setLVIndicator">setLVIndicator</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~setRecieve">setRecieve</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~togglePrimBrake">togglePrimBrake</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~toggleSecBrake">toggleSecBrake</a></li><li data-type='method' style='display: none;'><a href="module-Handler.html#~updateLabels">updateLabels</a></li></ul></li><li><a href="module-Highcharts.html">Highcharts</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~addData">addData</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~addTimeAndData">addTimeAndData</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~clearChart">clearChart</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~initialize">initialize</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~newChart">newChart</a></li><li data-type='method' style='display: none;'><a href="module-Highcharts.html#~startChart">startChart</a></li></ul></li><li><a href="module-Main.html">Main</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Main.html#~clear">clear</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~clone">clone</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~fillConstants">fillConstants</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~searchTable">searchTable</a></li><li data-type='method' style='display: none;'><a href="module-Main.html#~toggleSettingsModal">toggleSettingsModal</a></li></ul></li><li><a href="module-Renderer.html">Renderer</a></li><li><a href="module-TestingTool.html">TestingTool</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillAllTables">fillAllTables</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillCell">fillCell</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillScrubber">fillScrubber</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~fillTable">fillTable</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~findMax">findMax</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~handleFiles">handleFiles</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~importJSON">importJSON</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~incrementTimer">incrementTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~init">init</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~pauseTimer">pauseTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~playTimer">playTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~resetTimer">resetTimer</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~updateScrubber">updateScrubber</a></li><li data-type='method' style='display: none;'><a href="module-TestingTool.html#~updateTables">updateTables</a></li></ul></li><li><a href="module-TestPodServer.html">TestPodServer</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~getRandomIntInclusive">getRandomIntInclusive</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~getRandomValue">getRandomValue</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~heartbeat">heartbeat</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendData">sendData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendIncreasingData">sendIncreasingData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendJSON">sendJSON</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendSinusodalData">sendSinusodalData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendSpecificData">sendSpecificData</a></li><li data-type='method' style='display: none;'><a href="module-TestPodServer.html#~sendTestData">sendTestData</a></li></ul></li></ul><h3>Classes</h3><ul><li><a href="ControlPanelButton.html">ControlPanelButton</a><ul class='methods'><li data-type='method' style='display: none;'><a href="ControlPanelButton.html#.getParent">getParent</a></li><li data-type='method' style='display: none;'><a href="ControlPanelButton.html#.setParent">setParent</a></li></ul></li><li><a href="Dropdown.html">Dropdown</a><ul class='methods'><li data-type='method' style='display: none;'><a href="Dropdown.html#.createDropdown">createDropdown</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#.filterSearch">filterSearch</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#.getListOfDropdowns">getListOfDropdowns</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#createDropdownBtn">createDropdownBtn</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#createItem">createItem</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#fillList">fillList</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#onClick">onClick</a></li><li data-type='method' style='display: none;'><a href="Dropdown.html#toggle">toggle</a></li></ul></li><li><a href="module-Batteries-Battery.html">Battery</a></li><li><a href="module-Button-Button.html">Button</a><ul class='methods'><li data-type='method' style='display: none;'><a href="module-Button-Button.html#.setModalTemplate">setModalTemplate</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#.toggleConfirmationModal">toggleConfirmationModal</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#activate">activate</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#colorize">colorize</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#confirmActive">confirmActive</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#createNewElement">createNewElement</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#deactivate">deactivate</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#greyOut">greyOut</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#onClick">onClick</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#setParent">setParent</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#setText">setText</a></li><li data-type='method' style='display: none;'><a href="module-Button-Button.html#setTextColor">setTextColor</a></li></ul></li><li><a href="module-Renderer.html">Renderer</a></li><li><a href="State.html">State</a><ul class='methods'><li data-type='method' style='display: none;'><a href="State.html#.getActiveState">getActiveState</a></li><li data-type='method' style='display: none;'><a href="State.html#.getStateById">getStateById</a></li><li data-type='method' style='display: none;'><a href="State.html#.setActiveState">setActiveState</a></li><li data-type='method' style='display: none;'><a href="State.html#.toggleConfirmationModal">toggleConfirmationModal</a></li><li data-type='method' style='display: none;'><a href="State.html#activate">activate</a></li><li data-type='method' style='display: none;'><a href="State.html#confirmActive">confirmActive</a></li><li data-type='method' style='display: none;'><a href="State.html#setActive">setActive</a></li><li data-type='method' style='display: none;'><a href="State.html#setInactive">setInactive</a></li></ul></li><li><a href="StateButton.html">StateButton</a><ul class='methods'><li data-type='method' style='display: none;'><a href="StateButton.html#activate">activate</a></li><li data-type='method' style='display: none;'><a href="StateButton.html#deactivate">deactivate</a></li><li data-type='method' style='display: none;'><a href="StateButton.html#onClick">onClick</a></li></ul></li></ul><h3>Global</h3><ul><li><a href="global.html#decrementTorqueValue">decrementTorqueValue</a></li><li><a href="global.html#incrementTorqueValue">incrementTorqueValue</a></li></ul>
+</nav>
+
+<div id="main">
+    
+    <h1 class="page-title">public/assets/Dropdown.js</h1>
+    
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>const DATABASE = require('../../database.json');
+
+let nextID = 0;
+const DROPDOWNS = [];
+class Dropdown {
+  /**
+   * Creates a dropdown button
+   * @param {String} name The shortname of the button
+   * @param {String} text The button text
+   * @param {HTMLElement} parent The html parent of the button
+   * @param {Boolean} containsList If this dropdown has a list of sensors
+   * @param {Function} listOnClick The function the list element will execute on click
+   */
+  constructor(name, text, parent, containsList, listOnClick, chartIndex) {
+    this.name = name;
+    this.text = text;
+    this.parent = parent;
+    this.id = nextID++;
+    this.containsList = containsList;
+    this.chartIndex = chartIndex;
+    this.btn = this.createDropdownBtn();
+    this.parent.appendChild(this.btn);
+    if (this.containsList) {
+      this.listOnClick = listOnClick;
+      this.list = Dropdown.createDropdown(this.id);
+     this.parent.appendChild(this.btn);
+     this.parent.appendChild(this.list);
+      this.fillList();
+      this.onClick(() => {
+        this.toggle();
+      });
+    }
+    
+    DROPDOWNS.push(this);
+  }
+
+  /**
+   * Creates the DOM button for the dropdown
+   */
+  createDropdownBtn() {
+    let btn = document.createElement('button');
+    btn.className = 'dropbtn';
+    btn.id = this.name;
+    let txt = document.createElement('h5');
+    txt.innerHTML = this.text;
+    btn.appendChild(txt);
+    return btn;
+  }
+
+  /**
+   * For dropdowns without a list this is the function that will execute on click
+   * @param {Function} fcn The function to execute on click
+   */
+  onClick(fcn) {
+    this.btn.addEventListener('click', () => {
+      fcn();
+    });
+  }
+
+  /**
+   * Toggles the dropdown list from showing/hiding
+   */
+  toggle() {
+    this.list.classList.toggle('show');
+  }
+
+  /**
+   * Fills the dropdown list with items for each sensor
+   */
+  fillList() {
+    let subsystems = Object.keys(DATABASE); // Create array of each subsystem
+    subsystems.forEach((subsystem) => {
+      let currentSystem = DATABASE[subsystem];
+      let sensors = Object.keys(currentSystem); // Create an array with all sensors in the subsystem
+      sensors.forEach((sensor) => {
+        this.createItem(`${sensor}`, `${currentSystem[sensor].units}`, subsystem); // For each sensor create an element
+      });
+    });
+  }
+
+  /**
+   * Creates a sensor item and appends it to the dropdown
+   * @param {String} name Name of the sensor
+   * @param {String} units Units the sensor is displayed in
+   * @param {String} system The subsystem the sensor is in
+   */
+  createItem(name, units, system) { // eslint-disable-line no-unused-vars
+    let fixedUnits = ` (${units})`; // Adds parenthesis to the units string
+    let fixedName = name.replace(/([a-z\xE0-\xFF])([A-Z\xC0\xDF])/g, '$1 $2') + fixedUnits; // Splits the camel case into two words and adds the units
+    fixedName = fixedName.charAt(0).toUpperCase() + fixedName.slice(1); // Capitalizes first letter
+
+    let header = document.createElement('a'); // Creates the actual DOM element
+    header.onclick = () => {
+      this.listOnClick(name, fixedName, units, system, fixedUnits, this.chartIndex);
+    };
+    header.innerHTML = `${fixedName}`; // Sets value in the box
+    this.list.appendChild(header);
+  }
+
+  /**
+   * Filters the results of a dropdown based on user input
+   * @param {Number} num The dropdown number to filter
+   */
+  static filterSearch(num) {
+    const inputnum = String(`dropdownInput${num}`);
+    let i;
+    const input = document.getElementById(inputnum);
+    const filter = input.value.toUpperCase();
+    const div = document.getElementById(`myDropdown${String(num)}`);
+    const a = div.getElementsByTagName('a');
+    for (i = 0; i &lt; a.length; i += 1) {
+      if (a[i].innerHTML.toUpperCase().indexOf(filter) > -1) {
+        a[i].style.display = '';
+      } else {
+        a[i].style.display = 'none';
+      }
+    }
+  }
+
+  /**
+   * Creates the dropdown list
+   * @param {Number} id The dropdown number to create
+   * @returns {HTMLElement} The dropdown list
+   */
+  static createDropdown(id) {
+    let div = document.createElement('div');
+    div.id = `myDropdown${id}`;
+    div.className = 'dropdown-content';
+    let search = document.createElement('input');
+    search.setAttribute('type', 'text');
+    search.setAttribute('placeholder', 'Search...');
+    search.id = `dropdownInput${id}`;
+    search.setAttribute('onkeyup', `Dropdown.filterSearch(${id})`);
+    div.appendChild(search);
+    return div;
+  }
+
+  /**
+   * Returns a list of all current dropdowns
+   * @returns {Dropdown[]} List of all dropdowns
+   */
+  static getListOfDropdowns() {
+    return DROPDOWNS;
+  }
+};
+
+module.exports = Dropdown;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+    
+    
+</div>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a> on Wed Apr 15 2020 16:15:54 GMT-0500 (Central Daylight Time) using the <a href="https://github.com/clenemt/docdash">docdash</a> theme.
+</footer>
+
+<script>prettyPrint();</script>
+<script src="scripts/polyfill.js"></script>
+<script src="scripts/linenumber.js"></script>
+
+<script src="scripts/search.js" defer></script>
+
+
+<script src="scripts/collapse.js" defer></script>
+
+
+</body>
+</html>
