@@ -174,8 +174,8 @@ function setRecieve(state) {
  * @param {Timer} timer Displays the timers current time
  */
 function displayTimer(timer) {
-  if (`${timer.getSeconds()}`.length === 1) D.getElementById('ageDisplay').innerHTML = `${timer.getMinutes()}:0${timer.getSeconds()}`;
-  else D.getElementById('ageDisplay').innerHTML = `${timer.getMinutes()}:${timer.getSeconds()}`;
+  if (`${timer.seconds}`.length === 1) D.getElementById('ageDisplay').innerHTML = `${timer.minutes}:0${timer.seconds}`;
+  else D.getElementById('ageDisplay').innerHTML = `${timer.minutes}:${timer.seconds}`;
 }
 /**
  * Sets the LV indicator

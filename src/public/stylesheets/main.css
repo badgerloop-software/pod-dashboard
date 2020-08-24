@@ -332,6 +332,11 @@ td.last {
   height: 20vh;
   border-radius: 0.5rem;
 }
+
+#close-window:hover {
+  background: '#aeaeae';
+}
+
 .close-button, .close-button2 {
   float: right;
   width: 1.5rem;
@@ -341,6 +346,7 @@ td.last {
   border-radius: 0.25rem;
   background-color: lightgray;
 }
+
 .confirmationButton {
   margin-left: 40%;
   width: 100px;

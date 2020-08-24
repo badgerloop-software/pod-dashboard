@@ -1,37 +1,20 @@
-function Timer() {
-  this.seconds = 0;
-  this.minutes = 0;
-  this.process = false;
+class Timer {
+  constructor() {
+    this.reference = new Date();
+  }
 
-  this.count = function count() {
-    this.seconds++;
-    if (this.seconds === 60) {
-      this.seconds = 0;
-      this.minutes++;
-    }
-    setTimeout(count, 1000);
-  };
+  reset() {
+    console.log('reset')
+    this.reference = new Date();
+  }
 
-  this.getSeconds = function getSeconds() {
-    return this.seconds;
-  };
+  get seconds() {
+    return ((new Date() - this.reference) / 1000) % 60;
+  }
 
-  this.getMinutes = function getMinutes() {
-    return this.minutes;
-  };
-
-  this.start = function start() {
-    this.count();
-  };
-  this.stop = function stop() {
-    clearTimeout(this.process);
-    this.process = false;
-  };
-
-  this.reset = function reset() {
-    this.seconds = 0;
-    this.minutes = 0;
-  };
+  get minutes() {
+    return Math.floor((new Date() - this.reference) / 60000);
+  }
 }
 
 module.exports = Timer;
