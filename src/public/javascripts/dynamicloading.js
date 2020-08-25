@@ -8,10 +8,6 @@
 /** @requires module:DataInterfacing */
 const DATA_INTERFACING = require('./datainterfacing');
 
-/** @requires module:Timer @see module:Timer */
-const TIMER = require('./Timer');
-
-const STATE_TIMER = new TIMER();
 const DEFAULT_STATE = 'poweroff';
 // Dynamic Tables
 /**
@@ -212,19 +208,3 @@ function fillAllBounds(state) { // eslint-disable-line no-unused-vars
 }
 
 module.exports.fillAllBounds = fillAllBounds;
-// Dynamic Dropdowns
-
-
-// code that actually creates the element with the passed in information from fillAllItems
-/**
-
-
-/**
- * Creates an element for each sensor and appends it to the dropdown
- * @param {Boolean} testing true if testing false if not
- */
-module.exports.fillAllItems = function fillAllItems(testing) { // eslint-disable-line
-
-};
-
-module.exports.stateTimer = STATE_TIMER;

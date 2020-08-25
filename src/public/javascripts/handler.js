@@ -60,7 +60,8 @@ const LATCH_OFF = new ControlPanelButton('latchOff', 'Latch off', CONTROL_PANEL,
 
 const EMERGENCY_STOP_BTN = D.getElementById('estop');
 const TABLES_RENDERER = new RENDERER();
-const GLOBAL_TIMER = new Timer();
+const AGE_DISPLAY = D.getElementById('ageDisplay')
+const GLOBAL_TIMER = new Timer(AGE_DISPLAY);
 const { stateTimer: STATE_TIMER } = DYNAMIC_LOADING;
 
 let activeTimer = GLOBAL_TIMER;
@@ -368,7 +369,6 @@ function createDashboard() {
     try {
       DATA_INTERFACING.createCache();
       DATA_INTERFACING.createCache(DATA_RECORDING);
-      DYNAMIC_LOADING.fillAllItems();
       DYNAMIC_LOADING.fillAllTables();
     } catch (e) {
       reject(new Error(e));

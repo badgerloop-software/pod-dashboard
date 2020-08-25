@@ -1,8 +1,15 @@
-const D = document;
-
+/**
+ * @module Timer
+ * @author Ezra Boley, Eric Udlis
+ * @description A generic count
+ */
 class Timer {
-  constructor() {
+  constructor(domElement) {
     this.reference = new Date();
+    if (!domElement) {
+      throw new Error('Timer must be instantiated with a DOM element');
+    }
+    this.domElement = domElement;
   }
 
   reset() {
@@ -27,8 +34,8 @@ class Timer {
     // The math here is a little intensive so lets only do it once
     const { minutes, seconds } = this;
 
-    if (`${seconds}`.length === 1) D.getElementById('ageDisplay').innerHTML = `${minutes}:0${seconds}`;
-    else D.getElementById('ageDisplay').innerHTML = `${minutes}:${seconds}`;
+    if (`${seconds}`.length === 1) this.domElement.innerHTML = `${minutes}:0${seconds}`;
+    else this.domElement.innerHTML = `${minutes}:${seconds}`;
   }
 }
 
