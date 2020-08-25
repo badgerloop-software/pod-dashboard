@@ -9,13 +9,13 @@ const COMMUNICATIONS_EMITTER = require('./public/javascripts/communication').rec
 const CONSTANTS = require('./constants');
 const DYNAMIC_LOADING = require('./public/javascripts/dynamicloading');
 const RENDERER = require('./public/javascripts/renderer');
-const TIMER = require('./public/javascripts/Timer');
 const CACHE = require('./cache');
 const DATA_RECORDING = require('./dataRecording');
 
 // New OOP stuff
 const State = require('./public/javascripts/State');
 const ControlPanelButton = require('./public/assets/ControlPanelButton');
+const Timer = require('./public/javascripts/Timer');
 
 const D = document;
 const TIMEOUT = 5000;
@@ -60,10 +60,13 @@ const LATCH_OFF = new ControlPanelButton('latchOff', 'Latch off', CONTROL_PANEL,
 
 const EMERGENCY_STOP_BTN = D.getElementById('estop');
 const TABLES_RENDERER = new RENDERER();
-const GLOBAL_TIMER = new TIMER();
+const AGE_DISPLAY = D.getElementById('ageDisplay')
+const GLOBAL_TIMER = new Timer(AGE_DISPLAY);
 const { stateTimer: STATE_TIMER } = DYNAMIC_LOADING;
 
 let activeTimer = GLOBAL_TIMER;
+let udpTimeout;
+let udpConnected = false;
 let { DEBUG } = Boolean(process.env) || false;
 let boneStatus = [false, false]; // [LV, HV]
 let packetCounts = [0, 0]; // [LV, HV]
@@ -154,29 +157,15 @@ function checkBraking(basePacket) {
  * @param {Boolean} state true for ok false for bad
  */
 function setRecieve(state) {
-  if (state) {
-    RECIEVE_INDICATOR_1.className = 'statusGood';
-    RECIEVE_INDICATOR_2.className = 'statusGood';
-    D.getElementById('ageDisplay').className = 'statusGood';
-    if (!GLOBAL_TIMER.process) {
-      GLOBAL_TIMER.start();
-    }
-  } else {
-    RECIEVE_INDICATOR_1.className = 'statusBad';
-    RECIEVE_INDICATOR_2.className = 'statusBad';
-    D.getElementById('ageDisplay').innerHTML = 'N/A';
-    D.getElementById('ageDisplay').className = 'statusBad';
-    GLOBAL_TIMER.reset();
-  }
+  const status = state ? 'statusGood' : 'statusBad';
+  const ageDisplay = D.getElementById('ageDisplay');
+  RECIEVE_INDICATOR_1.className = status;
+  RECIEVE_INDICATOR_2.className = status;
+  ageDisplay.className = status;
+  ageDisplay.innerHTML = 'N/A';
+  GLOBAL_TIMER.reset();
 }
-/**
- * Displays the given timer in defined display location
- * @param {Timer} timer Displays the timers current time
- */
-function displayTimer(timer) {
-  if (`${timer.getSeconds()}`.length === 1) D.getElementById('ageDisplay').innerHTML = `${timer.getMinutes()}:0${timer.getSeconds()}`;
-  else D.getElementById('ageDisplay').innerHTML = `${timer.getMinutes()}:${timer.getSeconds()}`;
-}
+
 /**
  * Sets the LV indicator
  * @param {Boolean} state true for ok false for bad
@@ -194,24 +183,7 @@ function setHVIndicator(state) {
   if (!state) HV_INDICATOR.className = 'statusBad';
   if (!state && !DEBUG) State.setActiveState(0, CONFIRMATION_MODAL);
 }
-/**
- * Checks if dashboard has recieved packets within timeout period
- * If so, sets recieve indicator good and renders to tables
- * If bad,sets recieve indicator bad and stops rendering to tables
- */
-function checkRecieve() {
-  let now = new Date().getTime();
-  let difference = now - TABLES_RENDERER.lastRecievedTime;
-  displayTimer(activeTimer);
-  // console.log(`now: ${now} difference ${difference} timeout ${TIMEOUT}`);
-  if (difference > TIMEOUT || TABLES_RENDERER.lastRecievedTime === 0) {
-    setRecieve(false);
-    TABLES_RENDERER.stopRenderer();
-  } else {
-    setRecieve(true);
-    TABLES_RENDERER.startRenderer();
-  }
-}
+
 /**
  * Sends TCP heartbeats to Pod
  */
@@ -261,7 +233,6 @@ function updateLabels() {
  * Updates Table Lables
  */
 function podConnectionCheck() {
-  checkRecieve();
   sendHeartbeats();
   checkTransmit();
   updateLabels();
@@ -398,7 +369,6 @@ function createDashboard() {
     try {
       DATA_INTERFACING.createCache();
       DATA_INTERFACING.createCache(DATA_RECORDING);
-      DYNAMIC_LOADING.fillAllItems();
       DYNAMIC_LOADING.fillAllTables();
     } catch (e) {
       reject(new Error(e));
@@ -425,7 +395,7 @@ function init() {
         throw err;
       });
   });
-  displayTimer(GLOBAL_TIMER);
+  GLOBAL_TIMER.display();
   console.log(DEBUG);
 }
 // Run at init
@@ -439,7 +409,20 @@ COMMUNICATIONS_EMITTER.on('dataIn', (input) => {
   checkPackets(input);
   let fixedPacket = checkBraking(input);
   DATA_INTERFACING.normalizePacket(fixedPacket);
-  TABLES_RENDERER.lastRecievedTime = new Date().getTime();
+  // Only start once, when the 'connection' is established
+  if (!udpConnected) {
+    udpConnected = true;
+    setRecieve(true);
+    TABLES_RENDERER.startRenderer();
+  }
+
+  // Watches for 'connection' timeout
+  clearTimeout(udpTimeout);
+  udpTimeout = setTimeout(() => {
+    udpConnected = false;
+    setRecieve(false);
+    TABLES_RENDERER.stopRenderer();
+  }, TIMEOUT);
 });
 
 COMMUNICATIONS_EMITTER.on('Lost', (ip) => {
@@ -465,6 +448,9 @@ COMMUNICATIONS_EMITTER.on('ok', (ip) => {
 DATA_INTERFACING.packetHandler.on('renderData', () => {
   const renderable = DATA_INTERFACING.findRenderable();
   const groups = Object.keys(renderable);
+
+  if (activeTimer) activeTimer.display();
+
   groups.forEach((group) => {
     const sensors = Object.keys(renderable[group]);
     sensors.forEach((sensor) => {

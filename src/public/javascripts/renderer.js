@@ -14,7 +14,6 @@ module.exports = function Renderer() { // eslint-disable-line
   this.subCounter = false;
   this.interval = CONSTANTS.renderInterval;
   this.run = false;
-  this.lastRecievedTime = null;
 
   this.newCache = {};
   this.oldCache = {};
