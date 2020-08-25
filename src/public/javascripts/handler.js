@@ -9,7 +9,6 @@ const COMMUNICATIONS_EMITTER = require('./public/javascripts/communication').rec
 const CONSTANTS = require('./constants');
 const DYNAMIC_LOADING = require('./public/javascripts/dynamicloading');
 const RENDERER = require('./public/javascripts/renderer');
-const TIMER = require('./public/javascripts/Timer');
 const CACHE = require('./cache');
 const DATA_RECORDING = require('./dataRecording');
 
