@@ -1,9 +1,13 @@
 /**
  * @module Timer
  * @author Ezra Boley, Eric Udlis
- * @description A generic count
+ * @description A generic count-up timer
  */
 class Timer {
+  /**
+   * Constructs a new count-up timer
+   * @param {HTMLElement} domElement The HTML Element that the timer displays to
+   */
   constructor(domElement) {
     this.reference = new Date();
     if (!domElement) {
@@ -12,10 +16,16 @@ class Timer {
     this.domElement = domElement;
   }
 
+  /**
+   * Resets the timer to 0
+   */
   reset() {
     this.reference = new Date();
   }
 
+  /**
+   * Gets the seconds part of time since last reset
+   */
   get seconds() {
     let seconds = Math.round(((new Date() - this.reference) % 60000) / 1000);
 
@@ -26,10 +36,16 @@ class Timer {
     return seconds;
   }
 
+  /**
+   * Gets the minutes part of time since last reset
+   */
   get minutes() {
     return Math.floor((new Date() - this.reference) / 60000);
   }
 
+  /**
+   * Displays the time since last reset to the DOM
+   */
   display() {
     // The math here is a little intensive so lets only do it once
     const { minutes, seconds } = this;
