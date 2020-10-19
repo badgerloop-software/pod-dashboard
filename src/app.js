@@ -3,51 +3,55 @@
  * @author Eric Udlis
  * @description Runs the main electron process
  */
-const ELECTRON = require('electron');
+
+const { BrowserWindow, app } = require('electron');
 const URL = require('url');
 const PATH = require('path');
 
-const { app: APP } = ELECTRON;
-const { BrowserWindow: BROWSER_WINDOW } = ELECTRON;
-let win;
+let window = null;
 
 /**
- * Creates the browser window and loads the index.html file in it
+ * Creates the browser windowdow and loads the index.html file in it
  */
-function createWindow() {
-  win = new BROWSER_WINDOW({
-    width: 1920,
-    height: 1080,
-    frame: false,
-    backgroundColor: '#FFF',
-    icon: PATH.join(__dirname, '/public/images/icon.png'),
-    webPreferences: { webSecurity: true, nodeIntegration: true },
-  });
+function createwindowdow() {
+    // Ensure there is only ever 1 windowdow
+    if (window != null)
+        return;
 
-  win.loadURL(
-    URL.format({
-      pathname: PATH.join(__dirname, 'index.html'),
-      protocol: 'file:',
-      slashes: true,
-    }),
-  );
+    // Create the browser windowdow
+    window = new BrowserWindow({
+        width: 1920,
+        height: 1080,
+        frame: false,
+        backgroundColor: '#FFF',
+        icon: PATH.join(__dirname, '/public/images/icon.png'),
+        webPreferences: { webSecurity: true, nodeIntegration: true },
+    });
 
-  win.on('closed', () => {
-    win = null;
-  });
+    // Load index.html by default
+    window.loadURL(
+        URL.format({
+            pathname: PATH.join(__dirname, 'index.html'),
+            protocol: 'file:',
+            slashes: true,
+        }),
+    );
+
+    // When the windowdow is closed, destroy window
+    window.on('closed', () => {
+        window = null;
+    });
 }
 
+app.on('ready', createwindowdow);
+app.on('activate', createwindowdow);
 
-APP.on('ready', createWindow);
+// Once all windowdows have been closed, quit the app
+app.on('windowdow-all-closed', () => {
+    // Follow the MacOS convention of not quitting the application
+    // when all windowdows are closed
+    if (process.platform == 'darwindow')
+        return;
 
-APP.on('window-all-closed', () => {
-  if (process.platform !== 'darwin') {
-    APP.quit();
-  }
-});
-
-APP.on('activate', () => {
-  if (win === null) {
-    createWindow();
-  }
+    app.quit();
 });
