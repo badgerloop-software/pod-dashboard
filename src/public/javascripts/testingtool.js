@@ -4,7 +4,7 @@
  * @description The backend of the testing tool
  */
 const FS = require('fs');
-const DYNAMIC_LOADING = require('./public/javascripts/dynamicloading');
+const DYNAMIC_LOADING = require('../public/javascripts/dynamicloading');
 
 const FILE_SELECTOR = document.getElementById('fileSelector');
 const FILE_INPUT = document.getElementById('file-input');
@@ -29,47 +29,47 @@ let isPlaying = false;
  * Increments internal timer by 1
  */
 function incrementTimer() {
-  console.log(currentTime);
-  currentTime = parseFloat(currentTime) + 1;
+    console.log(currentTime);
+    currentTime = parseFloat(currentTime) + 1;
 }
 
 /**
  * If not playing data and has data start playing
  */
 function playTimer() {
-  if (runData && !isPlaying) {
-    timer = setInterval(incrementTimer, 100);
-    isPlaying = true;
-    console.log(currentTime);
-  }
-  // if (chartInterval1 || chartInterval2) getDataAtInterval();
+    if (runData && !isPlaying) {
+        timer = setInterval(incrementTimer, 100);
+        isPlaying = true;
+        console.log(currentTime);
+    }
+    // if (chartInterval1 || chartInterval2) getDataAtInterval();
 }
 
 /**
  * Pause timer and set falg to false
  */
 function pauseTimer() {
-  clearInterval(timer);
-  isPlaying = false;
-  pauseCharts();
+    clearInterval(timer);
+    isPlaying = false;
+    pauseCharts();
 }
 
 /**
  * Resets timer back to 0
  */
 function resetTimer() {
-  pauseTimer();
-  currentTime = 0;
+    pauseTimer();
+    currentTime = 0;
 }
 
 // Check Timer for hitting Max
 
 setInterval(() => {
-  console.log(currentTime);
-  if (maxReached) {
-    pauseTimer();
-    maxReached = false;
-  }
+    console.log(currentTime);
+    if (maxReached) {
+        pauseTimer();
+        maxReached = false;
+    }
 }, 100);
 
 // Scrubber
@@ -77,17 +77,17 @@ setInterval(() => {
  * Sets current time to scrubber value
  */
 function updateScrubber() { // eslint-disable-line
-  let v = SCRUBBER.value;
-  console.log(`Scrubber is updating to ${v}`);
-  currentTime = v;
-  console.log(currentTime);
+    let v = SCRUBBER.value;
+    console.log(`Scrubber is updating to ${v}`);
+    currentTime = v;
+    console.log(currentTime);
 }
 
 /**
  * Sets scrubber value to current time
  */
 function fillScrubber() {
-  SCRUBBER.setAttribute('max', runMax - 1);
+    SCRUBBER.setAttribute('max', runMax - 1);
 }
 
 // File Handling
@@ -95,12 +95,12 @@ function fillScrubber() {
  * Finds the number of data points in a sensor
  */
 function findMax() {
-  let subsystemArray = Object.values(runData);
-  let sensorArray = Object.values(subsystemArray[0]);
-  let sampleSensor = sensorArray[0];
-  runMax = sampleSensor.length - 1;
-  MAX_TIME_LABEL.innerHTML = `${runMax}`;
-  fillScrubber();
+    let subsystemArray = Object.values(runData);
+    let sensorArray = Object.values(subsystemArray[0]);
+    let sampleSensor = sensorArray[0];
+    runMax = sampleSensor.length - 1;
+    MAX_TIME_LABEL.innerHTML = `${runMax}`;
+    fillScrubber();
 }
 
 /**
@@ -108,18 +108,18 @@ function findMax() {
  * @param {File} file The file to read
  */
 function importJSON(file) {
-  let rawData = FS.readFileSync(`${file.path}`);
-  runData = JSON.parse(rawData);
-  console.log(runData);
-  findMax();
+    let rawData = FS.readFileSync(`${file.path}`);
+    runData = JSON.parse(rawData);
+    console.log(runData);
+    findMax();
 }
 
 /**
  * Filters the files from the input
  */
 function handleFiles() {
-  const fileList = this.files;
-  importJSON(fileList[0]);
+    const fileList = this.files;
+    importJSON(fileList[0]);
 }
 
 // Filling Tables
@@ -130,21 +130,21 @@ function handleFiles() {
  * @param {Number} time The time in the data to fill
  */
 function fillCell(subsystem, sensor, time) {
-  // console.log(`Starting ${sensor}`);
-  if (time >= runMax) {
-    maxReached = true;
-    currentTime = runMax;
-  } else {
-    const t = document.getElementById(`${sensor}`);
-    let s = null;
-    if (runData) {
-      s = runData[subsystem][sensor];
-      t.innerHTML = `${s[time]}`;
+    // console.log(`Starting ${sensor}`);
+    if (time >= runMax) {
+        maxReached = true;
+        currentTime = runMax;
     } else {
-      console.log('Error - No Data');
+        const t = document.getElementById(`${sensor}`);
+        let s = null;
+        if (runData) {
+            s = runData[subsystem][sensor];
+            t.innerHTML = `${s[time]}`;
+        } else {
+            console.log('Error - No Data');
+        }
     }
-  }
-  // console.log(`Finished ${sensor}`);
+    // console.log(`Finished ${sensor}`);
 }
 
 /**
@@ -153,11 +153,11 @@ function fillCell(subsystem, sensor, time) {
  * @param {Number} time the time the data is located
  */
 function fillTable(subsystem, time) {
-  let sensors = Object.keys(runData[subsystem]);
-  sensors.forEach((sensor) => {
-    if (!document.getElementById(`${sensor}`)) return;
-    fillCell(`${subsystem}`, `${sensor}`, time);
-  });
+    let sensors = Object.keys(runData[subsystem]);
+    sensors.forEach((sensor) => {
+        if (!document.getElementById(`${sensor}`)) return;
+        fillCell(`${subsystem}`, `${sensor}`, time);
+    });
 }
 
 /**
@@ -165,19 +165,19 @@ function fillTable(subsystem, time) {
  * @param {Number} time the time the data is located
  */
 function fillAllTables(time) {
-  let subsystems = Object.keys(runData);
-  subsystems.forEach((system) => {
-    fillTable(`${system}`, time);
-  });
+    let subsystems = Object.keys(runData);
+    subsystems.forEach((system) => {
+        fillTable(`${system}`, time);
+    });
 }
 
 /**
  * If there is run data fill all tables and update labels
  */
 function updateTables() {
-  if (runData) { fillAllTables(currentTime); }
-  TIME_LABEL.innerHTML = `Current Time: ${currentTime} Frames | ${currentTime / 10} Seconds`;
-  MAX_TIME_LABEL.innerHTML = `Total Time: ${runMax} Frames | ${runMax / 10} Seconds`;
+    if (runData) { fillAllTables(currentTime); }
+    TIME_LABEL.innerHTML = `Current Time: ${currentTime} Frames | ${currentTime / 10} Seconds`;
+    MAX_TIME_LABEL.innerHTML = `Total Time: ${runMax} Frames | ${runMax / 10} Seconds`;
 }
 setInterval(updateTables, 100);
 
@@ -195,8 +195,8 @@ FILE_SELECTOR.addEventListener('click', () => { FILE_INPUT.click(); });
  * Fills all tables and dropdowns
  */
 function init() {
-  DYNAMIC_LOADING.fillAllTables();
-  DYNAMIC_LOADING.fillAllItems(true);
+    DYNAMIC_LOADING.fillAllTables();
+    DYNAMIC_LOADING.fillAllItems(true);
 }
 init();
 // End Init
