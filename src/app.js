@@ -15,7 +15,7 @@ let window = null;
  */
 function createwindowdow() {
     // Ensure there is only ever 1 windowdow
-    if (window != null)
+    if (window !== null)
         return;
 
     // Create the browser windowdow
@@ -54,7 +54,7 @@ app.on('activate', createwindowdow);
 app.on('windowdow-all-closed', () => {
     // Follow the MacOS convention of not quitting the application
     // when all windowdows are closed
-    if (process.platform == 'darwin')
+    if (process.platform === 'darwin')
         return;
 
     app.quit();
