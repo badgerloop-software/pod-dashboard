@@ -25,7 +25,11 @@ function createwindowdow() {
         frame: false,
         backgroundColor: '#FFF',
         icon: PATH.join(__dirname, '/public/images/icon.png'),
-        webPreferences: { webSecurity: true, nodeIntegration: true },
+        webPreferences: {
+            webSecurity: true,
+            nodeIntegration: true,
+            enableRemoteModule: true
+        }
     });
 
     // Load index.html by default

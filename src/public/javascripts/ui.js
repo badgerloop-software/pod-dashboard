@@ -4,11 +4,11 @@
  * @description Handles all responsive UI elements of the dashboard
  */
 
-const { remote: REMOTE } = require('electron');
+const REMOTE = require('electron').remote;
 
 const ELECTRON_WINDOW = REMOTE.getCurrentWindow();
-const CONFIG = require('./public/javascripts/config');
-const CONFIG_CONSTANTS = require('./public/javascripts/config').constants;
+const CONFIG = require('../public/javascripts/config');
+const CONFIG_CONSTANTS = require('../public/javascripts/config').constants;
 
 const RATE = CONFIG_CONSTANTS.DATA_SEND_RATE;
 
