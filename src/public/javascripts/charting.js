@@ -5,8 +5,8 @@
  * @description Creates and handles charts
  */
 const HIGHCHARTS = require('highcharts');
-const CHARTCACHE = require('./cache');
-const Dropdown = require('./public/assets/Dropdown');
+const CHARTCACHE = require('./../cache');
+const Dropdown = require('./../public/assets/Dropdown');
 
 require('highcharts/modules/exporting')(HIGHCHARTS);
 

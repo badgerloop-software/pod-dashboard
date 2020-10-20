@@ -1,7 +1,7 @@
 /**
  * @module Electron-app
  * @author Eric Udlis
- * @description Runs the main electron process
+ * @description Entry point of program. Runs the main electron process
  */
 
 const { BrowserWindow, app } = require('electron');
@@ -31,7 +31,7 @@ function createwindowdow() {
     // Load index.html by default
     window.loadURL(
         URL.format({
-            pathname: PATH.join(__dirname, 'index.html'),
+            pathname: PATH.join(__dirname, 'views', 'index.html'),
             protocol: 'file:',
             slashes: true,
         }),
@@ -50,7 +50,7 @@ app.on('activate', createwindowdow);
 app.on('windowdow-all-closed', () => {
     // Follow the MacOS convention of not quitting the application
     // when all windowdows are closed
-    if (process.platform == 'darwindow')
+    if (process.platform == 'darwin')
         return;
 
     app.quit();

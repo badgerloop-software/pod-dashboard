@@ -1,8 +1,8 @@
 const { remote } = require('electron');
 
-const comms = require('./public/javascripts/communication');
-const config = require('./public/javascripts/config');
-const consts = require('./public/javascripts/config').constants;
+const comms = require('../public/javascripts/communication');
+const config = require('../public/javascripts/config');
+const consts = require('../public/javascripts/config').constants;
 
 const terminalInput = document.getElementById('terminalInputBox');
 const terminalOutput = document.getElementById('terminalOutputList');
@@ -119,7 +119,7 @@ function handleInput() {
 
 
 terminalInput.addEventListener('keyup', (event) => {
-  if (event.keyCode === 13) {
+  if (event.key === "Enter") {
     event.preventDefault();
     handleInput();
   }

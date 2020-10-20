@@ -4,7 +4,7 @@
  * @description The backend of the testing tool
  */
 const FS = require('fs');
-const DYNAMIC_LOADING = require('./public/javascripts/dynamicloading');
+const DYNAMIC_LOADING = require('../public/javascripts/dynamicloading');
 
 const FILE_SELECTOR = document.getElementById('fileSelector');
 const FILE_INPUT = document.getElementById('file-input');

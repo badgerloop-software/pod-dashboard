@@ -3,19 +3,19 @@
  * @author Eric Udlis, Michael Handler
  * @description Handle all updates and interfacing between the front-end and back-end
  */
-const CLIENT = require('./public/javascripts/communication');
-const DATA_INTERFACING = require('./public/javascripts/datainterfacing');
-const COMMUNICATIONS_EMITTER = require('./public/javascripts/communication').recievedEmitter;
-const CONSTANTS = require('./constants');
-const DYNAMIC_LOADING = require('./public/javascripts/dynamicloading');
-const RENDERER = require('./public/javascripts/renderer');
-const CACHE = require('./cache');
-const DATA_RECORDING = require('./dataRecording');
+const CLIENT = require('../public/javascripts/communication');
+const DATA_INTERFACING = require('../public/javascripts/datainterfacing');
+const COMMUNICATIONS_EMITTER = require('../public/javascripts/communication').recievedEmitter;
+const CONSTANTS = require('../constants');
+const DYNAMIC_LOADING = require('../public/javascripts/dynamicloading');
+const RENDERER = require('../public/javascripts/renderer');
+const CACHE = require('../cache');
+const DATA_RECORDING = require('../dataRecording');
 
 // New OOP stuff
-const State = require('./public/javascripts/State');
-const ControlPanelButton = require('./public/assets/ControlPanelButton');
-const Timer = require('./public/javascripts/Timer');
+const State = require('../public/javascripts/State');
+const ControlPanelButton = require('../public/assets/ControlPanelButton');
+const Timer = require('../public/javascripts/Timer');
 
 const D = document;
 const TIMEOUT = 5000;

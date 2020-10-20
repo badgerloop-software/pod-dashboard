@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/main.grid.css">
+    <link rel="stylesheet" type="text/css" href="../public/stylesheets/fonts.css">
+    <script src="../node_modules/highcharts/highcharts.js"></script>
+    <script src="../node_modules/highcharts/modules/exporting.js"></script>
+    <title>Badgerloop Pod IV Dashboard</title>
+  </head>
+
+  <body>
+    <!-- Top Bar -->
+    <div class="banner">
+      <a class="left"><img src="../public/images/logo.png" height="30px"></a>
+      <a id="title" class="left">CONTROL DASHBOARD</a>
+      <a id="close-window" class="right">&#10005;</a>
+      <a id="max-window" class="right">&#128470; </a>
+      <a id="min-window" class="right">&#8212;</a>
+      <a id="banner-drop" class="right">
+        <div class="banner_dropdown">
+          <button class="dropbtn">Change View
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <img src="../public/images/dropdown.png" height="25px">
+          <div class="banner_dropdown-content">
+            <a href="index.html">Main</a>
+            <a href="testing.html">Analysis</a>
+            <a href="terminal.html">Terminal</a>
+            <a href="battery.html">Batteries</a>
+          </div>
+        </div>
+      </a>
+      <a class="settingsTrigger" id="settingsTrigger"><img src="../public/images/settings.png" height="35px"></a>
+    </div>
+
+    <!-- main grid layout-->
+    <div class="grid">
+      <!-- Focus Box -->
+      <div id="header1" class="box">
+        <div class="grid_focus">
+          <div class="dropdown" id="focusBox">
+          </div>
+          <div class="header_focus" id="header_focus_1">
+            <p id="header_label_1">Value 1</p>
+            <h1 id="header_value_1"></h1>
+          </div>
+          <div class="header_focus" id="header_focus_2">
+            <p id="header_label_2">Value 2</p>
+            <h1 id="header_value_2"></h1>
+          </div>
+          <div class="header_focus" id="header_focus_3">
+            <p id="header_label_3">Value 3</p>
+            <h1 id="header_value_3"></h1>
+          </div>
+          <div class="header_focus" id="header_focus_4">
+            <p id="header_label_4">Value 4</p>
+            <h1 id="header_value_4"></h1>
+          </div>
+        </div>
+      </div>
+      <!-- Charts -->
+      <div id="header2" class="box">
+        <div class="grid_focus2">
+          <div class="dropdown" id="chartBox">
+          </div>
+          <div class="header_focus_chart" id="header_focus_chart1">
+            <div id="container" style="width:100%; height:100%;"></div>
+
+          </div>
+          <div class="header_focus_chart" id="header_focus_chart2">
+              <div id="container2" style="width:100%; height:100%;"></div>
+
+          </div>
+        </div>
+      </div>
+      <!-- State Machine Control Panel -->
+      <div id="header3a" class="box">
+        <div class="gridStateMachine" id="statemachineBox"></div>
+      </div>
+      <div id="header3" class="box">
+        <div class="gridStateMachine" id="controlpanelBox">
+        </div>
+      </div>
+
+      <!-- Latency Indicator-->
+      <div id="header4" class="box">
+        <div id="header4Left">
+          <h1>Link <br>Status</h1>
+        </div>
+        <div id="header4Middle">
+          <h4 class="connectionTitle">LV BeagleBone</h4>
+          <p id="connectionDot1" class="statusBad">●</p><br>
+          <h4 class="connectionTitle">HV BeagleBone</h4>
+          <p id="connectionDot2" class="statusBad">●</p>
+        </div>
+        <div id="header4Right">
+          <div class="status">
+            <img src="../public/images/pod.png" id="podStatus">
+            <div id="statusConnection1" class="">
+              <p id="link1" class="">---</p>
+            </div>
+            <div id="age">
+              <h5 id="ageLabel">Timer</h5>
+              <h1 id="ageDisplay"></h1>
+            </div>
+            <div id="statusConnection2" class="">
+              <p id="link2" class="">---</p>
+            </div>
+            <img src="../public/images/macbook.png" id="hostStatus">
+          </div>
+        </div>
+      </div>
+
+      <!-- Emergency Start and Stop Buttons -->
+      <div id="extra" class="box">
+        <!-- <button id="start" class="confirmationTrigger">
+          <h1>MASTER START</h1>
+        </button> -->
+        <!-- <button id="motor-safety">
+          <h3>MOTOR  SAFETY</h3>
+          <h1 id="motor-safety-status" class="status-on">ON</h1>
+        </button> -->
+        <button id="estop">
+          <h1>E-STOP</h1>
+        </button>
+      </div>
+
+      <!-- Motion Table -->
+      <div id="motion_div" class="box ok">
+        <div class="item-content">
+          <h1 style="display:inline;">MOTION </h1>
+          <h2 id="motion_status" class="disconnected">
+            <span2 style="display:inline;">
+              <svg id="motionDisconnected" class="disconnected" viewBox="0 0 50 50" style="display: none;">
+                <path
+                style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans; "
+                d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z"
+                overflow="visible" font-family="Sans" />
+              </svg>
+            </span2>
+          </h2><br><br>
+          <input type="text" id="motioninput" onkeyup="searchTable('motion')" placeholder="Search for values.."
+            title="Type in a value">
+          <table id="motion">
+            <tr class="header">
+              <th class="valueTableMotion">Value</th>
+              <th class="min">Min</th>
+              <th class="actual">Actual</th>
+              <th class="max">Max</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- Braking Table -->
+      <div id="braking_div" class="box ok">
+        <div class="item-content">
+          <h1 style="display:inline;">BRAKING </h1>
+          <h2 id="braking_status" class="disconnected">
+            <span2 style="display:inline;">
+              <svg  id="brakingDisconnected" class="disconnected" viewBox="0 0 50 50" style="display: none">
+                <path
+                  style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans; "
+                  d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z"
+                  overflow="visible" font-family="Sans" />
+              </svg>
+            </span2>
+          </h2><br><br>
+          <input type="text" id="braking_tableinput" onkeyup="searchTable('braking_table')" placeholder="Search for values.."
+            title="Type in a value">
+          <table id="braking_table">
+            <tr class="header">
+              <th class="valueTableBraking">Value</th>
+              <th class="min">Min</th>
+              <th class="actual">Actual</th>
+              <th class="max">Max</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+
+      <!-- Battery Table -->
+      <div id="battery_pack_div" class="box ok">
+        <div class="item-content">
+          <h1 style="display:inline;">BATTERY </h1>
+          <h2 id="battery_status" class="disconnected">
+            <span2 style="display:inline;">
+              <svg id="batteryDisconnected" class="disconnected" viewBox="0 0 50 50" style="display: none">
+                <path
+                  style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans; "
+                  d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z"
+                  overflow="visible" font-family="Sans" />
+              </svg>
+            </span2>
+          </h2><br><br>
+          <input type="text" id="batteryinput" onkeyup="searchTable('battery')" placeholder="Search for values.."
+            title="Type in a value">
+          <table id="battery">
+            <tr class="header">
+              <th class="valueTableBattery">Value</th>
+              <th class="min">Min</th>
+              <th class="actual">Actual</th>
+              <th class="max">Max</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- Motor Table -->
+      <div id="motor_div" class="box ok">
+        <div class="item-content">
+          <h1 style="display:inline;">MOTOR </h1>
+          <span2 style="display:inline;">
+            <svg id="motorDisconnected" class="disconnected" viewBox="0 0 50 50" style="display: none">
+              <path
+                style="text-indent:0;text-align:start;line-height:normal;text-transform:none;block-progression:tb;-inkscape-font-specification:Sans;"
+                d="M 43.6875 2 L 38.65625 7.0625 L 36.34375 4.75 C 34.00075 2.41 30.18675 2.41 27.84375 4.75 L 23.03125 9.59375 L 21.71875 8.28125 A 1.0001 1.0001 0 0 0 20.78125 8 A 1.0001 1.0001 0 0 0 20.28125 9.71875 L 25.0625 14.5 L 18.9375 20.65625 L 20.34375 22.0625 L 26.5 15.9375 L 34.0625 23.5 L 27.9375 29.65625 L 29.34375 31.0625 L 35.5 24.9375 L 40.28125 29.71875 A 1.016466 1.016466 0 1 0 41.71875 28.28125 L 40.40625 26.96875 L 45.25 22.15625 C 47.594 19.81425 47.592 16.0315 45.25 13.6875 L 45.25 13.65625 L 42.9375 11.34375 L 48 6.3125 L 43.6875 2 z M 8.90625 19.96875 A 1.0001 1.0001 0 0 0 8.78125 20 A 1.0001 1.0001 0 0 0 8.28125 21.71875 L 9.59375 23.03125 L 4.75 27.84375 C 2.406 30.18575 2.408 33.99975 4.75 36.34375 L 7.0625 38.625 L 2 43.6875 L 6.3125 48 L 11.375 42.9375 L 13.65625 45.25 C 15.99925 47.59 19.81325 47.59 22.15625 45.25 L 26.96875 40.40625 L 28.28125 41.71875 A 1.016466 1.016466 0 1 0 29.71875 40.28125 L 9.71875 20.28125 A 1.0001 1.0001 0 0 0 8.90625 19.96875 z"
+                overflow="visible" font-family="Sans" />
+            </svg>
+          </span2>
+          </h2><br><br>
+          <input type="text" id="motorinput" onkeyup="searchTable('motor')" placeholder="Search for values.."
+            title="Type in a value">
+          <table id="motor">
+            <tr class="header">
+              <th class="valueTableMotor">Value</th>
+              <th class="min">Min</th>
+              <th class="actual">Actual</th>
+              <th class="max">Max</th>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <!-- Dashboard Settings Modal -->
+      <div class="settingsModal">
+        <div class="modal-content" id="settingsModalContent">
+          <span class="close-button">×</span>
+          <h1>Dashboard Settings</h1>
+          <form class="settingsForm">
+            <div id="formLeft">
+              <h4 id="formTitle">Pod Settings</h4>
+              <label for="podIP" id="pod-ip">Pod IP</label>
+              <input id="podIP" class="formInput" type="text">
+
+              <label for="podPort" id="pod-port">Pod Port</label>
+              <input id="podPort" class="formInput" type="number">
+              <div class=charteric>
+                <p></p>
+              </div>
+            </div>
+            <div id="formRight">
+              <h4 id="formTitle">BeagleBone Settings</h4>
+              <label for="lvBoneIP" id="lv-bone-ip">LV Bone IP</label>
+              <input id="lvBoneIP" class="formInput" type="text">
+
+              <label for="lvBonePort" id="lv-bone-port">LV Bone Port</label>
+              <input id="lvBonePort" class="formInput" type="number">
+
+              <label for="hvBoneIP" id="hv-bone-ip">HV Bone IP</label>
+              <input id="hvBoneIP" class="formInput" type="text">
+
+              <label for="hvBonePort" id="hv-bone-port">HV Bone Port</label>
+              <input id="hvBonePort" class="formInput" type="number">
+            </div>
+            <div id="formFull">
+              <h4 id="formTitle">Dashboard Settings</h4>
+              <label for="scanningRate">Data Send/ Scanning Rate <span id="value"></span> </label>
+              <input id="scanningRate" class="formInput" type="number" min="0" max="500" class="inputNotSearchable">
+              <label for="renderInterval">Render Interval</label>
+              <input id="renderInterval" class="formInput" type="number" min="100" class="inputNotSearchable">
+              <label for="debug"></label>
+              <input id="debug" class="formInput" type="checkbox">
+              <button id="podSettingsSubmit" type="button">Submit</button>
+              <p id="formFeedback">(Will restart for changes to take place):</p>
+            </div>
+          </form>
+        </div>
+      </div>
+
+    <!-- Propulsion Confirmation Modal -->
+    <div class="confirmationModal">
+      <div class="modal-content" id="confirmationModalContent">
+        <span class="close-button2">x</span>
+        <h1>Confirmation</h1>
+        <h3 id="confirmMsg"></h3>
+        <button class="confirmationButton" id="confirmStart">Yes</button>
+      </div>
+    </div>
+    <script src="../public/javascripts/charting.js"></script>
+    <script src="../public/javascripts/handler.js"></script>
+    <script src="../public/javascripts/ui.js"></script>
+    <script>
+      document.onload= (newChart('container', 'Chart 1', 0));
+    </script>
+    <script>
+      document.onload = (newChart('container2', 'Chart 2', 1));
+    </script>
+  </body>
+
+</html>

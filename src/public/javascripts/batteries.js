@@ -2,7 +2,7 @@
  * Batteries Modules
  * @module Batteries
  */
-const client = require('./public/javascripts/communication').recievedEmitter;
+const client = require('./../public/javascripts/communication').recievedEmitter;
 
 /** @constant {Number} - Width of battery table */
 const TABLE_WIDTH = 8;
