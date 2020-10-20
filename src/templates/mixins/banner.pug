@@ -1,0 +1,30 @@
+mixin banner
+    .banner.unselectable
+            // Badgerloop Demo and Title
+            a.left
+                img(src='../public/images/logo.png', height='30px', draggable="false")
+            a#title.left Control Dashboad
+            
+            // Window Actions
+            div#close-window.banner-selectable.right
+                a &#10005;
+            div#max-window.banner-selectable.right
+                a &#128470;
+            div#min-window.banner-selectable.right
+                a &#8212;
+
+            // Change View Dropdown
+            a#banner-drop.right
+                .banner_dropdown.banner-selectable
+                    button.dropbtn Change View
+                        i.fa.fa-caret-down(style='margin-left: 8px')
+                        img(src='../public/images/dropdown.png' height='25px', draggable="false")
+                    .banner_dropdown-content
+                        a(href='index.html') Main
+                        a(href='testing.html') Analysis
+                        a(href='terminal.html') Terminal
+                        a(href='battery.html') Batteries
+
+            // Settings Button
+            a#settingsTrigger.settingsTrigger.banner-selectable
+                img(src='../public/images/settings.png' height='35px', draggable="false")

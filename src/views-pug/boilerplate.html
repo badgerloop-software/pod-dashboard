@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!--link(rel='stylesheet', href='../public/stylesheets/main.css')-->
+    <link rel="stylesheet" href="../public/css/main.css">
+    <link rel="stylesheet" href="../public/css/banner.css">
+    <link rel="stylesheet" href="../public/stylesheets/fonts.css">
+    <title>Badgerloop Pod IV Dashboard</title>
+  </head>
+  <body>
+    <!-- Banner-->
+    <div class="banner unselectable">
+      <!-- Badgerloop Demo and Title--><a class="left"><img src="../public/images/logo.png" height="30px" draggable="false"/></a><a class="left" id="title">Control Dashboad</a>
+      <!-- Window Actions-->
+      <div class="banner-selectable right" id="close-window"><a>&#10005;</a></div>
+      <div class="banner-selectable right" id="max-window"><a>&#128470;</a></div>
+      <div class="banner-selectable right" id="min-window"><a>&#8212;</a></div>
+      <!-- Change View Dropdown--><a class="right" id="banner-drop">
+        <div class="banner_dropdown banner-selectable">
+          <button class="dropbtn">Change View<i class="fa fa-caret-down" style="margin-left: 8px"></i><img src="../public/images/dropdown.png" height="25px" draggable="false"/></button>
+          <div class="banner_dropdown-content"><a href="index.html">Main</a><a href="testing.html">Analysis</a><a href="terminal.html">Terminal</a><a href="battery.html">Batteries</a></div>
+        </div></a>
+      <!-- Settings Button--><a class="settingsTrigger banner-selectable" id="settingsTrigger"><img src="../public/images/settings.png" height="35px" draggable="false"/></a>
+    </div>
+    <!-- Template-Specific Content-->
+    <!-- Scripts-->
+    <script src="../public/javascripts/windowControls.js"></script>
+  </body>
+</html>

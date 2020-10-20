@@ -1,0 +1,36 @@
+mixin settingsModal
+    .settingsModal
+    #settingsModalContent.modal-content
+        span.close-button ×
+        h1 Dashboard Settings
+        form.settingsForm
+        #formLeft
+            h4#formTitle Pod Settings
+            label#pod-ip(for='podIP') Pod IP
+            input#podIP.formInput(type='text')
+            label#pod-port(for='podPort') Pod Port
+            input#podPort.formInput(type='number')
+            .charteric
+            p
+        #formRight
+            h4#formTitle BeagleBone Settings
+            label#lv-bone-ip(for='lvBoneIP') LV Bone IP
+            input#lvBoneIP.formInput(type='text')
+            label#lv-bone-port(for='lvBonePort') LV Bone Port
+            input#lvBonePort.formInput(type='number')
+            label#hv-bone-ip(for='hvBoneIP') HV Bone IP
+            input#hvBoneIP.formInput(type='text')
+            label#hv-bone-port(for='hvBonePort') HV Bone Port
+            input#hvBonePort.formInput(type='number')
+        #formFull
+            h4#formTitle Dashboard Settings
+            label(for='scanningRate')
+            | Data Send/ Scanning Rate 
+            span#value
+            input#scanningRate.formInput(type='number' min='0' max='500')
+            label(for='renderInterval') Render Interval
+            input#renderInterval.formInput(type='number' min='100')
+            label(for='debug')
+            input#debug.formInput(type='checkbox')
+            button#podSettingsSubmit(type='button') Submit
+            p#formFeedback (Will restart for changes to take place):

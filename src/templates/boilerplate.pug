@@ -1,0 +1,27 @@
+//-
+    Template fom which all other pug templates extend
+
+include mixins/banner.pug
+include mixins/settingsModal.pug
+
+doctype html
+html(lang='en')
+    
+    head
+        //link(rel='stylesheet', href='../public/stylesheets/main.css')
+        link(rel='stylesheet', href='../public/css/main.css')
+        link(rel='stylesheet', href='../public/css/banner.css')
+        link(rel='stylesheet', href='../public/stylesheets/fonts.css')
+        block style
+        title Badgerloop Pod IV Dashboard
+
+    body
+        // Banner
+        +banner
+
+        // Template-Specific Content
+        block content
+
+        // Scripts
+        script(src="../public/javascripts/windowControls.js")
+        block scripts

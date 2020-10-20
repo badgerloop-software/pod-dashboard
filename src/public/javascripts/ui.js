@@ -216,21 +216,6 @@ function fillConstants() {
     document.getElementById('renderInterval').value = CONFIG_CONSTANTS.renderInterval;
 }
 
-// Window Handling
-
-document.getElementById('min-window').addEventListener('click', () => {
-    ELECTRON_WINDOW.minimize();
-});
-
-document.getElementById('max-window').addEventListener('click', () => {
-    if (!ELECTRON_WINDOW.isMaximized()) ELECTRON_WINDOW.maximize();
-    else ELECTRON_WINDOW.unmaximize();
-});
-
-document.getElementById('close-window').addEventListener('click', () => {
-    ELECTRON_WINDOW.close();
-});
-
 const FOCUS_DROPDOWN = new Dropdown('focusAddButton', 'Add Values', document.getElementById('focusBox'), true, clone); // eslint-disable-line
 const FOCUS_CLEAR = new Dropdown('focusClear', 'Clear', document.getElementById('focusBox'), false);
 FOCUS_CLEAR.onClick(clearAll);
