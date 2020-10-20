@@ -1,6 +1,6 @@
-$banner-color:      gray;
-$hover-color:   #A9A9A9;
-$active-color:      #9b9b9b;
+$banner-color:      rgb(110, 111, 122);
+$hover-color:       lighten($banner-color, 10%);
+$active-color:      lighten($hover-color, 10%);
 
 /*
  * BANNER
@@ -60,7 +60,7 @@ $active-color:      #9b9b9b;
         background-color: $hover-color;
     }
 
-    &:hover {
+    &:active {
         background-color: $active-color;
     }
 }

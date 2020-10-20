@@ -7,7 +7,7 @@
 
 .banner {
   overflow: hidden;
-  background-color: gray;
+  background-color: #6e6f7a;
   position: fixed;
   top: 0;
   width: 100vw;
@@ -47,10 +47,10 @@
   height: 100%;
 }
 .banner-selectable:hover {
-  background-color: #A9A9A9;
+  background-color: #888993;
 }
-.banner-selectable:hover {
-  background-color: #9b9b9b;
+.banner-selectable:active {
+  background-color: #a2a3ac;
 }
 
 /*

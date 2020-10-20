@@ -1,8 +1,8 @@
 //-
     Template fom which all other pug templates extend
 
-include mixins/banner.pug
-include mixins/settingsModal.pug
+include partials/banner.pug
+include partials/settingsModal.pug
 
 doctype html
 html(lang='en')
@@ -20,7 +20,8 @@ html(lang='en')
         +banner
 
         // Template-Specific Content
-        block content
+        #bodyContent
+            block content
 
         // Scripts
         script(src="../public/javascripts/windowControls.js")

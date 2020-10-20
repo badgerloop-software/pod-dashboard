@@ -3,6 +3,15 @@ $font:  'Montserrat', sans-serif;
 body {
     font-family: $font;
     margin: 0;
+    height: 100%;
+}
+
+div#bodyContent {
+    position: absolute;
+    top: 4.25em;
+    width: 100%;
+    height: calc(100% - 4.25em);
+    padding: 5px;
 }
 
 h1 {

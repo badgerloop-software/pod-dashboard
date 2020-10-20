@@ -1,0 +1,75 @@
+
+// Main grid, contains everything
+.main-grid {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1.1fr 0.9fr;
+    grid-template-rows: repeat(2, 1fr);
+    gap: 5px 5px;
+
+    grid-template-areas:
+        "top-left top-right"
+        "bottom bottom";
+}
+
+// Top-left grid, contains value-displays, state-buttons, and control-buttons
+.top-left {
+    grid-area: top-left;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 0.8fr 1.2fr;
+    gap: 5px 5px;
+
+    grid-template-areas:
+        "value-displays value-displays"
+        "state-buttons control-buttons";
+}
+
+.value-displays {
+    grid-area: value-displays;
+}
+.state-buttons {
+    grid-area: state-buttons;
+}
+.control-buttons {
+    grid-area: control-buttons;
+}
+
+// Top right grid, contains chart-1, chart-2, and link stats
+.top-right {
+    grid-area: top-right;
+
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1.5fr 0.9fr;
+    gap: 5px 5px;
+    grid-template-areas:
+        "chart-1 chart-2"
+        "link-stats link-stats";
+}
+
+.link-stats {
+    grid-area: link-stats;
+}
+.chart-1 {
+    grid-area: chart-1;
+}
+.chart-2 {
+    grid-area: chart-2;
+}
+
+// Bottom grid, contains e-stop, and all of the data tables
+.bottom {
+    grid-area: bottom;
+
+    display: grid;
+    grid-template-columns: 0.6fr repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: 5px 5px;
+    
+}
+
+.section {
+    background-color: whitesmoke;
+}
