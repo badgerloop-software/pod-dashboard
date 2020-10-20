@@ -1,20 +1,33 @@
 /**
  * Handles window controls
  */
-const electronWindow = require('electron').remote.getCurrentWindow();
 
-// Window minimization
-document.getElementById('min-window').addEventListener('click', () => {
-    electronWindow.minimize();
-});
+ let minWindow = document.getElementById('min-window');
+ let maxWindow = document.getElementById('max-window');
+ let closeWindow = document.getElementById('close-window');
 
-// Window maximization
-document.getElementById('max-window').addEventListener('click', () => {
-    if (!electronWindow.isMaximized()) electronWindow.maximize();
-    else electronWindow.unmaximize();
-});
+if(typeof require === 'undefined') {
+    // Hide window control buttons if not in electron
 
-// Closing window
-document.getElementById('close-window').addEventListener('click', () => {
-    electronWindow.close();
-});
+    minWindow.style.display = 'none';
+    maxWindow.style.display = 'none';
+    closeWindow.style.display = 'none';
+} else {
+    const electronWindow = require('electron').remote.getCurrentWindow();
+
+    // Window minimization
+    minWindow.addEventListener('click', () => {
+        electronWindow.minimize();
+    });
+    
+    // Window maximization
+    maxWindow.addEventListener('click', () => {
+        if (!electronWindow.isMaximized()) electronWindow.maximize();
+        else electronWindow.unmaximize();
+    });
+    
+    // Closing window
+    closeWindow.addEventListener('click', () => {
+        electronWindow.close();
+    });
+}
