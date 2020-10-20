@@ -32,44 +32,14 @@ button {
 
 /* banner styling */
 
-#title {
-    text-transform: uppercase;
-}
-
-/* https://stackoverflow.com/a/2310809 */
-.unselectable {
-    -webkit-app-region: drag;
-    -webkit-user-drag: none;
-    -webkit-touch-callout: none;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
-}
-
 .banner {
     overflow: hidden;
     background-color: gray;
     position: fixed;
     top: 0;
     width: 100vw;
-    height: 4.25em;
-    z-index: 1; 
+    z-index: 1;
     -webkit-app-region: drag;
-}
-
-.banner-selectable {
-    cursor: pointer;
-    height: 100%;
-}
-
-.banner-selectable:hover {
-    background-color: #A9A9A9;
-}
-
-.banner-selectable:active {
-    background-color: #9b9b9b;
 }
 
 .banner .left {
@@ -78,20 +48,11 @@ button {
     color: #f2f2f2;
     text-align: center;
     text-decoration: none;
-    padding-top: 20px;
+    padding-top: 15px;
     padding-bottom: 15px;
     padding-left: 30px;
     font-size: 25px;
     -webkit-app-region: no-drag;
-}
-
-div#close-window {
-    margin-right: 10px;
-    padding-top: 18px;
-}
-
-div#min-window {
-    padding-top: 18.5px;
 }
 
 .banner .right {
@@ -101,8 +62,8 @@ div#min-window {
     text-align: center;
     text-decoration: none;
     padding-top: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-bottom: 15px;
+    padding-right: 30px;
     font-size: 25px;
 }
 
@@ -114,16 +75,11 @@ div#min-window {
     text-decoration: none;
     padding-top: 15px;
     padding-bottom: 15px;
-    padding-left: 15px;
-    padding-right: 15px;
+    padding-right: 30px;
     font-size: 25px;
 }
 
 /* banner dropdown (need to fix, bit hard to get opened) */
-
-#banner-drop {
-    height: 100%;
-}
 
 .banner_dropdown {
     float: right;
@@ -138,16 +94,14 @@ div#min-window {
     background-color: inherit;
     font-family: inherit;
     margin: 0;
-    width: 200px;
     height: 100%;
     -webkit-app-region: no-drag;
-    padding-bottom: 100%;
 }
 
 .banner_dropdown-content {
     display: none;
     position: fixed;
-    top: 68px;
+    top: 66px;
     background-color: #f9f9f9;
     width: 200px;
     box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -314,20 +268,31 @@ td.last {
 /* dropdown styling */
 
 .dropbtn {
+    background-color: #D3D3D3;
     border: none;
     color: #808080;
     text-align: center;
     text-decoration: none;
     position: inline-block;
+    margin: 4px 2px;
+    -webkit-transition-duration: 0.4s;
+    /* Safari */
+    transition-duration: 0.4s;
     cursor: pointer;
+    border: 2px solid #808080;
+    border-radius: 6px;
     width: 100px;
-    height: 100%;
+}
+
+.dropbtn:hover, .dropbtn:focus {
+    background-color: #A9A9A9;
+    color: black;
 }
 
 .dropdown {
     position: relative;
     display: inline-block;
-    /*padding-bottom: 50px;*/
+    padding-bottom: 50px;
 }
 
 .dropdown-content {
