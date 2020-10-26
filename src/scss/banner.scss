@@ -2,6 +2,8 @@ $banner-color:      rgb(110, 111, 122);
 $hover-color:       lighten($banner-color, 10%);
 $active-color:      lighten($hover-color, 10%);
 
+$banner-height:     4.25em;
+
 /*
  * BANNER
 */
@@ -16,7 +18,7 @@ $active-color:      lighten($hover-color, 10%);
     position: fixed;
     top: 0;
     width: 100vw;
-    height: 4.25em;
+    height: $banner-height;
     z-index: 1; 
     -webkit-app-region: drag;
 

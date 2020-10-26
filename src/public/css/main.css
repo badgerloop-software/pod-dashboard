@@ -12,6 +12,11 @@ div#bodyContent {
   padding: 5px;
 }
 
+.section {
+  background-color: whitesmoke;
+  padding: 5px;
+}
+
 h1 {
   color: gray;
   padding-left: 10px;
@@ -30,10 +35,6 @@ h5 {
 }
 
 a {
-  -webkit-app-region: no-drag;
-}
-
-button {
   -webkit-app-region: no-drag;
 }
 

@@ -4,13 +4,7 @@
   "description": "The Dashboard for Badgerloop Pod 5",
   "main": "src/app.js",
   "scripts": {
-    "start": "electron .",
-    "lint": "eslint src",
-    "pug": "sh -c 'pug ./src/templates -P --out ./src/views-pug; rm -r ./src/views-pug/mixins'",
-    "sass": "sass src/scss:src/public/css --no-source-map",
-    "pretest": "eslint src",
-    "dev": "$env:DEBUG='true' && electron .",
-    "generate-docs": "./node_modules/.bin/jsdoc ./src/ -R ./README.md -r -P ./package.json -t ./node_modules/docdash/ -c ./jsdoc.json -d ./docs/"
+    "start": "echo Please use ./dbd"
   },
   "repository": {
     "type": "git",
@@ -34,7 +28,7 @@
     "jest": "^24.1.0",
     "jsdoc": "^3.6.3",
     "prettier": "^1.16.4",
-    "pug": "^3.0.0",
+    "pug-cli": "^1.0.0-alpha6",
     "sass": "^1.27.0"
   }
 }

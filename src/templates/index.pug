@@ -7,7 +7,10 @@ block content
     .main-grid
         .top-left
             .value-displays.section
-                | Value Displays
+                each val in [1, 2, 3, 4]
+                    .value-display(id=`value-display-${val}`)
+                        p(id=`value-display-label-${val}`) Value #{val}
+                        h1(id=`value-dsiplay-text-${val}`)
             .state-buttons.section
                 | State Buttons
             .contol-buttons.section

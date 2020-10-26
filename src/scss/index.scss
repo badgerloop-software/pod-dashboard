@@ -1,4 +1,5 @@
 
+
 // Main grid, contains everything
 .main-grid {
     height: 100%;
@@ -28,7 +29,29 @@
 
 .value-displays {
     grid-area: value-displays;
+
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
 }
+
+.value-display {
+    text-align: center;
+    border: 3px solid rgb(110, 111, 122);
+    width: 100%;
+    margin-left: 0.5em;
+    margin-right: 0.5em;
+
+    &:hover {
+        background-color: #dadada;
+    }
+
+    h1 {
+        color: black;
+    }
+}
+
 .state-buttons {
     grid-area: state-buttons;
 }
@@ -68,8 +91,4 @@
     grid-template-rows: 1fr;
     gap: 5px 5px;
     
-}
-
-.section {
-    background-color: whitesmoke;
 }

@@ -125,22 +125,6 @@ terminalInput.addEventListener('keyup', (event) => {
     }
 });
 
-// Window Handling
-
-document.getElementById('min-window').addEventListener('click', () => {
-    electronWindow.minimize();
-});
-
-document.getElementById('max-window').addEventListener('click', () => {
-    if (!electronWindow.isMaximized()) electronWindow.maximize();
-    else electronWindow.unmaximize();
-});
-
-document.getElementById('close-window').addEventListener('click', () => {
-    electronWindow.close();
-});
-
-
 // UI Stuff
 
 function toggleSettingsModal() {

@@ -35,7 +35,7 @@ function createwindow() {
     // Load index.html by default
     window.loadURL(
         URL.format({
-            pathname: PATH.join(__dirname, 'views', 'index.html'),
+            pathname: PATH.join(__dirname, 'views-pug', 'index.html'),
             protocol: 'file:',
             slashes: true,
         }),
