@@ -5,6 +5,7 @@ function dbd() {
     if [[ $# = 0 || $1 = "help" ]]; then
         echo "Usage:  ./dbd help                  -- See this prompt"
         echo "        ./dbd install               -- Install NPM dependencies"
+	    echo "	      ./dbd suid-fix              -- Fixes SUID error on Linux - Requires sudo access"
         echo "        ./dbd build <app|html|css>  -- Build html, css, or both (builds app if none specified)"
         echo "        ./dbd lint                  -- Lint the source files"
         echo "        ./dbd run <|as-is|dev>      -- Run after building, run as-is, or run with continual building"
@@ -14,6 +15,12 @@ function dbd() {
     # Install
     if [[ $1 = "install" ]]; then
         npm install
+        return $?
+    fi
+
+    # SUID Fix
+    if [[ $1 = "install" ]]; then
+        sudo chown root ./node_modules/electron/dist/chrome-sandbox && sudo chmod 4755 ./node_modules/electron/dist/chrome-sandbox
         return $?
     fi
 
