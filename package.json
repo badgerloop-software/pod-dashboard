@@ -24,7 +24,7 @@
   "dependencies": {
     "babel-eslint": "^10.0.1",
     "docdash": "^1.1.1",
-    "electron": ">=7.2.4",
+    "electron": ">=11.5.0",
     "eslint": "5.13.0",
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "^2.16.0",
